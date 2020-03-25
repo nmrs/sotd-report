@@ -2,7 +2,6 @@ import datetime
 import pickle
 from collections import defaultdict
 from pickle import UnpicklingError
-
 import praw
 
 from razor_name_extractor import RazorNameExtractor
@@ -15,8 +14,6 @@ MIN_SHAVES = 2
 raw_usage = defaultdict(int)
 clustered_usage = defaultdict(int)
 
-
-# debug / testing
 pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
 rn = RazorNameExtractor()
@@ -52,10 +49,11 @@ def disk_caching_lookup_of_comments(lookup_month):
 2018-08 More folks are using straights than the most popular DE (WR1). ATT R1 is unusually popular
 2018-10 Karve CB goes from 4th place previous month to first overall (although there are still more rockwells in total) WR2 appears for the first time 
 2019-03 WR1 falls down the list. Karves, Rockwells and Techs are dominant
-2019-06 RR GC .84 is very popular. WR2 usage exceeds WR1 for the first time 
+2019-06 RR GC .84 is very popular. WR2 usage exceeds WR1 for the first time
+2019-08 Karve more popular than anything, even Rockwell 6C and 6S combined 
 """
 
-stats_month = datetime.date(2019,7,1)
+stats_month = datetime.date(2019,9,1)
 
 for comment in disk_caching_lookup_of_comments(stats_month):
     razor_name = rn.get_razor_name(comment)
