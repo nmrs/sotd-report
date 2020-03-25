@@ -10,7 +10,7 @@ from alternate_razor_names import AlternateRazorNames
 
 CACHE_DIR = '../misc/'
 # only report razors with >= this many shaves
-MIN_SHAVES = 2
+MIN_SHAVES = 5
 raw_usage = defaultdict(int)
 clustered_usage = defaultdict(int)
 
@@ -53,7 +53,7 @@ def disk_caching_lookup_of_comments(lookup_month):
 2019-08 Karve more popular than anything, even Rockwell 6C and 6S combined 
 """
 
-stats_month = datetime.date(2019,9,1)
+stats_month = datetime.date(2020,2,1)
 
 for comment in disk_caching_lookup_of_comments(stats_month):
     razor_name = rn.get_razor_name(comment)
@@ -72,7 +72,7 @@ for razor_name, uses in raw_usage.items():
         clustered_usage[principal_name] += uses
     else:
         # avoid nulls
-        clustered_usage['>>>>> ' + razor_name] += uses
+        clustered_usage[razor_name] += uses
     total_shaves_for_month += uses
 
 
