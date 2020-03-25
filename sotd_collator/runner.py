@@ -77,8 +77,8 @@ for razor_name, uses in raw_usage.items():
 
 
 print('|Razor|Shaves in {0}|% of all shaves in {0}|'.format(stats_month.strftime('%b %Y')))
-print('|+++|+++|+++|')
+print('|---|---|---˚|')
 for razor_name, num_shaves in sorted(clustered_usage.items(), key=lambda item: item[1], reverse=True):
     if num_shaves < MIN_SHAVES:
         continue
-    print('|{0}|{1}|{2:0.2f}'.format(*[razor_name, num_shaves, num_shaves * 100.0 / total_shaves_for_month]))
+    print('|{0}|{1}|{2:0.2f}|'.format(*[razor_name, num_shaves, num_shaves * 100.0 / total_shaves_for_month]))
