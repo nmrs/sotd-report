@@ -1,2 +1,2 @@
 praw
-dateutil-python
+python-dateutil
