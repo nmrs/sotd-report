@@ -53,7 +53,7 @@ def disk_caching_lookup_of_comments(lookup_month):
 2019-08 Karve more popular than anything, even Rockwell 6C and 6S combined 
 """
 
-stats_month = datetime.date(2020,2,1)
+stats_month = datetime.date(2016,6,1)
 
 for comment in disk_caching_lookup_of_comments(stats_month):
     razor_name = rn.get_razor_name(comment)
@@ -77,7 +77,7 @@ for razor_name, uses in raw_usage.items():
 
 
 print('|Razor|Shaves in {0}|% of all shaves in {0}|'.format(stats_month.strftime('%b %Y')))
-print('|---|---|---˚|')
+print('|---|---|---|')
 for razor_name, num_shaves in sorted(clustered_usage.items(), key=lambda item: item[1], reverse=True):
     if num_shaves < MIN_SHAVES:
         continue
