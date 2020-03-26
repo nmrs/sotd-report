@@ -53,10 +53,10 @@ def disk_caching_lookup_of_comments(lookup_month):
 2019-08 Karve more popular than anything, even Rockwell 6C and 6S combined 
 """
 
-stats_month = datetime.date(2016,6,1)
+stats_month = datetime.date(2019,8,1)
 
 for comment in disk_caching_lookup_of_comments(stats_month):
-    razor_name = rn.get_razor_name(comment)
+    razor_name = rn.get_name(comment)
     if razor_name is not None:
         raw_usage[razor_name] += 1
 
