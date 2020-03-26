@@ -1,3 +1,7 @@
+import pickle
+from pickle import UnpicklingError
+
+import pkg_resources
 import praw
 import datetime
 from dateutil.relativedelta import *
@@ -8,6 +12,7 @@ class SotdPostLocator(object):
     """
 
     THREAD_NAME_STR_PATTERN = ' SOTD Thread -'
+    CACHE_DIR = pkg_resources.resource_filename('sotd_collator', '../misc/')
 
     def __init__(self, praw):
         self.praw = praw
@@ -46,12 +51,22 @@ class SotdPostLocator(object):
 
         return [x for x in rec if datetime.datetime.utcfromtimestamp(x.created_utc).month == given_month.month]
 
-    def process(self):
-        threads = self.get_x_most_recent_threads(50)
-        orderable = {x.created_utc: x.title for x in threads}
+    def get_comments_for_given_month_cached(self, given_month):
+        # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
+        cache_file = '{0}{1}{2}.cache'.format(self.CACHE_DIR, given_month.year, given_month.month)
 
-        for sotd_date in sorted(orderable.keys()):
-            print(sotd_date, orderable[sotd_date])
+        try:
+            with open(cache_file, 'rb') as f_cache:
+                return pickle.load(f_cache)
+        except (FileNotFoundError, UnpicklingError):
+            comments = []
+            for thread in self.get_threads_for_given_month(given_month):
+                comments.extend([x.body for x in thread.comments])
+
+            with open(cache_file, 'wb') as f_cache:
+                pickle.dump(comments, f_cache)
+
+            return comments
 
 
 

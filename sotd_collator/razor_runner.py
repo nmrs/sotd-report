@@ -1,14 +1,12 @@
 import datetime
-import pickle
 from collections import defaultdict
-from pickle import UnpicklingError
 import praw
 
-from razor_name_extractor import RazorNameExtractor
-from sotd_post_locator import SotdPostLocator
-from alternate_razor_names import AlternateRazorNames
+from sotd_collator.razor_name_extractor import RazorNameExtractor
+from sotd_collator.razor_alternate_namer import RazorAlternateNamer
+from sotd_collator.sotd_post_locator import SotdPostLocator
 
-CACHE_DIR = '../misc/'
+
 # only report razors with >= this many shaves
 MIN_SHAVES = 5
 raw_usage = defaultdict(int)
@@ -17,25 +15,8 @@ clustered_usage = defaultdict(int)
 pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
 rn = RazorNameExtractor()
-arn = AlternateRazorNames()
+arn = RazorAlternateNamer()
 #
-
-def disk_caching_lookup_of_comments(lookup_month):
-    # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
-    cache_file = '{0}{1}{2}.cache'.format(CACHE_DIR, lookup_month.year, lookup_month.month)
-
-    try:
-        with open(cache_file, 'rb') as f_cache:
-            return pickle.load(f_cache)
-    except (FileNotFoundError, UnpicklingError):
-        comments = []
-        for thread in pl.get_threads_for_given_month(lookup_month):
-            comments.extend([x.body for x in thread.comments])
-
-        with open(cache_file, 'wb') as f_cache:
-            pickle.dump(comments, f_cache)
-
-        return comments
 
 """
 2016-06 Back in time
@@ -55,7 +36,7 @@ def disk_caching_lookup_of_comments(lookup_month):
 
 stats_month = datetime.date(2019,8,1)
 
-for comment in disk_caching_lookup_of_comments(stats_month):
+for comment in pl.get_comments_for_given_month_cached(stats_month):
     razor_name = rn.get_name(comment)
     if razor_name is not None:
         raw_usage[razor_name] += 1
@@ -66,8 +47,6 @@ for razor_name, uses in raw_usage.items():
     if not razor_name:
         continue
     principal_name = arn.get_principal_name(razor_name)
-    # if principal_name == 'Gillette Super Adjustable':
-    #     print(razor_name)
     if principal_name:
         clustered_usage[principal_name] += uses
     else:

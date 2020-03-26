@@ -1,7 +1,7 @@
 import re
 from functools import cached_property
-from alternate_razor_names import AlternateRazorNames
-from base_name_extractor import BaseNameExtractor
+from sotd_collator.razor_alternate_namer import RazorAlternateNamer
+from sotd_collator.base_name_extractor import BaseNameExtractor
 
 
 class RazorNameExtractor(BaseNameExtractor):
@@ -11,7 +11,7 @@ class RazorNameExtractor(BaseNameExtractor):
 
     @cached_property
     def alternative_namer(self):
-        return AlternateRazorNames()
+        return RazorAlternateNamer()
 
     @property
     def detect_regexps(self):
