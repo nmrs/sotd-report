@@ -23,11 +23,14 @@ class BaseNameExtractor(object):
 
     def get_name(self, comment_text):
         comment_text = self._to_ascii(comment_text)
+        # try to extract entity name using regexps - ie SOTD is in a common format
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
                 return res.group(1).strip()
 
+        # if we cant find the the entity by looking for it in common SOTD formats,
+        # try and find any common entity name within the comment
         principal_name = self.alternative_namer.get_principal_name(comment_text)
         if principal_name:
             return principal_name
