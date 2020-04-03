@@ -38,6 +38,7 @@ class BaseNameExtractor(object):
         return wrapped
 
     def get_name(self, comment_text):
+        # generally this gets overwritten by subclasses since they have entity type specific fixups
         comment_text = self._to_ascii(comment_text)
         # try to extract entity name using regexps - ie SOTD is in a common format
         for detector in self.detect_regexps:
