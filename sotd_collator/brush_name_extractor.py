@@ -13,7 +13,7 @@ class BrushNameExtractor(BaseNameExtractor):
     def alternative_namer(self):
         return BrushAlternateNamer()
 
-    @property
+    @cached_property
     def detect_regexps(self):
         blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 

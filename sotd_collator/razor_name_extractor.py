@@ -13,7 +13,7 @@ class RazorNameExtractor(BaseNameExtractor):
     def alternative_namer(self):
         return RazorAlternateNamer()
 
-    @property
+    @cached_property
     def detect_regexps(self):
         razor_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
