@@ -26,6 +26,7 @@ class BladeNameExtractor(BaseNameExtractor):
 
         ]
 
+    @BaseNameExtractor.post_process_name
     def get_name(self, comment_text):
         comment_text = self._to_ascii(comment_text)
         for detector in self.detect_regexps:
@@ -33,7 +34,6 @@ class BladeNameExtractor(BaseNameExtractor):
             if res:
                 # remove blade count - eg Astra (3)
                 return re.sub(r'[()\d]', '', res.group(1)).strip()
-
 
         principal_name = self.alternative_namer.get_principal_name(comment_text)
         if principal_name:

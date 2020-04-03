@@ -42,7 +42,7 @@ for blade_name, uses in raw_usage.items():
     total_shaves_for_month += uses
 
 
-print('|blade|Shaves in {0}|% of all shaves in {0}|'.format(stats_month.strftime('%b %Y')))
+print('|Blade|Shaves in {0}|% of all shaves in {0}|'.format(stats_month.strftime('%b %Y')))
 print('|---|---|---|')
 for blade_name, num_shaves in sorted(clustered_usage.items(), key=lambda item: item[1], reverse=True):
     if num_shaves < MIN_SHAVES:

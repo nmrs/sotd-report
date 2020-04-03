@@ -11,7 +11,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         '7 0\'Clock - Sharpedge (Yellow)': ['clock.*sharpe', 'clock.*yellow'],
         '7 0\'Clock - Super Platinum (Black)': ['clock.*pla', 'clock.*black'],
         '7 0\'Clock - Super Stainless (Green)': ['clock.*sta', 'clock.*green', 'clock'],
-        'Astra Platinum (Green)': ['astra.*plat', 'astra.*green', 'astra.*sp', 'astra'],
+        'Astra SP (Green)': ['astra.*plat', 'astra.*green', 'astra.*sp', 'astra'],
         'Astra Stainless': ['astra.*sta', 'astra.*blue'],
         'Bic Chrome': ['bic.*(chr|pla)'],
         'Bolzano': ['b(o|a)lzano'],

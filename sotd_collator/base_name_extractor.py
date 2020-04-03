@@ -1,4 +1,8 @@
+import functools
+import re
 import unicodedata
+
+
 
 
 class BaseNameExtractor(object):
@@ -20,6 +24,18 @@ class BaseNameExtractor(object):
             return None
         else:
             return unicodedata.normalize('NFKD', str_val).encode('ascii', 'ignore').strip().decode('ascii')
+
+    @staticmethod
+    def post_process_name(callback):
+        # decorator that can be implemented across subclasses to shared fixup on entity names before they are returned
+        @functools.wraps(callback)
+        def wrapped(inst, *args, **kwargs):
+            entity_name = callback(inst, *args, **kwargs)
+            if entity_name:
+                return re.sub(r'[\t|]', '', entity_name.replace('|', ''))
+            else:
+                return entity_name
+        return wrapped
 
     def get_name(self, comment_text):
         comment_text = self._to_ascii(comment_text)

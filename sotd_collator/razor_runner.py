@@ -34,7 +34,7 @@ arn = RazorAlternateNamer()
 2019-08 Karve more popular than anything, even Rockwell 6C and 6S combined 
 """
 
-stats_month = datetime.date(2019,8,1)
+stats_month = datetime.date(2020,3,1)
 
 for comment in pl.get_comments_for_given_month_cached(stats_month):
     razor_name = rn.get_name(comment)

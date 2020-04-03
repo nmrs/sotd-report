@@ -26,6 +26,7 @@ class RazorNameExtractor(BaseNameExtractor):
 
         ]
 
+    @BaseNameExtractor.post_process_name
     def get_name(self, comment_text):
         comment_text = self._to_ascii(comment_text)
         for detector in self.detect_regexps:
