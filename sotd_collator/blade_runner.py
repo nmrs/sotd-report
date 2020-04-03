@@ -21,7 +21,7 @@ an = BladeAlternateNamer()
 """
 """
 
-stats_month = datetime.date(2019,6,1)
+stats_month = datetime.date(2020,3,1)
 
 for comment in pl.get_comments_for_given_month_cached(stats_month):
     blade_name = ne.get_name(comment)
