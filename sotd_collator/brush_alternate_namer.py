@@ -1,4 +1,7 @@
+import re
 from collections import OrderedDict
+from functools import lru_cache
+
 from sotd_collator.base_alternate_namer import BaseAlternateNamer
 
 
@@ -7,9 +10,9 @@ class BrushAlternateNamer(BaseAlternateNamer):
     Amalgamate names
     """
 
-    bads = '(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan)'
+    bads = '(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan|finest|best|two\s*band)'
     boars = '(boar)'
-    syns = '(timb|tux|mew|silk|synt|synbad|2bed|captain)'
+    syns = '(timb|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*mag)'
 
     _raw = OrderedDict({
         'DG B1': ['B1'],
@@ -22,28 +25,31 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'DG B8': ['B8'],
         'DG B9A': ['B9A'],
         'DG B9B': ['B9B'],
-        'Razorock Synthetic': ['Razorr*ock', '(^|\s)rr\s']
+        'Razorock Synthetic': ['Razorr*ock', '(^|\s)rr\s'],
+        'Paladin': ['paladin'],
+        'Stirling Synthetic': ['stirl.*kong'],
     })
 
     standard_makers = {
-        'AP Shave Co': ['AP\s*shav.*{0}'],
-        'Black Anvil': ['black.*anv.*{0}'],
-        'Craving Shaving': ['crav.*shave.*{0}'],
-        'DSCosmetics': ['DSCosmetics.*{0}', 'DSC.*{0}'],
-        'Dogwood': ['dogw.*{0}'],
-        'Frank Shaving': ['frank.*sha.*{0}'],
-        'Grizzly Bay': ['griz.*bay.*{0}'],
-        'Leonidam': ['leonidam.*{0}'],
-        'Maggard': ['maggard.*{0}'],
-        'Noble Otter': ['noble.*{0}'],
-        'Oz Shaving': ['oz.*sha.*{0}'],
-        'Prometheus Handcrafts': ['promethe.*{0}'],
-        'Stirling': ['stirl.*{0}'],
-        'That Darn Rob': ['darn.*rob.*{0}', 'tdr.*{0}'],
-        'WCS': ['wcs.*{0}'],
-        'Whipped Dog': ['whipped.*dog.*{0}'],
-        'Wild West Brushworks': ['wild.*west.*bru.*{0}', 'wwb.*{0}', 'ww.*brushw.*{0}'],
-        'Yaqi': ['yaqi.*{0}'],
+        'AP Shave Co': ['AP\s*shav'],
+        'Black Anvil': ['black.*anv'],
+        'Craving Shaving': ['crav.*shave'],
+        'DSCosmetics': ['DSCosmetics', 'DSC'],
+        'Dogwood': ['dogw'],
+        'Frank Shaving': ['frank.*sha'],
+        'Grizzly Bay': ['griz.*bay'],
+        'Leonidam': ['leonidam'],
+        'Maggard': ['maggard'],
+        'Noble Otter': ['noble'],
+        'Oz Shaving': ['oz.*sha'],
+        'Prometheus Handcrafts': ['promethe'],
+        'Simpson': ['simpson'],
+        'Stirling': ['stirl'],
+        'That Darn Rob': ['darn.*rob', 'tdr'],
+        'WCS': ['wcs'],
+        'Whipped Dog': ['whipped.*dog'],
+        'Wild West Brushworks': ['wild.*west', 'wwb', 'ww.*brushw'],
+        'Yaqi': ['yaqi'],
     }
 
     standard_fixup = {
@@ -60,8 +66,27 @@ class BrushAlternateNamer(BaseAlternateNamer):
                 for maker_name_template, pattern in self.standard_fixup.items():
                     maker_name = maker_name_template.format(maker)
                     if maker_name in self._raw:
-                        self._raw[maker_name].append(regexp.format(pattern))
+                        self._raw[maker_name].append(regexp + '.*' + pattern)
                     else:
-                        self._raw[maker_name] = [regexp.format(pattern)]
+                        self._raw[maker_name] = [regexp + '.*' + pattern]
+                    self._raw[maker_name].append(pattern + '.*' + regexp)
 
 
+    @lru_cache(maxsize=1024)
+    def get_principal_name(self, name):
+        # Standardise omega / semogues - dont want to list out every model number above,
+        # but coerce them into a standard format
+        name = name.lower().replace('semouge', 'semogue')
+
+        omse_brand = re.search('(omega|semogue)', name, re.IGNORECASE)
+        omse_model_num = re.search('[A-Za-z]*\d{3,}', name)
+        if omse_brand and omse_model_num:
+            return '{0} {1}'.format(
+                omse_brand.group(1).title(),
+                omse_model_num.group(0)
+            )
+
+        for alt_name_re in sorted(self._mapper.keys(), key=len, reverse=True):
+            if re.search(alt_name_re, name, re.IGNORECASE):
+                return self._mapper[alt_name_re]
+        return None
