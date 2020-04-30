@@ -22,52 +22,52 @@ MIN_SHAVES = 3
 
 
 process_entities = [
-    # {
-    #     'name': 'Razor',
-    #     'extractor': RazorNameExtractor(),
-    #     'renamer': RazorAlternateNamer(),
-    # },
+    {
+        'name': 'Razor',
+        'extractor': RazorNameExtractor(),
+        'renamer': RazorAlternateNamer(),
+    },
     {
         'name': 'Blade',
         'extractor': BladeNameExtractor(),
         'renamer': BladeAlternateNamer(),
     },
-    # {
-    #     'name': 'Brush',
-    #     'extractor': BrushNameExtractor(),
-    #     'renamer': BrushAlternateNamer(),
-    # },
+    {
+        'name': 'Brush',
+        'extractor': BrushNameExtractor(),
+        'renamer': BrushAlternateNamer(),
+    },
 ]
 
 stats_month = datetime.date(2019,5,1)
 previous_month = stats_month - relativedelta(months=1)
+previous_year = stats_month - relativedelta(months=12)
 
 for entity in process_entities:
 
     usage, total_shaves = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
-    # get previous month's stats for position changes
+    # get previous month's, years' stats for position changes
     pm_usage, pm_total_shaves = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
+    py_usage, py_total_shaves = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
 
-    print('|{0}|Shaves in {1}|% of all shaves in {1}|Change in rank vs prev month|'.format(
+    print('|{0}|Shaves in {1}|% of all shaves in {1}|Change in rank vs prev month|Change in rank vs prev year|'.format(
         *[
             entity['name'],
             stats_month.strftime('%b %Y')
         ]
     ))
 
-    pprint(get_ranked_datastructure(usage))
-    pprint(get_ranked_datastructure(pm_usage))
-    pprint(pm_usage)
-    print('|---|---|---|---|')
+    print('|---|---|---|---|---|')
     for razor_name, num_shaves in sorted(usage.items(), key=lambda item: item[1], reverse=True):
         if num_shaves < MIN_SHAVES:
             continue
-        print('|{0}|{1}|{2:0.2f}|{3}|'.format(
+        print('|{0}|{1}|{2:0.2f}|{3}|{4}|'.format(
             *[
                 razor_name,
                 num_shaves,
                 num_shaves * 100.0 / total_shaves,
-                get_ranking_delta(razor_name, get_ranked_datastructure(usage), get_ranked_datastructure(pm_usage))
+                get_ranking_delta(razor_name, get_ranked_datastructure(usage), get_ranked_datastructure(pm_usage)),
+                get_ranking_delta(razor_name, get_ranked_datastructure(usage), get_ranked_datastructure(py_usage)),
             ]))
 
     print('\n\n')
