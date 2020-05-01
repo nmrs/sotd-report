@@ -63,8 +63,10 @@ class SotdPostLocator(object):
             for thread in self.get_threads_for_given_month(given_month):
                 comments.extend([x.body for x in thread.comments])
 
-            with open(cache_file, 'wb') as f_cache:
-                pickle.dump(comments, f_cache)
+            # dont cache current / future months
+            if datetime.date.today().replace(day=1) > given_month.replace(day=1):
+                with open(cache_file, 'wb') as f_cache:
+                    pickle.dump(comments, f_cache)
 
             return comments
 
