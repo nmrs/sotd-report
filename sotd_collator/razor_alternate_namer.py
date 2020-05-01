@@ -7,6 +7,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
     Amalgamate names
     """
     _raw = OrderedDict({
+        'Alumigoose': ['alumigoose'],
         'Asylum Evolution': ['asylum.*evo'],
         'ATT H1': ['ATT.*h-*1*', 'tie.*h-*1*', '(atlas|bamboo|calypso|colossus|kronos).*h1*'],
         'ATT H2': ['ATT.*h-*2', 'tie.*h-*2', '(atlas|bamboo|calypso|colossus|kronos).*h2'],
@@ -217,7 +218,9 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Razorock Game Changer .84': ['game.*changer.*84', 'gc.*84', 'game.*changer'],
         'Razorock Game Changer .68': ['game.*changer.*68', 'gc.*68'],
         'Razorock German 37 Slant': ['r.*r.*german.*37', 'r.*r.*slant.*37', 'r.*r.*37.*slant'],
-        'Razorock Hawk (v1 or v2)': ['hawk', 'hawk*.*v'],
+        'Razorock Hawk v1': ['hawk.*1'],
+        'Razorock Hawk v2': ['hawk', 'hawk.*2'],
+        'Razorock Hawk v3': ['hawk.*3'],
         'Razorock Lupo': ['Lupp*o'],
         'Razorock Mamba': ['mamba'],
         'Razorock MJ-90': ['mj-*90'],
