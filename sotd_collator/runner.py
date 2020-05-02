@@ -39,7 +39,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2019,5,1)
+stats_month = datetime.date(2020,3,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
@@ -50,6 +50,7 @@ for entity in process_entities:
     pm_usage, pm_total_shaves = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
     py_usage, py_total_shaves = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
 
+    print('##{0}s\n'.format(entity['name']))
     print('|{0}|Shaves in {1}|% of all shaves in {1}|Change in rank vs prev month|Change in rank vs prev year|'.format(
         *[
             entity['name'],
@@ -70,4 +71,4 @@ for entity in process_entities:
                 get_ranking_delta(razor_name, get_ranked_datastructure(usage), get_ranked_datastructure(py_usage)),
             ]))
 
-    print('\n\n')
+    print('\n')
