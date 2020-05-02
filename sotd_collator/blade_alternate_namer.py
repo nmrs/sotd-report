@@ -22,7 +22,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Feather FHS-1': ['fhs-1'],
         'Feather Pro (AC)': ['feather.*pro'],
         'Feather Pro Light (AC)': ['feather.*light'],
-        'Feather Pro Super (AC)': ['feather.*super'],
+        'Feather Pro Super (AC)': ['feather.*super', 'pro\s*super'],
         'Feather ProGuard (AC)': ['feather.*guard'],
         'Feather Soft Guard (AC)': ['feather.*soft'],
         'GEM': ['gem'],

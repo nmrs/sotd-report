@@ -31,8 +31,16 @@ class BaseNameExtractor(object):
         @functools.wraps(callback)
         def wrapped(inst, *args, **kwargs):
             entity_name = callback(inst, *args, **kwargs)
+            replacements = [
+                ('|', ''),
+                ('&#39;', "'"),
+                ('&quot;', '"'),
+                ('&amp;', '&'),
+            ]
             if entity_name:
-                return re.sub(r'[\t|]', '', entity_name.replace('|', ''))
+                for replacement in replacements:
+                    entity_name = entity_name.replace(*replacement)
+                return re.sub(r'[\t|]', '', entity_name)
             else:
                 return entity_name
         return wrapped
