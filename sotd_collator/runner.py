@@ -58,12 +58,7 @@ for entity in process_entities:
     pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
 
     usage = add_ranking_delta(usage, pm_usage, previous_month.strftime('%b %Y'))
-
-
-    # pd.set_option('display.max_rows', 1000)
-    # pd.set_option('display.max_columns', 10)
-    # print(usage)
-
+    usage = add_ranking_delta(usage, pm_usage, previous_year.strftime('%b %Y'))
     usage.drop('rank', inplace=True, axis=1)
 
     # enforce min shaves
@@ -74,8 +69,6 @@ for entity in process_entities:
 
     # sort
     usage.sort_values('shaves', ascending=False, inplace=True)
-
-    # prevent averages from going too long
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 

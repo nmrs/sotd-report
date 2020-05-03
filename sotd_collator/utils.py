@@ -23,7 +23,7 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
     df = pd.DataFrame(raw_usage)
     df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
     df.columns = ['name', 'shaves', 'unique users']
-    df.loc[:, 'avg_shaves_per_user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
+    df.loc[:, 'avg shaves per user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
     df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
     return df
 
