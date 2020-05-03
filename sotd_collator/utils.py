@@ -1,55 +1,57 @@
 # shared functions and the like
-from collections import defaultdict
-
+from pprint import pprint
+import pandas as pd
+import numpy as np
 
 def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer):
-    raw_usage = defaultdict(int)
-    clustered_usage = defaultdict(int)
+    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
+    raw_usage = {'name': [], 'user_id': []}
 
-    for comment in post_locator.get_comments_for_given_month_cached(given_month):
+    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
         entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
-            raw_usage[entity_name] += 1
+            principal_name = None
+            if alternate_namer:
+                principal_name = alternate_namer.get_principal_name(entity_name)
+            if not principal_name:
+                # no renamer or no principal name found, so avoid nulls and use raw entity name
+                principal_name = entity_name
 
-    total_shaves_for_month = 0
+            raw_usage['name'].append(principal_name)
+            raw_usage['user_id'].append(user_id)
 
-    for entity_name, uses in raw_usage.items():
-        if not entity_name:
-            continue
-        principal_name = alternate_namer.get_principal_name(entity_name)
-        if principal_name:
-            clustered_usage[principal_name] += uses
-        else:
-            # avoid nulls
-            clustered_usage[entity_name] += uses
-        total_shaves_for_month += uses
+    df = pd.DataFrame(raw_usage)
+    df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
+    df.columns = ['name', 'shaves', 'unique users']
+    df.loc[:, 'avg_shaves_per_user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
+    df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
+    return df
 
-    return clustered_usage, total_shaves_for_month
+def add_ranking_delta(df_curr, df_prev, historic_name):
+    # enrich the current data frame with the delta in rank from the historic dataframe
 
+    def _get_delta(row):
+        if pd.isnull(row['previous_rank']):
+            # ie not seen last month
+            return 'n/a'
+        elif row['rank'] == row['previous_rank']:
+            return '='
+        elif row['rank'] < row['previous_rank']:
+            # need to specifically make this an int otherwise pandas considers it a float and shows as eg ^1.0
+            return '↑{0}'.format(int(row['previous_rank'] - row['rank']))
+        elif row['rank'] > row['previous_rank']:
+            return '↓{0}'.format(int(row['rank'] - row['previous_rank']))
 
-def get_ranked_datastructure(usage_data):
-    # compare - generate ranked datastructures
-    # cant simply sort and enumerate, because at the lower end we have many razors with the same number of shaves
-    # ie many razors share the same rank
+    df_prev = df_prev[['name', 'rank']]
+    df_prev.columns = ['name', 'previous_rank']
 
-    # convert shaves to ranks
-    rank_mapper = {shaves: rank + 1 for rank, shaves in enumerate(
-        sorted(
-            {x: 1 for x in usage_data.values()}.keys(), # ie unique list of number of shaves
-            reverse=True,
-        )
-    )}
+    df_curr = pd.merge(
+        left=df_curr,
+        right=df_prev,
+        on='name',
+        how='left',
+    )
+    df_curr.loc[:, 'Δ vs {0}'.format(historic_name)] = df_curr.apply(_get_delta, axis=1)
+    df_curr.drop('previous_rank', inplace=True, axis=1)
 
-    return {razor: rank_mapper[shaves] for razor, shaves in usage_data.items()}
-
-
-def get_ranking_delta(entity_name, ranked, ranked_prev_month):
-    if not entity_name in ranked_prev_month:
-        # ie not seen last month
-        return 'n/a'
-    elif ranked[entity_name] == ranked_prev_month[entity_name]:
-        return '='
-    elif ranked[entity_name] < ranked_prev_month[entity_name]:
-        return '↑{0}'.format(ranked_prev_month[entity_name] - ranked[entity_name])
-    elif ranked[entity_name] > ranked_prev_month[entity_name]:
-        return '↓{0}'.format(ranked[entity_name] - ranked_prev_month[entity_name])
+    return df_curr
