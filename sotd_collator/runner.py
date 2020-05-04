@@ -14,7 +14,7 @@ from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month
+from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
 
 pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
@@ -56,9 +56,10 @@ for entity in process_entities:
 
     usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
     pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
+    py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
 
     usage = add_ranking_delta(usage, pm_usage, previous_month.strftime('%b %Y'))
-    usage = add_ranking_delta(usage, pm_usage, previous_year.strftime('%b %Y'))
+    usage = add_ranking_delta(usage, py_usage, previous_year.strftime('%b %Y'))
     usage.drop('rank', inplace=True, axis=1)
 
     # enforce min shaves
@@ -74,3 +75,17 @@ for entity in process_entities:
 
     print(usage.to_markdown(showindex=False))
     print('\n')
+
+print('## Shaving Frequency Histogram\n')
+print(get_shaving_histogram(stats_month, pl).to_markdown(showindex=False))
+print('\n')
+
+print('## Razor Frequency Histogram\n')
+print(get_entity_histogram(stats_month, pl, RazorNameExtractor(), RazorAlternateNamer(), 'Razors').to_markdown(showindex=False))
+print('\n')
+
+print('## Brush Frequency Histogram\n')
+print(get_entity_histogram(stats_month, pl, BrushNameExtractor(), BrushAlternateNamer(), 'Brushes').to_markdown(showindex=False))
+print('\n')
+
+

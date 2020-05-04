@@ -50,7 +50,7 @@ class SotdPostLocator(object):
             limit=100,
         )
 
-        return [x for x in rec if datetime.datetime.utcfromtimestamp(x.created_utc).month == given_month.month]
+        return [x for x in rec if datetime.datetime.utcfromtimestamp(x.created_utc).month == given_month.month and self.THREAD_NAME_STR_PATTERN.lower() in x.title.lower()]
 
     def get_comments_for_given_month_cached(self, given_month):
         # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
@@ -79,11 +79,8 @@ if __name__ == '__main__':
     # debug / testing
     pl = SotdPostLocator(praw.Reddit('standard_creds', user_agent='arach'))
 
-    res = pl.praw.subreddit('wetshaving').search(
-        query='SOTD Thread Aug 2019',
-        limit=1000,
+    res = pl.get_threads_for_given_month(datetime.date(2020, 4, 1))
 
-    )
     # res = pl.get_threads_from_last_month()
     orderable = {x.created_utc: x.title for x in res}
 
