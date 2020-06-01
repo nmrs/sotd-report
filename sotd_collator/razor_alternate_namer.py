@@ -55,7 +55,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Filarmonica Straight': ['Filar*monica'],
         'Futur Clone': ['futur.*clone', 'Ming.*Shi.*(2000|adj)', 'qshave'],
         'GEM 1912': ['gem.*1912'],
-        'GEM Bullet Tip': ['bullet.*tip'],
+        'GEM Bullet Tip': ['bullet.*tip', 'flying.*wing'],
         'GEM Featherweight': ['gem.*(feather)'],
         'GEM G-Bar': ['gem.*g.*bar'],
         'GEM Junior': ['gem.*(junior|jr)'],
