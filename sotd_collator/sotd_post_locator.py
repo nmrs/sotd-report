@@ -5,6 +5,8 @@ from pprint import pprint
 import pkg_resources
 import praw
 import datetime
+
+import prawcore
 from dateutil.relativedelta import *
 
 class SotdPostLocator(object):
@@ -64,8 +66,13 @@ class SotdPostLocator(object):
             for thread in self.get_threads_for_given_month(given_month):
                 print('Iterate day')
                 for x in thread.comments:
-                    author = x.author.id if x.author else ''
-                    comments.append((x.body, author))
+                    try:
+                        author = x.author.id if x.author else ''
+                        comments.append((x.body, author))
+                    except prawcore.exceptions.NotFound:
+                        print('Missing comment')
+                        pass
+
             # dont cache current / future months
             if datetime.date.today().replace(day=1) > given_month.replace(day=1):
                 with open(cache_file, 'wb') as f_cache:
@@ -79,7 +86,7 @@ if __name__ == '__main__':
     # debug / testing
     pl = SotdPostLocator(praw.Reddit('standard_creds', user_agent='arach'))
 
-    res = pl.get_threads_for_given_month(datetime.date(2020, 4, 1))
+    res = pl.get_threads_for_given_month(datetime.date(2019, 6, 1))
 
     # res = pl.get_threads_from_last_month()
     orderable = {x.created_utc: x.title for x in res}
