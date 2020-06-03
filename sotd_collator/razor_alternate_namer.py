@@ -121,6 +121,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'J A Henckels Straight': ['friodur', 'Henckels', 'henkels'],
         'Karve CB': ['Karve', 'christopher.*brad'],
         'Kai Captain Kamisori': ['Kai.*captain.*kami'],
+        'King C Gillette': ['king.*c.*gil.*et'],
         'Koraat Straight': ['Koraat'],
         'Lady Gillette': ['lady.*gil.*et', 'gil.*et.*lady'],
         'LASSCo BBS-1': ['BBS-*1'],

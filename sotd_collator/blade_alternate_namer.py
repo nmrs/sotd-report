@@ -34,6 +34,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Kai Captain Sharpblade (AC)': ['kai.*sharp'],
         'Kai Captain Titan Mild (AC)': ['kai.*titan'],
         'Kai Captain Titan Mild Protouch (AC)': ['kai.*touch'],
+        'King C Gillette': ['king.*c.*gil.*et'],
         'Ladas': ['lada'],
         'Lord Classic': ['lord.*cla'],
         'Lord Cool': ['lord.*cool'],
