@@ -31,6 +31,11 @@ class RazorNameExtractor(BaseNameExtractor):
         comment_text = self._to_ascii(comment_text)
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
+            # catch case where some jerk writes ❧ Razor and Blade Notes or similar
+            # at some point this can be genericised in to a block words / phrases list to catch razorock too
+            if res and 'and blade note' in res.group(1).lower():
+                continue
+
             # catch case where we match against razorock
             if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == 'ock'):
                 return res.group(1).strip()

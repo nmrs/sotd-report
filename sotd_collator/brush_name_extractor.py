@@ -29,6 +29,12 @@ class BrushNameExtractor(BaseNameExtractor):
         comment_text = self._to_ascii(comment_text)
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
+
+            # catch case where some jerk writes ❧ Brush Notes or similar
+            # at some point this can be genericised in to a block words / phrases list to catch razorock too
+            if res and res.group(1) == 'Notes':
+                continue
+
             if res:
                 return res.group(1).strip()
 

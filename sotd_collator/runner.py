@@ -48,12 +48,12 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2020,5,1)
+stats_month = datetime.date(2020,6,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
-for entity in process_entities:
 
+for entity in process_entities:
     usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
     pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
     py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
@@ -69,7 +69,7 @@ for entity in process_entities:
     usage.dropna(subset=['name'], inplace=True)
 
     # sort
-    usage.sort_values('shaves', ascending=False, inplace=True)
+    usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
