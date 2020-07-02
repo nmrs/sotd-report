@@ -8,6 +8,8 @@ import datetime
 
 import prawcore
 from dateutil.relativedelta import *
+from praw.models import MoreComments
+
 
 class SotdPostLocator(object):
     """
@@ -74,6 +76,24 @@ class SotdPostLocator(object):
 
     def get_comments_for_given_month_cached(self, given_month):
         # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
+
+        def _get_comments(comment_list):
+            # compatible with recursion / more comments objects
+            collected_comments = []
+            for x in comment_list:
+                if isinstance(x, MoreComments):
+                    collected_comments.extend(_get_comments(x.comments()))
+                else:
+                    try:
+                        author = x.author.id if x.author else ''
+                        comments.append((x.body, author))
+                    except prawcore.exceptions.NotFound:
+                        print('Missing comment')
+                        pass
+
+            return collected_comments
+
+
         cache_file = '{0}{1}{2}.cache'.format(self.CACHE_DIR, given_month.year, given_month.month)
 
         try:
@@ -83,13 +103,8 @@ class SotdPostLocator(object):
             comments = []
             for thread in self.get_threads_for_given_month(given_month):
                 print('Iterate day')
-                for x in thread.comments:
-                    try:
-                        author = x.author.id if x.author else ''
-                        comments.append((x.body, author))
-                    except prawcore.exceptions.NotFound:
-                        print('Missing comment')
-                        pass
+                comments.extend(_get_comments(thread.comments))
+                print(len(comments))
 
             # dont cache current / future months
             if datetime.date.today().replace(day=1) > given_month.replace(day=1):
@@ -104,7 +119,7 @@ if __name__ == '__main__':
     # debug / testing
     pl = SotdPostLocator(praw.Reddit('standard_creds', user_agent='arach'))
 
-    res = pl.get_threads_for_given_month(datetime.date(2020, 6, 1))
+    res = pl.get_threads_for_given_month(datetime.date(2019, 6, 1))
 
     # res = pl.get_threads_from_last_month()
     orderable = {x.created_utc: x.title for x in res}
