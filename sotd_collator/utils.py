@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from calendar import monthrange
 
+
 def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
     raw_usage = {'name': [], 'user_id': []}
