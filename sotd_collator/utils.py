@@ -1,7 +1,5 @@
 # shared functions and the like
-from pprint import pprint
 import pandas as pd
-import numpy as np
 from calendar import monthrange
 
 
@@ -29,6 +27,7 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
     df.loc[:, 'avg shaves per user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
     df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
     return df
+
 
 def get_shaving_histogram(given_month, post_locator):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
@@ -85,6 +84,7 @@ def get_entity_histogram(given_month, post_locator, name_extractor, alternate_na
     df.columns = [entity_title, 'number of users who used this many {0} this month'.format(entity_title[1:].lower())]
     df.sort_values([entity_title], inplace=True)
     return df
+
 
 def add_ranking_delta(df_curr, df_prev, historic_name):
     # enrich the current data frame with the delta in rank from the historic dataframe
