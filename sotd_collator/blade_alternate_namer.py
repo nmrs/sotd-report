@@ -19,6 +19,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Big Ben': ['big ben'],
         'Bolzano': ['b(o|a)lzano'],
         'Crystal': ['crystal'],
+        'Dorco BB-20 (AC)': ['dorco.*bb*'],
         'Dorco ST-300': ['dorco.*st.*300', 'dorco'],
         'Dorco ST-301': ['dorco.*st.*301'],
         'Dorco Titan': ['dorco.*titan'],
@@ -69,6 +70,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Super-Max Super Stainless': ['super.*max.*stai'],
         'Treet Dura Sharp': ['treet.*dura.*shar'],
         'Treet Platinum': ['treet.*pla'],
+        'Viking\'s Sword Stainless': ['vik.*swor.*sta'],
         'Wilkinson Sword': ['wilk.*swor', 'wilkinson'],
         'Wizamet': ['wizamet', 'wiz'],
         'Voskhod': ['vokshod', 'voskhod', 'voshk']

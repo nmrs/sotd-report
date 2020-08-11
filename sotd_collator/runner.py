@@ -21,7 +21,7 @@ pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 
 # only report entities with >= this many shaves
-MIN_SHAVES = 3
+MIN_SHAVES = 5
 
 
 
@@ -48,7 +48,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2020,6,1)
+stats_month = datetime.date(2020,7,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
