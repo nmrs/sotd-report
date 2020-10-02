@@ -10,6 +10,7 @@ from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
+from sotd_collator.karve_plate_extractor import KarvePlateExtractor
 from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
@@ -26,6 +27,7 @@ MIN_SHAVES = 5
 
 
 process_entities = [
+
     {
         'name': 'Razor',
         'extractor': RazorNameExtractor(),
@@ -46,9 +48,14 @@ process_entities = [
         'extractor': KnotSizeExtractor(),
         'renamer': None,
     },
+    {
+        'name': 'Karve Plate',
+        'extractor': KarvePlateExtractor(),
+        'renamer': None,
+    },
 ]
 
-stats_month = datetime.date(2020,7,1)
+stats_month = datetime.date(2020,9,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 

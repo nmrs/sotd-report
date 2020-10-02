@@ -119,7 +119,7 @@ if __name__ == '__main__':
     # debug / testing
     pl = SotdPostLocator(praw.Reddit('standard_creds', user_agent='arach'))
 
-    res = pl.get_threads_for_given_month(datetime.date(2019, 6, 1))
+    res = pl.get_threads_for_given_month(datetime.date(2020, 8, 1))
 
     # res = pl.get_threads_from_last_month()
     orderable = {x.created_utc: x.title for x in res}

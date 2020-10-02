@@ -58,7 +58,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Doug Korn': {'patterns': ['doug\s*korn'], 'default': 'Badger'},
         'Dubl Duck': {'patterns': ['dubl.*duck'], 'default': 'Boar'},
         'Edwin Jagger': {'patterns': ['edwin.*jag'], 'default': 'Badger'},
-        'El Druida': {'patterns': ['el.*druida'], 'default': 'Badger'},
+        'El Druida': {'patterns': ['druida'], 'default': 'Badger'},
         'Elite': {'patterns': ['elite'], 'default': 'Badger'},
         'Erskine': {'patterns': ['erskine'], 'default': 'Boar'},
         'Ever Ready': {'patterns': ['ever.*read'], 'default': 'Badger'},
@@ -124,7 +124,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Whipped Dog': {'patterns': ['whipped.*dog'], 'default': 'Badger'},
         'Wolf Whiskers': {'patterns': ['wolf.*whis'], 'default': 'Badger'},
         'Wild West Brushworks': {'patterns': ['wild.*west', 'wwb', 'ww.*brushw'], 'default': 'Synthetic'},
-        'Yaqi': {'patterns': ['yaqi'], 'default': 'Synthetic'},
+        'Yaqi': {'patterns': ['yaqu*i'], 'default': 'Synthetic'},
         'Zenith': {'patterns': ['zenith'], 'default': 'Boar'},
     }
 

@@ -37,7 +37,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Feather Soft Guard (AC)': ['feather.*soft'],
         'GEM': ['gem'],
         'Gillette Nacet': ['nacet'],
-        'Gillette Platinum': ['gil.*et.*plat'],
+        'Gillette Platinum': ['gil.*pla'],
         'Gillette Rubie': ['rubie'],
         'Gillette Silver Blue': ['gsb', 'Gill.*sil.*blue', 'silver.*blue'],
         'Gillette Spoiler': ['gil.*et.*spoil'],
@@ -76,3 +76,6 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Voskhod': ['vokshod', 'voskhod', 'voshk']
     })
 
+if __name__ == '__main__':
+    ban = BladeAlternateNamer()
+    print(ban.get_principal_name('Gillette 7 O\'Clock Super Platinum'))

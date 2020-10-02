@@ -39,11 +39,27 @@ Better late than never.""",
 
 **// Post** \- Pinaud Clubman""",
             'expected_result': 'Maggard MR 5 w/ V2 OC',
-        }
+        },
+        {
+            'comment': """* **Prep:** Cup of Coffee  
+* **Brush:** Sawdust Creations 26 mm Timberwolf  
+* **Razor:** [Chani](https://imgur.com/a/usfOaJp)  
+
+* **Lather:** [Summer Break Soaps - Bell Ringer - Soap](https://trythatsoap.com/collection/1183/?product_type=soap)  
+
+* **Post Shave:** [Summer Break Soaps - Bell Ringer - Aftershave](https://trythatsoap.com/collection/1183/?product_type=aftershave)
+
+* **Post Shave:** Mod Cabin - Bare Essentials - Beard Oil  
+* **Fragrance:** Creed - Green Irish Tweed - Eau de Toilette  
+
+Stay safe and have a great day!""",
+            'expected_result': '???',
+        },
     ]
+
 
     def test_get_razor_name_cases(self):
         rn = RazorNameExtractor()
         for case in self.razor_name_cases:
-            r_name = rn.get_razor_name(case['comment'])
+            r_name = rn.get_name(case['comment'])
             self.assertEqual(case['expected_result'], r_name)
