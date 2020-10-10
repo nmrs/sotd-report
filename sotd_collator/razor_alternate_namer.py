@@ -222,6 +222,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Parker SRX': ['parker.*srx'],
         'Parker Variant': ['variant'],
         'Pearl L-55': ['Pearl L-55'],
+        'Personna BBS-0': ['bbs-0', 'person.*bbs.*0'],
         'PILS': ['pils.*10', '^pils$'],
         'Portland Razor Co. Straight': ['portland.*razor'],
         'QShave Parthenon': ['parthenon'],

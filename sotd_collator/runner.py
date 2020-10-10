@@ -14,6 +14,8 @@ from sotd_collator.karve_plate_extractor import KarvePlateExtractor
 from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
+from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
+from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
 
@@ -59,6 +61,31 @@ stats_month = datetime.date(2020,9,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
+
+# do razor plus blade combo, filtered on most popular razors...
+razor_usage = get_shave_data_for_month(stats_month, pl, RazorNameExtractor(), RazorAlternateNamer())
+rpb_usage = get_shave_data_for_month(stats_month, pl, RazorPlusBladeNameExtractor(), RazorPlusBladeAlternateNamer())
+razor_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+
+# get most popular razors in use this month
+top_x_razors = razor_usage.head(10).loc[:, ['name']]
+top_x_razors.columns = ['razor_name']
+
+# extract razor name from combined razor + blades df
+rpb_usage.loc[:, 'razor_name'] = rpb_usage['name'].apply(lambda x: x.split('+')[0].strip())
+rpb_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+
+rpb_usage = pd.merge(
+    left=rpb_usage,
+    right=top_x_razors,
+    on='razor_name',
+    how='inner'
+).drop(['rank', 'razor_name'], axis=1)
+
+rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
+
+print(rpb_usage.to_markdown(showindex=False))
+exit()
 
 for entity in process_entities:
     usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
