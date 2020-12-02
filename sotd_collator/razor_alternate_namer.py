@@ -196,7 +196,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
             'case.*red',
             'diamondine',
             '20th.*Century.*Mfg.*HH',
-            'chani|trillian|triilian|mariko',# SSS named razors
+            # 'chani|trillian|triilian|mariko',# SSS named razors
         ],
         'PAA Alpha Ecliptic': ['alpha.*ecli'],
         'PAA Bakelite Slant': ['(phoenix|paa).*bake.*slant'],
@@ -206,6 +206,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Paradigm SE': ['parad.*se'],
         'Paradigm Ti': ['parad.*ti'],
         'Paradigm Ti II': ['parad.*ii'],
+        'Parker 11R': ['parker.*11r'],
         'Parker 24C': ['parker.*24C'],
         'Parker 29L': ['29L'],
         'Parker 60R': ['60R'],
@@ -254,6 +255,8 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Schick Hydromagic': ['hydro[\-\s]*magic'],
         'Schick Injector': ['Schick.*Injector', 'schick.*type', 'golden.*500', 'schick.*grip', 'schick.*\w\d', 'lad(y.|ies)*eversharp', 'injector'],
         'Schick Krona': ['krona'],
+        'Schick BBR-1J Kamisori Shavette': ['schick.*kami'],
+        # 'Schick Proline Folding Shavette': ['schick.*proline'],
         'Standard Razor': ['standard.*razor', '^standard$', 'standard.*(black|raw)', '(raw|black).*standard'],
         'Stirling Slant': ['stirling.*slant'],
         'Stirling DE3P7S': ['DE3P7S'],

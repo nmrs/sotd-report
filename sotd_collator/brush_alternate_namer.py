@@ -18,7 +18,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
     syns = '(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(mag|wolf)|g4|boss)'
 
     apply_first = {
-        'DG B1': ['B1'],
+        'DG B1': ['B1(\s|$)'],
         'DG B2': ['B2'],
         'DG B3': ['B3'],
         'DG B4': ['B4'],
@@ -27,7 +27,9 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'DG B7': ['B7'],
         'DG B8': ['B8'],
         'DG B9A': ['B9A', 'b9.*alpha'],
+        'DG B9A+': ['B9A\+', 'b9.*alpha.*plus'],
         'DG B9B': ['B9B', 'b9.*bravo'],
+        'DG B10': ['b10'],
         'Stirling Synthetic': ['stirl.*kong'],
         'r/wetshaving Semogue Brushbutt Boar': ['brushbutt'],
         'Omega Boar (model not specified)': ['^omega\s*boar$'],
@@ -62,6 +64,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Elite': {'patterns': ['elite'], 'default': 'Badger'},
         'Erskine': {'patterns': ['erskine'], 'default': 'Boar'},
         'Ever Ready': {'patterns': ['ever.*read'], 'default': 'Badger'},
+        'Executive Shaving': {'patterns': ['execut.*shav'], 'default': 'Synthetic'},
         'Fine': {'patterns': ['fine\s'], 'default': 'Synthetic'},
         'Firehouse Potter': {'patterns': ['fireh.*pott'], 'default': 'Synthetic'},
         'Fendrihan': {'patterns': ['fendri'], 'default': 'Badger'},
@@ -115,6 +118,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Tony Forsyth': {'patterns': ['tony.*fors'], 'default': 'Badger'},
         'That Darn Rob': {'patterns': ['darn.*rob', 'tdr'], 'default': 'Badger'},
         'Thater': {'patterns': ['thater'], 'default': 'Badger'},
+        'TOBS': {'patterns': ['tobs', 'taylor.*bond'], 'default': 'Badger'},
         'Turn-N-Shave': {'patterns': ['turn.{1,5}shave', 'tns'], 'default': 'Badger'},
         'Vie Long': {'patterns': ['vie.*long'], 'default': 'Horse'},
         'Viking': {'patterns': ['viking'], 'default': 'Badger'},
@@ -176,3 +180,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
             if re.search(alt_name_re, name, re.IGNORECASE):
                 return self._mapper[alt_name_re]
         return None
+
+
+if __name__ == '__main__':
+    print(BrushAlternateNamer().get_principal_name(name='TOBS Pure Badger'))

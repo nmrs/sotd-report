@@ -103,7 +103,10 @@ class SotdPostLocator(object):
             comments = []
             for thread in self.get_threads_for_given_month(given_month):
                 print('Iterate day')
-                comments.extend(_get_comments(thread.comments))
+                try:
+                    comments.extend(_get_comments(thread.comments))
+                except AttributeError:
+                    pass
                 print(len(comments))
 
             # dont cache current / future months
