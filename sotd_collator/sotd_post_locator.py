@@ -116,6 +116,12 @@ class SotdPostLocator(object):
 
             return comments
 
+    def get_comments_for_given_year_cached(self, given_year):
+        collected_comments = []
+        for m in range(1,13):
+            collected_comments.extend(self.get_comments_for_given_month_cached(datetime.date(given_year, m, 1)))
+
+        return collected_comments
 
 
 if __name__ == '__main__':

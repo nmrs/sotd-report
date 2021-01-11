@@ -1,10 +1,7 @@
-import datetime
-from pprint import pprint
 import inflect
 import pandas as pd
 
 import praw
-from dateutil.relativedelta import relativedelta
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -18,14 +15,14 @@ from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
+from sotd_collator.utils import add_ranking_delta, get_shave_data_for_year
 
 pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 
 # only report entities with >= this many shaves
-MIN_SHAVES = 5
+MIN_SHAVES = 50
 
 
 
@@ -62,19 +59,16 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2020,12,1)
-previous_month = stats_month - relativedelta(months=1)
-previous_year = stats_month - relativedelta(months=12)
+stats_year = 2020
+previous_year = stats_year - 1
 
 
 
 for entity in process_entities:
-    usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
-    pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
-    py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
+    usage = get_shave_data_for_year(stats_year, pl, entity['extractor'], entity['renamer'])
+    py_usage = get_shave_data_for_year(previous_year, pl, entity['extractor'], entity['renamer'])
 
-    usage = add_ranking_delta(usage, pm_usage, previous_month.strftime('%b %Y'))
-    usage = add_ranking_delta(usage, py_usage, previous_year.strftime('%b %Y'))
+    usage = add_ranking_delta(usage, py_usage, previous_year)
     usage.drop('rank', inplace=True, axis=1)
 
     # enforce min shaves
@@ -95,11 +89,11 @@ for entity in process_entities:
 print('## Most Used Blades in Most Used Razors\n')
 
 # do razor plus blade combo, filtered on most popular razors...
-razor_usage = get_shave_data_for_month(stats_month, pl, RazorNameExtractor(), RazorAlternateNamer())
-rpb_usage = get_shave_data_for_month(stats_month, pl, RazorPlusBladeNameExtractor(), RazorPlusBladeAlternateNamer())
+razor_usage = get_shave_data_for_year(stats_year, pl, RazorNameExtractor(), RazorAlternateNamer())
+rpb_usage = get_shave_data_for_year(stats_year, pl, RazorPlusBladeNameExtractor(), RazorPlusBladeAlternateNamer())
 razor_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
 
-# get most popular razors in use this month
+# get most popular razors in use this year
 top_x_razors = razor_usage.head(10).loc[:, ['name']]
 top_x_razors.columns = ['razor_name']
 
@@ -120,9 +114,6 @@ print(rpb_usage.to_markdown(showindex=False))
 print('\n')
 
 
-print('## Shaving Frequency Histogram\n')
-print(get_shaving_histogram(stats_month, pl).to_markdown(showindex=False))
-print('\n')
 
 
 
