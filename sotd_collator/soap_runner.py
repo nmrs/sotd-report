@@ -18,7 +18,7 @@ inf_engine = inflect.engine()
 # only report top x entities
 MAX_ENTITIES = 50
 
-stats_month = datetime.date(2020,11,1)
+stats_month = datetime.date(2020,12,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
@@ -54,9 +54,9 @@ process_entities = [
 ]
 
 for entity in process_entities:
-    usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
-    pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
-    py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
+    usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'], name_fallback=False)
+    pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'], name_fallback=False)
+    py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'], name_fallback=False)
 
     usage = add_ranking_delta(usage, pm_usage, previous_month.strftime('%b %Y'))
     usage = add_ranking_delta(usage, py_usage, previous_year.strftime('%b %Y'))

@@ -3,7 +3,7 @@ import pandas as pd
 from calendar import monthrange
 
 
-def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer):
+def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer, name_fallback=True):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
     raw_usage = {'name': [], 'user_id': []}
 
@@ -14,8 +14,12 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
             if alternate_namer:
                 principal_name = alternate_namer.get_principal_name(entity_name)
             if not principal_name:
-                # no renamer or no principal name found, so avoid nulls and use raw entity name
-                principal_name = entity_name
+                if not name_fallback:
+                    # skip this one if we dont want to fall back to the base entity name
+                    continue
+                else:
+                    # no renamer or no principal name found, so avoid nulls and use raw entity name
+                    principal_name = entity_name
 
             raw_usage['name'].append(principal_name)
             raw_usage['user_id'].append(user_id)
