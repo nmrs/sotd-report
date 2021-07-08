@@ -24,31 +24,35 @@ pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 
-# only report entities with >= this many shaves
+MAX_ENTITIES = 50
 MIN_SHAVES = 5
 
 
-
 process_entities = [
-    {
-        'name': 'Knot Type',
-        'extractor': KnotTypeExtractor(),
-        'renamer': None,
-    },
+    # {
+    #     'name': 'Knot Type',
+    #     'extractor': KnotTypeExtractor(),
+    #     'renamer': None,
+    # },
     {
         'name': 'Razor',
         'extractor': RazorNameExtractor(),
         'renamer': RazorAlternateNamer(),
+        'max_entities': 50,
     },
     {
         'name': 'Blade',
         'extractor': BladeNameExtractor(),
         'renamer': BladeAlternateNamer(),
+        'max_entities': 30,
+
     },
     {
         'name': 'Brush',
         'extractor': BrushNameExtractor(),
         'renamer': BrushAlternateNamer(),
+        'max_entites': 50,
+
     },
     {
         'name': 'Knot Size',
@@ -62,11 +66,28 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2020,12,1)
+stats_month = datetime.date(2021,6,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
+print("""
+Welcome to your SOTD Hardware Report for {0}
 
+Usual Notes & Caveats:
+
+* I only show the top 50 / 30 / whatever results per category to keep the tables readable and avoid max post length issues.
+
+* Any brush with a DG knot will come under the DG Bx category - eg Dogwood B8 is recorded as 'DG B8'
+
+* In the case of most brush makers (eg Maggard) - knots are split into synthetic / badger / boar and attributed to the maker - eg 'Maggard Synthetic'
+
+* Notable exceptions to this are Omega and Semogue, in order to retain the model number. Unless some jerk just puts 'Omega Boar' which I then report as 'Omega Boar (model not specified)' .
+
+* The unique user column shows the number of different users who used a given razor / brush etc in the month. We can combine this with the total number of shaves to get the average number of times a user used a razor / brush etc
+
+* The change Δ vs columns show how an item has moved up or down the rankings since the previous month or year. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to the previous month or year. n/a means the item was not present in the previous month / year.
+
+""".format(stats_month.strftime('%b %Y')))
 
 for entity in process_entities:
     usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
@@ -77,14 +98,19 @@ for entity in process_entities:
     usage = add_ranking_delta(usage, py_usage, previous_year.strftime('%b %Y'))
     usage.drop('rank', inplace=True, axis=1)
 
-    # enforce min shaves
-    usage = usage.where(usage['shaves'] >= MIN_SHAVES)
+
+
 
     # remove nulls
     usage.dropna(subset=['name'], inplace=True)
 
     # sort
     usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+
+    # enforce max entities
+    max_entities = entity['max_entities'] if 'max_entities' in entity else MAX_ENTITIES
+    usage = usage.head(max_entities)
+
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 

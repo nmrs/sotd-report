@@ -9,8 +9,8 @@ from sotd_collator.sotd_post_locator import SotdPostLocator
 pr = praw.Reddit('standard_creds', user_agent='arach')
 pl = SotdPostLocator(pr)
 
-curr_month = datetime.date(2019,1,1)
-end_month = datetime.date(2020,12,1)
+curr_month = datetime.date(2020,1,1)
+end_month = datetime.date(2021,4,1)
 
 df = pd.DataFrame(columns=['month', 'unique users'])
 df_cur = 0
