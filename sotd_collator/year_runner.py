@@ -23,29 +23,30 @@ inf_engine = inflect.engine()
 
 # only report entities with >= this many shaves
 MIN_SHAVES = 50
+MAX_ENTITIES = 50
 
 
 
 process_entities = [
     {
-        'name': 'Knot Type',
-        'extractor': KnotTypeExtractor(),
-        'renamer': None,
-    },
-    {
         'name': 'Razor',
         'extractor': RazorNameExtractor(),
         'renamer': RazorAlternateNamer(),
+        'max_entities': 50,
     },
     {
         'name': 'Blade',
         'extractor': BladeNameExtractor(),
         'renamer': BladeAlternateNamer(),
+        'max_entities': 30,
+
     },
     {
         'name': 'Brush',
         'extractor': BrushNameExtractor(),
         'renamer': BrushAlternateNamer(),
+        'max_entites': 50,
+
     },
     {
         'name': 'Knot Size',
@@ -59,7 +60,7 @@ process_entities = [
     },
 ]
 
-stats_year = 2020
+stats_year = 2021
 previous_year = stats_year - 1
 
 
@@ -71,14 +72,15 @@ for entity in process_entities:
     usage = add_ranking_delta(usage, py_usage, previous_year)
     usage.drop('rank', inplace=True, axis=1)
 
-    # enforce min shaves
-    usage = usage.where(usage['shaves'] >= MIN_SHAVES)
-
     # remove nulls
     usage.dropna(subset=['name'], inplace=True)
 
     # sort
     usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+
+    # enforce max entities
+    max_entities = entity['max_entities'] if 'max_entities' in entity else MAX_ENTITIES
+    usage = usage.head(max_entities)
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 

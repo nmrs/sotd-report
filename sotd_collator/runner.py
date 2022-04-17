@@ -66,16 +66,31 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2021,6,1)
+stats_month = datetime.date(2022,3,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
 print("""
 Welcome to your SOTD Hardware Report for {0}
 
-Usual Notes & Caveats:
+## Observations
 
-* I only show the top 50 / 30 / whatever results per category to keep the tables readable and avoid max post length issues.
+* Henson Al and Ti have the same number of shaves this month, but many people used the aluminium 
+
+* Yates and Lupo rise up the rankings
+
+* Superspeed moves ahead of Tech (!)
+
+* Congrats to the SE mafia for getting GEM blades to the #2 spot
+
+# A couple of folks went heavy on their Semogue 2022s in March
+
+* Historically Maggard synthetics have been the most strongly represented budget brushes in the SOTD threads. Interesting to see Yaqi edging down into 3rd place this time.
+
+
+## Notes & Caveats
+
+* I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
 * Any brush with a DG knot will come under the DG Bx category - eg Dogwood B8 is recorded as 'DG B8'
 

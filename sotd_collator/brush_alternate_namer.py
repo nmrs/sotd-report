@@ -171,12 +171,18 @@ class BrushAlternateNamer(BaseAlternateNamer):
         # but coerce them into a standard format
         name = name.lower().replace('semouge', 'semogue')
 
-        omse_brand = re.search('(omega|semogue)', name, re.IGNORECASE)
-        omse_model_num = re.search('[A-Za-z]*\d{3,}', name)
+        omse_brand = re.search(r'(omega|semogue)', name, re.IGNORECASE)
+        omse_model = re.search(r'(omega|semogue)[^]\n\d]+(\d{3,6})', name, re.IGNORECASE)
+        omse_model_num = None
+        try:
+            omse_model_num = omse_model.group(2)
+        except:
+            pass
+
         if omse_brand and omse_model_num:
             return '{0} {1}'.format(
                 omse_brand.group(1).title(),
-                omse_model_num.group(0)
+                omse_model_num
             )
 
         #initial regexs (Dec batches etc - apply first because they are short matches and otherwise would be applied last)

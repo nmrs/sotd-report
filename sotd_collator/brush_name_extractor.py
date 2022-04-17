@@ -39,6 +39,10 @@ class BrushNameExtractor(BaseNameExtractor):
                 return res.group(1).strip()
 
         principal_name = self.alternative_namer.get_principal_name(comment_text)
+        if principal_name == 'Semogue 2022':
+            print(comment_text)
+            print(res.group(1))
+
         if principal_name:
             return principal_name
 
