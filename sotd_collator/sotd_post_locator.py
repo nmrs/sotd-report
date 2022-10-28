@@ -222,10 +222,10 @@ if __name__ == '__main__':
     # debug / testing
     pl = SotdPostLocator(praw.Reddit('standard_creds', user_agent='arach'))
 
-    res = pl.get_comments_for_given_day_cached(datetime.date(2021, 4, 30), filter_pattern='sotd', use_author_name=True)
-    print(res)
-    # res = pl.get_threads_from_last_month()
-    # orderable = {x.created_utc: x.title for x in res}
-    #
-    # for sotd_date in sorted(orderable.keys()):
-    #     print(sotd_date, orderable[sotd_date])
+    # res = pl.get_comments_for_given_day_cached(datetime.date(2021, 4, 30), filter_pattern='sotd', use_author_name=True)
+    # print(res)
+    res = pl.get_threads_for_given_month(datetime.date(2022,6,1))
+    orderable = {x.created_utc: x.title for x in res}
+
+    for sotd_date in sorted(orderable.keys()):
+        print(sotd_date, orderable[sotd_date])

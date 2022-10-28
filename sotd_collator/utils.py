@@ -144,3 +144,27 @@ def add_ranking_delta(df_curr, df_prev, historic_name):
 
     return df_curr
 
+
+def get_unlinked_entity_data_for_month(given_month, post_locator, name_extractor, alternate_namer):
+    # all the cases where we cant match a razor / brush / etc as posted by the user
+    raw_unlinked = {'name': [], 'user_id': []}
+
+    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
+        entity_name = name_extractor.get_name(comment)
+        if entity_name is not None:
+            principal_name = None
+            if alternate_namer:
+                principal_name = alternate_namer.get_principal_name(entity_name)
+            if not principal_name:
+
+
+                raw_unlinked['name'].append(entity_name)
+                raw_unlinked['user_id'].append(user_id)
+
+    df = pd.DataFrame(raw_unlinked)
+    df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
+    df.columns = ['name', 'shaves', 'unique users']
+    df = df[df.apply(lambda x: x['name'].lower() != 'none', axis=1)]
+    df.loc[:, 'avg shaves per user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
+    df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
+    return df

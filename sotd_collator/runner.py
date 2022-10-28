@@ -7,6 +7,7 @@ import praw
 from dateutil.relativedelta import relativedelta
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
+from sotd_collator.blade_format_extractor import BladeFormatExtractor
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
@@ -29,11 +30,11 @@ MIN_SHAVES = 5
 
 
 process_entities = [
-    # {
-    #     'name': 'Knot Type',
-    #     'extractor': KnotTypeExtractor(),
-    #     'renamer': None,
-    # },
+    {
+        'name': 'Blade Format',
+        'extractor': BladeFormatExtractor(),
+        'renamer': None,
+    },
     {
         'name': 'Razor',
         'extractor': RazorNameExtractor(),
@@ -66,7 +67,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2022,3,1)
+stats_month = datetime.date(2022,8,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
@@ -75,18 +76,11 @@ Welcome to your SOTD Hardware Report for {0}
 
 ## Observations
 
-* Henson Al and Ti have the same number of shaves this month, but many people used the aluminium 
+* A good month for vintage Gillettes, RR GC 84s, Blackbirds and Hensons
 
-* Yates and Lupo rise up the rankings
+* Astra Greens are back on top after a long hiatus
 
-* Superspeed moves ahead of Tech (!)
-
-* Congrats to the SE mafia for getting GEM blades to the #2 spot
-
-# A couple of folks went heavy on their Semogue 2022s in March
-
-* Historically Maggard synthetics have been the most strongly represented budget brushes in the SOTD threads. Interesting to see Yaqi edging down into 3rd place this time.
-
+* A good month for Dogwood, B13 aand Muninn (those are some damn fine wooden handles)
 
 ## Notes & Caveats
 
@@ -129,7 +123,7 @@ for entity in process_entities:
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
-    print(usage.to_markdown(showindex=False))
+    print(usage.to_markdown(index=False))
     print('\n')
 
 
@@ -157,13 +151,13 @@ rpb_usage = pd.merge(
 
 rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
 
-print(rpb_usage.to_markdown(showindex=False))
+print(rpb_usage.to_markdown(index=False))
 print('\n')
 
 
-print('## Shaving Frequency Histogram\n')
-print(get_shaving_histogram(stats_month, pl).to_markdown(showindex=False))
-print('\n')
+# print('## Shaving Frequency Histogram\n')
+# print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
+# print('\n')
 
 
 

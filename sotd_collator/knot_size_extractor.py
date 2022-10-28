@@ -29,7 +29,7 @@ class KnotSizeExtractor(BaseNameExtractor):
             if res:
                 raw_size = res.group(1)
                 num_mm = int(re.search('\d+', raw_size).group(0))
-                if num_mm < 18 or num_mm > 32:
+                if num_mm < 18 or num_mm > 40:
                     # probably a mistake, these are outside the usual brush sizes
                     continue
                 return re.sub('\s+', '', raw_size.strip().lower())

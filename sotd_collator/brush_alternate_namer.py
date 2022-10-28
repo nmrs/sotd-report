@@ -43,9 +43,15 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Omega Boar (model not specified)': ['^omega\s*boar$'],
         'Semogue Boar (model not specified)': ['^semogue\s*boar$'],
         'Hand Lather': ['^\s*hands*\s*$', 'hand.*lather'],
+        'Semogue SOC Boar': [r'^(semogue\s*)*s\.*o\.*c\.*.*boar$', 'semogue.*owner.*club.*boar$'],
+        'Semogue SOC Badger': [r'^(semogue\s*)*s\.*o\.*c\.*.*badger'],
+        'Omega HIBRUSH Synthetic': ['hibrush'],
+        'Semogue Torga C5 Boar': ['torga.*c5'],
+        'Omega Proraso Professional': ['proraso.*prof', 'omega.*proraso', 'proraso.*omega'],
     }
 
     standard_makers = {
+        'AKA Brushworx': {'patterns': ['aka.*brush'], 'default': 'Synthetic'},
         'Alpha': {'patterns': ['alpha'], 'default': 'Synthetic'},
         'Anbbas': {'patterns': ['anbbas'], 'default': 'Synthetic'},
         'AP Shave Co': {'patterns': ['AP\s*shav'], 'default': 'Synthetic'},
@@ -53,9 +59,12 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'B&M': {'patterns': ['b\s*(&|a)\s*m', 'barrister'], 'default': 'Synthetic'},
         'Beaumont': {'patterns': ['bea.{1,3}mont'], 'default': 'Badger'},
         'Black Anvil': {'patterns': ['black.*anv'], 'default': 'Badger'},
+        'Black Eagle': {'patterns': ['black.*eag'], 'default': 'Badger'},
+        'Boker': {'patterns': ['boker'], 'default': 'Synthetic'},
         'Brad Sears': {'patterns': ['brad.*sears'], 'default': 'Badger'},
         'Bristle Brushwerks': {'patterns': ['huck', 'bristle.*brush'], 'default': 'Badger'},
         'Brushcraft': {'patterns': ['brushcraft'], 'default': 'Synthetic'},
+        'Bullseye Brushworks': {'patterns': ['bullseye'], 'default': 'Synthetic'},
         'Carnavis & Richardson': {'patterns': ['carn.*rich'], 'default': 'Synthetic'},
         'Catalin': {'patterns': ['catalin'], 'default': 'Badger'},
         'CaYuen': {'patterns': ['cayuen'], 'default': 'Synthetic'},
@@ -69,7 +78,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Doug Korn': {'patterns': ['doug\s*korn'], 'default': 'Badger'},
         'Dubl Duck': {'patterns': ['dubl.*duck'], 'default': 'Boar'},
         'Edwin Jagger': {'patterns': ['edwin.*jag'], 'default': 'Badger'},
-        'El Druida': {'patterns': ['druida'], 'default': 'Badger'},
+        'El Druida': {'patterns': ['druidi*a'], 'default': 'Badger'},
         'Elite': {'patterns': ['elite'], 'default': 'Badger'},
         'Erskine': {'patterns': ['erskine'], 'default': 'Boar'},
         'Ever Ready': {'patterns': ['ever.*read'], 'default': 'Badger'},
@@ -93,6 +102,8 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Mondial': {'patterns': ['mondial'], 'default': 'Boar'},
         'Morris & Forndran': {'patterns': ['morris', 'm\s*&\s*f'], 'default': 'Badger'},
         'Mozingo': {'patterns': ['mozingo'], 'default': 'Badger'},
+        'MRed': {'patterns': ['mred'], 'default': 'Badger'},
+        'Muninn Woodworks': {'patterns': ['munin'], 'default': 'Badger'},
         'Muhle': {'patterns': ['muhle'], 'default': 'Badger'},
         'Mutiny': {'patterns': ['mutiny'], 'default': 'Synthetic'},
         'Noble Otter': {'patterns': ['noble', 'no\s*\d{2}mm'], 'default': 'Badger'},
@@ -100,7 +111,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Omega EVO': {'patterns': ['omega.*evo', 'evo.*omega'], 'default': 'Synthetic'},
         'Oumo': {'patterns': ['oumo'], 'default': 'Badger'},
         'Oz Shaving': {'patterns': ['oz.*sha'], 'default': 'Synthetic'},
-        'PAA': {'patterns': ['paa'], 'default': 'Synthetic'},
+        'PAA': {'patterns': ['paa', 'phoenix.*art'], 'default': 'Synthetic'},
         'Paladin': {'patterns': ['paladin'], 'default': 'Badger'},
         'Parker': {'patterns': ['parker'], 'default': 'Badger'},
         'Plisson': {'patterns': ['plisson'], 'default': 'Badger'},
@@ -129,11 +140,14 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'That Darn Rob': {'patterns': ['darn.*rob', 'tdr'], 'default': 'Badger'},
         'Thater': {'patterns': ['thater'], 'default': 'Badger'},
         'TOBS': {'patterns': ['tobs', 'taylor.*bond'], 'default': 'Badger'},
+        'Trotter Handcrafts': {'patterns': ['trotter'], 'default': 'Synthetic'},
         'Turn-N-Shave': {'patterns': ['turn.{1,5}shave', 'tns'], 'default': 'Badger'},
         'Vie Long': {'patterns': ['vie.*long'], 'default': 'Horse'},
         'Viking': {'patterns': ['viking'], 'default': 'Badger'},
         'Vintage Blades': {'patterns': ['vintage.*blades'], 'default': 'Badger'},
         'Virginia Cheng': {'patterns': ['virginia.*cheng'], 'default': 'Badger'},
+        'Vulfix': {'patterns': ['vulfix'], 'default': 'Badger'},
+        'Wald': {'patterns': ['wald', 'west.*coast'], 'default': 'Badger'},
         'WCS': {'patterns': ['wcs', 'west.*coast'], 'default': 'Synthetic'},
         'Whipped Dog': {'patterns': ['whipped.*dog'], 'default': 'Badger'},
         'Wolf Whiskers': {'patterns': ['wolf.*whis'], 'default': 'Badger'},
@@ -172,7 +186,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         name = name.lower().replace('semouge', 'semogue')
 
         omse_brand = re.search(r'(omega|semogue)', name, re.IGNORECASE)
-        omse_model = re.search(r'(omega|semogue)[^]\n\d]+(\d{3,6})', name, re.IGNORECASE)
+        omse_model = re.search(r'(omega|semogue)[^]\n\d]+(c\d{1,3}|\d{3,6})', name, re.IGNORECASE)
         omse_model_num = None
         try:
             omse_model_num = omse_model.group(2)
@@ -185,6 +199,14 @@ class BrushAlternateNamer(BaseAlternateNamer):
                 omse_model_num
             )
 
+        # ZENITH FIXUP
+        zenith_re = r'Zenith.*([A-Za-z]\d{1,3})'
+        res = re.search(zenith_re, name, re.IGNORECASE)
+        if res:
+            return 'Zenith {0}'.format(res.group(1).upper())
+
+
+
         #initial regexs (Dec batches etc - apply first because they are short matches and otherwise would be applied last)
         for brush_name in sorted(self.apply_first.keys(), key=len, reverse=True):
             for pattern in self.apply_first[brush_name]:
@@ -193,10 +215,14 @@ class BrushAlternateNamer(BaseAlternateNamer):
 
         # fall down to standard makers
         for alt_name_re in sorted(self._mapper.keys(), key=len, reverse=True):
-            if re.search(alt_name_re, name, re.IGNORECASE):
-                return self._mapper[alt_name_re]
+            try:
+                if re.search(alt_name_re, name, re.IGNORECASE):
+                    return self._mapper[alt_name_re]
+            except:
+                print('Failing input >{0}<'.format(alt_name_re))
+                raise
         return None
 
 
 if __name__ == '__main__':
-    print(BrushAlternateNamer().get_principal_name(name='TOBS Pure Badger'))
+    print(BrushAlternateNamer().get_principal_name(name='Zenith foo h24'))

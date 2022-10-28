@@ -46,7 +46,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Kai (DE)': ['^kai$', 'kai.*sta', 'kai.*ss'],
         'Kai Captain Blade (AC)': ['kai.*blade', 'kai captain\s*$'],
         'Kai Captain Sharpblade (AC)': ['kai.*sharp'],
-        'Kai Captain Titan Mild (AC)': ['kai.*titan'],
+        'Kai Captain Titan Mild (AC)': ['kai.*titan', 'kai.*cap.*pink'],
         'Kai Captain Titan Mild Protouch (AC)': ['kai.*protouch'],
         'King C Gillette': ['king.*c.*gil.*et', 'gil.*et.*king.*c'],
         'Ladas': ['lada'],
