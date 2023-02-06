@@ -4,6 +4,7 @@ import pandas as pd
 import praw
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
+from sotd_collator.blade_format_extractor import BladeFormatExtractor
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
@@ -28,6 +29,11 @@ MAX_ENTITIES = 50
 
 
 process_entities = [
+    {
+        'name': 'Blade Format',
+        'extractor': BladeFormatExtractor(),
+        'renamer': None,
+    },
     {
         'name': 'Razor',
         'extractor': RazorNameExtractor(),
@@ -60,7 +66,7 @@ process_entities = [
     },
 ]
 
-stats_year = 2021
+stats_year = 2022
 previous_year = stats_year - 1
 
 
@@ -84,7 +90,7 @@ for entity in process_entities:
 
     print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
-    print(usage.to_markdown(showindex=False))
+    print(usage.to_markdown(index=False))
     print('\n')
 
 
@@ -112,7 +118,7 @@ rpb_usage = pd.merge(
 
 rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
 
-print(rpb_usage.to_markdown(showindex=False))
+print(rpb_usage.to_markdown(index=False))
 print('\n')
 
 

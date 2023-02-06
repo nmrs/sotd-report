@@ -11,7 +11,7 @@ class BladeFormatExtractor(BaseNameExtractor):
     From a given comment, extract the blade type. Note doesnt differentiate between DE and Half DE razors because technical reasons
     """
     # we name any format that isnt DE in the blade name itself
-    BLADE_FORMATS =['AC', 'GEM', 'injector']
+    BLADE_FORMATS =['AC', 'GEM', 'Injector']
 
 
     NON_DE_RAZORS = {
@@ -50,6 +50,7 @@ class BladeFormatExtractor(BaseNameExtractor):
         'Kai Captain Folding': 'AC',
         'Kai Captain Kamisori': 'AC',
         'Kai Excelia Kamisori': 'AC',
+        'Koraat Straight': 'Straight',
         'EldrormR Industries MM24': 'GEM',
         'Mongoose': 'AC',
         'Occams Razor Enoch': 'AC',

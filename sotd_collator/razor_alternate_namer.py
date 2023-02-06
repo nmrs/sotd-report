@@ -66,6 +66,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Feather Popular': ['Feather.*popular'],
         'Feather DX': ['Feather.*dx', 'feather.*artist.*club'],
         'Feather SS': ['feather.*ss', 'feather.*artist.*club.*ss'],
+        'Feather SR': ['feather.*sr', 'feather.*artist.*club.*sr'],
         'Fine Marvel': ['fine.*marvel'],
         'Fine Superlight Slant': ['superlight.*slant', 'fine.*slant'],
         'Fine World\'s Finest': ['fine.*world'],

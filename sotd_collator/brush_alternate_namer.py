@@ -40,6 +40,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'DG B18': ['b18'],
         'Stirling Synthetic': ['stirl.*kong'],
         'r/wetshaving Semogue Brushbutt Boar': ['brushbutt'],
+        'r/wetshaving Zenith MOAR BOAR': ['moar.*boar'],
         'Omega Boar (model not specified)': ['^omega\s*boar$'],
         'Semogue Boar (model not specified)': ['^semogue\s*boar$'],
         'Hand Lather': ['^\s*hands*\s*$', 'hand.*lather'],

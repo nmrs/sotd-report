@@ -67,7 +67,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2022,8,1)
+stats_month = datetime.date(2023,1,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
@@ -76,15 +76,14 @@ Welcome to your SOTD Hardware Report for {0}
 
 ## Observations
 
-* A good month for vintage Gillettes, RR GC 84s, Blackbirds and Hensons
+* A fairly nondescript month
 
-* Astra Greens are back on top after a long hiatus
-
-* A good month for Dogwood, B13 aand Muninn (those are some damn fine wooden handles)
 
 ## Notes & Caveats
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
+
+* Blade Format stats dont differentiate between DE and half DE razors, they are all counted as being DE blades
 
 * Any brush with a DG knot will come under the DG Bx category - eg Dogwood B8 is recorded as 'DG B8'
 
