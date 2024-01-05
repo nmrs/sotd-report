@@ -1,2 +1,4 @@
-/misc/lg_potentials/
-/misc/
+/.venv/
+/praw.ini
+/sotd_collator/praw.ini
+/sotd_collator/__pycache__/

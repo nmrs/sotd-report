@@ -21,7 +21,7 @@ from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtr
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
 
-pr = praw.Reddit('standard_creds', user_agent='arach')
+pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 

@@ -1,2 +1,4 @@
+inflect
+pandas
 praw
 python-dateutil
