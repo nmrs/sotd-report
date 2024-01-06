@@ -1,6 +1,0 @@
-/.venv/
-*praw.ini
-/sotd_collator/__pycache__/
-/misc/comments/*.json
-/misc/threads/*.json
-*.DS_STORE
