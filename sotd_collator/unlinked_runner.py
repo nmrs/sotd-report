@@ -20,7 +20,7 @@ from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtr
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_unlinked_entity_data_for_month
 
-pr = praw.Reddit('standard_creds', user_agent='arach')
+pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 
@@ -66,7 +66,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2022,7,1)
+stats_month = datetime.date(2023,12,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
