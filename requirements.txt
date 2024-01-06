@@ -2,3 +2,5 @@ inflect
 pandas
 praw
 python-dateutil
+simplejson
+tabulate

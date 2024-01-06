@@ -67,7 +67,7 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2023,1,1)
+stats_month = datetime.date(2023,5,1)
 previous_month = stats_month - relativedelta(months=1)
 previous_year = stats_month - relativedelta(months=12)
 
