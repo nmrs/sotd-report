@@ -3,5 +3,4 @@
 /sotd_collator/__pycache__/
 /misc/comments/*.json
 /misc/threads/*.json
-/.DS_Store
-/misc/.DS_Store
+*.DS_STORE
