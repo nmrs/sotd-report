@@ -86,7 +86,8 @@ class SotdPostLocator(object):
             threads = result
 
         added = cb.dump(cache_file, threads)
-        for thread in sorted([t for t in added], key=lambda t : t.created_utc, reverse=True):
+        threads = sorted([t for t in added], key=lambda t : t.created_utc, reverse=True)
+        for thread in threads:
             self._add_thread_comments_to_cache(thread, given_month)
 
         return threads
