@@ -3,38 +3,51 @@ import re
 from unittest import TestCase
 from calendar import monthrange
 import praw
+import calendar
 from dateutil import relativedelta
+import pandas as pd
+
+from sotd_collator import sotd_post_locator
 
 from sotd_post_locator import SotdPostLocator
 
 
 class TestSotdPostLocator(TestCase):
 
+    longMessage = True
+
     #CONCLUDE WE CAN GO BACK TO 2016-05-01
 
+#     def test_get_threads_for_given_month_from_reddit(self):
 
-    def test_get_threads_for_given_month(self):
+#         # not really a unit test per se - see how far back we can reliably get all threads for a given month
+#         spl = SotdPostLocator(praw=praw.Reddit('reddit'))
+#         first_month = datetime.date(2016,5,1)
+#         last_month = datetime.date.today().replace(day=1) - relativedelta.relativedelta(months=1)
+#         test_months = pd.date_range(first_month, last_month, freq='MS').to_list()
+#         test_months = [datetime.date(2016,5,1)]
+#         # sotd_thread_matcher_re = '(?:Mon(?:day)?|Tue(?:s(?:day)?)?|Wed(?:nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)\sSOTD\sThread\].*$'
+#         for test_month in test_months:
+#             days = []        
+#             expected_days = calendar.monthrange(test_month.year, test_month.month)
+#             for x in range(0, expected_days[1]):
+#                 days.append(None)
 
-        # not really a unit test per se - see how far back we can reliably get all threads for a given month
-        spl = SotdPostLocator(praw=praw.Reddit('standard_creds', user_agent='arach'))
-        initial_month = datetime.date(2016,1,1)
-        test_month = datetime.date.today().replace(day=1) - relativedelta.relativedelta(months=1)
-        test_month = datetime.date(2016,3,1)
-        while test_month >= initial_month:
-            print('testing {0}'.format(test_month))
-            threads = spl.get_threads_for_given_month(test_month)
-            days_present = set()
-            for thread in threads:
-                match = re.search(r'\w{3} \d{2}, \d{4}', thread.title)
-                if match:
-                    days_present.add(datetime.datetime.strptime(match.group(0), '%b %d, %Y').date())
-                else:
-                    # some threads are misnamed, use the utc date instead
-                    days_present.add(datetime.datetime.utcfromtimestamp(thread.created_utc).date())
+#             print('testing {0}'.format(test_month))
+#             threads = spl._get_threads_for_given_mont_from_reddit(test_month)
+#             for thread in threads:
+#                 day = datetime.date.fromtimestamp(thread.created_utc).day - 1
+#                 days[day] = thread.title
+            
+#             matches = [i for i in days if i is not None]
 
-            expected_days = [datetime.date(int(test_month.year), int(test_month.month), int(x)) for x in range(1, monthrange(test_month.year, test_month.month)[1] + 1)]
-            # check whether this is full set of days from that month
+#             expected_days = calendar.monthrange(test_month.year, test_month.month)
+#             # check whether this is full set of days from that month
+#             if (len(matches)!= expected_days[1]):
+#                 for thread in threads:
+#                     print(thread.title)
+#             self.assertEqual(len(matches), expected_days[1], f"Testing {test_month}. Expected {expected_days[1]} but found {len(matches)}")
 
-            self.assertEqual(set(expected_days), days_present)
-            test_month -= relativedelta.relativedelta(months=1)
-
+# if __name__ == '__main__':
+#     tspl = TestSotdPostLocator()
+#     tspl.test_get_threads_for_given_month_from_reddit()

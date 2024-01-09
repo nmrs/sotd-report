@@ -1,20 +1,26 @@
+from ast import Dict
+from asyncio import CancelledError
 import datetime
 from datetime import date
 from dateutil.relativedelta import relativedelta
+import json
 import praw
 
-from sotd_post_locator import SotdPostLocator
+from sotd_collator.sotd_post_locator import SotdPostLocator
 
-start_month = curr_month = datetime.date(2023,5,1)
-# start_month = curr_month = datetime.date(2019,11,1)
-end_month = datetime.date(2023,5,1)
-# end_month = date.today().replace(day=1) - relativedelta(months=1)
-print(f'building cache for {start_month} to {end_month}')
+if __name__ == '__main__':
+    start_month = curr_month = datetime.date(2023,12,1)
+    # start_month = curr_month = datetime.date(2019,11,1)
+    # end_month = datetime.date(2016,5,1)
+    end_month = date.today().replace(day=1) - relativedelta(months=1)
+    print(f'building cache for {start_month} to {end_month}')
 
-pr = praw.Reddit("reddit")
-pl = SotdPostLocator(pr)
+    pr = praw.Reddit("reddit")
+    pl = SotdPostLocator(pr)
 
-comments = []
-while curr_month <= end_month:  
-    comments = pl.get_comments_for_given_month_cached(curr_month, True)
-    curr_month += relativedelta(months=1)
+    # comments = []
+    while curr_month <= end_month:  
+        threads = pl.get_threads_for_given_month(curr_month)
+        # comments = pl.get_comments_for_given_month_cached(curr_month, False)
+        print(f'{format(curr_month)} - {len(threads)} threads')
+        curr_month += relativedelta(months=1)
