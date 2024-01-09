@@ -10,6 +10,7 @@ from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
+from sotd_collator.game_changer_plate_extractor import GameChangerPlateExtractor
 from sotd_collator.karve_plate_extractor import KarvePlateExtractor
 from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.knot_type_extractor import KnotTypeExtractor
@@ -24,7 +25,7 @@ pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
 inf_engine = inflect.engine()
 
-MAX_ENTITIES = 50
+MAX_ENTITIES = 150
 MIN_SHAVES = 5
 
 
@@ -62,6 +63,11 @@ process_entities = [
     {
         'name': 'Karve Plate',
         'extractor': KarvePlateExtractor(),
+        'renamer': None,
+    },
+    {
+        'name': 'Game Changer Plate',
+        'extractor': GameChangerPlateExtractor(),
         'renamer': None,
     },
 ]

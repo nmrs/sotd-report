@@ -70,6 +70,8 @@ class BladeFormatExtractor(BaseNameExtractor):
         'Schick BBR-1J Kamisori Shavette': 'AC',
         'Supply SE': 'Injector',
         'Wade & Butcher Straight': 'Straight',
+        'Weck Sextoblade': 'Hair Shaper',
+        'Weck 450-110': 'Hair Shaper',
         'Wolfman WR3': 'GEM',
 
     }

@@ -35,8 +35,8 @@ class BladeNameExtractor(BaseNameExtractor):
                 # remove blade count - eg Astra (3)
                 return re.sub(r'[()\d]', '', res.group(1)).strip()
 
-        principal_name = self.alternative_namer.get_principal_name(comment_text)
-        if principal_name:
-            return principal_name
+        # principal_name = self.alternative_namer.get_principal_name(comment_text)
+        # if principal_name:
+        #     return principal_name
 
         return None
