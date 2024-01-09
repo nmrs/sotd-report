@@ -7,8 +7,8 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
     raw_usage = {'name': [], 'user_id': []}
 
-    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
-        entity_name = name_extractor.get_name(comment)
+    for comment in post_locator.get_comments_for_given_month_cached(given_month):
+        entity_name = name_extractor.get_name(comment["body"])
         if entity_name is not None:
             principal_name = None
             if alternate_namer:
@@ -22,7 +22,7 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
                     principal_name = entity_name
 
             raw_usage['name'].append(principal_name)
-            raw_usage['user_id'].append(user_id)
+            raw_usage['user_id'].append(comment["author"])
 
     df = pd.DataFrame(raw_usage)
     df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
@@ -32,22 +32,26 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
     df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
     return df
 
-def get_shave_data_for_year(given_year, post_locator, name_extractor, alternate_namer):
+def get_shave_data_for_year(given_year, post_locator, name_extractor, alternate_namer, name_fallback=True):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
     raw_usage = {'name': [], 'user_id': []}
 
     for comment, user_id in post_locator.get_comments_for_given_year_cached(given_year):
-        entity_name = name_extractor.get_name(comment)
+        entity_name = name_extractor.get_name(comment["body"])
         if entity_name is not None:
             principal_name = None
             if alternate_namer:
                 principal_name = alternate_namer.get_principal_name(entity_name)
             if not principal_name:
-                # no renamer or no principal name found, so avoid nulls and use raw entity name
-                principal_name = entity_name
+                if not name_fallback:
+                    # skip this one if we dont want to fall back to the base entity name
+                    continue
+                else:
+                    # no renamer or no principal name found, so avoid nulls and use raw entity name
+                    principal_name = entity_name
 
             raw_usage['name'].append(principal_name)
-            raw_usage['user_id'].append(user_id)
+            raw_usage['user_id'].append(comment["author"])
 
     df = pd.DataFrame(raw_usage)
     df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()

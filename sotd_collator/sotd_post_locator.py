@@ -174,16 +174,7 @@ class SotdPostLocator(object):
             with open(cache_file, 'w') as f_cache:
                 json.dump(comments, f_cache, indent=4, sort_keys=True)
         
-        # else:
-        #     print(f'Rehydrated {format(given_month)} ({len(comments)} comments)')
-        
-        # ('**[Jan. 31, 2023 - Soup is Done - 2nd Kill \'23](https://i.imgur.com/m5j4o4p.jpg)**\n\n* **Brush:** Maggard 24mm Marble Synthetic\n\n* **Razor:** Merkur 34C\n\n* **Blade:** Lord Platinum\n\n* **Lather:** Grooming Dept Veritas\n\n* **Post Shave:** Lucky Tiger Splash\n\n* **Post Shave:** Stirling Unscented Balm\n\n* **Fragrance:** Southern Witchcrafts Labyrinth EdP\n\n* **Grateful Dead:** [Crazy Fingers - One from the Vault 8/13/75](https://www.youtube.com/watch?v=_hi1nWaNvIY) \n\n----\n\nIt is complete. \n\n*Veritas*, despite its soupy controversy, was a most excellent soap to use. I am grateful for the shaves I had with it; you know the shaves you have where when you finish you say to yourself "this soap is awesome"? Well I had plenty of those with is stuff.\n\nI really enjoyed the earthy, cocoa-ness of *Veritas*, and on top of having excellent performance, the post shave and residual slickness were most pleasing to my standards. Glad it\'s gone, but also gonna miss it.\n\nI think I\'m gonna go on an Abbate y la Mantia spree next.\n\nPeace.\n\nAlso, imgur, WTF lemme load a picture pls.\n\nEdit: picture finally loaded', 'c7xhb')
-        
-        result = []
-        for comment in comments:
-            c = (comment["body"], comment["author"])
-            result.append(c)
-        return result
+        return comments
     
     def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
         LINE_CLEAR = '\x1b[2K' # <-- ANSI sequence
