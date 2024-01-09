@@ -46,6 +46,7 @@ class BladeFormatExtractor(BaseNameExtractor):
         'GEM Micromatic Open Comb': 'GEM',
         'GEM Pushbutton': 'GEM',
         'Gillette Guard': 'Cart',
+        'Headblade ATX': 'Cart',
         'J A Henckels Straight': 'Straight',
         'Kai Captain Folding': 'AC',
         'Kai Captain Kamisori': 'AC',

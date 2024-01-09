@@ -132,6 +132,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Gillette Tech': ['(gil|war|contract|slot|triangle|flat|hybrid|canada|english).*Tech', 'fbt'],
         'Goodfellas Smile Valynor': ['valyn'],
         'Greencult GC 2.0': ['GC.*2'],
+        'Headblade ATX': ['headbl.*atx'],
         'Handlebar Shaving Company Dali': ['handlebar.*dali'],
         'Henson AL13': ['henson'],
         'Henson Ti22': ['henson.*ti'],
