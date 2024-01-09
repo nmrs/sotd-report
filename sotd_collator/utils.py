@@ -1,13 +1,15 @@
 # shared functions and the like
 import pandas as pd
 from calendar import monthrange
+from base_alternate_namer import BaseAlternateNamer
+from base_name_extractor import BaseNameExtractor
 
 
-def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer, name_fallback=True):
+def get_shave_data(comments: [dict], name_extractor: BaseNameExtractor, alternate_namer: BaseAlternateNamer, name_fallback=True):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
     raw_usage = {'name': [], 'user_id': []}
 
-    for comment in post_locator.get_comments_for_given_month_cached(given_month):
+    for comment in comments:
         entity_name = name_extractor.get_name(comment["body"])
         if entity_name is not None:
             principal_name = None
@@ -32,35 +34,13 @@ def get_shave_data_for_month(given_month, post_locator, name_extractor, alternat
     df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
     return df
 
+def get_shave_data_for_month(given_month, post_locator, name_extractor, alternate_namer, name_fallback=True):
+    comments = post_locator.get_comments_for_given_month_cached(given_month)
+    return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
+
 def get_shave_data_for_year(given_year, post_locator, name_extractor, alternate_namer, name_fallback=True):
-    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
-    raw_usage = {'name': [], 'user_id': []}
-
-    for comment, user_id in post_locator.get_comments_for_given_year_cached(given_year):
-        entity_name = name_extractor.get_name(comment["body"])
-        if entity_name is not None:
-            principal_name = None
-            if alternate_namer:
-                principal_name = alternate_namer.get_principal_name(entity_name)
-            if not principal_name:
-                if not name_fallback:
-                    # skip this one if we dont want to fall back to the base entity name
-                    continue
-                else:
-                    # no renamer or no principal name found, so avoid nulls and use raw entity name
-                    principal_name = entity_name
-
-            raw_usage['name'].append(principal_name)
-            raw_usage['user_id'].append(comment["author"])
-
-    df = pd.DataFrame(raw_usage)
-    df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
-    df.columns = ['name', 'shaves', 'unique users']
-    df = df[df.apply(lambda x: x['name'].lower() != 'none', axis=1)]
-    df.loc[:, 'avg shaves per user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users']), axis=1)
-    df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
-    return df
-
+    comments = post_locator.get_comments_for_given_year_cached(given_year)
+    return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
 
 def get_shaving_histogram(given_month, post_locator):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
@@ -124,7 +104,7 @@ def add_ranking_delta(df_curr, df_prev, historic_name):
 
     def _get_delta(row):
         if pd.isnull(row['previous_rank']):
-            # ie not seen last month
+            # ie not seen last period
             return 'n/a'
         elif row['rank'] == row['previous_rank']:
             return '='
@@ -149,26 +129,22 @@ def add_ranking_delta(df_curr, df_prev, historic_name):
     return df_curr
 
 
-def get_unlinked_entity_data_for_month(given_month, post_locator, name_extractor, alternate_namer):
+def get_unlinked_entity_data(comments: [dict], name_extractor, alternate_namer):
     # all the cases where we cant match a razor / brush / etc as posted by the user
     raw_unlinked = {'name': [], 'user_id': []}
 
-    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
-        entity_name = name_extractor.get_name(comment)
+    for comment in comments:
+        entity_name = name_extractor.get_name(comment["body"])
         if entity_name is not None:
             principal_name = None
             if alternate_namer:
                 principal_name = alternate_namer.get_principal_name(entity_name)
             if not principal_name:
-
-
                 raw_unlinked['name'].append(entity_name)
-                raw_unlinked['user_id'].append(user_id)
+                raw_unlinked['user_id'].append(comment["author"])
 
     df = pd.DataFrame(raw_unlinked)
     df = df.groupby('name').agg({"user_id": ['count', 'nunique']}).reset_index()
     df.columns = ['name', 'shaves', 'unique users']
     df = df[df.apply(lambda x: x['name'].lower() != 'none', axis=1)]
-    df.loc[:, 'avg shaves per user'] = df.apply(lambda x: '{0:.2f}'.format(x['shaves'] / x['unique users'] if x['unique users'] > 0 else 0), axis=1)
-    df.loc[:, 'rank'] = df['shaves'].rank(method='dense', ascending=False)
     return df

@@ -5,6 +5,7 @@ import pandas as pd
 
 import praw
 from dateutil.relativedelta import relativedelta
+from pydantic import InstanceOf
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_format_extractor import BladeFormatExtractor
@@ -20,7 +21,7 @@ from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
+from sotd_collator.utils import add_ranking_delta, get_shave_data, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
 
 pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
@@ -73,12 +74,22 @@ process_entities = [
     },
 ]
 
-stats_month = datetime.date(2023,12,1)
-previous_month = stats_month - relativedelta(months=1)
-previous_year = stats_month - relativedelta(months=12)
+mode = "annual"
 
-print("""
-Welcome to your SOTD Hardware Report for {0}
+target = datetime.date(2023,12,1)
+delta_one = target - relativedelta(months=1)
+delta_two = target - relativedelta(years=1)
+
+comments_target = pl.get_comments_for_given_month_cached(target)
+comments_delta_one = pl.get_comments_for_given_month_cached(delta_one)
+comments_delta_two = pl.get_comments_for_given_month_cached(delta_two)
+
+target_label = target.strftime('%b %Y')
+delta_one_label = delta_one.strftime('%b %Y')
+delta_two_label = delta_two.strftime('%b %Y')
+
+print(f"""
+Welcome to your SOTD Hardware Report for {target_label}
 
 ## Observations
 
@@ -101,68 +112,76 @@ Welcome to your SOTD Hardware Report for {0}
 
 * The change Δ vs columns show how an item has moved up or down the rankings since the previous month or year. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to the previous month or year. n/a means the item was not present in the previous month / year.
 
-""".format(stats_month.strftime('%b %Y')))
+""")
 
+razor_usage = None
 for entity in process_entities:
-    usage = get_shave_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
-    pm_usage = get_shave_data_for_month(previous_month, pl, entity['extractor'], entity['renamer'])
-    py_usage = get_shave_data_for_month(previous_year, pl, entity['extractor'], entity['renamer'])
+    print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
-    usage = add_ranking_delta(usage, pm_usage, previous_month.strftime('%b %Y'))
-    usage = add_ranking_delta(usage, py_usage, previous_year.strftime('%b %Y'))
+    # print(f'retrieving {target_label} usage', end='\r')
+    usage = get_shave_data(comments_target, entity['extractor'], entity['renamer'])
+    # print(f'retrieving {delta_one_label} usage', end='\r')
+    pm_usage = get_shave_data(comments_delta_one, entity['extractor'], entity['renamer'])
+    # print(f'retrieving {delta_two_label} usage', end='\r')
+    py_usage = get_shave_data(comments_delta_two, entity['extractor'], entity['renamer'])
+
+
+    # print(f'adding {delta_one_label} delta', end='\r')
+    usage = add_ranking_delta(usage, pm_usage, delta_one_label)
+    # print(f'adding {delta_two_label} delta', end='\r')
+    usage = add_ranking_delta(usage, py_usage, delta_two_label)
+    # print(f'dropping rank', end='\r')
     usage.drop('rank', inplace=True, axis=1)
 
 
-
-
     # remove nulls
+    # print('removing nulls', end='\r')
     usage.dropna(subset=['name'], inplace=True)
 
     # sort
+    # print('sorting', end='\r')
     usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
 
     # enforce max entities
+    # print('enforcing max entities', end='\r')
     max_entities = entity['max_entities'] if 'max_entities' in entity else MAX_ENTITIES
     usage = usage.head(max_entities)
-
-
-    print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
     print(usage.to_markdown(index=False))
     print('\n')
 
 
-# print('## Most Used Blades in Most Used Razors\n')
+print('## Most Used Blades in Most Used Razors\n')
 
-# # do razor plus blade combo, filtered on most popular razors...
-# razor_usage = get_shave_data_for_month(stats_month, pl, RazorNameExtractor(), RazorAlternateNamer())
-# rpb_usage = get_shave_data_for_month(stats_month, pl, RazorPlusBladeNameExtractor(), RazorPlusBladeAlternateNamer())
-# razor_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+# do razor plus blade combo, filtered on most popular razors...
+# razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
+rpb_usage = get_shave_data(comments_target, RazorPlusBladeNameExtractor(), RazorPlusBladeAlternateNamer())
+razor_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
 
-# # get most popular razors in use this month
-# top_x_razors = razor_usage.head(10).loc[:, ['name']]
-# top_x_razors.columns = ['razor_name']
+# get most popular razors in use this month
+top_x_razors = razor_usage.head(10).loc[:, ['name']]
+top_x_razors.columns = ['razor_name']
 
-# # extract razor name from combined razor + blades df
-# rpb_usage.loc[:, 'razor_name'] = rpb_usage['name'].apply(lambda x: x.split('+')[0].strip())
-# rpb_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
+# extract razor name from combined razor + blades df
+rpb_usage.loc[:, 'razor_name'] = rpb_usage['name'].apply(lambda x: x.split('+')[0].strip())
+rpb_usage.sort_values(['shaves', 'unique users'], ascending=False, inplace=True)
 
-# rpb_usage = pd.merge(
-#     left=rpb_usage,
-#     right=top_x_razors,
-#     on='razor_name',
-#     how='inner'
-# ).drop(['rank', 'razor_name'], axis=1)
+rpb_usage = pd.merge(
+    left=rpb_usage,
+    right=top_x_razors,
+    on='razor_name',
+    how='inner'
+).drop(['rank', 'razor_name'], axis=1)
 
-# rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
+rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
 
-# print(rpb_usage.to_markdown(index=False))
+print(rpb_usage.to_markdown(index=False))
+print('\n')
+
+
+# print('## Shaving Frequency Histogram\n')
+# print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
 # print('\n')
-
-
-# # print('## Shaving Frequency Histogram\n')
-# # print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
-# # print('\n')
 
 
 

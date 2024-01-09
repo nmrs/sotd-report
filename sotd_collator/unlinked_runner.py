@@ -4,7 +4,6 @@ import inflect
 import pandas as pd
 
 import praw
-from dateutil.relativedelta import relativedelta
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -16,10 +15,8 @@ from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.knot_type_extractor import KnotTypeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
-from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
-from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.utils import add_ranking_delta, get_shave_data_for_month, get_shaving_histogram, get_unlinked_entity_data_for_month
+from sotd_collator.utils import get_unlinked_entity_data
 
 pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
@@ -60,32 +57,17 @@ process_entities = [
         'extractor': KnotSizeExtractor(),
         'renamer': None,
     },
-    {
-        'name': 'Karve Plate',
-        'extractor': KarvePlateExtractor(),
-        'renamer': None,
-    },
-    {
-        'name': 'Game Changer Plate',
-        'extractor': GameChangerPlateExtractor(),
-        'renamer': None,
-    },
 ]
 
-stats_month = datetime.date(2023,12,1)
-previous_month = stats_month - relativedelta(months=1)
-previous_year = stats_month - relativedelta(months=12)
+target = datetime.date(2023, 12, 1)
+comments = pl.get_comments_for_given_month_cached(target)
 
 print("""
 Unlinked entity detection 
-""".format(stats_month.strftime('%b %Y')))
+""".format(target.strftime('%b %Y')))
 
 for entity in process_entities:
-    usage = get_unlinked_entity_data_for_month(stats_month, pl, entity['extractor'], entity['renamer'])
-
-
-
-
+    usage = get_unlinked_entity_data(comments, entity['extractor'], entity['renamer'])
 
     # remove nulls
     usage.dropna(subset=['name'], inplace=True)
