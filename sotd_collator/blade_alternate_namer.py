@@ -69,7 +69,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Personna GEM Stainless': ['(personna)*gem.*stainless', 'gem.*ss'],
         'Personna Injector': ['(person|personna).*(inject|injector)'],# unecessarily long to ensure priority of checking
         'Personna Med Prep': ['person.*med'],
-        'Personna 74': ['person.*74'],
+        'Personna 74': ['person.*74', 'pseventy-four'],
         'Personna Red': ['personn*a.*red'],
         'Personna Stainless': ['personn*a.*stainless'],
         'Personna Blue': ['personn*a.*blue'],
