@@ -4,6 +4,7 @@ import inflect
 import pandas as pd
 
 import praw
+from dateutil.relativedelta import relativedelta
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -51,11 +52,6 @@ process_entities = [
         'renamer': BrushAlternateNamer(),
         'max_entites': 50,
 
-    },
-    {
-        'name': 'Knot Size',
-        'extractor': KnotSizeExtractor(),
-        'renamer': None,
     },
 ]
 
