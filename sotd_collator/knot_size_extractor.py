@@ -21,9 +21,9 @@ class KnotSizeExtractor(BaseNameExtractor):
        ]
 
     @BaseNameExtractor.post_process_name
-    def get_name(self, comment_text):
+    def get_name(self, comment):
 
-        comment_text = self._to_ascii(comment_text)
+        comment_text = self._to_ascii(comment["body"])
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:

@@ -17,6 +17,7 @@ from sotd_collator.knot_type_extractor import KnotTypeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.sotd_post_locator import SotdPostLocator
+from sotd_collator.staged_name_extractors import StagedRazorNameExtractor, StagedBladeNameExtractor, StagedBrushNameExtractor
 from sotd_collator.utils import get_unlinked_entity_data
 
 pr = praw.Reddit('reddit')
@@ -35,13 +36,13 @@ process_entities = [
     # },
     {
         'name': 'Razor',
-        'extractor': RazorNameExtractor(),
+        'extractor': StagedRazorNameExtractor(),
         'renamer': RazorAlternateNamer(),
         'max_entities': 50,
     },
     {
         'name': 'Blade',
-        'extractor': BladeNameExtractor(),
+        'extractor': StagedBladeNameExtractor(),
         'renamer': BladeAlternateNamer(),
         'max_entities': 30,
 
@@ -56,7 +57,7 @@ process_entities = [
 ]
 
 target = datetime.date(2023, 12, 1)
-comments = pl.get_comments_for_given_month_cached(target)
+comments = pl.get_comments_for_given_month_staged(target)
 
 print("""
 Unlinked entity detection 

@@ -13,9 +13,9 @@ class RazorPlusBladeNameExtractor(object):
         self.rne = RazorNameExtractor()
 
     @BaseNameExtractor.post_process_name
-    def get_name(self, comment_text):
-        razor_name = self.rne.get_name(comment_text)
-        blade_name = self.bne.get_name(comment_text)
+    def get_name(self, comment):
+        razor_name = self.rne.get_name(comment)
+        blade_name = self.bne.get_name(comment)
 
         if razor_name and blade_name:
             return '{razor}\001{blade}'.format(

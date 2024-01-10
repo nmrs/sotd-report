@@ -27,9 +27,12 @@ class RazorNameExtractor(BaseNameExtractor):
                        re.MULTILINE | re.IGNORECASE),  # TTS style with link to eg imgur
         ]
 
-    @BaseNameExtractor.post_process_name
-    def get_name(self, comment_text):
-        comment_text = self._to_ascii(comment_text)
+    # @BaseNameExtractor.post_process_name
+    def get_name(self, comment):
+        if "razor" in comment:
+            return comment["razor"]
+
+        comment_text = self._to_ascii(comment["body"])
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             # catch case where some jerk writes ❧ Razor and Blade Notes or similar

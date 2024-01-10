@@ -6,6 +6,9 @@ import json
 
 from dateutil.relativedelta import relativedelta
 from praw.models import Submission
+from sotd_collator.blade_name_extractor import BladeNameExtractor
+from sotd_collator.brush_name_extractor import BrushNameExtractor
+from sotd_collator.razor_name_extractor import RazorNameExtractor
 
 from sotd_collator.thread_cache_builder import ThreadCacheBuilder
 
@@ -17,6 +20,9 @@ class CacheProvider(object):
         if cache_dir is not None: 
             self.CACHE_DIR = cache_dir
     
+    def get_comment_stage_file_path(self, given_month: datetime.date) -> str:
+        return self.__get_cache_file_path(given_month, "staged_comments")
+
     def get_comment_cache_file_path(self, given_month: datetime.date) -> str:
         return self.__get_cache_file_path(given_month, "comments")
 
@@ -24,7 +30,15 @@ class CacheProvider(object):
         return self.__get_cache_file_path(given_month, "threads")
     
     def __get_cache_file_path(self, given_month: datetime.date, type: str) -> str:
-            return '{0}/{1}/{2}{3}.{1}.json'.format(
+            return '{0}/{1}/{2}{3}.json'.format(
+                self.CACHE_DIR, 
+                type,
+                given_month.year, 
+                given_month.month if given_month.month >= 10 else f'0{given_month.month}'
+            )
+
+    def __get_cache_file_path(self, given_month: datetime.date, type: str) -> str:
+            return '{0}/{1}/{2}{3}.json'.format(
                 self.CACHE_DIR, 
                 type,
                 given_month.year, 
@@ -150,7 +164,23 @@ class SotdPostLocator(object):
                 }
 
 
-    def get_comments_for_given_month_cached(self, given_month: datetime, force_refresh=False) -> [dict]:
+    def get_comments_for_given_month_staged(self, given_month: datetime, force_refresh=False) -> [dict]:
+        if not isinstance(given_month, datetime.date):
+            raise AttributeError('Must pass in a datetime.date object')
+
+        if force_refresh:
+            self.get_comments_for_given_month_cached(given_month, True)
+            return self.__stage_comments(given_month)
+        
+        stage_file = self.cache_provider.get_comment_stage_file_path(given_month)
+        try:
+            with open(stage_file, 'r') as f_cache:
+                return json.loads(f_cache.read())
+        except (FileNotFoundError, json.JSONDecodeError):
+            self.get_comments_for_given_month_cached(given_month, True)
+            return self.__stage_comments(given_month)        
+
+    def get_comments_for_given_month_cached(self, given_month: datetime.date, force_refresh=False) -> [dict]:
         # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
 
         if not isinstance(given_month, datetime.date):
@@ -176,6 +206,33 @@ class SotdPostLocator(object):
         
         return comments
     
+    def __stage_comments(self, given_month: datetime.date) -> [dict]:
+        extractors = {
+            "razor": RazorNameExtractor(),
+            "blade": BladeNameExtractor(),
+            "brush": BrushNameExtractor(),
+        }
+
+        # threads = pl.get_threads_for_given_month(curr_month)
+        comments = self.pl.get_comments_for_given_month_cached(given_month)
+        results = []
+        for comment in comments:
+            body = comment["body"]
+            match = False
+            for label, extractor in extractors.items():
+                val = extractor.get_name(body)
+                if val: 
+                    comment[label] = val
+                    match = True
+            if match: results.append(comment)
+
+        stage_file = self.cache_provider.get_comment_stage_file_path(given_month)
+
+        with open(stage_file, 'w') as f_stage:
+            json.dump(results, f_stage, indent=4, sort_keys=False)
+        
+        return results
+    
     def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
         LINE_CLEAR = '\x1b[2K' # <-- ANSI sequence
         comments = []
@@ -195,12 +252,20 @@ class SotdPostLocator(object):
         # print(f'Processed {format(given_month)} ({len(comments)} comments)')
         return comments
 
+    def get_comments_for_given_year_staged(self, given_year: int) -> [dict]:
+        collected_comments = []
+        for m in range(1,13):
+            collected_comments.extend(self.get_comments_for_given_month_staged(datetime.date(given_year, m, 1)))
+
+        return collected_comments
+
     def get_comments_for_given_year_cached(self, given_year: int) -> [dict]:
         collected_comments = []
         for m in range(1,13):
             collected_comments.extend(self.get_comments_for_given_month_cached(datetime.date(given_year, m, 1)))
 
         return collected_comments
+
 
 
 if __name__ == '__main__':

@@ -10,7 +10,7 @@ def get_shave_data(comments: [dict], name_extractor: BaseNameExtractor, alternat
     raw_usage = {'name': [], 'user_id': []}
 
     for comment in comments:
-        entity_name = name_extractor.get_name(comment["body"])
+        entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None
             if alternate_namer:
@@ -54,10 +54,10 @@ def get_shaving_histogram(given_month, post_locator):
             shaves = days_in_month
         return shaves
 
-    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
+    for comment in post_locator.get_comments_for_given_month_cached(given_month):
         users_for_day = set()
-        if user_id:
-            users_for_day.add(user_id)
+        if comment["author"]:
+            users_for_day.add(comment["author"])
         raw_usage['user_id'].extend(list(users_for_day))
 
     df = pd.DataFrame(raw_usage)
@@ -74,9 +74,9 @@ def get_entity_histogram(given_month, post_locator, name_extractor, alternate_na
     raw_usage = {'name': [], 'user_id': []}
     entity_title = '#' + entity_title
 
-    for comment, user_id in post_locator.get_comments_for_given_month_cached(given_month):
+    for comment in post_locator.get_comments_for_given_month_cached(given_month):
         entity_name = name_extractor.get_name(comment)
-        if not user_id:
+        if not comment["author"]:
             continue
 
         if entity_name is not None:
@@ -88,7 +88,7 @@ def get_entity_histogram(given_month, post_locator, name_extractor, alternate_na
                 principal_name = entity_name
 
             raw_usage['name'].append(principal_name)
-            raw_usage['user_id'].append(user_id)
+            raw_usage['user_id'].append(comment["author"])
 
     df = pd.DataFrame(raw_usage)
     df = df.groupby('user_id').agg({'name': 'nunique'}).reset_index()
@@ -134,7 +134,7 @@ def get_unlinked_entity_data(comments: [dict], name_extractor, alternate_namer):
     raw_unlinked = {'name': [], 'user_id': []}
 
     for comment in comments:
-        entity_name = name_extractor.get_name(comment["body"])
+        entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None
             if alternate_namer:

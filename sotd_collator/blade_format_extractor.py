@@ -90,9 +90,8 @@ class BladeFormatExtractor(BaseNameExtractor):
 
 
     @BaseNameExtractor.post_process_name
-    def get_name(self, comment_text):
-        comment_text = self._to_ascii(comment_text)
-        blade_name = self.blade_name_extractor.get_name(comment_text)
+    def get_name(self, comment):
+        blade_name = self.blade_name_extractor.get_name(comment)
         if blade_name:
             renamed_blade = self.blade_alternate_namer.get_principal_name(blade_name)
             blade_name = renamed_blade if renamed_blade else blade_name
@@ -102,7 +101,7 @@ class BladeFormatExtractor(BaseNameExtractor):
                 return bf
 
         # fall back to using razor name
-        razor_name = self.razor_name_extractor.get_name(comment_text)
+        razor_name = self.razor_name_extractor.get_name(comment)
         if razor_name:
             renamed_razor = self.razor_alternate_namer.get_principal_name(razor_name)
             razor_name = renamed_razor if renamed_razor else razor_name

@@ -1,0 +1,15 @@
+Pre-processed comments files. 
+Filtered down to only comments that contain razor, blade, or brush data.
+Detectors already run to extract the razor, blade, or brush line.
+Alternate namers are not applied. Those still get applied at runtime since those change frequently.
+e.g.:
+{
+    "author": "UbaldJr",
+    "body": "Happy Birthday Dad\n\n* Prep: Shower & L'Occitane Cedrat\n\n* Pre: CL pre-shave butter\n\n* Razor: Gillette Slim 1966\n\n* Blade: Gillette 7 O'Clock\n\n* Brush: Merkur Futur Silvertip\n\n* Lather: Eufros Tierra Humeda\n\n* Post: Extra later, with more lather, and even more lather\n\n* Music: [Dire Straits -- Telegraph Road](https://www.youtube.com/watch?v=dd3btVhwr48)\n\nDepressing rain today in Boston. My dad passed last October. On a day like today, he was dragging me outside the house to the garden in our backyard so we can find the big, juicy worms to go fishing during the  following weekend. Eufros' Tierra Humeda reminds me of all this. I overloaded the brush a little (way) too much, but wanted the smell to linger for a while. He would have been 70 today (and my mother-in-law is turning 65!). Papa -- you are missed. Happy Birthday.",
+    "created_utc": "2016-05-24 05:11:53",
+    "id": "d3hj5sb",
+    "url": "https://www.reddit.com/r/Wetshaving/comments/4ksqca/comment/d3hj5sb/"
+    "razor": "Gillette Slim 1966",
+    "blade": "Gillette 7 O'Clock",
+    "brush": "Merkur Futur Silvertip"
+},

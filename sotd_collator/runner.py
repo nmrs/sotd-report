@@ -21,6 +21,7 @@ from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
+from sotd_collator.staged_name_extractors import StagedBladeNameExtractor, StagedBrushNameExtractor, StagedRazorNameExtractor
 from sotd_collator.utils import add_ranking_delta, get_shave_data, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
 
 pr = praw.Reddit('reddit')
@@ -39,20 +40,20 @@ process_entities = [
     },
     {
         'name': 'Razor',
-        'extractor': RazorNameExtractor(),
+        'extractor': StagedRazorNameExtractor(),
         'renamer': RazorAlternateNamer(),
         'max_entities': 50,
     },
     {
         'name': 'Blade',
-        'extractor': BladeNameExtractor(),
+        'extractor': StagedBladeNameExtractor(),
         'renamer': BladeAlternateNamer(),
         'max_entities': 30,
 
     },
     {
         'name': 'Brush',
-        'extractor': BrushNameExtractor(),
+        'extractor': StagedBrushNameExtractor(),
         'renamer': BrushAlternateNamer(),
         'max_entites': 50,
 
@@ -77,16 +78,16 @@ process_entities = [
 mode = "annual"
 
 target = datetime.date(2023,12,1)
-delta_one = target - relativedelta(months=1)
-delta_two = target - relativedelta(years=1)
+delta_one = target - relativedelta(years=1)
+delta_two = target - relativedelta(years=5)
 
-comments_target = pl.get_comments_for_given_month_cached(target)
-comments_delta_one = pl.get_comments_for_given_month_cached(delta_one)
-comments_delta_two = pl.get_comments_for_given_month_cached(delta_two)
+comments_target = pl.get_comments_for_given_year_staged(target.year)
+comments_delta_one = pl.get_comments_for_given_year_staged(delta_one.year)
+comments_delta_two = pl.get_comments_for_given_year_staged(delta_two.year)
 
-target_label = target.strftime('%b %Y')
-delta_one_label = delta_one.strftime('%b %Y')
-delta_two_label = delta_two.strftime('%b %Y')
+target_label = target.strftime('%Y')
+delta_one_label = delta_one.strftime('%Y')
+delta_two_label = delta_two.strftime('%Y')
 
 print(f"""
 Welcome to your SOTD Hardware Report for {target_label}
@@ -133,7 +134,6 @@ for entity in process_entities:
     # print(f'dropping rank', end='\r')
     usage.drop('rank', inplace=True, axis=1)
 
-
     # remove nulls
     # print('removing nulls', end='\r')
     usage.dropna(subset=['name'], inplace=True)
@@ -150,6 +150,8 @@ for entity in process_entities:
     print(usage.to_markdown(index=False))
     print('\n')
 
+    if isinstance(entity["extractor"], StagedRazorNameExtractor):
+        razor_usage = usage
 
 print('## Most Used Blades in Most Used Razors\n')
 
