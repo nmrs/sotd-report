@@ -39,7 +39,8 @@ class RazorNameExtractor(BaseNameExtractor):
 
             # catch case where we match against razorock
             if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == 'ock'):
-                return res.group(1).strip()
+                result = res.group(1).strip()
+                if len(result) > 0: return result
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
         # if principal_name:

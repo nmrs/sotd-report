@@ -36,7 +36,7 @@ class BladeNameExtractor(BaseNameExtractor):
                 s = re.sub(r'P74', 'pseventy-four', res.group(1))
                 # remove blade count - eg Astra (3)
                 s = re.sub(r'[()\d]', '', s).strip()
-                return s
+                if len(s) > 0: return s
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
         # if principal_name:
