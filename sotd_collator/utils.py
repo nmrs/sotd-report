@@ -1,9 +1,20 @@
 # shared functions and the like
+from time import time
 import pandas as pd
 from calendar import monthrange
 from base_alternate_namer import BaseAlternateNamer
 from base_name_extractor import BaseNameExtractor
 
+def timer_func(func): 
+    # This function shows the execution time of  
+    # the function object passed 
+    def wrap_func(*args, **kwargs): 
+        t1 = time() 
+        result = func(*args, **kwargs) 
+        t2 = time()
+        print(f'Function {func.__name__!r} executed in {(t2-t1):.4f}s') 
+        return result 
+    return wrap_func 
 
 def get_shave_data(comments: [dict], name_extractor: BaseNameExtractor, alternate_namer: BaseAlternateNamer, name_fallback=True):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users

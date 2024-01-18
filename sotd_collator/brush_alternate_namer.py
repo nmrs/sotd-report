@@ -12,10 +12,23 @@ class BrushAlternateNamer(BaseAlternateNamer):
     Amalgamate names
     """
 
+    link_other = True
+
+    def __init__(self, link_other:bool=True):
+        self.link_other = link_other
+
+
     bads = '(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan|finest|best|two\s*band)'
     boars = '(boar)'
     horses = '(horse)'
     syns = '(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(mag|wolf)|g4|boss)'
+
+    others = {
+        'Other Badger': [bads],
+        'Other Boar': [boars],
+        'Other Horse': [horses],
+        'Other Synthetic': [syns],
+    }
 
     apply_first = {
         'DG B1': ['B1(\s|$)'],
@@ -49,6 +62,8 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Omega HIBRUSH Synthetic': ['hibrush'],
         'Semogue Torga C5 Boar': ['torga.*c5'],
         'Omega Proraso Professional': ['proraso.*prof', 'omega.*proraso', 'proraso.*omega'],
+        'Omega 10048': ['omega.*pro.*48'],
+        'Omega 10049': ['omega.*pro.*49'],
     }
 
     standard_makers = {
@@ -62,6 +77,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Black Anvil': {'patterns': ['black.*anv'], 'default': 'Badger'},
         'Black Eagle': {'patterns': ['black.*eag'], 'default': 'Badger'},
         'Boker': {'patterns': ['boker'], 'default': 'Synthetic'},
+        'Boti': {'patterns': ['boti'], 'default': 'Synthetic'},
         'Brad Sears': {'patterns': ['brad.*sears'], 'default': 'Badger'},
         'Bristle Brushwerks': {'patterns': ['huck', 'bristle.*brush'], 'default': 'Badger'},
         'Brushcraft': {'patterns': ['brushcraft'], 'default': 'Synthetic'},
@@ -69,7 +85,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Carnavis & Richardson': {'patterns': ['carn.*rich'], 'default': 'Synthetic'},
         'Catalin': {'patterns': ['catalin'], 'default': 'Badger'},
         'CaYuen': {'patterns': ['cayuen'], 'default': 'Synthetic'},
-        'Chisel & Hound': {'patterns': ['chis.*hound'], 'default': 'Badger'},
+        'Chisel & Hound': {'patterns': ['chis.*hound', 'c\&h'], 'default': 'Badger'},
         'Craving Shaving': {'patterns': ['crav.*shav'], 'default': 'Synthetic'},
         'Cremo': {'patterns': ['cremo'], 'default': 'Horse'},
         'Crescent City Craftsman': {'patterns': ['cres.*city'], 'default': 'Synthetic'},
@@ -84,6 +100,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Erskine': {'patterns': ['erskine'], 'default': 'Boar'},
         'Ever Ready': {'patterns': ['ever.*read'], 'default': 'Badger'},
         'Executive Shaving': {'patterns': ['execut.*shav'], 'default': 'Synthetic'},
+        'Farvour Turn Craft': {'patterns': ['farvour'], 'default': 'Badger'},
         'Fine': {'patterns': ['fine\s'], 'default': 'Synthetic'},
         'Firehouse Potter': {'patterns': ['fireh.*pott'], 'default': 'Synthetic'},
         'Fendrihan': {'patterns': ['fendri'], 'default': 'Badger'},
@@ -94,6 +111,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Heritage Collection': {'patterns': ['heritage'], 'default': 'Badger'},
         'L\'Occitane en Provence': {'patterns': ['oc*citane'], 'default': 'Synthetic'},
         'Lancaster Brushworks': {'patterns': ['lancaster'], 'default': 'Synthetic'},
+        'Leavitt & Pierce': {'patterns': ['leav.*pie'], 'default': 'Badger'},
         'Leonidam': {'patterns': ['leonidam', 'leo.*nem'], 'default': 'Badger'},
         'Liojuny Shaving': {'patterns': ['liojuny'], 'default': 'Synthetic'},
         'Lutin Brushworks': {'patterns': ['lutin'], 'default': 'Synthetic'},
@@ -109,7 +127,9 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Mutiny': {'patterns': ['mutiny'], 'default': 'Synthetic'},
         'Noble Otter': {'patterns': ['noble', 'no\s*\d{2}mm'], 'default': 'Badger'},
         'NY Shave Co': {'patterns': ['ny\s.*shave.*co'], 'default': 'Badger'},
+        'Omega': {'patterns': ['omega'], 'default': 'Boar'},
         'Omega EVO': {'patterns': ['omega.*evo', 'evo.*omega'], 'default': 'Synthetic'},
+        'Omega Hi-BRUSH': {'patterns': ['hi-brush', 'omega.*syn'], 'default': 'Synthetic'},
         'Oumo': {'patterns': ['oumo'], 'default': 'Badger'},
         'Oz Shaving': {'patterns': ['oz.*sha'], 'default': 'Synthetic'},
         'PAA': {'patterns': ['paa', 'phoenix.*art'], 'default': 'Synthetic'},
@@ -118,6 +138,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'Plisson': {'patterns': ['plisson'], 'default': 'Badger'},
         'Prometheus Handcrafts': {'patterns': ['promethe'], 'default': 'Synthetic'},
         'Razorock': {'patterns': ['Razorr*ock', '(^|\s)rr\s', 'plissoft', 'razor rock'], 'default': 'Synthetic'},
+        'Rockwell': {'patterns': ['rockwell'], 'default': 'Synthetic'},
         'Rubberset': {'patterns': ['rubberset'], 'default': 'Badger'},
         'Rudy Vey': {'patterns': ['rudy.*vey'], 'default': 'Badger'},
         'Rick Montalvo': {'patterns': ['montalv'], 'default': 'Synthetic'},
@@ -143,6 +164,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         'TOBS': {'patterns': ['tobs', 'taylor.*bond'], 'default': 'Badger'},
         'Trotter Handcrafts': {'patterns': ['trotter'], 'default': 'Synthetic'},
         'Turn-N-Shave': {'patterns': ['turn.{1,5}shave', 'tns'], 'default': 'Badger'},
+        'Van der Hagen': {'patterns': ['van.*hag.*'], 'default': 'Boar'},
         'Vie Long': {'patterns': ['vie.*long'], 'default': 'Horse'},
         'Viking': {'patterns': ['viking'], 'default': 'Badger'},
         'Vintage Blades': {'patterns': ['vintage.*blades'], 'default': 'Badger'},
@@ -182,6 +204,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
 
     @lru_cache(maxsize=1024)
     def get_principal_name(self, name):
+
         # Standardise omega / semogues - dont want to list out every model number above,
         # but coerce them into a standard format
         name = name.lower().replace('semouge', 'semogue')
@@ -222,6 +245,13 @@ class BrushAlternateNamer(BaseAlternateNamer):
             except:
                 print('Failing input >{0}<'.format(alt_name_re))
                 raise
+
+        # if self.link_other:
+        #     for other_name in sorted(self.others.keys(), key=len, reverse=True):
+        #         for pattern in self.others[other_name]:
+        #             if re.search(pattern, name, re.IGNORECASE):
+        #                 return other_name
+
         return None
 
 

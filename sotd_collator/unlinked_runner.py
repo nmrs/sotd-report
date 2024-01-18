@@ -34,23 +34,23 @@ process_entities = [
     #     'extractor': KnotTypeExtractor(),
     #     'renamer': None,
     # },
-    {
-        'name': 'Razor',
-        'extractor': StagedRazorNameExtractor(),
-        'renamer': RazorAlternateNamer(),
-        'max_entities': 50,
-    },
-    {
-        'name': 'Blade',
-        'extractor': StagedBladeNameExtractor(),
-        'renamer': BladeAlternateNamer(),
-        'max_entities': 30,
+    # {
+    #     'name': 'Razor',
+    #     'extractor': StagedRazorNameExtractor(),
+    #     'renamer': RazorAlternateNamer(),
+    #     'max_entities': 50,
+    # },
+    # {
+    #     'name': 'Blade',
+    #     'extractor': StagedBladeNameExtractor(),
+    #     'renamer': BladeAlternateNamer(),
+    #     'max_entities': 30,
 
-    },
+    # },
     {
         'name': 'Brush',
         'extractor': BrushNameExtractor(),
-        'renamer': BrushAlternateNamer(),
+        'renamer': BrushAlternateNamer(link_other=False),
         'max_entites': 50,
 
     },
@@ -58,6 +58,7 @@ process_entities = [
 
 target = datetime.date(2023, 12, 1)
 comments = pl.get_comments_for_given_month_staged(target)
+# comments = pl.get_comments_for_given_year_staged(2023)
 
 print("""
 Unlinked entity detection 

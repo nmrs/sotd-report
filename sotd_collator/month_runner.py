@@ -13,21 +13,22 @@ from sotd_collator.utils import add_ranking_delta, get_shave_data, get_shave_dat
 pr = praw.Reddit('reddit')
 pl = SotdPostLocator(pr)
 
-target = 2023
-last_year = target - 1
-five_years_ago = target - 5
+# target = datetime.date(2023,12,1)
+target = datetime.date.today().replace(day=1) - relativedelta(months=1)
+last_month = target - relativedelta(months=1)
+last_year = target - relativedelta(years=1)
 
 sb = StageBuilder()
-sb.build_stage(datetime.date(last_year, 1, 1), datetime.date(target, 12, 31))
-sb.build_stage(datetime.date(five_years_ago, 1, 1), datetime.date(five_years_ago, 12, 31))
+sb.build_stage(last_month, target)
+sb.build_stage(last_year, last_year)
 
-comments_target = pl.get_comments_for_given_year_staged(target)
-comments_last_year = pl.get_comments_for_given_year_staged(last_year)
-comments_five_years_ago = pl.get_comments_for_given_year_staged(five_years_ago)
+comments_target = pl.get_comments_for_given_month_staged(target)
+comments_last_month = pl.get_comments_for_given_month_staged(last_month)
+comments_last_year = pl.get_comments_for_given_month_staged(last_year)
 
-target_label = str(target)
-last_year_label = str(last_year)
-five_years_ago_label = str(five_years_ago)
+target_label = target.strftime('%B %Y')
+last_month_label = last_month.strftime('%b %Y')
+last_year_label = last_year.strftime('%b %Y')
 
 header = (f"""
 Welcome to your SOTD Hardware Report for {target_label}
@@ -56,5 +57,5 @@ Welcome to your SOTD Hardware Report for {target_label}
 """)
 
 runner = Runner()
-runner.run( header, comments_target, comments_last_year,
-            comments_five_years_ago, last_year_label, five_years_ago_label )
+runner.run( header, comments_target, comments_last_month,
+            comments_last_year, last_month_label, last_year_label )

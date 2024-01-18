@@ -27,12 +27,12 @@ class KnotTypeExtractor(BaseNameExtractor):
 
     @cached_property
     def detect_regexps(self):
-        blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
+        knot_type_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
         return [
-            re.compile(r'^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)'.format(blade_name_re),
+            re.compile(r'^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)'.format(knot_type_re),
                        re.MULTILINE | re.IGNORECASE),  # TTS and similar
-            re.compile(r'\*brush\*:.*\*\*([{0}]+)\*\*'.format(blade_name_re), re.MULTILINE | re.IGNORECASE),  # sgrddy
+            re.compile(r'\*brush\*:.*\*\*([{0}]+)\*\*'.format(knot_type_re), re.MULTILINE | re.IGNORECASE),  # sgrddy
 
         ]
 
