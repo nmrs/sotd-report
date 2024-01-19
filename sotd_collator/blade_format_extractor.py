@@ -68,6 +68,7 @@ class BladeFormatExtractor(BaseNameExtractor):
         'Rolls Razor': 'Rolls',
         'Schick Hydromagic': 'Injector',
         'Schick Injector': 'Injector',
+        'Schick Proline': 'AC',
         'Schick BBR-1J Kamisori Shavette': 'AC',
         'Supply SE': 'Injector',
         'Wade & Butcher Straight': 'Straight',
