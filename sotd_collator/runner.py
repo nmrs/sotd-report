@@ -117,7 +117,7 @@ class Runner(object):
             print(usage.to_markdown(index=False))
             print('\n')
 
-"""
+
             if isinstance(entity["extractor"], StagedRazorNameExtractor):
                 razor_usage = usage
 
@@ -147,7 +147,7 @@ class Runner(object):
 
         print(rpb_usage.to_markdown(index=False))
         print('\n')
-"""
+
 
     # print('## Shaving Frequency Histogram\n')
     # print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
