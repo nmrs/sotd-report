@@ -82,7 +82,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Rockwell': ['rockwell'],
         'Schick Stainless (DE)': ['schick.*s(?:tainles)*s'],
         'Schick Injector': ['schick'],
-        'Schick Proline': ['proline'],
+        'Schick Proline (AC)': ['proline'],
         'Shark Chrome': ['shark.*chr'],
         'Shark Stainless': ['shark'],
         'Shark Platinum': ['shark.*pla'],
