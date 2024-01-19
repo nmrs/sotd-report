@@ -35,7 +35,6 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Feather Pro Super (AC)': ['feather.*super', 'pro\s*super'],
         'Feather ProGuard (AC)': ['feather.*guard'],
         'Feather Soft Guard (AC)': ['feather.*soft'],
-        'GEM': ['gem'],
         'GEM Blue Star': ['gem.*blue.*star'],
         'Gillette Minora': ['minora'],
         'Gillette Nacet': ['nan*cet'],
@@ -65,6 +64,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
             '(ptfe|pfte).*(person|gem)',
             '(person|ptfe).*gem',
             'ptfe',
+            'gem', # matching just GEM to this blade per guidance here: https://www.reddit.com/r/Wetshaving/comments/19a43q7/comment/kil95r8/
         ],
         'Personna GEM Stainless': ['(personna)*gem.*stainless', 'gem.*ss'],
         'Personna Injector': ['(person|personna).*(inject|injector)'],# unecessarily long to ensure priority of checking
