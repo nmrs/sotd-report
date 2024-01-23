@@ -1,6 +1,7 @@
 from collections import OrderedDict
+from functools import lru_cache
 from sotd_collator.base_alternate_namer import BaseAlternateNamer
-
+import re
 
 class BladeAlternateNamer(BaseAlternateNamer):
     """
@@ -28,7 +29,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Derby Premium': ['derb.*prem'],
         'Eddison Stainless': ['eddison'],
         'Euromax': ['euromax'],
-        'Feather (DE)': ['^feather$', 'feather.*hi.*st', 'feather.*hs', 'feather \s*blade', 'feather.*de'],
+        'Feather (DE)': ['feather', 'feather.*hi.*st', 'feather.*hs', 'feather \s*blade', 'feather.*de'],
         'Feather FHS-1': ['fhs-1'],
         'Feather Pro (AC)': ['feather.*pro'],
         'Feather Pro Light (AC)': ['feather.*light'],
@@ -71,7 +72,7 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Personna GEM Stainless': ['(personna)*gem.*stainless', 'gem.*ss'],
         'Personna Injector': ['(person|personna).*(inject|injector)'],# unecessarily long to ensure priority of checking
         'Personna Med Prep': ['person.*med'],
-        'Personna 74': ['person.*74', 'pseventy-four'],
+        'Personna 74': ['p(?:ersonn*a)?\s*74', 'pseventy-four', 'p74'],
         'Personna Red': ['personn*a.*red'],
         'Personna Stainless': ['personn*a.*stainless', 'personn*a.*super'],
         'Personna Blue': ['personn*a.*blue', 'personn*a.*c.*c', 'personn*a'],
@@ -99,6 +100,18 @@ class BladeAlternateNamer(BaseAlternateNamer):
         'Voskhod': ['vokshod', 'voskhod', 'voshk']
     })
 
+    @lru_cache(maxsize=1024)
+    def get_principal_name(self, name):
+        stripped = self.remove_digits_in_parens(name)
+        return super().get_principal_name(stripped)
+
+    def remove_digits_in_parens(self, input_string):
+        pattern = r'\([0-9]+\)|\[[0-9]+\]|\{[0-9]+\}'
+        result = re.sub(pattern, '', input_string)
+        return result
+
 if __name__ == '__main__':
-    ban = BladeAlternateNamer()
-    print(ban.get_principal_name('Gillette 7 O\'Clock Super Platinum'))
+    # ban = BladeAlternateNamer()
+    # print(ban.get_principal_name('Gillette 7 O\'Clock Super Platinum'))
+
+    print(re.search('feather.*(?:de)?', 'Feather (de)', re.IGNORECASE))
