@@ -7,7 +7,6 @@ class RazorAlternateNamer(BaseAlternateNamer):
     Amalgamate names
     """
     _raw = OrderedDict({
-        'Alumigoose': ['alumigoose'],
         'Asylum Evolution': ['asylum.*evo'],
         'Above the Tie H1': ['ATT.*h-*1', 'tie.*h-*1', '(atlas|bamboo|calypso|colossus|kronos).*h1'],
         'Above the Tie H2': ['ATT.*h-*2', 'tie.*h-*2', '(atlas|bamboo|calypso|colossus|kronos).*h2'],
@@ -189,6 +188,7 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Merkur Vision': ['vision'],
         'EldrormR Industries MM24': ['mm\s*24'],
         'Mongoose': ['goose'],
+        'Mongoose Alumigoose': ['alumigoose'],
         'Muhle Companion': ['companion'],
         'Muhle R41': ['R41'],
         'Muhle R89': ['R10\d', 'R89', 'muhle.*89'],
