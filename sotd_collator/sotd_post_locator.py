@@ -1,3 +1,4 @@
+import os
 from pprint import pprint
 import datetime
 from tokenize import Comment
@@ -164,16 +165,18 @@ class SotdPostLocator(object):
                 }
 
 
-    def get_comments_for_given_month_staged(self, given_month: datetime) -> [dict]:
+    def get_comments_for_given_month_staged(self, given_month: datetime, force_refresh=False) -> [dict]:
         if not isinstance(given_month, datetime.date):
             raise AttributeError('Must pass in a datetime.date object')
 
         stage_file = self.cache_provider.get_comment_stage_file_path(given_month)
+        if force_refresh: os.remove(stage_file)
+        
         try:
             with open(stage_file, 'r') as f_cache:
                 return json.loads(f_cache.read())
         except (FileNotFoundError, json.JSONDecodeError):
-            self.get_comments_for_given_month_cached(given_month, True)
+            self.get_comments_for_given_month_cached(given_month)
             return self.__stage_comments(given_month)        
 
     def get_comments_for_given_month_cached(self, given_month: datetime.date) -> [dict]:
@@ -193,8 +196,8 @@ class SotdPostLocator(object):
             print(f'Cache miss for {cache_file}. Querying reddit.')
             comments = self._get_comments_for_given_month(given_month)
         
-        with open(cache_file, 'w') as f_cache:
-            json.dump(comments, f_cache, indent=4, sort_keys=True)
+            with open(cache_file, 'w') as f_cache:
+                json.dump(comments, f_cache, indent=4, sort_keys=True)
         
         return comments
     
@@ -206,13 +209,13 @@ class SotdPostLocator(object):
         }
 
         # threads = pl.get_threads_for_given_month(curr_month)
-        comments = self.pl.get_comments_for_given_month_cached(given_month)
+        comments = self.get_comments_for_given_month_cached(given_month)
         results = []
         for comment in comments:
-            body = comment["body"]
+            # body = comment["body"]
             match = False
             for label, extractor in extractors.items():
-                val = extractor.get_name(body)
+                val = extractor.get_name(comment)
                 if val: 
                     comment[label] = val
                     match = True
