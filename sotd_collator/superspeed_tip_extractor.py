@@ -2,7 +2,6 @@ import re
 from functools import cached_property
 from sotd_collator import razor_name_extractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
-from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.base_name_extractor import BaseNameExtractor
 
 
