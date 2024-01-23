@@ -1,32 +1,29 @@
 from pprint import pprint
 import inflect
 import pandas as pd
+import praw
 
 from dateutil.relativedelta import relativedelta
 from pydantic import InstanceOf
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_format_extractor import BladeFormatExtractor
-from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
-from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.karve_plate_extractor import KarvePlateExtractor
 from sotd_collator.game_changer_plate_extractor import GameChangerPlateExtractor
 from sotd_collator.knot_size_extractor import KnotSizeExtractor
-from sotd_collator.knot_type_extractor import KnotTypeExtractor
-from sotd_collator.razor_name_extractor import RazorNameExtractor
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.stage_builder import StageBuilder
 from sotd_collator.staged_name_extractors import StagedBladeNameExtractor, StagedBrushNameExtractor, StagedRazorNameExtractor
-from sotd_collator.utils import add_ranking_delta, get_shave_data, get_shave_data_for_month, get_shaving_histogram, get_entity_histogram
+from sotd_collator.superspeed_tip_extractor import SuperSpeedTipExtractor
+from sotd_collator.utils import add_ranking_delta, get_shave_data
 
 class Runner(object):
 
     MAX_ENTITIES = 50
-    MIN_SHAVES = 5
+    MIN_SHAVES = 10
 
     def run(self,
             header: str, 
@@ -52,15 +49,13 @@ class Runner(object):
                 'name': 'Blade',
                 'extractor': StagedBladeNameExtractor(),
                 'renamer': BladeAlternateNamer(),
-                'max_entities': 30,
-
+                'max_entities': 50,
             },
             {
                 'name': 'Brush',
                 'extractor': StagedBrushNameExtractor(),
                 'renamer': BrushAlternateNamer(),
                 'max_entites': 50,
-
             },
             {
                 'name': 'Knot Size',
@@ -75,6 +70,11 @@ class Runner(object):
             {
                 'name': 'Game Changer Plate',
                 'extractor': GameChangerPlateExtractor(),
+                'renamer': None,
+            },
+            {
+                'name': 'Superspeed Tip',
+                'extractor': SuperSpeedTipExtractor(),
                 'renamer': None,
             },
         ]
@@ -152,6 +152,19 @@ class Runner(object):
     # print('## Shaving Frequency Histogram\n')
     # print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
     # print('\n')
+        
+if __name__ == '__main__':
+    pr = praw.Reddit('reddit')
+    pl = SotdPostLocator(pr)
+    comments = pl.get_comments_for_given_year_staged(2023)
+    for comment in comments:
+        try:
+            if 'superspeed' in comment['razor'].lower():
+                print(comment['razor'])
+        except:
+            pass   
+                
+
 
 
 

@@ -164,14 +164,10 @@ class SotdPostLocator(object):
                 }
 
 
-    def get_comments_for_given_month_staged(self, given_month: datetime, force_refresh=False) -> [dict]:
+    def get_comments_for_given_month_staged(self, given_month: datetime) -> [dict]:
         if not isinstance(given_month, datetime.date):
             raise AttributeError('Must pass in a datetime.date object')
 
-        if force_refresh:
-            self.get_comments_for_given_month_cached(given_month, True)
-            return self.__stage_comments(given_month)
-        
         stage_file = self.cache_provider.get_comment_stage_file_path(given_month)
         try:
             with open(stage_file, 'r') as f_cache:
@@ -180,7 +176,7 @@ class SotdPostLocator(object):
             self.get_comments_for_given_month_cached(given_month, True)
             return self.__stage_comments(given_month)        
 
-    def get_comments_for_given_month_cached(self, given_month: datetime.date, force_refresh=False) -> [dict]:
+    def get_comments_for_given_month_cached(self, given_month: datetime.date) -> [dict]:
         # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
 
         if not isinstance(given_month, datetime.date):
@@ -189,20 +185,16 @@ class SotdPostLocator(object):
         cache_file = self.cache_provider.get_comment_cache_file_path(given_month)
         cache_miss = False
         comments = []
-        if force_refresh:
+        try:
+            with open(cache_file, 'r') as f_cache:
+                comments = json.loads(f_cache.read())
+        except (FileNotFoundError, json.JSONDecodeError):
+            cache_miss = True
+            print(f'Cache miss for {cache_file}. Querying reddit.')
             comments = self._get_comments_for_given_month(given_month)
-        else:
-            try:
-                with open(cache_file, 'r') as f_cache:
-                    comments = json.loads(f_cache.read())
-            except (FileNotFoundError, json.JSONDecodeError):
-                cache_miss = True
-                print(f'Cache miss for {cache_file}. Querying reddit.')
-                comments = self._get_comments_for_given_month(given_month)
         
-        if force_refresh or cache_miss:
-            with open(cache_file, 'w') as f_cache:
-                json.dump(comments, f_cache, indent=4, sort_keys=True)
+        with open(cache_file, 'w') as f_cache:
+            json.dump(comments, f_cache, indent=4, sort_keys=True)
         
         return comments
     

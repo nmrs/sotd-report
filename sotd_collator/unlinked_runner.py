@@ -34,37 +34,46 @@ process_entities = [
     #     'extractor': KnotTypeExtractor(),
     #     'renamer': None,
     # },
-    # {
-    #     'name': 'Razor',
-    #     'extractor': StagedRazorNameExtractor(),
-    #     'renamer': RazorAlternateNamer(),
-    #     'max_entities': 50,
-    # },
-    # {
-    #     'name': 'Blade',
-    #     'extractor': StagedBladeNameExtractor(),
-    #     'renamer': BladeAlternateNamer(),
-    #     'max_entities': 30,
+    {
+        'name': 'Razor',
+        'extractor': StagedRazorNameExtractor(),
+        'renamer': RazorAlternateNamer(),
+        'max_entities': 50,
+    },
+    {
+        'name': 'Blade',
+        'extractor': StagedBladeNameExtractor(),
+        'renamer': BladeAlternateNamer(),
+        'max_entities': 50,
 
-    # },
+    },
     {
         'name': 'Brush',
         'extractor': BrushNameExtractor(),
         'renamer': BrushAlternateNamer(link_other=False),
         'max_entites': 50,
-
     },
 ]
 
-target = datetime.date(2023, 12, 1)
-comments = pl.get_comments_for_given_month_staged(target)
-# comments = pl.get_comments_for_given_year_staged(2023)
+comments = None
+mode = 'annual'
 
-print("""
-Unlinked entity detection 
-""".format(target.strftime('%b %Y')))
+if mode == 'annual':
+    target = 2023
+    comments = pl.get_comments_for_given_year_staged(2023)
+    print("""
+    Unlinked entity detection for {0}
+    """.format(target))
+else:
+    target = datetime.date(2023, 12, 1)
+    comments = pl.get_comments_for_given_month_staged(target)
+    print("""
+    Unlinked entity detection for {0}
+    """.format(target.strftime('%b %Y')))
 
 for entity in process_entities:
+    print('##{0}\n'.format(inf_engine.plural(entity['name'])))
+
     usage = get_unlinked_entity_data(comments, entity['extractor'], entity['renamer'])
 
     # remove nulls
@@ -76,9 +85,6 @@ for entity in process_entities:
     # enforce max entities
     max_entities = entity['max_entities'] if 'max_entities' in entity else MAX_ENTITIES
     usage = usage.head(max_entities)
-
-
-    print('##{0}\n'.format(inf_engine.plural(entity['name'])))
 
     print(usage.to_markdown(index=False))
     print('\n')
