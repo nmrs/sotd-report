@@ -35,10 +35,7 @@ class BladeNameExtractor(BaseNameExtractor):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
-                # don't strip digits from Personna 74
-                s = re.sub(r'P74', 'pseventy-four', res.group(1))
-                # remove blade count - eg Astra (3)
-                s = re.sub(r'[()\d]', '', s).strip()
+                s = str(res.group(1)).strip()
                 if len(s) > 0: return s
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
