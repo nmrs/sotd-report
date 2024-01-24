@@ -46,7 +46,8 @@ class KarvePlateExtractor(BaseNameExtractor):
             if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == 'ock'):
                 extracted_name = res.group(1)
 
-        if not extracted_name or not self.alternative_namer.get_principal_name(extracted_name) == 'Karve CB':
+        if not extracted_name: return None
+        if self.alternative_namer.get_principal_name(extracted_name) != 'Karve Christopher Bradley':
             return None
 
         # extract plate from name
