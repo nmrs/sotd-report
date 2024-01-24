@@ -3,7 +3,10 @@ from sotd_collator.karve_plate_extractor import KarvePlateExtractor
 
 class TestKarvePlateExtractor(TestCase):
     plate_name_cases = [
-        {'comment': """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
+        {
+        'comment':
+         {
+             'body': """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
 
     * **Prep:** None  
     * **Brush:** Washington Blue Steel B6  
@@ -13,10 +16,13 @@ class TestKarvePlateExtractor(TestCase):
     * **Post Shave:** [Declaration Grooming - Sweet Lemon - Aftershave](https://trythatsoap.com/collection/70/?product_type=aftershave)  
 
     Better late than never.""",
+         },
          'expected_result': 'C SB',
          },
         {
-            'comment': """SOTD - Aug 28
+        'comment':
+         {
+             'body': """SOTD - Aug 28
 
 * Lather - M&M Gael Laoch
 * Brush - Doglaration B7
@@ -25,10 +31,13 @@ class TestKarvePlateExtractor(TestCase):
 * Post - Gael Laoch
 * Frag - Creed Royal Oud
     """,
-            'expected_result': 'F SB',
+        },
+        'expected_result': 'F SB',
         },
         {
-            'comment': """**[Aug. 1, 2020 - Into the Stag - Day 1](https://i.imgur.com/JTt6010.jpg)**  
+            'comment':
+            {
+                'body': """**[Aug. 1, 2020 - Into the Stag - Day 1](https://i.imgur.com/JTt6010.jpg)**  
 
 * **Prep:** Hot Shower  
 * **Brush:** Stirling 24mm Fan  
@@ -43,10 +52,13 @@ class TestKarvePlateExtractor(TestCase):
 
 So it begins... started with a virgin Stag set today. 
 """,
-            'expected_result': 'A SB',
+            },
+        'expected_result': 'A SB',
         },
         {
-            'comment': """
+        'comment':
+            {
+            'body': """
 **Aug. 31, 2020 - AA with Proraso Blue All the Way**  
 
 * **Prep:** Proraso - Aloe and Vitamin E - Pre-shave  
@@ -60,9 +72,9 @@ So it begins... started with a virgin Stag set today.
 
 One blade. One razor. One pre-shave. One cream. One brush. One balm.  Done.  
 """,
-            'expected_result': 'B OC',
+            },
+        'expected_result': 'B OC',
         },
-
     ]
     def test_get_name(self):
         kpe = KarvePlateExtractor()

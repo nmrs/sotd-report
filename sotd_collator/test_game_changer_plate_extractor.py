@@ -4,45 +4,66 @@ from sotd_collator.game_changer_plate_extractor import GameChangerPlateExtractor
 class TestGameChangerPlateExtractor(TestCase):
     plate_name_cases = [
         {
-            'comment': """
+            'comment':
+            {
+                'body':"""
 **// Razor** \- GC 68
 """,
+            },
             'expected_result': '.68-P',
         },
         {
-            'comment': """
+            'comment':
+            {
+                'body': """
 **// Razor** \- Game Changer .68P
 """,
+            },
             'expected_result': '.68-P',
         },
         {
-            'comment': """
+            'comment':
+            { 
+                'body': """
 **// Razor** \- Game Changer .76-P
 """,
+            },
             'expected_result': '.76-P',
         },
         {
-            'comment': """
+            'comment':
+             {
+                 'body': """
 **// Razor** \- Game Changer 1.05
 """,
+            },
             'expected_result': '1.05-P',
         },
         {
-            'comment': """
+            'comment': 
+            {
+                'body':"""
 **// Razor** \- Game Changer 1.05 OC
 """,
+            },
             'expected_result': '1.05-P OC',
         },
         {
-            'comment': """
+            'comment': 
+            {
+                'body': """
 **// Razor** \- Game Changer 1.05 open comb
 """,
+            },
             'expected_result': '1.05-P OC',
         },
         {
-            'comment': """
+            'comment': 
+            {
+                'body': """
 **// Razor** \- Game Changer 1.05 jaws
 """,
+            }, 
             'expected_result': '1.05-P JAWS',
         },
     ]

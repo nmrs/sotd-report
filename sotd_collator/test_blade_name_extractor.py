@@ -5,7 +5,10 @@ from blade_name_extractor import BladeNameExtractor
 
 class TestBladeNameExtractor(TestCase):
     razor_name_cases = [
-        {'comment': """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
+        {
+            'comment': 
+            {
+                'body': """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
 
 * **Prep:** None  
 * **Brush:** Washington Blue Steel B6  
@@ -15,10 +18,14 @@ class TestBladeNameExtractor(TestCase):
 * **Post Shave:** [Declaration Grooming - Sweet Lemon - Aftershave](https://trythatsoap.com/collection/70/?product_type=aftershave)  
 
 Better late than never.""",
-         'expected_result': 'Gillette Nacet',
-         },
+            },
+            'expected_result': 'Gillette Nacet (3)',
+        },
         {
-            'comment': """***I Can't Stands No More : 2/28/20***
+            'comment':
+            {
+
+            'body': """***I Can't Stands No More : 2/28/20***
 
 * **Brush** \- Maggard 24mm Synthetic
 * **Razor** \- Maggard MR5 w/ V2 OC
@@ -26,10 +33,13 @@ Better late than never.""",
 * **Lather** \- Barrister and Mann - Ravish
 * **Post** \- Barrister and Mann - Ravish Splash
 """,
-            'expected_result': 'Rapira Fresh',
+            },
+            'expected_result': 'Rapira (Fresh)',
         },
         {
-            'comment': """**// Brush** \- Dogwood Handcrafts - SHD
+            'comment':
+            {
+            'body': """**// Brush** \- Dogwood Handcrafts - SHD
 
 **// Razor** \- Maggard MR 5 w/ V2 OC
 
@@ -38,10 +48,14 @@ Better late than never.""",
 **// Lather** \- Turtleship Shave Co. - Bay Rum
 
 **// Post** \- Pinaud Clubman""",
-            'expected_result': 'Voskhod',
+            
+            },
+            'expected_result': 'Voskhod (4)',
         },
         {
-            'comment': """* **Prep:** Cup of Coffee  
+            'comment':
+            {
+            'body': """* **Prep:** Cup of Coffee  
 * **Brush:** Sawdust Creations 26 mm Timberwolf  
 * **Razor:** [Chani](https://imgur.com/a/usfOaJp)  
 
@@ -53,10 +67,13 @@ Better late than never.""",
 * **Fragrance:** Creed - Green Irish Tweed - Eau de Toilette  
 
 Stay safe and have a great day!""",
+            },
             'expected_result': None,
         },
-                {
-            'comment': """**// Brush** \- Dogwood Handcrafts - SHD
+        {
+            'comment':
+            {
+            'body': """**// Brush** \- Dogwood Handcrafts - SHD
 
 **// Razor** \- Maggard MR 5 w/ V2 OC
 
@@ -65,12 +82,17 @@ Stay safe and have a great day!""",
 **// Lather** \- Turtleship Shave Co. - Bay Rum
 
 **// Post** \- Pinaud Clubman""",
-            'expected_result': 'Voskhod',
+            
+            },
+            'expected_result': 'Voskhod (4)',
         },
         {
             # This comment isn't a SOTD report. Don't match follow on comments where people are replying 
             # to a previous post or just talking conversationally.
-            'comment': """Do you like the Astra SPs or SSs more?""",
+            'comment':
+            {
+                'body': """Do you like the Astra SPs or SSs more?""",
+            },
             'expected_result': None,
         },
     ]
