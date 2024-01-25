@@ -38,6 +38,8 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 ## Notes & Caveats
 
+* {len(comments_target)} shave reports from {target_label} were analyzed to produce this report.
+
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
 * Blade Format stats don't differentiate between DE and half DE razors, they are all counted as being DE blades
