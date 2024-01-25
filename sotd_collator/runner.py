@@ -1,3 +1,5 @@
+from datetime import datetime
+import calendar
 from pprint import pprint
 import inflect
 import pandas as pd
@@ -16,14 +18,14 @@ from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.staged_name_extractors import StagedBladeNameExtractor, StagedBrushNameExtractor, StagedRazorNameExtractor
+from sotd_collator.staged_name_extractors import StagedBladeNameExtractor, StagedBrushNameExtractor, StagedRazorNameExtractor, StagedUserNameExtractor
 from sotd_collator.superspeed_tip_extractor import SuperSpeedTipExtractor
 from sotd_collator.utils import add_ranking_delta, get_shave_data
 
 class Runner(object):
 
     MAX_ENTITIES = 50
-    MIN_SHAVES = 10
+    MIN_SHAVES = 50
 
     def run(self,
             header: str, 
@@ -143,9 +145,41 @@ class Runner(object):
             how='inner'
         ).drop(['rank', 'razor_name'], axis=1)
 
-        rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= self.MIN_SHAVES).where(rpb_usage['unique users'] > 1).dropna()
+        rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= self.MIN_SHAVES).where(rpb_usage['unique users'] >= 5).dropna()
 
         print(rpb_usage.to_markdown(index=False))
+        print('\n')
+
+        print('## Top Contributors\n')
+        usage = get_shave_data(comments_target, StagedUserNameExtractor(), None)
+        pm_usage = get_shave_data(comments_delta_one, StagedUserNameExtractor(), None)
+        py_usage = get_shave_data(comments_delta_two, StagedUserNameExtractor(), None)
+        usage = add_ranking_delta(usage, pm_usage, delta_one_label)
+        usage = add_ranking_delta(usage, py_usage, delta_two_label)
+        usage.drop('rank', inplace=True, axis=1)
+        usage.drop('unique users', inplace=True, axis=1)
+        usage.drop('avg shaves per user', inplace=True, axis=1)
+
+        # remove nulls
+        usage.dropna(subset=['name'], inplace=True)
+
+        # sort
+        usage.sort_values(['shaves'], ascending=False, inplace=True)
+        head = 0
+        last = 0
+        # curr_month = datetime.strptime(comments_target[0]["created_utc"], "%Y-%m-%d %H:%M:%S")
+        # days_in_month = (calendar.monthrange(curr_month.year, curr_month.month)[1])
+        for index, row in usage.iterrows():
+            head+=1
+            if head >= 25 and row['shaves'] < last:
+                break
+            last = row['shaves']
+
+        usage = usage.head(head)
+        usage.rename(columns={"name": "user"}, inplace=True)
+
+        print(usage.to_markdown(index=False))
+
         print('\n')
 
 
