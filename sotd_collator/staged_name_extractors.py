@@ -21,6 +21,12 @@ class StagedBrushNameExtractor(BaseNameExtractor):
     def get_name(self, comment):
         return comment["brush"] if "brush" in comment else None
 
+class StagedUserNameExtractor(BaseNameExtractor):
+
+    @BaseNameExtractor.post_process_name
+    def get_name(self, comment):
+        return f'u/{comment["author"]}' if "author" in comment else None
+
 class StagedBladeUseExtractor(BaseNameExtractor):
 
     def extract_blade_use(self, input_string):
