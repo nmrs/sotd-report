@@ -29,7 +29,7 @@ last_year_label = str(last_year)
 five_years_ago_label = str(five_years_ago)
 
 header = (f"""
-Welcome to your full year SOTD Hardware Report for {target_label}
+Welcome to your full year SOTD Hardware Report for {target_label}. {len(comments_target)} shave reports were analyzed to produce this report.
 
 ## Observations
 
