@@ -135,6 +135,37 @@ from Howl's Moving Castle Miyazaki (by Grissini Project)
             'expected_result_principal': 'Cartridge / Disposable',
         },
         {
+            'comment': {
+                "author": "Enndeegee",
+                "body": "* razor: no name vintage Gillette old type clone (aggressive)\n* Brush: zenith red handle 27mm boar\n* Lather: barrister and Mann : reserve cool\n\n\nFormat almost back to normal to help u/jimm262 but I realise my plethora of random shit like the various no name old type clones I own probably won't show up anyway.",
+                "created_utc": "2024-01-24 01:52:08",
+                "id": "kjbm31v",
+                "url": "https://www.reddit.com/r/Wetshaving/comments/19eb698/comment/kjbm31v/",
+                "razor": "no name vintage Gillette old type clone (aggressive)",
+                "brush": "zenith red handle 27mm boar"
+
+            },
+            'expected_result': 'no name vintage Gillette old type clone (aggressive)',
+            'expected_result_principal': 'Clone of some other razor',
+        },
+        {
+            # This comment isn't a SOTD report. Don't match follow on comments where people are replying 
+            # to a previous post or just talking conversationally.
+            'comment':
+            {
+                "author": "djundjila",
+                "body": "## [Smoke 'em if you got 'em](https://imgur.com/Cz9dzR6.jpeg)\n\n* **Prep:** Klar - Aktiv Kohle - activated charcoal facial soap\n* **Brush:** Djundjila Brushworks - Haverford #BICOLOR\n* **Razor:** Hensonford - Henson AL13 Mild aluminium head on Djundjila Razorworks Haverford zamac handle #FRANKENRAZOR\n* **Blade:**  RK - Stainless Double Edge Blades  o\n* **Lather:** [Moon Soaps - Havana - Soap](https://trythatsoap.com/collection/2262/?product_type=soap)\n* **Post Shave:** [Summer Break Soaps - Valedictorian - Aftershave](https://trythatsoap.com/collection/2312/?product_type=aftershave)\n* **Fragrance:** [Stirling Soap Co. - Haverford - Eau de Toilette](https://trythatsoap.com/collection/1450/?product_type=eaudetoilette)\n\nu/Newtothethis appreciation day! One year and almost three weeks ago, we were asked to lather on our cans, the implication being man cans. This was [rightfully criticised by](https://reddit.com/r/Wetshaving/comments/nuxr24/tuesday_lather_games_sotd_thread_jun_08_2021/h11cllx/?context=0) u/Newtothethis who promptly created today's challenge in these words:\n\n\"*Next year, y'all should lather on your knee as to simulate the inconvenience of lathering so far away from the region you are actually shaving.*\"\n\nI'd say mission accomplished, the inconvenience has been [adequately simulated](https://imgur.com/ySPgFfV.jpeg).\n\nI'll keep the shave description and #FOF-fery short because I had a beast of a day and I just want to go pass out in bed. For today's shave I followed my man u/Teufelskraft's lead and created an aluminum-zamac-clay hybrid #FRANKENRAZOR. This was my first try of Moon Soap's Havana soap. The base is much firmer than the one of Moon Soap's Union. I spread a good wad of soap on the bottom of my Captain's Choice heavy copper bowl and immediately the scent off it was intoxicating and delicious. It reminded me of HoM Tobacconist, that's how good it smells. I picked up the soap with a damp brush and lathered on my knee, as per instructions. The base is easy to dial in and I had three very comfy passes with the Hensonford frankenrazor. The Valedictorian splash is my favourite SBS scent to date and while tobacco-centric, it adds earthy, citrussy, sweet, smoky and woodsy notes. Simply a fantastic scent! I topped it all up with my secret/not-so-secret obsession, Haverford EdT. This sweet and gourmand fresh baked cookie scent will never not make me happy.\n\n**Stirling Soap**\n\nI can say only good things about Stirling. For instance, they have the best sample size in the business. Varen and Haverford are godly scents (I know that Haverford is a dupe), Boat Drinks makes me happy and Pharaoh's Dreamsicle makes my mouth water.\n\n* Themes fulfilled: 27/30\n* Hardware vendors: 4/2\n* Software sponsors: 12/15\n* Different soaps: 27/30\n* Different soap brands: 27/30\n* Post-shave products: 27/30\n* Different fragrances: 27/30\n* Hardware Scavenger Hunt Tags: 40/40\n* Additional Scavenger Hunt Tags: 14 (+ #FRANKENRAZOR)\n* Art of Wetshaving points: 27/30\n* Daily challenges completed: 27/30",
+                "created_utc": "2022-06-27 20:12:47",
+                "id": "idzsde8",
+                "url": "https://www.reddit.com/r/Wetshaving/comments/vloh9w/comment/idzsde8/",
+                "razor": "Hensonford - Henson AL13 Mild aluminium head on Djundjila Razorworks Haverford zamac handle #FRANKENRAZOR",
+                "blade": "RK - Stainless Double Edge Blades  o",
+                "brush": "Djundjila Brushworks - Haverford #BICOLOR"
+            },
+            'expected_result': 'Hensonford - Henson AL13 Mild aluminium head on Djundjila Razorworks Haverford zamac handle #FRANKENRAZOR',
+            'expected_result_principal': 'Henson AL13',
+        },
+        {
             # This comment isn't a SOTD report. Don't match follow on comments where people are replying 
             # to a previous post or just talking conversationally.
             'comment':
@@ -145,7 +176,6 @@ from Howl's Moving Castle Miyazaki (by Grissini Project)
             'expected_result_principal': None,
         },
     ]
-
 
     def test_get_razor_name_cases(self):
         rn = RazorNameExtractor()
