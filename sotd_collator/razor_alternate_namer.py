@@ -40,6 +40,9 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Charcoal Goods Lithe Head': ['lithe'],
         'Chiseled Face Legacy': ['chiseled.*face.*(ti|legacy)', 'cfg*.*(ti|legacy)'],
         'CJB Shavette': ['cjb*vett*e'],
+        'Clone of some other razor':
+            # make sure this is long enough to get evaluated first
+            ['(clone|ldasdgaajkglkjsaglkjglksjdgkljg)'],
         'Cobra': ['cobra.*(clas|razor)', 'classic.*cobra', '^cobra$'],
         'Colonial General': ['col.*gener', 'general', 'colonial.*ac'],
         'Colonial Silversmith': ['silversmith'],
@@ -133,8 +136,8 @@ class RazorAlternateNamer(BaseAlternateNamer):
         'Greencult GC 2.0': ['GC.*2'],
         'Headblade ATX': ['headbl.*atx'],
         'Handlebar Shaving Company Dali': ['handlebar.*dali'],
-        'Henson AL13': ['henson'],
-        'Henson Ti22': ['henson.*ti'],
+        'Henson AL13': ['henson', 'al13'],
+        'Henson Ti22': ['henson.*ti', 'ti22'],
         'Homelike START': ['Homelike.*start'],
         'iKon 101': ['ikon.*101'],
         'iKon 102': ['ikon.*102'],
