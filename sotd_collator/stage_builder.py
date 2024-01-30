@@ -1,7 +1,8 @@
-from curses import noraw
-import datetime
+import calendar
+from genericpath import exists
+from pprint import pprint
+from dateutil import rrule
 from datetime import date
-from time import time
 from dateutil.relativedelta import relativedelta
 import json
 import os
@@ -10,10 +11,12 @@ from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
+from sotd_collator.cache_provider import CacheProvider
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 
 from sotd_collator.sotd_post_locator import SotdPostLocator
+from sotd_collator.thread_cache_builder import ThreadCacheBuilder
 from sotd_collator.utils import timer_func
 
 class StageBuilder(object):
@@ -103,5 +106,31 @@ class StageBuilder(object):
                 round(comments_out - comments_in)/comments_in*-100, 2)
         )
 
+    @timer_func
+    def validate_stage(self, start_month: date = None, end_month: date = None):
+        if start_month is None: start_month = self.__last_month
+        if end_month is None: end_month = self.__last_month
+        if (start_month > end_month): raise ValueError("Start month must be earlier than end month")
+        print(f'validating staged comments for {start_month} to {end_month}')
+        cp = CacheProvider()
+
+        for m in rrule.rrule(rrule.MONTHLY, dtstart=start_month, until=end_month):
+            threads = ThreadCacheBuilder().load(cp.get_thread_cache_file_path(m))
+        #     thread_dict = {}
+        #     # this isn't perfect since it may miss some of the special even threads
+        #     # but it will at least make sure we have a thread per day
+        #     for thread in threads: thread_dict[thread['created_utc'][0:10]] = thread
+
+            for d in range(1, calendar.monthrange(m.year, m.month)[1]+1):
+                dt = m.replace(day=d)
+                title = dt.strftime('%A SOTD Thread - %b %d, %Y')
+                thread_found = False
+                for thread in threads:
+                    if thread['title'].find(title) >= 0: 
+                        thread_found = True
+                        break
+                if not thread_found: print(title)
+
+
 if __name__ == '__main__':
-    StageBuilder().build_stage(start_month=date(2024, 1, 1), end_month=date(2024, 1, 1), force_refresh=False)
+    StageBuilder().build_stage(start_month=date(2023, 2, 1), end_month=date(2023, 2, 1), force_refresh=False)

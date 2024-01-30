@@ -1,4 +1,4 @@
-Welcome to your SOTD Hardware Report for 2023. 23,525 shaves were analyzed to produce this report.
+Welcome to your SOTD Hardware Report for 2023. 23,758 shaves were analyzed to produce this report.
 
 ## Observations
 
@@ -22,7 +22,7 @@ Welcome to your SOTD Hardware Report for 2023. 23,525 shaves were analyzed to pr
 
 * Cheers to the brave souls that dared to use the Karve Christopher Bradley with the open comb F plate and the Game Changer .68-P open comb plate and quickly realized they just needed to step away from the [edge](https://i.gifer.com/CSj.gif).
 
-* Three people had more shaves last year than there were days last year. That's some [commitment](https://c.tenor.com/DntXKW4rlAUAAAAC/tenor.gif) by u/Impressive_Donut114, u/djundjila, and u/gcgallant. So close u/InfernalInternal...
+* Four people had more shaves last year than there were days last year. That's some [commitment](https://c.tenor.com/DntXKW4rlAUAAAAC/tenor.gif) by u/Impressive_Donut114, u/djundjila, u/gcgallant, and u/InfernalInternal. So close u/el_charminman...
 
 ## Notes & Caveats
 
@@ -44,214 +44,224 @@ Welcome to your SOTD Hardware Report for 2023. 23,525 shaves were analyzed to pr
 
 * I don't know [why](https://media.giphy.com/media/Wgb2FpSXxhXLVYNnUr/giphy.gif) that lava gif is embedded in the post and I have no idea how to make it go away... (edit: I'm only seeing it in Safari on my mac, not Chrome or on the reddit app on my phone, so if you are not seeing it, you can disregard this bullet)
 
-## Blade Formats
+##Blade Formats
+
 | name        |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:------------|---------:|---------------:|----------------------:|:------------|:------------|
-| DE          |    17965 |            350 |                 51.33 | =           | =           |
-| GEM         |     1816 |             90 |                 20.18 | =           | ↑2          |
-| Straight    |     1338 |             51 |                 26.24 | =           | ↓1          |
-| AC          |      890 |             64 |                 13.91 | =           | ↑1          |
+| DE          |    18139 |            350 |                 51.83 | =           | =           |
+| GEM         |     1837 |             90 |                 20.41 | =           | ↑2          |
+| Straight    |     1356 |             51 |                 26.59 | =           | ↓1          |
+| AC          |      897 |             64 |                 14.02 | =           | ↑1          |
 | Hair Shaper |      567 |             17 |                 33.35 | ↑1          | ↑2          |
-| Injector    |      519 |             48 |                 10.81 | ↓1          | ↓3          |
-| Cart        |      199 |             26 |                  7.65 | =           | ↓1          |
+| Injector    |      525 |             48 |                 10.94 | ↓1          | ↓3          |
+| Cart        |      201 |             26 |                  7.73 | =           | ↓1          |
 | Rolls       |       17 |             11 |                  1.55 | =           | ↑1          |
 | FHS         |        7 |              2 |                  3.5  | =           | ↓1          |
 
 
-## Razors
+##Razors
+
 | name                        |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:----------------------------|---------:|---------------:|----------------------:|:------------|:------------|
-| Karve Christopher Bradley   |     1380 |             56 |                 24.64 | ↑1          | ↑2          |
-| Blackland Blackbird         |     1224 |             65 |                 18.83 | ↑3          | ↑25         |
-| Gillette Tech               |     1145 |             86 |                 13.31 | =           | ↑8          |
-| Razorock Game Changer       |     1028 |             41 |                 25.07 | =           | ↑40         |
-| Gillette Superspeed         |      862 |             60 |                 14.37 | ↑1          | ↑4          |
-| Chiseled Face Legacy        |      668 |             35 |                 19.09 | ↑4          | n/a         |
-| Henson AL13                 |      565 |             45 |                 12.56 | ↑4          | n/a         |
-| Merkur 34C                  |      561 |             41 |                 13.68 | ↑1          | ↑6          |
-| GEM Micromatic Open Comb    |      528 |             55 |                  9.6  | ↓8          | ↑43         |
-| Rockwell 6S                 |      521 |             35 |                 14.89 | ↓2          | ↓5          |
+| Karve Christopher Bradley   |     1394 |             56 |                 24.89 | ↑1          | ↑2          |
+| Blackland Blackbird         |     1239 |             65 |                 19.06 | ↑3          | ↑25         |
+| Gillette Tech               |     1155 |             86 |                 13.43 | =           | ↑8          |
+| Razorock Game Changer       |     1033 |             41 |                 25.2  | =           | ↑40         |
+| Gillette Superspeed         |      867 |             60 |                 14.45 | ↑1          | ↑4          |
+| Chiseled Face Legacy        |      675 |             35 |                 19.29 | ↑4          | n/a         |
+| Merkur 34C                  |      574 |             41 |                 14    | ↑2          | ↑7          |
+| Henson AL13                 |      572 |             45 |                 12.71 | ↑3          | n/a         |
+| GEM Micromatic Open Comb    |      531 |             55 |                  9.65 | ↓8          | ↑43         |
+| Rockwell 6S                 |      525 |             35 |                 15    | ↓2          | ↓5          |
 | Weck Sextoblade             |      496 |             16 |                 31    | ↑4          | ↑56         |
-| Other Straight Razor        |      380 |             41 |                  9.27 | =           | ↓4          |
-| Blackland Vector            |      360 |             24 |                 15    | ↑21         | n/a         |
-| Schick Injector             |      353 |             36 |                  9.81 | ↑2          | ↓1          |
-| EldrormR Industries MM24    |      346 |             28 |                 12.36 | ↓2          | n/a         |
-| Wolfman WR2                 |      344 |             27 |                 12.74 | ↓9          | ↑59         |
-| Rockwell 6C                 |      340 |             22 |                 15.45 | ↑10         | ↓13         |
-| Karve Overlander            |      327 |             17 |                 19.24 | ↑18         | n/a         |
-| Charcoal Goods Lvl 2        |      318 |             13 |                 24.46 | ↑9          | ↑5          |
-| Van Der Hagen Razor         |      302 |              5 |                 60.4  | ↑21         | ↑43         |
-| Muhle Rocca                 |      293 |             10 |                 29.3  | ↑4          | n/a         |
-| Boker Straight              |      284 |              6 |                 47.33 | ↓1          | ↑44         |
-| Blackland Era               |      276 |             15 |                 18.4  | ↓1          | n/a         |
+| Other Straight Razor        |      382 |             41 |                  9.32 | =           | ↓4          |
+| Blackland Vector            |      365 |             24 |                 15.21 | ↑21         | n/a         |
+| Schick Injector             |      357 |             36 |                  9.92 | ↑2          | ↓1          |
+| Wolfman WR2                 |      353 |             27 |                 13.07 | ↓8          | ↑60         |
+| EldrormR Industries MM24    |      349 |             28 |                 12.46 | ↓3          | n/a         |
+| Rockwell 6C                 |      344 |             22 |                 15.64 | ↑10         | ↓13         |
+| Karve Overlander            |      330 |             17 |                 19.41 | ↑18         | n/a         |
+| Charcoal Goods Lvl 2        |      320 |             13 |                 24.62 | ↑9          | ↑5          |
+| Van Der Hagen Razor         |      304 |              5 |                 60.8  | ↑21         | ↑43         |
+| Muhle Rocca                 |      297 |             10 |                 29.7  | ↑4          | n/a         |
+| Boker Straight              |      287 |              6 |                 47.83 | ↓1          | ↑44         |
+| Blackland Era               |      278 |             15 |                 18.53 | ↓1          | n/a         |
 | Merkur 37C                  |      254 |             10 |                 25.4  | ↑23         | ↓2          |
-| Gillette Slim               |      237 |             45 |                  5.27 | ↓6          | ↓19         |
-| Greencult GC 2.0            |      234 |              2 |                117    | n/a         | n/a         |
+| Gillette Slim               |      238 |             45 |                  5.29 | ↓6          | ↓19         |
+| Greencult GC 2.0            |      237 |              2 |                118.5  | n/a         | n/a         |
 | Razorock Mamba              |      201 |              4 |                 50.25 | ↑57         | ↑26         |
-| Other Shavette              |      199 |             22 |                  9.05 | ↑18         | ↑36         |
-| King C Gillette             |      199 |             19 |                 10.47 | ↑1          | n/a         |
-| Ralf Aust Straight          |      192 |             12 |                 16    | ↓3          | n/a         |
-| Henson Ti22                 |      192 |              5 |                 38.4  | ↓15         | n/a         |
-| Winning Razor               |      185 |              5 |                 37    | ↓12         | n/a         |
-| Tatara Masamune             |      179 |             18 |                  9.94 | ↓1          | ↑39         |
-| Maggard V3                  |      172 |             20 |                  8.6  | ↓6          | ↓30         |
-| Muhle R41                   |      170 |             19 |                  8.95 | ↑27         | ↑7          |
-| Gillette Fatboy             |      163 |             23 |                  7.09 | ↑8          | ↓15         |
-| Mongoose Alumigoose         |      155 |              5 |                 31    | ↑2          | ↑6          |
-| Wolfman WR1                 |      143 |             24 |                  5.96 | ↓19         | ↓35         |
-| Gillette NEW                |      139 |             29 |                  4.79 | ↓17         | ↓19         |
-| Stirling Stainless DE Razor |      128 |             10 |                 12.8  | ↓14         | ↑27         |
-| Muhle R89                   |      124 |             20 |                  6.2  | ↓6          | ↓9          |
-| J A Henckels Straight       |      124 |              7 |                 17.71 | ↑6          | ↓9          |
-| GEM Junior                  |      119 |             15 |                  7.93 | ↑11         | ↑32         |
-| Koraat Straight             |      116 |              7 |                 16.57 | ↑51         | ↑44         |
-| Rex Ambassador              |      113 |              4 |                 28.25 | ↑29         | ↓16         |
-| Gillette Aristocrat         |      107 |             17 |                  6.29 | ↓20         | ↓7          |
-| Blutt Rasur BR-1            |      107 |              7 |                 15.29 | ↑12         | n/a         |
-| Razorock Lupo               |      105 |             15 |                  7    | ↓12         | n/a         |
-| Personna BBS-0              |      103 |              8 |                 12.88 | ↑34         | n/a         |
-| Cartridge / Disposable      |      100 |             25 |                  4    | ↑19         | ↑25         |
+| Other Shavette              |      200 |             22 |                  9.09 | ↑18         | ↑36         |
+| King C Gillette             |      200 |             19 |                 10.53 | ↑1          | n/a         |
+| Ralf Aust Straight          |      197 |             12 |                 16.42 | ↓3          | n/a         |
+| Henson Ti22                 |      196 |              5 |                 39.2  | ↓16         | n/a         |
+| Winning Razor               |      186 |              5 |                 37.2  | ↓13         | n/a         |
+| Tatara Masamune             |      183 |             18 |                 10.17 | ↓2          | ↑38         |
+| Maggard V3                  |      173 |             20 |                  8.65 | ↓7          | ↓31         |
+| Muhle R41                   |      171 |             19 |                  9    | ↑26         | ↑6          |
+| Gillette Fatboy             |      163 |             23 |                  7.09 | ↑7          | ↓16         |
+| Mongoose Alumigoose         |      156 |              5 |                 31.2  | ↑1          | ↑5          |
+| Wolfman WR1                 |      148 |             24 |                  6.17 | ↓20         | ↓36         |
+| Gillette NEW                |      140 |             30 |                  4.67 | ↓18         | ↓20         |
+| Stirling Stainless DE Razor |      129 |             10 |                 12.9  | ↓15         | ↑26         |
+| Muhle R89                   |      125 |             20 |                  6.25 | ↓7          | ↓10         |
+| J A Henckels Straight       |      125 |              7 |                 17.86 | ↑5          | ↓10         |
+| GEM Junior                  |      121 |             15 |                  8.07 | ↑10         | ↑31         |
+| Koraat Straight             |      119 |              7 |                 17    | ↑50         | ↑43         |
+| Rex Ambassador              |      113 |              4 |                 28.25 | ↑28         | ↓17         |
+| Gillette Aristocrat         |      109 |             17 |                  6.41 | ↓21         | ↓8          |
+| Blutt Rasur BR-1            |      107 |              7 |                 15.29 | ↑10         | n/a         |
+| Razorock Lupo               |      105 |             15 |                  7    | ↓14         | n/a         |
+| Personna BBS-0              |      104 |              8 |                 13    | ↑32         | n/a         |
+| Cartridge / Disposable      |      100 |             25 |                  4    | ↑17         | ↑23         |
 
-## Blades
+
+##Blades
+
 | name                                 |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:-------------------------------------|---------:|---------------:|----------------------:|:------------|:------------|
-| Astra Superior Platinum (Green)      |     2121 |            135 |                 15.71 | ↑1          | ↑2          |
-| Personna GEM PTFE                    |     1707 |             80 |                 21.34 | ↓1          | ↑12         |
-| Gillette Silver Blue                 |     1372 |             75 |                 18.29 | =           | ↓1          |
-| Gillette Nacet                       |     1342 |             94 |                 14.28 | =           | ↑5          |
-| Feather (DE)                         |     1104 |            114 |                  9.68 | =           | ↓1          |
-| Gillette Platinum                    |      880 |             68 |                 12.94 | ↑1          | ↓1          |
-| Voskhod                              |      779 |             55 |                 14.16 | ↓1          | ↓1          |
-| Personna Blue                        |      611 |             45 |                 13.58 | ↑5          | ↓1          |
-| Wizamet                              |      593 |             32 |                 18.53 | ↓1          | ↑9          |
-| 7 O'Clock - Sharpedge (Yellow)       |      567 |             28 |                 20.25 | ↑2          | ↑1          |
-| Kismet Hair Shaper                   |      463 |             15 |                 30.87 | ↑21         | n/a         |
-| Personna Platinum                    |      461 |             37 |                 12.46 | ↑4          | ↑9          |
-| Permasharp                           |      391 |             39 |                 10.03 | ↓4          | ↓5          |
-| Polsilver                            |      348 |             24 |                 14.5  | ↓4          | ↓13         |
+| Astra Superior Platinum (Green)      |     2134 |            136 |                 15.69 | ↑1          | ↑2          |
+| Personna GEM PTFE                    |     1726 |             80 |                 21.57 | ↓1          | ↑12         |
+| Gillette Silver Blue                 |     1388 |             75 |                 18.51 | =           | ↓1          |
+| Gillette Nacet                       |     1364 |             94 |                 14.51 | =           | ↑5          |
+| Feather (DE)                         |     1120 |            114 |                  9.82 | =           | ↓1          |
+| Gillette Platinum                    |      888 |             69 |                 12.87 | ↑1          | ↓1          |
+| Voskhod                              |      785 |             55 |                 14.27 | ↓1          | ↓1          |
+| Personna Blue                        |      619 |             45 |                 13.76 | ↑5          | ↓1          |
+| Wizamet                              |      599 |             32 |                 18.72 | ↓1          | ↑9          |
+| 7 O'Clock - Sharpedge (Yellow)       |      573 |             28 |                 20.46 | ↑2          | ↑1          |
+| Personna Platinum                    |      466 |             37 |                 12.59 | ↑5          | ↑10         |
+| Kismet Hair Shaper                   |      463 |             15 |                 30.87 | ↑20         | n/a         |
+| Permasharp                           |      398 |             40 |                  9.95 | ↓4          | ↓5          |
+| Polsilver                            |      351 |             25 |                 14.04 | ↓4          | ↓13         |
 | Personna 74                          |      328 |             10 |                 32.8  | ↑30         | ↑30         |
-| Bic Chrome                           |      313 |             34 |                  9.21 | ↑11         | ↑2          |
-| 7 O'Clock - Super Stainless (Green)  |      296 |             23 |                 12.87 | ↓6          | ↓1          |
-| Schick Injector                      |      292 |             29 |                 10.07 | ↓4          | ↓6          |
-| Wilkinson Sword                      |      291 |             36 |                  8.08 | ↓4          | ↑6          |
-| Rapira Platinum Lux                  |      241 |             27 |                  8.93 | ↓1          | ↓7          |
-| 7 O'Clock - Super Platinum (Black)   |      241 |             20 |                 12.05 | ↓3          | ↓10         |
-| Personna Hair Shaper                 |      236 |             16 |                 14.75 | ↑4          | ↑24         |
-| Bolzano                              |      232 |             16 |                 14.5  | ↑14         | ↓2          |
-| Gillette Rubie                       |      217 |             13 |                 16.69 | ↑30         | ↑24         |
-| Gillette Winner                      |      213 |              8 |                 26.62 | ↑6          | n/a         |
-| Feather Pro (AC)                     |      201 |             26 |                  7.73 | ↓4          | ↓3          |
-| Personna Stainless                   |      196 |             12 |                 16.33 | ↓3          | ↑21         |
-| Personna Med Prep                    |      166 |             10 |                 16.6  | ↓9          | ↑9          |
-| Tiger Platinum                       |      156 |             12 |                 13    | ↑5          | n/a         |
-| Gillette Minora                      |      151 |             18 |                  8.39 | ↑15         | n/a         |
-| Schick Proline (AC)                  |      150 |             16 |                  9.38 | ↓6          | ↑19         |
-| Astra Superior Stainless (Blue)      |      145 |             27 |                  5.37 | ↑4          | ↓4          |
-| Treet Platinum                       |      136 |             22 |                  6.18 | ↑2          | ↑8          |
-| Feather ProGuard (AC)                |      135 |             17 |                  7.94 | ↓4          | ↑2          |
-| Kai Captain Titan Mild (AC)          |      131 |              6 |                 21.83 | ↓3          | ↓2          |
-| Kai Captain Titan Mild Protouch (AC) |      120 |              7 |                 17.14 | ↑14         | ↑7          |
-| RK Stainless                         |      109 |             26 |                  4.19 | ↑5          | ↓2          |
-| Derby Extra                          |      108 |             27 |                  4    | ↓17         | ↓22         |
-| Personna Injector                    |      106 |              7 |                 15.14 | ↑31         | ↓1          |
+| Bic Chrome                           |      315 |             34 |                  9.26 | ↑11         | ↑2          |
+| 7 O'Clock - Super Stainless (Green)  |      298 |             24 |                 12.42 | ↓6          | ↓1          |
+| Schick Injector                      |      295 |             29 |                 10.17 | ↓4          | ↓6          |
+| Wilkinson Sword                      |      294 |             36 |                  8.17 | ↓4          | ↑6          |
+| 7 O'Clock - Super Platinum (Black)   |      244 |             21 |                 11.62 | ↓3          | ↓10         |
+| Rapira Platinum Lux                  |      243 |             28 |                  8.68 | ↓2          | ↓8          |
+| Personna Hair Shaper                 |      238 |             16 |                 14.88 | ↑3          | ↑23         |
+| Bolzano                              |      234 |             16 |                 14.62 | ↑13         | ↓3          |
+| Gillette Rubie                       |      217 |             13 |                 16.69 | ↑29         | ↑23         |
+| Gillette Winner                      |      213 |              8 |                 26.62 | ↑5          | n/a         |
+| Feather Pro (AC)                     |      201 |             26 |                  7.73 | ↓5          | ↓4          |
+| Personna Stainless                   |      200 |             12 |                 16.67 | ↓4          | ↑20         |
+| Personna Med Prep                    |      167 |             10 |                 16.7  | ↓10         | ↑8          |
+| Tiger Platinum                       |      157 |             12 |                 13.08 | ↑4          | n/a         |
+| Gillette Minora                      |      154 |             18 |                  8.56 | ↑14         | n/a         |
+| Schick Proline (AC)                  |      150 |             16 |                  9.38 | ↓7          | ↑18         |
+| Astra Superior Stainless (Blue)      |      145 |             27 |                  5.37 | ↑3          | ↓5          |
+| Feather ProGuard (AC)                |      138 |             17 |                  8.12 | ↓4          | ↑2          |
+| Treet Platinum                       |      137 |             22 |                  6.23 | =           | ↑6          |
+| Kai Captain Titan Mild (AC)          |      133 |              6 |                 22.17 | ↓4          | ↓3          |
+| Kai Captain Titan Mild Protouch (AC) |      122 |              7 |                 17.43 | ↑13         | ↑6          |
+| RK Stainless                         |      109 |             26 |                  4.19 | ↑4          | ↓3          |
+| Personna Injector                    |      109 |              7 |                 15.57 | ↑32         | =           |
+| Derby Extra                          |      108 |             27 |                  4    | ↓18         | ↓23         |
 | Rapira Swedish                       |      105 |              8 |                 13.12 | ↑29         | ↑3          |
-| King C Gillette                      |       99 |             13 |                  7.62 | ↑2          | n/a         |
-| Dorco ST-300                         |       95 |             20 |                  4.75 | ↓15         | ↓12         |
-| Personna Red                         |       89 |             12 |                  7.42 | ↓3          | ↓25         |
-| Gillette Wilkinson Sword             |       86 |             15 |                  5.73 | ↓15         | ↓15         |
+| King C Gillette                      |      101 |             13 |                  7.77 | ↑2          | n/a         |
+| Dorco ST-300                         |       97 |             20 |                  4.85 | ↓15         | ↓12         |
+| Personna Red                         |       91 |             12 |                  7.58 | ↓3          | ↓25         |
+| Gillette Wilkinson Sword             |       87 |             15 |                  5.8  | ↓15         | ↓15         |
 | Feather Pro Super (AC)               |       85 |              9 |                  9.44 | ↓1          | ↓5          |
 | Shark Chrome                         |       76 |             11 |                  6.91 | ↑7          | ↑4          |
 | Super-Max Super Stainless            |       76 |              3 |                 25.33 | ↑5          | ↑5          |
 | Lord Super Stainless                 |       75 |             10 |                  7.5  | ↑7          | ↑4          |
-| Shark Stainless                      |       63 |             18 |                  3.5  | ↓6          | ↓21         |
-| Derby Premium                        |       57 |             13 |                  4.38 | ↓3          | ↓6          |
+| Shark Stainless                      |       64 |             19 |                  3.37 | ↓6          | ↓21         |
+| Rockwell                             |       58 |             11 |                  5.27 | =           | ↓9          |
 
-## Brushes
+
+##Brushes
+
 | name                            |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:--------------------------------|---------:|---------------:|----------------------:|:------------|:------------|
-| r/wetshaving Zenith MOAR BOAR   |     2387 |             76 |                 31.41 | n/a         | n/a         |
-| AP Shave Co Synthetic           |     1823 |             73 |                 24.97 | ↓1          | ↑7          |
-| Maggard Synthetic               |     1136 |             60 |                 18.93 | ↓1          | ↓2          |
-| Yaqi Synthetic                  |     1003 |             59 |                 17    | ↓1          | ↑22         |
-| Stirling Synthetic              |      983 |             31 |                 31.71 | ↑1          | ↓2          |
-| Chisel & Hound Badger           |      786 |             49 |                 16.04 | ↑1          | n/a         |
-| Zenith Boar                     |      518 |             46 |                 11.26 | ↓2          | ↑21         |
-| Semogue SOC Boar                |      460 |             26 |                 17.69 | ↑7          | ↑4          |
-| Simpson Badger                  |      402 |             42 |                  9.57 | =           | ↑5          |
-| Dogwood Badger                  |      320 |             26 |                 12.31 | ↑1          | ↓6          |
-| CaYuen Synthetic                |      304 |              5 |                 60.8  | ↑24         | n/a         |
-| Oumo Badger                     |      302 |             13 |                 23.23 | ↑42         | n/a         |
-| Declaration Grooming B13        |      270 |             23 |                 11.74 | ↓1          | n/a         |
-| Declaration Grooming B3         |      236 |             23 |                 10.26 | =           | ↓3          |
-| Maggard Badger                  |      221 |             20 |                 11.05 | ↓11         | ↑16         |
-| Omega 10049                     |      220 |             14 |                 15.71 | ↑6          | ↑24         |
+| r/wetshaving Zenith MOAR BOAR   |     2391 |             76 |                 31.46 | n/a         | n/a         |
+| AP Shave Co Synthetic           |     1839 |             73 |                 25.19 | ↓1          | ↑7          |
+| Maggard Synthetic               |     1157 |             60 |                 19.28 | ↓1          | ↓2          |
+| Yaqi Synthetic                  |     1017 |             59 |                 17.24 | ↓1          | ↑22         |
+| Stirling Synthetic              |      985 |             31 |                 31.77 | ↑1          | ↓2          |
+| Chisel & Hound Badger           |      793 |             49 |                 16.18 | ↑1          | n/a         |
+| Zenith Boar                     |      520 |             46 |                 11.3  | ↓2          | ↑21         |
+| Semogue SOC Boar                |      462 |             26 |                 17.77 | ↑7          | ↑4          |
+| Simpson Badger                  |      407 |             42 |                  9.69 | =           | ↑5          |
+| Dogwood Badger                  |      321 |             26 |                 12.35 | ↑1          | ↓6          |
+| Oumo Badger                     |      306 |             13 |                 23.54 | ↑43         | n/a         |
+| CaYuen Synthetic                |      305 |              5 |                 61    | ↑23         | n/a         |
+| Declaration Grooming B13        |      274 |             23 |                 11.91 | ↓1          | n/a         |
+| Declaration Grooming B3         |      241 |             23 |                 10.48 | =           | ↓3          |
+| Maggard Badger                  |      228 |             20 |                 11.4  | ↓11         | ↑16         |
+| Omega 10049                     |      223 |             14 |                 15.93 | ↑6          | ↑24         |
+| Declaration Grooming B15        |      195 |             20 |                  9.75 | ↑4          | n/a         |
 | Declaration Grooming B16        |      195 |             17 |                 11.47 | ↑102        | n/a         |
-| Declaration Grooming B15        |      192 |             20 |                  9.6  | ↑3          | n/a         |
-| Farvour Turn Craft Badger       |      189 |              7 |                 27    | ↑69         | n/a         |
-| Dogwood Synthetic               |      185 |             13 |                 14.23 | ↓12         | ↓14         |
-| DSCosmetics Synthetic           |      172 |              8 |                 21.5  | ↑2          | n/a         |
-| Declaration Grooming B14        |      160 |             23 |                  6.96 | ↓12         | n/a         |
-| Razorock Synthetic              |      158 |             24 |                  6.58 | ↓7          | ↑1          |
-| Paladin Badger                  |      157 |              8 |                 19.62 | ↑13         | ↓13         |
-| Van der Hagen Boar              |      157 |              6 |                 26.17 | ↑51         | ↑51         |
-| Declaration Grooming B9A        |      151 |             12 |                 12.58 | ↑2          | n/a         |
+| Dogwood Synthetic               |      190 |             13 |                 14.62 | ↓10         | ↓12         |
+| Farvour Turn Craft Badger       |      190 |              7 |                 27.14 | ↑70         | n/a         |
+| DSCosmetics Synthetic           |      176 |              8 |                 22    | ↑4          | n/a         |
+| Declaration Grooming B14        |      163 |             24 |                  6.79 | ↓10         | n/a         |
+| Paladin Badger                  |      162 |              8 |                 20.25 | ↑16         | ↓10         |
+| Razorock Synthetic              |      161 |             24 |                  6.71 | ↓6          | ↑2          |
+| Van der Hagen Boar              |      157 |              6 |                 26.17 | ↑52         | ↑52         |
+| Declaration Grooming B9A        |      151 |             12 |                 12.58 | ↑3          | n/a         |
+| PAA Synthetic                   |      147 |             12 |                 12.25 | ↓5          | ↑49         |
 | Zenith B35                      |      146 |             14 |                 10.43 | ↑54         | n/a         |
-| PAA Synthetic                   |      143 |             12 |                 11.92 | ↓7          | ↑47         |
-| Muninn Woodworks Badger         |      142 |              4 |                 35.5  | ↓10         | n/a         |
-| Omega 10048                     |      141 |             16 |                  8.81 | ↑10         | ↑45         |
-| Maggard Boar                    |      137 |              9 |                 15.22 | ↑21         | n/a         |
-| Omega 11137                     |      130 |              2 |                 65    | ↑79         | ↑43         |
-| Summer Break Badger             |      126 |             16 |                  7.88 | ↑10         | n/a         |
-| Declaration Grooming B11        |      124 |             20 |                  6.2  | ↓20         | n/a         |
-| Summer Break Synthetic          |      120 |              8 |                 15    | ↑22         | n/a         |
-| Grizzly Bay Badger              |      115 |             14 |                  8.21 | ↓21         | ↑28         |
-| Wald Badger                     |       99 |             10 |                  9.9  | ↑4          | n/a         |
-| Yaqi Badger                     |       98 |             13 |                  7.54 | ↓13         | ↑9          |
-| Simpson Synthetic               |       97 |             16 |                  6.06 | ↓10         | ↑35         |
-| Oumo Synthetic                  |       94 |              3 |                 31.33 | ↑42         | n/a         |
-| Muhle Badger                    |       91 |             11 |                  8.27 | ↑9          | ↓2          |
-| AP Shave Co Badger              |       88 |             18 |                  4.89 | ↑18         | ↑27         |
-| Stirling Boar                   |       87 |             11 |                  7.91 | ↓17         | ↓10         |
-| Zenith B26                      |       86 |              2 |                 43    | ↑21         | n/a         |
-| Omega 10066                     |       85 |              3 |                 28.33 | ↑4          | ↑7          |
-| Stirling Badger                 |       84 |             15 |                  5.6  | ↑7          | ↓40         |
-| Wolf Whiskers Badger            |       83 |              8 |                 10.38 | ↓10         | ↓15         |
-| Declaration Grooming B6         |       78 |             12 |                  6.5  | ↑15         | ↓37         |
-| Elite Badger                    |       78 |              8 |                  9.75 | ↑26         | ↓34         |
-| Prometheus Handcrafts Synthetic |       78 |              7 |                 11.14 | ↓2          | n/a         |
+| Muninn Woodworks Badger         |      146 |              4 |                 36.5  | ↓8          | n/a         |
+| Omega 10048                     |      144 |             16 |                  9    | ↑12         | ↑47         |
+| Maggard Boar                    |      139 |              9 |                 15.44 | ↑23         | n/a         |
+| Omega 11137                     |      132 |              2 |                 66    | ↑81         | ↑45         |
+| Summer Break Badger             |      127 |             16 |                  7.94 | ↑12         | n/a         |
+| Declaration Grooming B11        |      126 |             20 |                  6.3  | ↓18         | n/a         |
+| Summer Break Synthetic          |      123 |              8 |                 15.38 | ↑24         | n/a         |
+| Grizzly Bay Badger              |      116 |             15 |                  7.73 | ↓19         | ↑30         |
+| Wald Badger                     |      101 |             10 |                 10.1  | ↑6          | n/a         |
+| Yaqi Badger                     |       99 |             13 |                  7.62 | ↓11         | ↑11         |
+| Simpson Synthetic               |       98 |             16 |                  6.12 | ↓8          | ↑37         |
+| Oumo Synthetic                  |       94 |              3 |                 31.33 | ↑44         | n/a         |
+| Muhle Badger                    |       92 |             11 |                  8.36 | ↑11         | =           |
+| AP Shave Co Badger              |       89 |             18 |                  4.94 | ↑20         | ↑29         |
+| Stirling Boar                   |       88 |             11 |                  8    | ↓15         | ↓8          |
+| Stirling Badger                 |       86 |             15 |                  5.73 | ↑11         | ↓36         |
+| Omega 10066                     |       86 |              3 |                 28.67 | ↑7          | ↑10         |
+| Zenith B26                      |       86 |              2 |                 43    | ↑23         | n/a         |
+| Wolf Whiskers Badger            |       84 |              8 |                 10.5  | ↓6          | ↓11         |
+| Declaration Grooming B6         |       80 |             12 |                  6.67 | ↑19         | ↓33         |
+| Prometheus Handcrafts Synthetic |       79 |              7 |                 11.29 | ↑1          | n/a         |
+| Semogue 2000                    |       79 |              6 |                 13.17 | ↑28         | ↑20         |
 
-## Knot Sizes
+
+##Knot Sizes
+
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:-------|---------:|---------------:|----------------------:|:------------|:------------|
-| 24mm   |     3557 |            115 |                 30.93 | =           | =           |
-| 26mm   |     3492 |            125 |                 27.94 | =           | =           |
-| 28mm   |     1720 |             68 |                 25.29 | =           | =           |
-| 31mm   |     1627 |             63 |                 25.83 | ↑8          | ↑7          |
-| 22mm   |      526 |             42 |                 12.52 | ↓1          | ↓1          |
-| 27mm   |      338 |             17 |                 19.88 | =           | =           |
-| 30mm   |      308 |             35 |                  8.8  | ↓2          | ↓2          |
+| 24mm   |     3588 |            115 |                 31.2  | =           | =           |
+| 26mm   |     3526 |            125 |                 28.21 | =           | =           |
+| 28mm   |     1739 |             69 |                 25.2  | =           | =           |
+| 31mm   |     1631 |             63 |                 25.89 | ↑8          | ↑7          |
+| 22mm   |      529 |             42 |                 12.6  | ↓1          | ↓1          |
+| 27mm   |      345 |             17 |                 20.29 | =           | =           |
+| 30mm   |      310 |             35 |                  8.86 | ↓2          | ↓2          |
 | 25mm   |      112 |             16 |                  7    | ↑3          | ↓1          |
-| 29mm   |      111 |              9 |                 12.33 | ↑1          | n/a         |
-| 23mm   |       85 |             10 |                  8.5  | ↓1          | =           |
-| 21mm   |       74 |              8 |                  9.25 | ↓4          | ↓3          |
-| 20mm   |       47 |             21 |                  2.24 | ↓4          | ↓3          |
-| 32mm   |       18 |              2 |                  9    | ↑1          | ↓1          |
-| 35mm   |       11 |              3 |                  3.67 | ↑3          | ↓2          |
-| 18mm   |        7 |              7 |                  1    | ↓2          | ↓3          |
+| 29mm   |      112 |              9 |                 12.44 | ↑2          | n/a         |
+| 23mm   |       86 |             10 |                  8.6  | =           | ↑1          |
+| 21mm   |       75 |              8 |                  9.38 | ↓3          | ↓2          |
+| 20mm   |       47 |             21 |                  2.24 | ↓3          | ↓2          |
+| 32mm   |       18 |              2 |                  9    | ↑2          | =           |
+| 35mm   |       11 |              3 |                  3.67 | ↑4          | ↓1          |
+| 18mm   |        7 |              7 |                  1    | ↓1          | ↓2          |
 | 36mm   |        6 |              2 |                  3    | n/a         | n/a         |
-| 19mm   |        2 |              2 |                  1    | ↓2          | ↓4          |
-| 38mm   |        2 |              1 |                  2    | ↓1          | ↓6          |
-| 34mm   |        1 |              1 |                  1    | =           | ↓6          |
-| 39mm   |        1 |              1 |                  1    | =           | n/a         |
-| [40mm](https://d3gqasl9vmjfd8.cloudfront.net/a3c32613-f869-4238-beba-59147cdc63d2.png) | [1](https://www.reddit.com/r/Wetshaving/comments/14nn9gv/comment/jqamux6/) | 1 | 1 | n/a | ↓6 |
+| 19mm   |        2 |              2 |                  1    | ↓1          | ↓3          |
+| 38mm   |        2 |              1 |                  2    | =           | ↓5          |
+| 34mm   |        1 |              1 |                  1    | ↑1          | ↓5          |
+| 39mm   |        1 |              1 |                  1    | ↑1          | n/a         |
+| 40mm   |        1 |              1 |                  1    | n/a         | ↓5          |
 
-## Karve Plates
+
+##Karve Plates
+
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:-------|---------:|---------------:|----------------------:|:------------|:------------|
-| C SB   |      317 |             24 |                 13.21 | ↑1          | ↑2          |
-| D SB   |      249 |             10 |                 24.9  | ↑1          | ↑3          |
-| B SB   |      236 |             13 |                 18.15 | ↓2          | ↑1          |
-| C OC   |      101 |              2 |                 50.5  | =           | n/a         |
+| C SB   |      319 |             24 |                 13.29 | ↑1          | ↑2          |
+| D SB   |      252 |             10 |                 25.2  | ↑1          | ↑3          |
+| B SB   |      241 |             13 |                 18.54 | ↓2          | ↑1          |
+| C OC   |      102 |              2 |                 51    | =           | n/a         |
 | E SB   |       72 |              6 |                 12    | ↑1          | ↓4          |
 | B OC   |       69 |              2 |                 34.5  | ↑1          | n/a         |
 | A SB   |       35 |              2 |                 17.5  | ↓2          | ↓5          |
@@ -260,10 +270,11 @@ Welcome to your SOTD Hardware Report for 2023. 23,525 shaves were analyzed to pr
 | F OC   |        1 |              1 |                  1    | =           | n/a         |
 
 
-## Game Changer Plates
+##Game Changer Plates
+
 | name       |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:-----------|---------:|---------------:|----------------------:|:------------|:------------|
-| .84-P      |      614 |             35 |                 17.54 | =           | ↑1          |
+| .84-P      |      619 |             35 |                 17.69 | =           | ↑1          |
 | .68-P      |      319 |             13 |                 24.54 | =           | ↓1          |
 | .76-P      |       61 |              2 |                 30.5  | n/a         | n/a         |
 | .84-P OC   |       14 |              2 |                  7    | ↓1          | n/a         |
@@ -272,83 +283,87 @@ Welcome to your SOTD Hardware Report for 2023. 23,525 shaves were analyzed to pr
 | .68-P OC   |        1 |              1 |                  1    | n/a         | n/a         |
 
 
-## Superspeed Tips
+##Superspeed Tips
+
 | name         |   shaves |   unique users |   avg shaves per user | Δ vs 2022   | Δ vs 2018   |
 |:-------------|---------:|---------------:|----------------------:|:------------|:------------|
-| Standard Tip |      414 |             41 |                 10.1  | =           | =           |
-| Red Tip      |      193 |             26 |                  7.42 | =           | ↑1          |
-| Flare Tip    |      193 |             17 |                 11.35 | ↑1          | =           |
-| Black Tip    |       39 |              9 |                  4.33 | ↑2          | ↑1          |
-| Blue Tip     |       23 |              2 |                 11.5  | =           | ↑1          |
+| Standard Tip |      416 |             41 |                 10.15 | =           | =           |
+| Red Tip      |      195 |             26 |                  7.5  | =           | ↑1          |
+| Flare Tip    |      194 |             17 |                 11.41 | =           | ↓1          |
+| Black Tip    |       39 |              9 |                  4.33 | ↑1          | =           |
+| Blue Tip     |       23 |              2 |                 11.5  | ↓1          | =           |
 
 
 ## Most Used Blades in Most Used Razors
+
 | name                                                        |   shaves |   unique users |   avg shaves per user |
 |:------------------------------------------------------------|---------:|---------------:|----------------------:|
-| GEM Micromatic Open Comb + Personna GEM PTFE                |      480 |             46 |                 10.43 |
-| Karve Christopher Bradley + Gillette Silver Blue            |      356 |             13 |                 27.38 |
-| Karve Christopher Bradley + Astra Superior Platinum (Green) |      248 |             17 |                 14.59 |
-| Karve Christopher Bradley + Gillette Nacet                  |      158 |             19 |                  8.32 |
-| Karve Christopher Bradley + Personna Platinum               |       79 |              6 |                 13.17 |
+| GEM Micromatic Open Comb + Personna GEM PTFE                |      483 |             46 |                 10.5  |
+| Karve Christopher Bradley + Gillette Silver Blue            |      360 |             13 |                 27.69 |
+| Karve Christopher Bradley + Astra Superior Platinum (Green) |      249 |             17 |                 14.65 |
+| Karve Christopher Bradley + Gillette Nacet                  |      161 |             19 |                  8.47 |
+| Karve Christopher Bradley + Personna Platinum               |       80 |              6 |                 13.33 |
 | Karve Christopher Bradley + Wizamet                         |       54 |              6 |                  9    |
-| Blackland Blackbird + Astra Superior Platinum (Green)       |      239 |             16 |                 14.94 |
-| Blackland Blackbird + Personna Blue                         |      212 |             10 |                 21.2  |
-| Blackland Blackbird + Gillette Silver Blue                  |      168 |             16 |                 10.5  |
+| Blackland Blackbird + Astra Superior Platinum (Green)       |      241 |             16 |                 15.06 |
+| Blackland Blackbird + Personna Blue                         |      213 |             10 |                 21.3  |
+| Blackland Blackbird + Gillette Silver Blue                  |      169 |             16 |                 10.56 |
 | Blackland Blackbird + Gillette Nacet                        |       74 |             13 |                  5.69 |
 | Blackland Blackbird + Voskhod                               |       70 |              8 |                  8.75 |
-| Razorock Game Changer + Astra Superior Platinum (Green)     |      212 |             14 |                 15.14 |
+| Razorock Game Changer + Astra Superior Platinum (Green)     |      213 |             14 |                 15.21 |
 | Razorock Game Changer + Gillette Platinum                   |      170 |             10 |                 17    |
 | Razorock Game Changer + Wizamet                             |       99 |              7 |                 14.14 |
 | Razorock Game Changer + Gillette Nacet                      |       79 |             12 |                  6.58 |
+| Razorock Game Changer + Feather (DE)                        |       70 |              7 |                 10    |
 | Razorock Game Changer + 7 O'Clock - Sharpedge (Yellow)      |       68 |              5 |                 13.6  |
-| Razorock Game Changer + Feather (DE)                        |       67 |              7 |                  9.57 |
+| Merkur 34C + Feather (DE)                                   |      134 |              9 |                 14.89 |
+| Merkur 34C + Gillette Silver Blue                           |       87 |             10 |                  8.7  |
 | Gillette Superspeed + Feather (DE)                          |       91 |             10 |                  9.1  |
-| Gillette Superspeed + Gillette Nacet                        |       54 |             11 |                  4.91 |
+| Gillette Superspeed + Gillette Nacet                        |       55 |             11 |                  5    |
 | Gillette Superspeed + Gillette Silver Blue                  |       52 |              9 |                  5.78 |
-| Merkur 34C + Feather (DE)                                   |      131 |              9 |                 14.56 |
-| Merkur 34C + Gillette Silver Blue                           |       84 |             10 |                  8.4  |
-| Gillette Tech + 7 O'Clock - Sharpedge (Yellow)              |      107 |              7 |                 15.29 |
+| Gillette Tech + 7 O'Clock - Sharpedge (Yellow)              |      112 |              7 |                 16    |
 | Gillette Tech + Personna Platinum                           |       78 |              6 |                 13    |
 | Gillette Tech + Gillette Silver Blue                        |       72 |             18 |                  4    |
-| Gillette Tech + Gillette Nacet                              |       68 |             11 |                  6.18 |
+| Gillette Tech + Gillette Nacet                              |       69 |             11 |                  6.27 |
+| Gillette Tech + Feather (DE)                                |       65 |             18 |                  3.61 |
 | Gillette Tech + Astra Superior Platinum (Green)             |       63 |             18 |                  3.5  |
-| Gillette Tech + Feather (DE)                                |       62 |             18 |                  3.44 |
 | Gillette Tech + Gillette Rubie                              |       61 |              6 |                 10.17 |
-| Henson AL13 + Voskhod                                       |      103 |              7 |                 14.71 |
+| Henson AL13 + Voskhod                                       |      105 |              7 |                 15    |
 | Rockwell 6S + Feather (DE)                                  |      101 |              6 |                 16.83 |
 | Rockwell 6S + Astra Superior Platinum (Green)               |       62 |             11 |                  5.64 |
 | Chiseled Face Legacy + Gillette Nacet                       |       81 |              8 |                 10.12 |
-| Chiseled Face Legacy + Personna Stainless                   |       73 |              5 |                 14.6  |
-| Chiseled Face Legacy + Wizamet                              |       66 |              8 |                  8.25 |
+| Chiseled Face Legacy + Personna Stainless                   |       75 |              5 |                 15    |
+| Chiseled Face Legacy + Wizamet                              |       68 |              8 |                  8.5  |
 | Chiseled Face Legacy + Astra Superior Platinum (Green)      |       55 |              8 |                  6.88 |
-| Chiseled Face Legacy + Gillette Silver Blue                 |       51 |              8 |                  6.38 |
+| Chiseled Face Legacy + Gillette Silver Blue                 |       52 |              8 |                  6.5  |
 
 
-## Top Shavers
-| user                                                                        |   shaves | Δ vs 2022   | Δ vs 2018   |
-|:----------------------------------------------------------------------------|---------:|:------------|:------------|
-| u/Impressive_Donut114       |      391 | ↑4          | n/a         |
-| u/djundjila                 |      388 | ↓1          | n/a         |
-| u/gcgallant                 |      381 | ↑27         | n/a         |
-| u/InfernalInternal          |      363 | ↑5          | n/a         |
-| u/el_charminman             |      361 | ↑4          | n/a         |
-| u/35048467                  |      360 | ↑1          | ↑69         |
-| u/Environmental-Gap380      |      358 | ↑27         | n/a         |
-| u/Eructate                  |      358 | ↑4          | n/a         |
-| u/loudmusicboy              |      358 | ↑5          | n/a         |
-| u/EldrormR                  |      357 | ↑1          | ↑66         |
-| u/wallygator88              |      356 | ↑1          | n/a         |
-| u/Old_Hiker                 |      356 | ↑4          | ↓8          |
-| u/oswald_heist              |      352 | ↓4          | n/a         |
-| u/scribe__                  |      349 | ↓4          | ↑83         |
-| u/Marquis90                 |      347 | ↑10         | n/a         |
-| u/RedMosquitoMM             |      341 | ↓7          | n/a         |
-| u/Engineered_Shave          |      339 | ↓11         | n/a         |
-| u/tsrblke                   |      339 | ↑111        | n/a         |
-| u/whosgotthepudding         |      337 | ↑4          | n/a         |
-| u/Crisp_Mango               |      329 | ↑2          | n/a         |
-| u/jwoods23                  |      328 | ↑12         | n/a         |
-| u/PhilosphicalZombie        |      325 | ↓1          | n/a         |
-| u/gorgbob                   |      322 | ↑44         | n/a         |
-| u/rocketk455                |      321 | ↓5          | ↓15         |
-| u/wyze0ne                   |      306 | ↑7          | ↑34         |
+## Top Contributors
+
+| user                   |   shaves | Δ vs 2022   | Δ vs 2018   |
+|:-----------------------|---------:|:------------|:------------|
+| u/Impressive_Donut114  |      393 | ↑4          | n/a         |
+| u/djundjila            |      391 | ↓1          | n/a         |
+| u/gcgallant            |      384 | ↑27         | n/a         |
+| u/InfernalInternal     |      366 | ↑5          | n/a         |
+| u/el_charminman        |      364 | ↑4          | n/a         |
+| u/35048467             |      363 | ↑1          | ↑69         |
+| u/loudmusicboy         |      361 | ↑5          | n/a         |
+| u/Environmental-Gap380 |      361 | ↑27         | n/a         |
+| u/Eructate             |      361 | ↑4          | n/a         |
+| u/EldrormR             |      360 | ↑1          | ↑66         |
+| u/Old_Hiker            |      359 | ↑4          | ↓8          |
+| u/wallygator88         |      359 | ↑1          | n/a         |
+| u/oswald_heist         |      355 | ↓4          | n/a         |
+| u/scribe__             |      352 | ↓4          | ↑83         |
+| u/Marquis90            |      350 | ↑10         | n/a         |
+| u/RedMosquitoMM        |      344 | ↓7          | n/a         |
+| u/Engineered_Shave     |      342 | ↓11         | n/a         |
+| u/tsrblke              |      342 | ↑111        | n/a         |
+| u/whosgotthepudding    |      340 | ↑4          | n/a         |
+| u/Crisp_Mango          |      333 | ↑2          | n/a         |
+| u/jwoods23             |      331 | ↑12         | n/a         |
+| u/PhilosphicalZombie   |      327 | ↓1          | n/a         |
+| u/gorgbob              |      325 | ↑44         | n/a         |
+| u/rocketk455           |      324 | ↓5          | ↓15         |
+| u/worbx                |      309 | ↓10         | n/a         |
+| u/wyze0ne              |      309 | ↑7          | ↑34         |

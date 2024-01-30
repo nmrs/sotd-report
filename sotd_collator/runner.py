@@ -53,12 +53,12 @@ class Runner(object):
                 'renamer': BladeAlternateNamer(),
                 'max_entities': 50,
             },
-            {
-                'name': 'Brush',
-                'extractor': StagedBrushNameExtractor(),
-                'renamer': BrushAlternateNamer(),
-                'max_entites': 50,
-            },
+            # {
+            #     'name': 'Brush',
+            #     'extractor': StagedBrushNameExtractor(),
+            #     'renamer': BrushAlternateNamer(),
+            #     'max_entites': 50,
+            # },
             {
                 'name': 'Knot Size',
                 'extractor': KnotSizeExtractor(),
@@ -171,7 +171,7 @@ class Runner(object):
         # days_in_month = (calendar.monthrange(curr_month.year, curr_month.month)[1])
         for index, row in usage.iterrows():
             head+=1
-            if head >= 25 and row['shaves'] < last:
+            if head >= 40 and row['shaves'] < last:
                 break
             last = row['shaves']
 
