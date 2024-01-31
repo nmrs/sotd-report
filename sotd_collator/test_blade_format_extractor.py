@@ -13,12 +13,10 @@ class TestBladeFormatExtractor(TestCase):
     #     "url": "https://www.reddit.com/r/Wetshaving/comments/4lu5sx/comment/d3q7gek/"
     # },
 
-
     blade_format_cases = [
         {
-            'comment': 
-            {
-                'body': """
+            "comment": {
+                "body": """
 - **Prep:** Chiseled Face Midnight Stag bar soap  and cold water  
 - **Brush:** Tadé NOS vintage boar 22 mm  
 - **Razor:** KAI Captain Standard CAP-J7 kamisori shavette  
@@ -30,13 +28,12 @@ class TestBladeFormatExtractor(TestCase):
 - AA tags: #RawHoggin  #SubstantialStag  
 """,
             },
-            'expected_result': 'AC',
+            "expected_result": "AC",
         }
     ]
-
 
     def test_get_razor_name_cases(self):
         bfe = BladeFormatExtractor()
         for case in self.blade_format_cases:
             bf = bfe.get_name(case["comment"])
-            self.assertEqual(case['expected_result'], bf)
+            self.assertEqual(case["expected_result"], bf)

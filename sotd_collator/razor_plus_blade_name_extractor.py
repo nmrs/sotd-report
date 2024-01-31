@@ -18,7 +18,7 @@ class RazorPlusBladeNameExtractor(object):
         blade_name = self.bne.get_name(comment)
 
         if razor_name and blade_name:
-            return '{razor}\001{blade}'.format(
+            return "{razor}\001{blade}".format(
                 razor=razor_name,
                 blade=blade_name,
             )

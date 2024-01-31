@@ -33,4 +33,3 @@ class BaseAlternateNamer(object):
         return None
 
     _raw = OrderedDict({})
-

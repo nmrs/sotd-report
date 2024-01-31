@@ -18,12 +18,18 @@ class BladeNameExtractor(BaseNameExtractor):
         blade_name_re = r"""\w\t ./\-_()\[\]#;&\'\"|<>:$~"""
 
         return [
-            re.compile(r'^[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)'.format(blade_name_re),
-                       re.MULTILINE | re.IGNORECASE),  # TTS and similar
-            re.compile(r'\*blade\*:.*\*\*([{0}]+)\*\*'.format(blade_name_re), re.MULTILINE | re.IGNORECASE),  # sgrddy
+            re.compile(
+                r"^[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
+                    blade_name_re
+                ),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # TTS and similar
+            re.compile(
+                r"\*blade\*:.*\*\*([{0}]+)\*\*".format(blade_name_re),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # sgrddy
             # re.compile(r'^\*\*Safety Razor\*\*\s*-\s*([{0}]+)[+,\n]'.format(blade_name_re),
             #            re.MULTILINE | re.IGNORECASE),  # **Safety Razor** - RazoRock - Gamechanger 0.84P   variant
-
         ]
 
     @BaseNameExtractor.post_process_name
@@ -36,7 +42,8 @@ class BladeNameExtractor(BaseNameExtractor):
             res = detector.search(comment_text)
             if res:
                 s = str(res.group(1)).strip()
-                if len(s) > 0: return s
+                if len(s) > 0:
+                    return s
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
         # if principal_name:

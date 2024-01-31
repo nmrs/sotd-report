@@ -11,7 +11,7 @@ class BrushNameExtractor(BaseNameExtractor):
     """
 
     # patterns people use repeatedly to document the brush they used but that we can't match to anything
-    GARBAGE = ['I\'ve had forever']
+    GARBAGE = ["I've had forever"]
 
     @cached_property
     def alternative_namer(self):
@@ -22,10 +22,16 @@ class BrushNameExtractor(BaseNameExtractor):
         brush_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~+"""
 
         return [
-            re.compile(r'^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)'.format(brush_name_re),
-                       re.MULTILINE | re.IGNORECASE),  # TTS and similar
-            re.compile(r'\*brush\*:.*\*\*([{0}]+)\*\*'.format(brush_name_re), re.MULTILINE | re.IGNORECASE),  # sgrddy
-
+            re.compile(
+                r"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
+                    brush_name_re
+                ),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # TTS and similar
+            re.compile(
+                r"\*brush\*:.*\*\*([{0}]+)\*\*".format(brush_name_re),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # sgrddy
         ]
 
     @BaseNameExtractor.post_process_name
@@ -39,11 +45,11 @@ class BrushNameExtractor(BaseNameExtractor):
 
             # catch case where some jerk writes ❧ Brush Notes or similar
             # at some point this can be genericised in to a block words / phrases list to catch razorock too
-            if res and res.group(1) == 'Notes':
+            if res and res.group(1) == "Notes":
                 continue
 
             if res:
-                result = res.group(1).strip() 
+                result = res.group(1).strip()
                 if len(result) > 0:
                     for pattern in self.GARBAGE:
                         if re.search(pattern, result, re.IGNORECASE):

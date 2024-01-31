@@ -13,10 +13,10 @@ from sotd_post_locator import SotdPostLocator
 
 
 class TestSotdPostLocator(TestCase):
-
     longMessage = True
 
-    #CONCLUDE WE CAN GO BACK TO 2016-05-01
+    # CONCLUDE WE CAN GO BACK TO 2016-05-01
+
 
 #     def test_get_threads_for_given_month_from_reddit(self):
 
@@ -28,7 +28,7 @@ class TestSotdPostLocator(TestCase):
 #         test_months = [datetime.date(2016,5,1)]
 #         # sotd_thread_matcher_re = '(?:Mon(?:day)?|Tue(?:s(?:day)?)?|Wed(?:nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)\sSOTD\sThread\].*$'
 #         for test_month in test_months:
-#             days = []        
+#             days = []
 #             expected_days = calendar.monthrange(test_month.year, test_month.month)
 #             for x in range(0, expected_days[1]):
 #                 days.append(None)
@@ -38,7 +38,7 @@ class TestSotdPostLocator(TestCase):
 #             for thread in threads:
 #                 day = datetime.date.fromtimestamp(thread.created_utc).day - 1
 #                 days[day] = thread.title
-            
+
 #             matches = [i for i in days if i is not None]
 
 #             expected_days = calendar.monthrange(test_month.year, test_month.month)

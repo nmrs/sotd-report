@@ -10,19 +10,19 @@ class KnotTypeExtractor(BaseNameExtractor):
     """
 
     knot_types = [
-                     {'name': '2BED', 'pattern': r'2bed'},
-                     {'name': 'Bosss', 'pattern': r'boss'},
-                     {'name': 'Cashmere', 'pattern': r'cashmere'},
-                     {'name': 'Declaration Badger', 'pattern': r'B\d{1,2}'},
-                     {'name': 'G4', 'pattern': r'g-*4'},
-                     {'name': 'Gelousy', 'pattern': r'gelou*sy'},
-                     {'name': 'Hawk', 'pattern': r'hawk'},
-                     {'name': 'Plissoft', 'pattern': r'plissoft'},
-                     {'name': 'Quartermoon', 'pattern': r'quartermoon'},
-                     {'name': 'Silksmoke', 'pattern': r'silksmoke'},
-                     {'name': 'SHD', 'pattern': r'shd'},
-                     {'name': 'SynBad', 'pattern': r'synbad'},
-                     {'name': 'Tuxedo', 'pattern': r'tuxedo'},
+        {"name": "2BED", "pattern": r"2bed"},
+        {"name": "Bosss", "pattern": r"boss"},
+        {"name": "Cashmere", "pattern": r"cashmere"},
+        {"name": "Declaration Badger", "pattern": r"B\d{1,2}"},
+        {"name": "G4", "pattern": r"g-*4"},
+        {"name": "Gelousy", "pattern": r"gelou*sy"},
+        {"name": "Hawk", "pattern": r"hawk"},
+        {"name": "Plissoft", "pattern": r"plissoft"},
+        {"name": "Quartermoon", "pattern": r"quartermoon"},
+        {"name": "Silksmoke", "pattern": r"silksmoke"},
+        {"name": "SHD", "pattern": r"shd"},
+        {"name": "SynBad", "pattern": r"synbad"},
+        {"name": "Tuxedo", "pattern": r"tuxedo"},
     ]
 
     @cached_property
@@ -30,12 +30,17 @@ class KnotTypeExtractor(BaseNameExtractor):
         knot_type_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
         return [
-            re.compile(r'^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)'.format(knot_type_re),
-                       re.MULTILINE | re.IGNORECASE),  # TTS and similar
-            re.compile(r'\*brush\*:.*\*\*([{0}]+)\*\*'.format(knot_type_re), re.MULTILINE | re.IGNORECASE),  # sgrddy
-
+            re.compile(
+                r"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
+                    knot_type_re
+                ),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # TTS and similar
+            re.compile(
+                r"\*brush\*:.*\*\*([{0}]+)\*\*".format(knot_type_re),
+                re.MULTILINE | re.IGNORECASE,
+            ),  # sgrddy
         ]
-
 
     @BaseNameExtractor.post_process_name
     def get_name(self, comment_text):
@@ -51,8 +56,7 @@ class KnotTypeExtractor(BaseNameExtractor):
             return None
 
         for knot_type in self.knot_types:
-            if re.search(knot_type['pattern'], extracted_name, re.IGNORECASE):
-                return knot_type['name']
+            if re.search(knot_type["pattern"], extracted_name, re.IGNORECASE):
+                return knot_type["name"]
 
         return None
-

@@ -26,46 +26,44 @@ Post Shave: Razor Emporium - Sandalwood - Beard Oil
 
 extractors = [
     {
-        'name': 'Blade Format',
-        'extractor': BladeFormatExtractor(),
-        'renamer': None,
+        "name": "Blade Format",
+        "extractor": BladeFormatExtractor(),
+        "renamer": None,
     },
     {
-        'name': 'Razor',
-        'extractor': RazorNameExtractor(),
-        'renamer': RazorAlternateNamer(),
+        "name": "Razor",
+        "extractor": RazorNameExtractor(),
+        "renamer": RazorAlternateNamer(),
     },
     {
-        'name': 'Blade',
-        'extractor': BladeNameExtractor(),
-        'renamer': BladeAlternateNamer(),
-
+        "name": "Blade",
+        "extractor": BladeNameExtractor(),
+        "renamer": BladeAlternateNamer(),
     },
     {
-        'name': 'Brush',
-        'extractor': BrushNameExtractor(),
-        'renamer': BrushAlternateNamer(),
-
+        "name": "Brush",
+        "extractor": BrushNameExtractor(),
+        "renamer": BrushAlternateNamer(),
     },
     {
-        'name': 'Knot Size',
-        'extractor': KnotSizeExtractor(),
-        'renamer': None,
+        "name": "Knot Size",
+        "extractor": KnotSizeExtractor(),
+        "renamer": None,
     },
 ]
 
 
 for e in extractors:
-    print('****')
-    print(e['name'])
-    entity_name = e['extractor'].get_name(t)
+    print("****")
+    print(e["name"])
+    entity_name = e["extractor"].get_name(t)
     if entity_name is not None:
         principal_name = None
-        if e['renamer']:
-            principal_name = e['renamer'].get_principal_name(entity_name)
+        if e["renamer"]:
+            principal_name = e["renamer"].get_principal_name(entity_name)
             print(principal_name) if principal_name else print(entity_name)
         else:
             print(entity_name)
     else:
-        print('No result')
-    print('***')
+        print("No result")
+    print("***")

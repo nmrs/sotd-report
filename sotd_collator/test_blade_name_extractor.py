@@ -6,9 +6,8 @@ from blade_name_extractor import BladeNameExtractor
 class TestBladeNameExtractor(TestCase):
     razor_name_cases = [
         {
-            'comment': 
-            {
-                'body': """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
+            "comment": {
+                "body": """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
 
 * **Prep:** None  
 * **Brush:** Washington Blue Steel B6  
@@ -19,13 +18,11 @@ class TestBladeNameExtractor(TestCase):
 
 Better late than never.""",
             },
-            'expected_result': 'Gillette Nacet (3)',
+            "expected_result": "Gillette Nacet (3)",
         },
         {
-            'comment':
-            {
-
-            'body': """***I Can't Stands No More : 2/28/20***
+            "comment": {
+                "body": """***I Can't Stands No More : 2/28/20***
 
 * **Brush** \- Maggard 24mm Synthetic
 * **Razor** \- Maggard MR5 w/ V2 OC
@@ -34,12 +31,11 @@ Better late than never.""",
 * **Post** \- Barrister and Mann - Ravish Splash
 """,
             },
-            'expected_result': 'Rapira (Fresh)',
+            "expected_result": "Rapira (Fresh)",
         },
         {
-            'comment':
-            {
-            'body': """**// Brush** \- Dogwood Handcrafts - SHD
+            "comment": {
+                "body": """**// Brush** \- Dogwood Handcrafts - SHD
 
 **// Razor** \- Maggard MR 5 w/ V2 OC
 
@@ -48,14 +44,12 @@ Better late than never.""",
 **// Lather** \- Turtleship Shave Co. - Bay Rum
 
 **// Post** \- Pinaud Clubman""",
-            
             },
-            'expected_result': 'Voskhod (4)',
+            "expected_result": "Voskhod (4)",
         },
         {
-            'comment':
-            {
-            'body': """* **Prep:** Cup of Coffee  
+            "comment": {
+                "body": """* **Prep:** Cup of Coffee  
 * **Brush:** Sawdust Creations 26 mm Timberwolf  
 * **Razor:** [Chani](https://imgur.com/a/usfOaJp)  
 
@@ -68,12 +62,11 @@ Better late than never.""",
 
 Stay safe and have a great day!""",
             },
-            'expected_result': None,
+            "expected_result": None,
         },
         {
-            'comment':
-            {
-            'body': """**// Brush** \- Dogwood Handcrafts - SHD
+            "comment": {
+                "body": """**// Brush** \- Dogwood Handcrafts - SHD
 
 **// Razor** \- Maggard MR 5 w/ V2 OC
 
@@ -82,24 +75,21 @@ Stay safe and have a great day!""",
 **// Lather** \- Turtleship Shave Co. - Bay Rum
 
 **// Post** \- Pinaud Clubman""",
-            
             },
-            'expected_result': 'Voskhod (4)',
+            "expected_result": "Voskhod (4)",
         },
         {
-            # This comment isn't a SOTD report. Don't match follow on comments where people are replying 
+            # This comment isn't a SOTD report. Don't match follow on comments where people are replying
             # to a previous post or just talking conversationally.
-            'comment':
-            {
-                'body': """Do you like the Astra SPs or SSs more?""",
+            "comment": {
+                "body": """Do you like the Astra SPs or SSs more?""",
             },
-            'expected_result': None,
+            "expected_result": None,
         },
     ]
-
 
     def test_get_blade_name_cases(self):
         ne = BladeNameExtractor()
         for case in self.razor_name_cases:
-            r_name = ne.get_name(case['comment'])
-            self.assertEqual(case['expected_result'], r_name)
+            r_name = ne.get_name(case["comment"])
+            self.assertEqual(case["expected_result"], r_name)

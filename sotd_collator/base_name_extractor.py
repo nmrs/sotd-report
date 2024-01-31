@@ -3,8 +3,6 @@ import re
 import unicodedata
 
 
-
-
 class BaseNameExtractor(object):
     """
     Subclass this to extract specific entities - razors, blades, brushes etc
@@ -12,18 +10,23 @@ class BaseNameExtractor(object):
 
     @property
     def alternative_namer(self):
-        raise NotImplementedError('subclass must implement alternative_namer')
+        raise NotImplementedError("subclass must implement alternative_namer")
 
     @property
     def detect_regexps(self):
-        raise NotImplementedError('subclass must implement detect_regexps')
+        raise NotImplementedError("subclass must implement detect_regexps")
 
     @staticmethod
     def _to_ascii(str_val):
         if str_val is None:
             return None
         else:
-            return unicodedata.normalize('NFKD', str_val).encode('ascii', 'ignore').strip().decode('ascii')
+            return (
+                unicodedata.normalize("NFKD", str_val)
+                .encode("ascii", "ignore")
+                .strip()
+                .decode("ascii")
+            )
 
     @staticmethod
     def post_process_name(callback):
@@ -32,17 +35,18 @@ class BaseNameExtractor(object):
         def wrapped(inst, *args, **kwargs):
             entity_name = callback(inst, *args, **kwargs)
             replacements = [
-                ('|', ''),
-                ('&#39;', "'"),
-                ('&quot;', '"'),
-                ('&amp;', '&'),
+                ("|", ""),
+                ("&#39;", "'"),
+                ("&quot;", '"'),
+                ("&amp;", "&"),
             ]
             if entity_name:
                 for replacement in replacements:
                     entity_name = entity_name.replace(*replacement)
-                return re.sub(r'[\t|]', '', entity_name)
+                return re.sub(r"[\t|]", "", entity_name)
             else:
                 return entity_name
+
         return wrapped
 
     def get_name(self, comment):
