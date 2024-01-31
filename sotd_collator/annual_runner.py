@@ -57,5 +57,11 @@ Welcome to your full year SOTD Hardware Report for {target_label}. {len(comments
 """)
 
 runner = Runner()
-runner.run( header, comments_target, comments_last_year,
-            comments_five_years_ago, last_year_label, five_years_ago_label )
+runner.run(header, 
+           comments_target,
+           comments_last_year,
+           comments_five_years_ago,
+           last_year_label,
+           five_years_ago_label,
+           50, #min_shaves for most used blade in most userd razor
+           5) #min_unique users for most used blade in most userd razor

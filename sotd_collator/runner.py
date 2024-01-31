@@ -25,15 +25,16 @@ from sotd_collator.utils import add_ranking_delta, get_shave_data
 class Runner(object):
 
     MAX_ENTITIES = 50
-    MIN_SHAVES = 50
-
+    
     def run(self,
             header: str, 
             comments_target: [dict], 
             comments_delta_one: [dict], 
             comments_delta_two: [dict],
             delta_one_label: str,
-            delta_two_label: str):
+            delta_two_label: str,
+            min_shaves: int,
+            min_unique_user: int):
 
         process_entities = [
             {
@@ -145,7 +146,7 @@ class Runner(object):
             how='inner'
         ).drop(['rank', 'razor_name'], axis=1)
 
-        rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= self.MIN_SHAVES).where(rpb_usage['unique users'] >= 5).dropna()
+        rpb_usage = rpb_usage.where(rpb_usage['shaves'] >= min_shaves).where(rpb_usage['unique users'] >= min_unique_user).dropna()
 
         print(rpb_usage.to_markdown(index=False))
         print('\n')
@@ -171,7 +172,7 @@ class Runner(object):
         # days_in_month = (calendar.monthrange(curr_month.year, curr_month.month)[1])
         for index, row in usage.iterrows():
             head+=1
-            if head >= 40 and row['shaves'] < last:
+            if head >= 20 and row['shaves'] < last:
                 break
             last = row['shaves']
 

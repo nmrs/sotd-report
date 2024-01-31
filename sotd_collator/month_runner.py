@@ -59,5 +59,11 @@ Welcome to your SOTD Hardware Report for {target_label}
 """)
 
 runner = Runner()
-runner.run( header, comments_target, comments_last_month,
-            comments_last_year, last_month_label, last_year_label )
+runner.run(header,
+           comments_target,
+           comments_last_month,
+           comments_last_year,
+           last_month_label,
+           last_year_label,
+           5, #min_shaves for most used blade in most userd razor
+           2) #min_unique users for most used blade in most userd razor)
