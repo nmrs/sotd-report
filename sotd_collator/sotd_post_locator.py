@@ -12,7 +12,6 @@ from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.cache_provider import CacheProvider
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 
-from sotd_collator.thread_cache_builder import ThreadCacheBuilder
 
 class SotdPostLocator(object):
     """
@@ -46,10 +45,10 @@ class SotdPostLocator(object):
         cache_file = self.cache_provider.get_thread_cache_file_path(given_month)
         cached_threads = []
         threads = []
-        cb = ThreadCacheBuilder()
 
         try:
-            cached_threads = cb.load(cache_file)
+            with open(cache_file, 'r') as f_cache:
+                cached_threads = json.load(f_cache)
         except (FileNotFoundError):
             pass
             # print(f'Cache miss for {cache_file}. Querying reddit.')
@@ -57,21 +56,32 @@ class SotdPostLocator(object):
 
         threads = self._get_threads_for_given_month_from_reddit(given_month)
 
-        missing_threads = []
-        if isinstance(cached_threads, list):
-            for thread in cached_threads:
-                if thread["id"] not in [t.id for t in threads if t.id == thread["id"]]:
-                    missing_threads.append(praw.reddit.Submission(thread["id"]))
+        # see if any new threads came back that we haven't seen before
+        # and cache the comments for those threads
+        for thread in threads:
+            if thread.id not in [t['id'] for t in cached_threads if t['id'] == thread.id]:
+                self._add_thread_comments_to_cache(thread, given_month)
         
+        # see if any we've seen any threads before that didn't
+        # come back for whatever reason and add those back
+        # into the results        
+        missing_threads = []
+        for thread in cached_threads:
+            if thread['id'] not in [t.id for t in threads if t.id == thread['id']]:
+                missing_threads.append(Submission(self.praw, id=thread['id']))
         
         if len(missing_threads) > 0:
-            result = threads + missing_threads
-            threads = result
+            threads = threads + missing_threads
 
-        added = cb.dump(cache_file, threads)
-        threads = sorted([t for t in added], key=lambda t : t.created_utc, reverse=False)
+        to_cache = []
+        threads = sorted(threads, key=lambda x: x.created_utc)
         for thread in threads:
-            self._add_thread_comments_to_cache(thread, given_month)
+            to_cache.append(self._thread_to_dict(thread))
+
+        with open(cache_file, 'w') as f_cache:
+            json.dump(to_cache, f_cache, indent=4, sort_keys=True)
+
+        # threads = sorted([t for t in missing_threads], key=lambda t : t.created_utc, reverse=False)
 
         return threads
             
@@ -121,17 +131,26 @@ class SotdPostLocator(object):
 
         with open(cache_file, 'w') as f_cache:
             json.dump(cache, f_cache, indent=4, sort_keys=True)
-    
+        
     def _comment_to_dict(self, comment: Comment) -> dict:
         """Converts a praw Comment to a dictionary for caching"""
         return {
-                "author": comment.author.name if comment.author is not None else None,
-                "body": comment.body,
-                "created_utc": datetime.datetime.fromtimestamp(comment.created_utc).strftime("%Y-%m-%d %H:%M:%S"),
-                "id": comment.id,
-                "url": f"https://www.reddit.com/r/Wetshaving/comments/{comment.link_id.removeprefix('t3_')}/comment/{comment.id}/"
-                }
+            "author": comment.author.name if comment.author is not None else None,
+            "body": comment.body,
+            "created_utc": datetime.datetime.fromtimestamp(comment.created_utc).strftime("%Y-%m-%d %H:%M:%S"),
+            "id": comment.id,
+            "url": f"https://www.reddit.com/r/Wetshaving/comments/{comment.link_id.removeprefix('t3_')}/comment/{comment.id}/"
+        }
 
+    def _thread_to_dict(self, thread: Submission) -> dict:
+        return {
+            "author": thread.author.name if thread.author is not None else None,
+            "body": thread.selftext,
+            "created_utc": datetime.datetime.fromtimestamp(thread.created_utc).strftime("%Y-%m-%d %H:%M:%S"),
+            "id": thread.id,
+            "title": thread.title,
+            "url": thread.url,
+        }
 
     def get_comments_for_given_month_staged(self, given_month: datetime, force_refresh=False) -> [dict]:
         if not isinstance(given_month, datetime.date):
@@ -229,35 +248,6 @@ class SotdPostLocator(object):
 
         return collected_comments
     
-    def manually_add_threads(self, thread_ids:[str]):
-        cb = ThreadCacheBuilder()
-        for thread_id in thread_ids:
-            s = Submission(self.praw, id=thread_id)
-            m = datetime.datetime.fromtimestamp(s.created_utc)
-            cache_file = self.cache_provider.get_thread_cache_file_path(m)
-            
-            cached_threads = {
-                "added": [],
-                "data": [],
-                "manual": []
-            }
-
-            with open(cache_file, 'r') as f_cache:
-                cached_threads = json.load(f_cache)
-
-            matched = False
-            for thread in cached_threads['added'] + cached_threads['data'] + cached_threads['manual']:
-                if thread['id'] == thread_id:
-                    matched = True
-                    break
-            
-            if not matched:
-                cb.dump(cache_file, [s], section='manual')
-                self._add_thread_comments_to_cache(s, m)
-
-
-
-
 if __name__ == '__main__':
     pr = praw.Reddit("reddit")
     pl = SotdPostLocator(pr)

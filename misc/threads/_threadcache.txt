@@ -1,0 +1,19 @@
+Cache folder for the SOTD threads. 
+
+A handful of threads refuse to come back from Reddit's search for whatever reason,
+so those need to be manually added to the manual.json file in this folder to ensure
+they are processed if we force refresh the cache (if you do force refresh the cache/delete the
+cache files, make sure to keep the manual.json file)
+
+The format of manual entries is:
+
+    {
+        "date": "2023-02-10",
+        "id": "10yirpy",
+        "title": "Friday SOTD Thread - Feb 10, 2023",
+        "url": "https://www.reddit.com/r/Wetshaving/comments/10yirpy/friday_sotd_thread_feb_10_2023/"
+    }
+
+(Only date and id are actually processed, but the title and url field are useful for remembering
+what you added. Date alone is not sufficient as it doesn't capture whether this is a standard or
+special event, e.g. Lather Games, SOTD thread)

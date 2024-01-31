@@ -1,6 +1,4 @@
 import calendar
-from genericpath import exists
-from pprint import pprint
 from dateutil import rrule
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -16,8 +14,8 @@ from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.razor_name_extractor import RazorNameExtractor
 
 from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.thread_cache_builder import ThreadCacheBuilder
 from sotd_collator.utils import timer_func
+
 
 class StageBuilder(object):
 
@@ -115,7 +113,12 @@ class StageBuilder(object):
         cp = CacheProvider()
 
         for m in rrule.rrule(rrule.MONTHLY, dtstart=start_month, until=end_month):
-            threads = ThreadCacheBuilder().load(cp.get_thread_cache_file_path(m))
+            threads = []
+
+            cache_file = cp.get_thread_cache_file_path(m)
+            with open(cache_file, 'r') as f_cache:
+                threads = json.load(f_cache)
+
         #     thread_dict = {}
         #     # this isn't perfect since it may miss some of the special even threads
         #     # but it will at least make sure we have a thread per day
@@ -133,4 +136,4 @@ class StageBuilder(object):
 
 
 if __name__ == '__main__':
-    StageBuilder().build_stage(start_month=date(2023, 2, 1), end_month=date(2023, 2, 1), force_refresh=False)
+    StageBuilder().build_stage(start_month=date(2024, 1, 1), end_month=date(2024, 1, 1), force_refresh=False)
