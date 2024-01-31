@@ -53,12 +53,12 @@ class Runner(object):
                 'renamer': BladeAlternateNamer(),
                 'max_entities': 50,
             },
-            # {
-            #     'name': 'Brush',
-            #     'extractor': StagedBrushNameExtractor(),
-            #     'renamer': BrushAlternateNamer(),
-            #     'max_entites': 50,
-            # },
+            {
+                'name': 'Brush',
+                'extractor': StagedBrushNameExtractor(),
+                'renamer': BrushAlternateNamer(),
+                'max_entites': 50,
+            },
             {
                 'name': 'Knot Size',
                 'extractor': KnotSizeExtractor(),
