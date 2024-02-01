@@ -6,7 +6,7 @@ class TestGameChangerPlateExtractor(TestCase):
     plate_name_cases = [
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- GC 68
 """,
             },
@@ -14,7 +14,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer .68P
 """,
             },
@@ -22,7 +22,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer .76-P
 """,
             },
@@ -30,7 +30,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer 1.05
 """,
             },
@@ -38,7 +38,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer 1.05 OC
 """,
             },
@@ -46,7 +46,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer 1.05 open comb
 """,
             },
@@ -54,7 +54,7 @@ class TestGameChangerPlateExtractor(TestCase):
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer 1.05 jaws
 """,
             },

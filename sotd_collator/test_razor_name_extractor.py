@@ -1,21 +1,21 @@
 from unittest import TestCase
 
-from razor_name_extractor import RazorNameExtractor
-from razor_name_extractor import RazorAlternateNamer
+from sotd_collator.razor_name_extractor import RazorNameExtractor
+from sotd_collator.razor_name_extractor import RazorAlternateNamer
 
 
 class TestRazorNameExtractor(TestCase):
     razor_name_cases = [
         {
             "comment": {
-                "body": """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**  
+                "body": """**[Feb. 21, 2020 - Forgotten Friday](https://i.imgur.com/AiXQGG1.jpg)**
 
-* **Prep:** None  
-* **Brush:** Washington Blue Steel B6  
-* **Razor:** Karve CB (Plate C)  
-* **Blade:** Gillette Nacet (3)  
-* **Lather:** [Declaration Grooming - Sweet Lemon - Soap](https://trythatsoap.com/collection/70/?product_type=soap)  
-* **Post Shave:** [Declaration Grooming - Sweet Lemon - Aftershave](https://trythatsoap.com/collection/70/?product_type=aftershave)  
+* **Prep:** None
+* **Brush:** Washington Blue Steel B6
+* **Razor:** Karve CB (Plate C)
+* **Blade:** Gillette Nacet (3)
+* **Lather:** [Declaration Grooming - Sweet Lemon - Soap](https://trythatsoap.com/collection/70/?product_type=soap)
+* **Post Shave:** [Declaration Grooming - Sweet Lemon - Aftershave](https://trythatsoap.com/collection/70/?product_type=aftershave)
 
 Better late than never.""",
             },
@@ -24,7 +24,7 @@ Better late than never.""",
         },
         {
             "comment": {
-                "body": """***I Can't Stands No More : 2/28/20***
+                "body": r"""***I Can't Stands No More : 2/28/20***
 
 * **Brush** \- Maggard 24mm Synthetic
 * **Razor** \- Maggard MR5 w/ V2 OC
@@ -38,7 +38,7 @@ Better late than never.""",
         },
         {
             "comment": {
-                "body": """**// Brush** \- Dogwood Handcrafts - SHD
+                "body": r"""**// Brush** \- Dogwood Handcrafts - SHD
 
 **// Razor** \- Maggard MR 5 w/ V2 OC
 
@@ -53,16 +53,16 @@ Better late than never.""",
         },
         {
             "comment": {
-                "body": """* **Prep:** Cup of Coffee  
-* **Brush:** Sawdust Creations 26 mm Timberwolf  
-* **Razor:** [Chani](https://imgur.com/a/usfOaJp)  
+                "body": """* **Prep:** Cup of Coffee
+* **Brush:** Sawdust Creations 26 mm Timberwolf
+* **Razor:** [Chani](https://imgur.com/a/usfOaJp)
 
-* **Lather:** [Summer Break Soaps - Bell Ringer - Soap](https://trythatsoap.com/collection/1183/?product_type=soap)  
+* **Lather:** [Summer Break Soaps - Bell Ringer - Soap](https://trythatsoap.com/collection/1183/?product_type=soap)
 
 * **Post Shave:** [Summer Break Soaps - Bell Ringer - Aftershave](https://trythatsoap.com/collection/1183/?product_type=aftershave)
 
-* **Post Shave:** Mod Cabin - Bare Essentials - Beard Oil  
-* **Fragrance:** Creed - Green Irish Tweed - Eau de Toilette  
+* **Post Shave:** Mod Cabin - Bare Essentials - Beard Oil
+* **Fragrance:** Creed - Green Irish Tweed - Eau de Toilette
 
 Stay safe and have a great day!""",
             },
@@ -71,7 +71,7 @@ Stay safe and have a great day!""",
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- GC 2.0
 """,
             },
@@ -80,7 +80,7 @@ Stay safe and have a great day!""",
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Game Changer 68
 """,
             },
@@ -89,7 +89,7 @@ Stay safe and have a great day!""",
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- GC
 """,
             },
@@ -98,7 +98,7 @@ Stay safe and have a great day!""",
         },
         {
             "comment": {
-                "body": """
+                "body": r"""
 **// Razor** \- Gamechanger 68
 """,
             },
@@ -108,18 +108,18 @@ Stay safe and have a great day!""",
         {
             "comment": {
                 "body": """
-[**SOTD 20231225 Maestri by IschiaPP @ Forio**](https://ischiapp.blogspot.com/2023/12/sotd-20231225.html)    
-* Pre: Oleolito LCC Olio Prebarba Medicato  
+[**SOTD 20231225 Maestri by IschiaPP @ Forio**](https://ischiapp.blogspot.com/2023/12/sotd-20231225.html)
+* Pre: Oleolito LCC Olio Prebarba Medicato
 Homemade by Dr IschiaPP
-* Brush: Bat71 Cashmere  
+* Brush: Bat71 Cashmere
 Olive Wood, Abalone Shell Inlay, Yaqi SK07 aka Maggard Beige, 24x50x115mm
 * Soap: Frankincense Giardini La Mortella Foro Afeitado 2019 Exclusive IschiaPP
 * Razor: Gillette Labs UK 2023 Exfoliating Razor Neon Night Edition FlexDisc #41
-* After: Oleotintura LCC Trattamento Urto Dopobarba Medicato  
+* After: Oleotintura LCC Trattamento Urto Dopobarba Medicato
 Homemade by Dr IschiaPP
-  
-Full size: 1200x1200px  
-Soundtrack: Joe Hisaishi - Merry go Round of Life  
+
+Full size: 1200x1200px
+Soundtrack: Joe Hisaishi - Merry go Round of Life
 from Howl's Moving Castle Miyazaki (by Grissini Project)
 """,
             },

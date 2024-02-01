@@ -30,7 +30,8 @@ class BaseNameExtractor(object):
 
     @staticmethod
     def post_process_name(callback):
-        # decorator that can be implemented across subclasses to shared fixup on entity names before they are returned
+        # decorator that can be implemented across subclasses
+        # to shared fixup on entity names before they are returned
         @functools.wraps(callback)
         def wrapped(inst, *args, **kwargs):
             entity_name = callback(inst, *args, **kwargs)

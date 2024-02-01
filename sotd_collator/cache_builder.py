@@ -1,9 +1,5 @@
-from ast import Dict
-from asyncio import CancelledError
 import datetime
-from datetime import date
 from dateutil.relativedelta import relativedelta
-import json
 import praw
 
 from sotd_collator.sotd_post_locator import SotdPostLocator

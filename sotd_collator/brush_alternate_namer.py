@@ -1,8 +1,5 @@
-import copy
 import re
-from collections import OrderedDict
 from functools import lru_cache, cached_property
-from pprint import pprint
 
 from sotd_collator.base_alternate_namer import BaseAlternateNamer
 
@@ -17,7 +14,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
     def __init__(self, link_other: bool = True):
         self.link_other = link_other
 
-    bads = "(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan|finest|best|two\s*band)"
+    bads = r"(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan|finest|best|two\s*band)"
     boars = "(boar)"
     horses = "(horse)"
     syns = "(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(mag|wolf)|g4|boss)"
@@ -30,7 +27,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
     }
 
     apply_first = {
-        "Declaration Grooming B1": ["B1(\s|$)"],
+        "Declaration Grooming B1": [r"B1(\s|$)"],
         "Declaration Grooming B2": ["B2"],
         "Declaration Grooming B3": ["B3"],
         "Declaration Grooming B4": ["B4"],
@@ -38,7 +35,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Declaration Grooming B6": ["B6"],
         "Declaration Grooming B7": ["B7"],
         "Declaration Grooming B8": ["B8"],
-        "Declaration Grooming B9A+": ["B9A\+", "b9.*alpha.*plus"],
+        "Declaration Grooming B9A+": [r"B9A\+", "b9.*alpha.*plus"],
         "Declaration Grooming B9A": ["B9A", "b9.*alpha"],
         "Declaration Grooming B9B": ["B9B", "b9.*bravo"],
         "Declaration Grooming B10": ["b10"],
@@ -53,7 +50,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Stirling Synthetic": ["stirl.*kong"],
         "r/wetshaving Semogue Brushbutt Boar": ["brushbutt"],
         "r/wetshaving Zenith MOAR BOAR": ["moar.*boar"],
-        "Hand Lather": ["^\s*hands*\s*$", "hand.*lather"],
+        "Hand Lather": [r"^\s*hands*\s*$", "hand.*lather"],
         "Semogue SOC Boar": [
             r"^(semogue\s*)*s\.*o\.*c\.*.*boar$",
             "semogue.*owner.*club.*boar$",
@@ -86,12 +83,12 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "AKA Brushworx": {"patterns": ["aka.*brush"], "default": "Synthetic"},
         "Alpha": {"patterns": ["alpha"], "default": "Synthetic"},
         "Anbbas": {"patterns": ["anbbas"], "default": "Synthetic"},
-        "AP Shave Co": {"patterns": ["AP\s*shav"], "default": "Synthetic"},
+        "AP Shave Co": {"patterns": [r"AP\s*shav"], "default": "Synthetic"},
         "Art of Shaving": {
-            "patterns": ["^\s*aos", "art.*of.*sha"],
+            "patterns": [r"^\s*aos", "art.*of.*sha"],
             "default": "Badger",
         },
-        "B&M": {"patterns": ["b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
+        "B&M": {"patterns": [r"b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
         "Beaumont": {"patterns": ["bea.{1,3}mont"], "default": "Badger"},
         "Black Anvil": {"patterns": ["black.*anv"], "default": "Badger"},
         "Black Eagle": {"patterns": ["black.*eag"], "default": "Badger"},
@@ -107,7 +104,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Carnavis & Richardson": {"patterns": ["carn.*rich"], "default": "Synthetic"},
         "Catalin": {"patterns": ["catalin"], "default": "Badger"},
         "CaYuen": {"patterns": ["cayuen"], "default": "Synthetic"},
-        "Chisel & Hound": {"patterns": ["chis.*hound", "c\&h"], "default": "Badger"},
+        "Chisel & Hound": {"patterns": ["chis.*hound", r"c\&h"], "default": "Badger"},
         "Craving Shaving": {"patterns": ["crav.*shav"], "default": "Synthetic"},
         "Cremo": {"patterns": ["cremo"], "default": "Horse"},
         "Crescent City Craftsman": {"patterns": ["cres.*city"], "default": "Synthetic"},
@@ -115,10 +112,10 @@ class BrushAlternateNamer(BaseAlternateNamer):
             "patterns": ["declaration"],
             "default": "Badger",
         },
-        "DSCosmetics": {"patterns": ["DS\s*Cosmetic", "DSC"], "default": "Synthetic"},
+        "DSCosmetics": {"patterns": [r"DS\s*Cosmetic", "DSC"], "default": "Synthetic"},
         "Den of Man": {"patterns": ["den.*of.*man"], "default": "Synthetic"},
         "Dogwood": {"patterns": ["dogw", "dogc*l", "^voa"], "default": "Badger"},
-        "Doug Korn": {"patterns": ["doug\s*korn"], "default": "Badger"},
+        "Doug Korn": {"patterns": [r"doug\s*korn"], "default": "Badger"},
         "Dubl Duck": {"patterns": ["dubl.*duck"], "default": "Boar"},
         "Edwin Jagger": {"patterns": ["edwin.*jag"], "default": "Badger"},
         "El Druida": {"patterns": ["druidi*a"], "default": "Badger"},
@@ -127,7 +124,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Ever Ready": {"patterns": ["ever.*read"], "default": "Badger"},
         "Executive Shaving": {"patterns": ["execut.*shav"], "default": "Synthetic"},
         "Farvour Turn Craft": {"patterns": ["farvour"], "default": "Badger"},
-        "Fine": {"patterns": ["fine\s"], "default": "Synthetic"},
+        "Fine": {"patterns": [r"fine\s"], "default": "Synthetic"},
         "Firehouse Potter": {"patterns": ["fireh.*pott"], "default": "Synthetic"},
         "Fendrihan": {"patterns": ["fendri"], "default": "Badger"},
         "Frank Shaving": {"patterns": ["frank.*sha"], "default": "Synthetic"},
@@ -140,20 +137,20 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Leavitt & Pierce": {"patterns": ["leav.*pie"], "default": "Badger"},
         "Leonidam": {"patterns": ["leonidam", "leo.*nem"], "default": "Badger"},
         "Liojuny Shaving": {"patterns": ["liojuny"], "default": "Synthetic"},
-        "Long Shaving": {"patterns": ["long\s*shaving"], "default": "Badger"},
+        "Long Shaving": {"patterns": [r"long\s*shaving"], "default": "Badger"},
         "Lutin Brushworks": {"patterns": ["lutin"], "default": "Synthetic"},
         "Maggard": {"patterns": ["maggard"], "default": "Synthetic"},
         "Maseto": {"patterns": ["maseto"], "default": "Badger"},
         "Mojo": {"patterns": ["mojo"], "default": "Badger"},
         "Mondial": {"patterns": ["mondial"], "default": "Boar"},
-        "Morris & Forndran": {"patterns": ["morris", "m\s*&\s*f"], "default": "Badger"},
+        "Morris & Forndran": {"patterns": ["morris", r"m\s*&\s*f"], "default": "Badger"},
         "Mozingo": {"patterns": ["mozingo"], "default": "Badger"},
         "MRed": {"patterns": ["mred"], "default": "Badger"},
         "Muninn Woodworks": {"patterns": ["munin"], "default": "Badger"},
         "Muhle": {"patterns": ["muhle"], "default": "Badger"},
         "Mutiny": {"patterns": ["mutiny"], "default": "Synthetic"},
-        "Noble Otter": {"patterns": ["noble", "no\s*\d{2}mm"], "default": "Badger"},
-        "NY Shave Co": {"patterns": ["ny\s.*shave.*co"], "default": "Badger"},
+        "Noble Otter": {"patterns": ["noble", r"no\s*\d{2}mm"], "default": "Badger"},
+        "NY Shave Co": {"patterns": [r"ny\s.*shave.*co"], "default": "Badger"},
         "Omega (model not specified)": {"patterns": ["omega"], "default": "Boar"},
         "Oumo": {"patterns": ["oumo"], "default": "Badger"},
         "Oz Shaving": {"patterns": ["oz.*sha"], "default": "Synthetic"},
@@ -163,7 +160,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Plisson": {"patterns": ["plisson"], "default": "Badger"},
         "Prometheus Handcrafts": {"patterns": ["promethe"], "default": "Synthetic"},
         "Razorock": {
-            "patterns": ["Razorr*ock", "(^|\s)rr\s", "plissoft", "razor rock"],
+            "patterns": ["Razorr*ock", r"(^|\s)rr\s", "plissoft", "razor rock"],
             "default": "Synthetic",
         },
         "Rockwell": {"patterns": ["rockwell"], "default": "Synthetic"},
@@ -247,21 +244,19 @@ class BrushAlternateNamer(BaseAlternateNamer):
             r"(omega|semogue)[^]\n\d]+(c\d{1,3}|\d{3,6})", name, re.IGNORECASE
         )
         omse_model_num = None
-        try:
+        if omse_model:
             omse_model_num = omse_model.group(2)
-        except:
-            pass
-
-        if omse_brand and omse_model_num:
-            return "{0} {1}".format(omse_brand.group(1).title(), omse_model_num)
+            if omse_model_num:
+                return f"{omse_brand.group(1).title()} {omse_model_num}"
 
         # ZENITH FIXUP
         zenith_re = r"Zenith.*([A-Za-z]\d{1,3})"
         res = re.search(zenith_re, name, re.IGNORECASE)
         if res:
-            return "Zenith {0}".format(res.group(1).upper())
+            return f"Zenith {res.group(1).upper()}"
 
-        # initial regexs (Dec batches etc - apply first because they are short matches and otherwise would be applied last)
+        # initial regexs (Dec batches etc)
+        # apply first because they are short matches and would otherwise be applied last
         for brush_name in sorted(self.apply_first.keys(), key=len, reverse=True):
             for pattern in self.apply_first[brush_name]:
                 if re.search(pattern, name, re.IGNORECASE):
@@ -269,12 +264,8 @@ class BrushAlternateNamer(BaseAlternateNamer):
 
         # fall down to standard makers
         for alt_name_re in sorted(self._mapper.keys(), key=len, reverse=True):
-            try:
-                if re.search(alt_name_re, name, re.IGNORECASE):
-                    return self._mapper[alt_name_re]
-            except:
-                print("Failing input >{0}<".format(alt_name_re))
-                raise
+            if re.search(alt_name_re, name, re.IGNORECASE):
+                return self._mapper[alt_name_re]
 
         # if self.link_other:
         #     for other_name in sorted(self.others.keys(), key=len, reverse=True):

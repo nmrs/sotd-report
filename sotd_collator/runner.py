@@ -1,12 +1,6 @@
-from datetime import datetime
-import calendar
-from pprint import pprint
 import inflect
 import pandas as pd
 import praw
-
-from dateutil.relativedelta import relativedelta
-from pydantic import InstanceOf
 
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_format_extractor import BladeFormatExtractor
@@ -93,7 +87,7 @@ class Runner(object):
         print(header)
         razor_usage = None
         for entity in process_entities:
-            print("##{0}\n".format(inf_engine.plural(entity["name"])))
+            print(f"##{inf_engine.plural(entity['name'])}\n")
 
             # print(f'retrieving {target_label} usage', end='\r')
             usage = get_shave_data(
@@ -216,8 +210,6 @@ if __name__ == "__main__":
     pl = SotdPostLocator(pr)
     comments = pl.get_comments_for_given_year_staged(2023)
     for comment in comments:
-        try:
+        if "razor" in comment:
             if "superspeed" in comment["razor"].lower():
                 print(comment["razor"])
-        except:
-            pass

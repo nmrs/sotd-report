@@ -1,8 +1,6 @@
 import datetime
 
 import praw
-from dateutil.relativedelta import relativedelta
-
 
 from sotd_collator.runner import Runner
 from sotd_collator.sotd_post_locator import SotdPostLocator

@@ -1,4 +1,11 @@
 import datetime
+from enum import Enum
+
+
+class ContentType(Enum):
+    THREADS = "threads"
+    COMMENTS = "comments"
+    STAGED_COMMENTS = "staged_comments"
 
 
 class CacheProvider(object):
@@ -9,26 +16,16 @@ class CacheProvider(object):
             self.CACHE_DIR = cache_dir
 
     def get_comment_stage_file_path(self, given_month: datetime.date) -> str:
-        return self.__get_cache_file_path(given_month, "staged_comments")
+        return self.__get_cache_file_path(given_month, ContentType.STAGED_COMMENTS)
 
     def get_comment_cache_file_path(self, given_month: datetime.date) -> str:
-        return self.__get_cache_file_path(given_month, "comments")
+        return self.__get_cache_file_path(given_month, ContentType.COMMENTS)
 
     def get_thread_cache_file_path(self, given_month: datetime.date) -> str:
-        return self.__get_cache_file_path(given_month, "threads")
+        return self.__get_cache_file_path(given_month, ContentType.THREADS)
 
-    def __get_cache_file_path(self, given_month: datetime.date, type: str) -> str:
-        return "{0}/{1}/{2}{3}.json".format(
-            self.CACHE_DIR,
-            type,
-            given_month.year,
-            given_month.month if given_month.month >= 10 else f"0{given_month.month}",
-        )
-
-    def __get_cache_file_path(self, given_month: datetime.date, type: str) -> str:
-        return "{0}/{1}/{2}{3}.json".format(
-            self.CACHE_DIR,
-            type,
-            given_month.year,
-            given_month.month if given_month.month >= 10 else f"0{given_month.month}",
-        )
+    def __get_cache_file_path(
+        self, given_month: datetime.date, ct: ContentType
+    ) -> str:
+        filename = given_month.strftime("%Y%m.json")
+        return f"{self.CACHE_DIR}/{ct.value}/{filename}"

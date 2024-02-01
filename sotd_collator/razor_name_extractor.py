@@ -19,23 +19,19 @@ class RazorNameExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
-                    razor_name_re
-                ),
+                fr"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*([{razor_name_re}]+)(?:\+|,|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*Razor\*:.*\*\*([{0}]+)\*\*".format(razor_name_re),
+                fr"\*Razor\*:.*\*\*([{razor_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             re.compile(
-                r"^\*\*Safety Razor\*\*\s*-\s*([{0}]+)[+,\n]".format(razor_name_re),
+                fr"^\*\*Safety Razor\*\*\s*-\s*([{razor_name_re}]+)[+,\n]",
                 re.MULTILINE | re.IGNORECASE,
             ),  # **Safety Razor** - RazoRock - Gamechanger 0.84P   variant
             re.compile(
-                r"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*\[*([{0}]+)(?:\+|,|\n|$|]\()".format(
-                    razor_name_re
-                ),
+                fr"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*\[*([{razor_name_re}]+)(?:\+|,|\n|$|]\()",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS style with link to eg imgur
         ]
@@ -49,7 +45,8 @@ class RazorNameExtractor(BaseNameExtractor):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             # catch case where some jerk writes ❧ Razor and Blade Notes or similar
-            # at some point this can be genericised in to a block words / phrases list to catch razorock too
+            # at some point this can be genericised
+            # to a block words / phrases list to catch razorock too
             if res and "and blade note" in res.group(1).lower():
                 continue
 

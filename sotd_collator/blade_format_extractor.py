@@ -1,5 +1,3 @@
-import re
-from functools import cached_property
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.base_name_extractor import BaseNameExtractor
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -9,7 +7,8 @@ from sotd_collator.razor_name_extractor import RazorNameExtractor
 
 class BladeFormatExtractor(BaseNameExtractor):
     """
-    From a given comment, extract the blade type. Note doesnt differentiate between DE and Half DE razors because technical reasons
+    From a given comment, extract the blade type.
+    Note doesnt differentiate between DE and Half DE razors because technical reasons
     """
 
     # we name any format that isnt DE in the blade name itself

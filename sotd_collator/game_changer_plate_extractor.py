@@ -23,17 +23,15 @@ class GameChangerPlateExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
-                    razor_name_re
-                ),
+                fr"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*([{razor_name_re}]+)(?:\+|,|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*Razor\*:.*\*\*([{0}]+)\*\*".format(razor_name_re),
+                fr"\*Razor\*:.*\*\*([{razor_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             re.compile(
-                r"^\*\*Safety Razor\*\*\s*-\s*([{0}]+)[+,\n]".format(razor_name_re),
+                fr"^\*\*Safety Razor\*\*\s*-\s*([{razor_name_re}]+)[+,\n]",
                 re.MULTILINE | re.IGNORECASE,
             ),  # **Safety Razor** - RazoRock - Gamechanger 0.84P   variant
         ]
@@ -46,7 +44,8 @@ class GameChangerPlateExtractor(BaseNameExtractor):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             # catch case where some jerk writes ❧ Razor and Blade Notes or similar
-            # at some point this can be genericised in to a block words / phrases list to catch razorock too
+            # at some point this can be genericised
+            # to a block words / phrases list to catch razorock too
             if res and "and blade note" in res.group(1).lower():
                 continue
 
@@ -77,9 +76,8 @@ class GameChangerPlateExtractor(BaseNameExtractor):
         elif len(plate) == 3:
             plate = f"{plate[0]}.{plate[1:3:1]}"
 
-        plate = "{0}-P".format(
-            str(round(float(plate.removeprefix("0")), 2)).removeprefix("0")
-        )
+        gap = str(round(float(plate.removeprefix("0")), 2)).removeprefix("0")
+        plate = f"{gap}-P"
 
         # determine if OC or JAWS
         if self.jaws_re.search(extracted_name):

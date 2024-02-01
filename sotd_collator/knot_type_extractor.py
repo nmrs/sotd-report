@@ -1,7 +1,6 @@
 import re
 from functools import cached_property
 from sotd_collator.base_name_extractor import BaseNameExtractor
-from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 
 
 class KnotTypeExtractor(BaseNameExtractor):
@@ -31,13 +30,11 @@ class KnotTypeExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
-                    knot_type_re
-                ),
+                fr"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{knot_type_re}]+)(?:\+|,|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*brush\*:.*\*\*([{0}]+)\*\*".format(knot_type_re),
+                fr"\*brush\*:.*\*\*([{knot_type_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
         ]

@@ -1,9 +1,10 @@
 import calendar
-from dateutil import rrule
+import sys
 from datetime import date
-from dateutil.relativedelta import relativedelta
 import json
 import os
+from dateutil import rrule
+from dateutil.relativedelta import relativedelta
 import praw
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -58,17 +59,11 @@ class StageBuilder(object):
         comments_out = 0
         curr_month = start_month
         while curr_month <= end_month:
-            filename = "{0}{1}.json".format(
-                curr_month.year,
-                curr_month.month if curr_month.month >= 10 else f"0{curr_month.month}",
-            )
+            filename = curr_month.strftime("%Y%m.json")
 
             if force_refresh:
-                try:
-                    for file in cached_files[filename]:
-                        os.remove(file)
-                except Exception as error:
-                    print(error)
+                for file in cached_files[filename]:
+                    os.remove(file)
 
             # threads = pl.get_threads_for_given_month(curr_month)
             comments = pl.get_comments_for_given_month_cached(curr_month)
@@ -88,32 +83,29 @@ class StageBuilder(object):
                 if match:
                     results.append(comment)
 
-            stage_file = "misc/staged_comments/{0}".format(filename)
+            stage_file = f"misc/staged_comments/{filename}"
 
-            with open(stage_file, "w") as f_stage:
+            with open(stage_file, "w", encoding=sys.getdefaultencoding()) as f_stage:
                 json.dump(results, f_stage, indent=4, sort_keys=False)
 
             comments_in += len(comments)
             comments_out += len(results)
 
+            m = format(curr_month)
+            cin = len(comments)
+            cout = len(results)
+            reduction = round((cout - cin) / cin * -100, 2)
             print(
-                "{0} - {1} comments in -> {2} comments out ({3}% reduction)".format(
-                    format(curr_month),
-                    len(comments),
-                    len(results),
-                    round((len(results) - len(comments)) / len(comments) * -100, 2),
-                )
+                f"{m} - {cin} comments in -> {cout} comments out ({reduction}% reduction)"
             )
 
             curr_month += relativedelta(months=1)
 
+        cin = comments_in
+        cout = comments_out
+        reduction = round((comments_out - comments_in) / comments_in * -100, 2)
         print(
-            "Total - {0} comments in -> {1} comments out ({2}% reduction)".format(
-                comments_in,
-                comments_out,
-                round(comments_out - comments_in) / comments_in * -100,
-                2,
-            )
+            f"Total - {cin} comments in -> {cout} comments out ({reduction}% reduction)"
         )
 
     @timer_func
@@ -131,7 +123,7 @@ class StageBuilder(object):
             threads = []
 
             cache_file = cp.get_thread_cache_file_path(m)
-            with open(cache_file, "r") as f_cache:
+            with open(cache_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
                 threads = json.load(f_cache)
 
             #     thread_dict = {}

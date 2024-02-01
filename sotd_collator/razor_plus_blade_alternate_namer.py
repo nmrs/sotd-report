@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 
@@ -21,7 +20,4 @@ class RazorPlusBladeAlternateNamer(object):
         if pb_name:
             blade_name = pb_name
 
-        return "{razor} + {blade}".format(
-            razor=razor_name,
-            blade=blade_name,
-        )
+        return f"{razor_name} + {blade_name}"

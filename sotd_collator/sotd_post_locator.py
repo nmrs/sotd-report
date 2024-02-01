@@ -1,11 +1,11 @@
 import os
-from pprint import pprint
 import datetime
+import sys
 from tokenize import Comment
-import praw
 import json
 
-from dateutil.relativedelta import relativedelta
+import praw
+
 from praw.models import Submission
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_name_extractor import BrushNameExtractor
@@ -20,20 +20,19 @@ class SotdPostLocator(object):
 
     SOTD_THREAD_PATTERNS = ["sotd thread", "lather games"]
 
-    def __init__(self, praw: praw = None, cp: CacheProvider = None):
-        self.praw = praw
-        self.cache_provider = cp if cp != None else CacheProvider()
+    def __init__(self, reddit: praw = None, cp: CacheProvider = None):
+        self.reddit = reddit
+        self.cache_provider = cp if cp is not None else CacheProvider()
 
     # @property
     # def last_month(self):
     #     return datetime.date.today() - relativedelta(months=1)
 
     def _get_sotd_month_query_str(self, given_month: datetime.date):
-        return "flair:SOTD {0} {1} {2} {2}SOTD".format(
-            given_month.strftime("%b").lower(),
-            given_month.strftime("%B").lower(),
-            given_month.year,
-        )
+        month_abbr = given_month.strftime("%b").lower()
+        month_full = given_month.strftime("%B").lower()
+        year = given_month.year
+        return f"flair:SOTD {month_abbr} {month_full} {year} {year}SOTD"
 
     def get_threads_for_given_month(self, given_month: datetime.date) -> [Submission]:
         """
@@ -47,7 +46,7 @@ class SotdPostLocator(object):
         threads = []
 
         try:
-            with open(cache_file, "r") as f_cache:
+            with open(cache_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
                 cached_threads = json.load(f_cache)
         except FileNotFoundError:
             pass
@@ -70,7 +69,7 @@ class SotdPostLocator(object):
         missing_threads = []
         for thread in cached_threads:
             if thread["id"] not in [t.id for t in threads if t.id == thread["id"]]:
-                missing_threads.append(Submission(self.praw, id=thread["id"]))
+                missing_threads.append(Submission(self.reddit, id=thread["id"]))
 
         if len(missing_threads) > 0:
             threads = threads + missing_threads
@@ -80,10 +79,8 @@ class SotdPostLocator(object):
         for thread in threads:
             to_cache.append(self._thread_to_dict(thread))
 
-        with open(cache_file, "w") as f_cache:
+        with open(cache_file, "w", encoding=sys.getdefaultencoding()) as f_cache:
             json.dump(to_cache, f_cache, indent=4, sort_keys=True)
-
-        # threads = sorted([t for t in missing_threads], key=lambda t : t.created_utc, reverse=False)
 
         return threads
 
@@ -101,7 +98,7 @@ class SotdPostLocator(object):
         query = self._get_sotd_month_query_str(given_month)
         print(query)
 
-        rec = self.praw.subreddit("wetshaving").search(
+        rec = self.reddit.subreddit("wetshaving").search(
             query=query, sort="relevance", limit=None
         )
         ids = []
@@ -126,7 +123,7 @@ class SotdPostLocator(object):
         cache_file = self.cache_provider.get_comment_cache_file_path(given_month)
         cache = []
         try:
-            with open(cache_file, "r") as f_cache:
+            with open(cache_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
                 cache = json.load(f_cache)
         except (FileNotFoundError, json.JSONDecodeError):
             pass
@@ -138,11 +135,12 @@ class SotdPostLocator(object):
             ]:
                 cache.append(comment)
 
-        with open(cache_file, "w") as f_cache:
+        with open(cache_file, "w", encoding=sys.getdefaultencoding()) as f_cache:
             json.dump(cache, f_cache, indent=4, sort_keys=True)
 
     def _comment_to_dict(self, comment: Comment) -> dict:
         """Converts a praw Comment to a dictionary for caching"""
+        base = "www.reddit.com/r/Wetshaving/comments"
         return {
             "author": comment.author.name if comment.author is not None else None,
             "body": comment.body,
@@ -150,7 +148,7 @@ class SotdPostLocator(object):
                 comment.created_utc
             ).strftime("%Y-%m-%d %H:%M:%S"),
             "id": comment.id,
-            "url": f"https://www.reddit.com/r/Wetshaving/comments/{comment.link_id.removeprefix('t3_')}/comment/{comment.id}/",
+            "url": f"https://{base}/{comment.link_id.removeprefix('t3_')}/comment/{comment.id}/",
         }
 
     def _thread_to_dict(self, thread: Submission) -> dict:
@@ -176,30 +174,31 @@ class SotdPostLocator(object):
             os.remove(stage_file)
 
         try:
-            with open(stage_file, "r") as f_cache:
+            with open(stage_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
                 return json.loads(f_cache.read())
         except (FileNotFoundError, json.JSONDecodeError):
             self.get_comments_for_given_month_cached(given_month)
             return self.__stage_comments(given_month)
 
-    def get_comments_for_given_month_cached(self, given_month: datetime.date) -> [dict]:
-        # be kind to reddit, persist results to disk so we dont hit it everytime we change the razor cleanup / processing
+    def get_comments_for_given_month_cached(
+            self,
+            given_month: datetime.date) -> [dict]:
+        # be kind to reddit, persist results to disk
+        # so we dont hit it everytime we change the razor cleanup / processing
 
         if not isinstance(given_month, datetime.date):
             raise AttributeError("Must pass in a datetime.date object")
 
         cache_file = self.cache_provider.get_comment_cache_file_path(given_month)
-        cache_miss = False
         comments = []
         try:
-            with open(cache_file, "r") as f_cache:
+            with open(cache_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
                 comments = json.loads(f_cache.read())
         except (FileNotFoundError, json.JSONDecodeError):
-            cache_miss = True
             print(f"Cache miss for {cache_file}. Querying reddit.")
             comments = self._get_comments_for_given_month(given_month)
 
-            with open(cache_file, "w") as f_cache:
+            with open(cache_file, "w", encoding=sys.getdefaultencoding()) as f_cache:
                 json.dump(comments, f_cache, indent=4, sort_keys=True)
 
         return comments
@@ -227,25 +226,25 @@ class SotdPostLocator(object):
 
         stage_file = self.cache_provider.get_comment_stage_file_path(given_month)
 
-        with open(stage_file, "w") as f_stage:
+        with open(stage_file, "w", encoding=sys.getdefaultencoding()) as f_stage:
             json.dump(results, f_stage, indent=4, sort_keys=False)
 
         return results
 
     def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
-        LINE_CLEAR = "\x1b[2K"  # <-- ANSI sequence
+        line_clear = "\x1b[2K"  # <-- ANSI sequence
         comments = []
         for thread in threads:
             for comment in thread.comments.list():
                 if hasattr(comment, "body") and comment.body != "[deleted]":
                     comments.append(self._comment_to_dict(comment))
-                    print(end=LINE_CLEAR)
+                    print(end=line_clear)
                     print(
                         f"Loading comments for {thread.title}: {len(comments)} loaded",
                         end="\r",
                     )
 
-        print(end=LINE_CLEAR)
+        print(end=line_clear)
         return comments
 
     def _get_comments_for_given_month(self, given_month: datetime.date) -> [Comment]:

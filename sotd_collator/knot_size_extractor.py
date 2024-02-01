@@ -14,15 +14,15 @@ class KnotSizeExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+[^:]*({0})".format(brush_size_re),
+                rf"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+[^:]*({brush_size_re})",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*brush\*:.*\*\*[^:]({0})".format(brush_size_re),
+                rf"\*brush\*:.*\*\*[^:]({brush_size_re})",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             # if we cant find it in a specific brush line, search the entire post
-            re.compile(r"({0})".format(brush_size_re), re.MULTILINE | re.IGNORECASE),
+            re.compile(rf"({brush_size_re})", re.MULTILINE | re.IGNORECASE),
         ]
 
     @BaseNameExtractor.post_process_name
@@ -32,10 +32,10 @@ class KnotSizeExtractor(BaseNameExtractor):
             res = detector.search(comment_text)
             if res:
                 raw_size = res.group(1)
-                num_mm = int(re.search("\d+", raw_size).group(0))
+                num_mm = int(re.search(r"\d+", raw_size).group(0))
                 if num_mm < 18 or num_mm > 40:
                     # probably a mistake, these are outside the usual brush sizes
                     continue
-                return re.sub("\s+", "", raw_size.strip().lower())
+                return re.sub(r"\s+", "", raw_size.strip().lower())
 
         return None
