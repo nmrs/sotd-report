@@ -72,6 +72,22 @@ One blade. One razor. One pre-shave. One cream. One brush. One balm.  Done.
             },
             "expected_result": "B OC",
         },
+        {
+            "comment": {
+                "body": """
+    * **Brush:** Restored Barber Handle w/28mm Maggards 2 band badger
+    * **Razor:** Karve CB Brass OC-F
+    * **Blade:**  Astra SP (5)
+    * **Lather:** Spearhead - Seaforth Spiced
+    * **Post Shave:** Lucky Tiger splash
+    * **Post Shave:** House of Mammoth - Hygge splash
+    I gave some blood this morning, thankfully just in the form of weepers.  I'm not an open comb kind of guy, but since this CB came with an F plate, I figured I had to try it.  Honestly, it wasn't as aggressive as I thought it would be but it was definitely more than I typically use, thus the blood donation.  My face was definitely a little raw after the shave so some calming Lucky Tiger was perfect.  If anyone wants to try the F plate, this might be a good passaround for those who are curious.
+
+    Time to Tuesday.  Time to get more coffee in my veins.  Try to enjoy your day and remember to be kind to one another.
+    """,
+            },
+            "expected_result": "F OC",
+        },
     ]
 
     def test_get_name(self):
@@ -79,3 +95,6 @@ One blade. One razor. One pre-shave. One cream. One brush. One balm.  Done.
         for case in self.plate_name_cases:
             p_name = kpe.get_name(case["comment"])
             self.assertEqual(case["expected_result"], p_name)
+
+if __name__ == "__main__":
+    TestKarvePlateExtractor().test_get_name()

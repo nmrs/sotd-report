@@ -9,7 +9,7 @@ class KarvePlateExtractor(BaseNameExtractor):
     From a given comment, if it's a Karve CB then extract the plate used if possible
     """
 
-    oc_re = re.compile(r"\sOC[\s$)]", re.IGNORECASE)
+    oc_re = re.compile(r"\b(OC|open.*comb)\b", re.IGNORECASE)
     plate_re = re.compile(r"[\s(\-]([A-G](?<=A)*)(?:$|\s|-plate|\))", re.IGNORECASE)
 
     @cached_property
