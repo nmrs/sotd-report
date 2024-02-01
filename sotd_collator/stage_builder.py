@@ -144,6 +144,10 @@ class StageBuilder(object):
 
 
 if __name__ == "__main__":
-    StageBuilder().build_stage(
-        start_month=date(2024, 1, 1), end_month=date(2024, 1, 1), force_refresh=False
+    StageBuilder().validate_stage(
+        start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)
     )
+
+    # StageBuilder().build_stage(
+    #     start_month=date(2024, 1, 1), end_month=date(2024, 1, 1), force_refresh=True
+    # )
