@@ -32,4 +32,4 @@ class BaseAlternateNamer(object):
                 return self._mapper[alt_name_re]
         return None
 
-    _raw = OrderedDict({})
+    _raw = {}
