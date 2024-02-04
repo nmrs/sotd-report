@@ -6,13 +6,11 @@ import os
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 import praw
-from sotd_collator.blade_alternate_namer import BladeAlternateNamer
-from sotd_collator.blade_name_extractor import BladeNameExtractor
-from sotd_collator.brush_alternate_namer import BrushAlternateNamer
-from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.cache_provider import CacheProvider
-from sotd_collator.razor_alternate_namer import RazorAlternateNamer
+from sotd_collator.blade_name_extractor import BladeNameExtractor
+from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
+from sotd_collator.soap_name_extractor_b import SoapNameExtractor
 
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.utils import timer_func
@@ -40,9 +38,10 @@ class StageBuilder(object):
         pl = SotdPostLocator(pr)
 
         extractors = {
-            "razor": [RazorNameExtractor(), RazorAlternateNamer()],
-            "blade": [BladeNameExtractor(), BladeAlternateNamer()],
-            "brush": [BrushNameExtractor(), BrushAlternateNamer()],
+            "razor": RazorNameExtractor(),
+            "blade": BladeNameExtractor(),
+            "brush": BrushNameExtractor(),
+            "soap": SoapNameExtractor(),
         }
 
         curr_month = start_month
@@ -72,7 +71,7 @@ class StageBuilder(object):
                 # body = comment["body"]
                 match = False
                 for label, extractor in extractors.items():
-                    name = extractor[0].get_name(comment)
+                    name = extractor.get_name(comment)
                     if name:
                         match = True
                         comment[label] = name
@@ -144,11 +143,10 @@ class StageBuilder(object):
 
 
 if __name__ == "__main__":
-    # StageBuilder().build_stage(
-    #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1), force_refresh=True
-    # )
-
-    StageBuilder().validate_stage(
-        start_month=date(2016, 5, 1), end_month=date(2023, 12, 1)
+    StageBuilder().build_stage(
+        start_month=date(2024, 1, 1), end_month=date(2024, 1, 1), force_refresh=False
     )
+    # StageBuilder().validate_stage(
+    #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)
+    # )
 

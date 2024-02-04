@@ -132,7 +132,7 @@ class SotdPostLocator(object):
                 if m['id'] == t.id:
                     found = True
                     break
-            if not found and m['id'] is not '':
+            if not found and m['id'] != '':
                 threads.append(Submission(self.reddit, id=m['id']))
         
         return sorted(threads, key=lambda x: x.created_utc, reverse=False)
