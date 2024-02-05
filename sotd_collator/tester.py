@@ -1,9 +1,15 @@
 import re
 
-text1 = "Murphy and McNeill - Cat Power"
+def prepend_the(input_string):
+    result = re.sub(r'^(?i)(?!the\s).*$', r'The \g<0>', input_string)
+    return result
 
-pattern = re.compile(r"\bmurphy\s+(?:&|and|\+)\s+mcneill?\b", re.IGNORECASE)
+# Example usage:
+string1 = "Cat"
+string2 = "The Cat"
 
-result1 = pattern.sub('', text1)
+result1 = prepend_the(string1)
+result2 = prepend_the(string2)
 
-print(result1)
+print(result1)  # Output: The Cat
+print(result2)  # Output: The Cat
