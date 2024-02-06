@@ -15,23 +15,21 @@ class SoapNameExtractor(BaseNameExtractor):
 
     @cached_property
     def detect_regexps(self):
-        soap_name_re = r"""\w\t ./\-_()\[\]#;&\'\"|<>:$~"""
-
+        soap_name_re = r"\w\t ./\-_()\[\]#;&\'\"|<>:$~"
+        labels = "(?:lather|soap(?:\s*(?:&|and|\+|\/)\s*splash)?)"
+        # labels = "(?:soap\s*(?:and)\s*splash|soap)"
+        # j4m11mj 
         return [
             re.compile(
-                r"^[*\s\-+/]*(?:Lather|Soap)\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|\n|$)".format(
-                    soap_name_re
-                ),
+                fr"^[*\s\-+/]*{labels}\s*[:*\-\\+\s/]+\s*([{soap_name_re}]+)(?:\+|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*(?:Lather|Soap)\*:.*\*\*([{0}]+)\*\*".format(soap_name_re),
+                fr"\*{labels}\*:.*\*\*([{soap_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             re.compile(
-                r"^[*\s\-+/]*(?:Lather|Soap)\s*[:*\-\\+\s/]+\s*\[*([{0}]+)(?:\+|\n|$|]\()".format(
-                    soap_name_re
-                ),
+                fr"^[*\s\-+/]*{labels}\s*[:*\-\\+\s/]+\s*\[*([{soap_name_re}]+)(?:\+|\n|$|]\()",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS style with link to eg imgur
         ]
