@@ -78,13 +78,13 @@ def get_user_shave_data(
 
     result = shave_df.merge(missed_days, on="name", how="left")
     result = result.fillna(value=0)
-    result.sort_values(['shaves', 'missed days'], ascending=[False, True])
+    result = result.sort_values(['shaves', 'missed days', 'name'], ascending=[False, True, True])
     return result
 
 
 def get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback):
 
-    raw_usage = {"name": [], "user_id": [], "date": []}
+    raw_usage = {"name": [], "user_id": [], "date": [], "url": []}
 
     for comment in comments:
         thread_id = extract_thread_id_from_comment_url(comment['url'])
@@ -105,6 +105,7 @@ def get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fal
             raw_usage["name"].append(principal_name)
             raw_usage["user_id"].append(comment["author"])
             raw_usage["date"].append(thread_date)
+            raw_usage['url'].append(comment['url'])
     return raw_usage
 
 
@@ -300,4 +301,5 @@ def single_user_report(user_id, comments, thread_map, name_extractor, start_mont
     full_multiple_comment_days.columns = ['user_id', 'date', 'shaves']
     multiple_comment_days = full_multiple_comment_days[full_multiple_comment_days['user_id'] == user_id]
     pass
+
 

@@ -4,7 +4,7 @@
 
 * u/SufficientKnee single-handedly propelled a 3D printed razor onto the list.
 
-* The EldrormR Industries MM24 falls from the top 10, leaving only the GEM Micromatic Open Comb to fight it out with the DEs (though somewhat curiously there were exactly 130 GEM shaves in both December and January).
+* The EldrormR Industries MM24 falls from the top 10 (all the way down to eleventh), leaving only the GEM Micromatic Open Comb to fight it out with the DEs at the top of the chart (and a somewhat curious side note: there were exactly 130 GEM shaves in both December and January).
 
 * I didn't build a fancy pants code driven table to extract and report on Knot Type preferences, but I did copy/paste the Brush table below into excel and create this pivot table of Knot Types. Despite the strong showing over the full year in 2023, boar was a distant third in January while the badgers edged out the synths.
 
@@ -18,7 +18,7 @@
 
 ## Notes & Caveats
 
-* 1,642 shave reports from January 2024 were analyzed to produce this report.
+* 1,637 shave reports from January 2024 were analyzed to produce this report.
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
@@ -41,11 +41,11 @@
 
 | name        |   shaves |   unique users |   avg shaves per user | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:------------|---------:|---------------:|----------------------:|:----------------|:----------------|
-| DE          |     1293 |            120 |                 10.78 | =               | =               |
+| DE          |     1289 |            120 |                 10.74 | =               | =               |
 | GEM         |      130 |             39 |                  3.33 | =               | ↑1              |
 | Straight    |       90 |             11 |                  8.18 | =               | ↓1              |
 | AC          |       75 |             21 |                  3.57 | =               | =               |
-| Injector    |       38 |             12 |                  3.17 | =               | =               |
+| Injector    |       37 |             11 |                  3.36 | =               | =               |
 | Hair Shaper |        7 |              4 |                  1.75 | =               | =               |
 | Cart        |        7 |              2 |                  3.5  | ↑1              | ↑1              |
 | Rolls       |        2 |              1 |                  2    | n/a             | ↑1              |
@@ -55,7 +55,7 @@
 
 | name                                              |   shaves |   unique users |   avg shaves per user | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:--------------------------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|
-| Karve Christopher Bradley                         |      128 |             18 |                  7.11 | ↑2              | =               |
+| Karve Christopher Bradley                         |      129 |             18 |                  7.17 | ↑2              | =               |
 | Blackland Blackbird                               |      101 |             21 |                  4.81 | =               | ↑2              |
 | Razorock Game Changer                             |       95 |             15 |                  6.33 | ↓2              | =               |
 | Gillette Superspeed                               |       77 |             19 |                  4.05 | =               | ↑1              |
@@ -94,9 +94,9 @@
 | Muhle R41                                         |       13 |              4 |                  3.25 | ↑4              | ↑8              |
 | Baili BR1xx                                       |       13 |              1 |                 13    | ↑13             | ↑13             |
 | Tatara Masamune                                   |       12 |              4 |                  3    | ↓4              | ↓1              |
-| Other Shavette                                    |       12 |              3 |                  4    | ↑5              | ↑12             |
 | Ralf Aust Straight                                |       11 |              3 |                  3.67 | ↑7              | ↓3              |
 | Blackland Dart                                    |       11 |              2 |                  5.5  | ↑2              | ↑7              |
+| Other Shavette                                    |       11 |              2 |                  5.5  | ↑4              | ↑11             |
 | WCS Multi Titanium Collection Razor               |       11 |              1 |                 11    | ↑1              | n/a             |
 | Gillette Aristocrat                               |       10 |              4 |                  2.5  | ↑10             | ↑2              |
 | Stirling Stainless DE Razor                       |       10 |              3 |                  3.33 | ↑1              | ↓1              |
@@ -135,32 +135,32 @@
 | Rapira Platinum Lux                  |       19 |              2 |                  9.5  | ↑12             | ↓4              |
 | Personna Med Prep                    |       16 |              2 |                  8    | n/a             | ↓3              |
 | Polsilver                            |       16 |              2 |                  8    | ↓10             | ↓1              |
-| Gillette Minora                      |       14 |              6 |                  2.33 | ↓8              | ↑7              |
-| Schick Injector                      |       14 |              4 |                  3.5  | ↓7              | ↓7              |
-| Ted Pella Injector                   |       13 |              3 |                  4.33 | ↑9              | ↑7              |
-| Gillette London Bridge               |       13 |              2 |                  6.5  | ↑7              | ↑12             |
-| Personna Stainless                   |       12 |              5 |                  2.4  | ↓8              | ↓6              |
-| Treet Platinum                       |       12 |              3 |                  4    | ↑9              | ↑9              |
-| Kismet Hair Shaper                   |       11 |              5 |                  2.2  | ↓12             | ↑2              |
-| Kai Captain Titan Mild (AC)          |       11 |              4 |                  2.75 | ↓1              | ↑3              |
+| Gillette Minora                      |       15 |              6 |                  2.5  | ↓8              | ↑7              |
+| Schick Injector                      |       14 |              4 |                  3.5  | ↓8              | ↓8              |
+| Gillette London Bridge               |       13 |              2 |                  6.5  | ↑6              | ↑11             |
+| Personna Stainless                   |       12 |              5 |                  2.4  | ↓9              | ↓7              |
+| Treet Platinum                       |       12 |              3 |                  4    | ↑8              | ↑8              |
+| Ted Pella Injector                   |       12 |              2 |                  6    | ↑7              | ↑5              |
+| Kismet Hair Shaper                   |       11 |              5 |                  2.2  | ↓13             | ↑1              |
+| Kai Captain Titan Mild (AC)          |       11 |              4 |                  2.75 | ↓2              | ↑2              |
 | Shaving Revolution Platinum          |       11 |              1 |                 11    | n/a             | n/a             |
-| RK Stainless                         |       10 |              3 |                  3.33 | ↑6              | ↓1              |
-| Kai Captain Titan Mild Protouch (AC) |       10 |              1 |                 10    | n/a             | ↑5              |
-| Gillette Wilkinson Sword             |        9 |              3 |                  3    | ↑1              | ↑5              |
-| Lord Super Stainless                 |        7 |              1 |                  7    | ↑1              | n/a             |
-| Bolzano                              |        6 |              4 |                  1.5  | ↓14             | ↓8              |
-| Personna Injector                    |        6 |              3 |                  2    | ↓3              | ↑2              |
-| Super-Max Super Stainless            |        6 |              2 |                  3    | ↓2              | ↓3              |
+| RK Stainless                         |       10 |              3 |                  3.33 | ↑5              | ↓2              |
+| Kai Captain Titan Mild Protouch (AC) |       10 |              1 |                 10    | n/a             | ↑4              |
+| Gillette Wilkinson Sword             |        9 |              3 |                  3    | =               | ↑4              |
+| Lord Super Stainless                 |        7 |              1 |                  7    | =               | n/a             |
+| Bolzano                              |        6 |              4 |                  1.5  | ↓15             | ↓9              |
+| Personna Injector                    |        6 |              3 |                  2    | ↓4              | ↑1              |
+| Super-Max Super Stainless            |        6 |              2 |                  3    | ↓3              | ↓4              |
 | Derby Concord                        |        6 |              1 |                  6    | n/a             | n/a             |
-| Kai (DE)                             |        6 |              1 |                  6    | n/a             | ↑5              |
-| Shark Chrome                         |        6 |              1 |                  6    | ↑3              | ↑7              |
-| Treet Black Beauty                   |        6 |              1 |                  6    | =               | n/a             |
-| Tiger Platinum                       |        5 |              1 |                  5    | ↓7              | ↓1              |
-| Dorco ST-300                         |        4 |              2 |                  2    | ↓5              | ↓2              |
-| Rockwell                             |        4 |              2 |                  2    | ↓12             | ↑5              |
+| Kai (DE)                             |        6 |              1 |                  6    | n/a             | ↑4              |
+| Shark Chrome                         |        6 |              1 |                  6    | ↑2              | ↑6              |
+| Treet Black Beauty                   |        6 |              1 |                  6    | ↓1              | n/a             |
+| Tiger Platinum                       |        5 |              1 |                  5    | ↓8              | ↓2              |
+| Dorco ST-300                         |        4 |              2 |                  2    | ↓6              | ↓3              |
+| Rockwell                             |        4 |              2 |                  2    | ↓13             | ↑4              |
 | AccuTec Pro Premium (GEM)            |        4 |              1 |                  4    | n/a             | n/a             |
-| Bic Astor Stainless                  |        4 |              1 |                  4    | ↓2              | n/a             |
-| Dorco Titan                          |        4 |              1 |                  4    | ↓3              | ↑5              |
+| Bic Astor Stainless                  |        4 |              1 |                  4    | ↓3              | n/a             |
+| Dorco Titan                          |        4 |              1 |                  4    | ↓4              | ↑4              |
 
 
 ##Brushes
@@ -181,56 +181,56 @@
 | PAA Synthetic                    |       26 |              3 |                  8.67 | ↑15             | ↓3              |
 | Maggard Badger                   |       24 |              7 |                  3.43 | ↑8              | ↑2              |
 | Declaration Grooming B15         |       24 |              6 |                  4    | ↑2              | =               |
+| Dogwood Badger                   |       23 |              7 |                  3.29 | ↓4              | ↓3              |
 | Wald Badger                      |       23 |              6 |                  3.83 | ↑7              | ↑17             |
-| Dogwood Badger                   |       22 |              7 |                  3.14 | ↓5              | ↓4              |
-| Omega 10048                      |       21 |              3 |                  7    | ↓1              | ↑11             |
-| Simpson Badger                   |       18 |              8 |                  2.25 | ↑1              | ↓7              |
-| Declaration Grooming B13         |       18 |              6 |                  3    | =               | ↓3              |
-| Omega 10077                      |       18 |              2 |                  9    | ↑11             | ↑13             |
-| Farvour Turn Craft Badger        |       15 |              4 |                  3.75 | ↓3              | ↑17             |
-| Omega Hi-Brush Synthetic         |       14 |              2 |                  7    | ↓3              | n/a             |
-| Van der Hagen Badger             |       13 |              1 |                 13    | ↑3              | ↑15             |
-| Razorock Synthetic               |       12 |              6 |                  2    | ↑3              | ↓5              |
-| Declaration Grooming B14         |       12 |              5 |                  2.4  | ↓2              | =               |
-| Semogue SOC Boar                 |       11 |              7 |                  1.57 | ↓8              | ↓4              |
-| Omega 10049                      |       11 |              5 |                  2.2  | ↑3              | ↓5              |
-| Wild West Brushworks Synthetic   |       10 |              5 |                  2    | ↑6              | ↑5              |
-| AKA Brushworx Synthetic          |       10 |              4 |                  2.5  | ↓1              | ↑4              |
-| Maggard Boar                     |       10 |              3 |                  3.33 | =               | ↑12             |
-| Omega (model not specified) Boar |        9 |              4 |                  2.25 | ↑2              | ↑6              |
-| Declaration Grooming B9A         |        9 |              3 |                  3    | ↓4              | ↑5              |
-| Summer Break Badger              |        9 |              3 |                  3    | ↓6              | ↑2              |
-| AP Shave Co Badger               |        8 |              5 |                  1.6  | ↓13             | ↑4              |
-| Declaration Grooming B11         |        8 |              4 |                  2    | =               | ↓4              |
-| Chisel & Hound Synthetic         |        8 |              3 |                  2.67 | ↓1              | ↑7              |
-| DSCosmetics Synthetic            |        8 |              3 |                  2.67 | ↓6              | ↑1              |
-| Muhle Badger                     |        8 |              3 |                  2.67 | ↓3              | ↑3              |
-| Shore Shaving Synthetic          |        8 |              2 |                  4    | ↑1              | =               |
-| Boker Synthetic                  |        8 |              1 |                  8    | =               | ↑1              |
-| Grizzly Bay Synthetic            |        7 |              4 |                  1.75 | =               | ↑7              |
-| Yaqi Badger                      |        7 |              2 |                  3.5  | ↑2              | ↑3              |
-| Semogue 2000                     |        6 |              3 |                  2    | ↓3              | ↓1              |
-| Declaration Grooming B10         |        6 |              2 |                  3    | =               | ↑5              |
-| Rubberset Synthetic              |        6 |              2 |                  3    | ↓7              | ↑5              |
-| Semogue 620                      |        6 |              2 |                  3    | ↓3              | n/a             |
-| Wolf Whiskers Badger             |        6 |              2 |                  3    | ↓4              | ↑5              |
-| Wild West Brushworks Badger      |        6 |              1 |                  6    | ↑1              | ↓7              |
-| Zenith B8                        |        6 |              1 |                  6    | n/a             | ↑9              |
-| Stirling Badger                  |        5 |              4 |                  1.25 | =               | ↑5              |
+| Omega 10048                      |       21 |              3 |                  7    | =               | ↑12             |
+| Simpson Badger                   |       18 |              8 |                  2.25 | ↑2              | ↓6              |
+| Declaration Grooming B13         |       18 |              6 |                  3    | ↑1              | ↓2              |
+| Omega 10077                      |       18 |              2 |                  9    | ↑12             | ↑14             |
+| Farvour Turn Craft Badger        |       15 |              4 |                  3.75 | ↓2              | ↑18             |
+| Omega Hi-Brush Synthetic         |       14 |              2 |                  7    | ↓2              | n/a             |
+| Van der Hagen Badger             |       13 |              1 |                 13    | ↑4              | ↑16             |
+| Razorock Synthetic               |       12 |              6 |                  2    | ↑4              | ↓4              |
+| Declaration Grooming B14         |       12 |              5 |                  2.4  | ↓1              | ↑1              |
+| Semogue SOC Boar                 |       11 |              7 |                  1.57 | ↓7              | ↓3              |
+| Omega 10049                      |       11 |              5 |                  2.2  | ↑4              | ↓4              |
+| Wild West Brushworks Synthetic   |       10 |              5 |                  2    | ↑7              | ↑6              |
+| AKA Brushworx Synthetic          |       10 |              4 |                  2.5  | =               | ↑5              |
+| Maggard Boar                     |       10 |              3 |                  3.33 | ↑1              | ↑13             |
+| Omega (model not specified) Boar |        9 |              4 |                  2.25 | ↑3              | ↑7              |
+| Declaration Grooming B9A         |        9 |              3 |                  3    | ↓3              | ↑6              |
+| Summer Break Badger              |        9 |              3 |                  3    | ↓5              | ↑3              |
+| AP Shave Co Badger               |        8 |              5 |                  1.6  | ↓12             | ↑5              |
+| Declaration Grooming B11         |        8 |              4 |                  2    | ↑1              | ↓3              |
+| Chisel & Hound Synthetic         |        8 |              3 |                  2.67 | =               | ↑8              |
+| DSCosmetics Synthetic            |        8 |              3 |                  2.67 | ↓5              | ↑2              |
+| Muhle Badger                     |        8 |              3 |                  2.67 | ↓2              | ↑4              |
+| Shore Shaving Synthetic          |        8 |              2 |                  4    | ↑2              | ↑1              |
+| Boker Synthetic                  |        8 |              1 |                  8    | ↑1              | ↑2              |
+| Grizzly Bay Synthetic            |        7 |              4 |                  1.75 | ↑1              | ↑8              |
+| Yaqi Badger                      |        7 |              2 |                  3.5  | ↑3              | ↑4              |
+| Semogue 2000                     |        6 |              3 |                  2    | ↓2              | =               |
+| Declaration Grooming B10         |        6 |              2 |                  3    | ↑1              | ↑6              |
+| Rubberset Synthetic              |        6 |              2 |                  3    | ↓6              | ↑6              |
+| Semogue 620                      |        6 |              2 |                  3    | ↓2              | n/a             |
+| Wolf Whiskers Badger             |        6 |              2 |                  3    | ↓3              | ↑6              |
+| Wild West Brushworks Badger      |        6 |              1 |                  6    | ↑2              | ↓6              |
+| Zenith B8                        |        6 |              1 |                  6    | n/a             | ↑10             |
+| Rubberset Badger                 |        5 |              3 |                  1.67 | ↑2              | ↓2              |
 
 
 ##Knot Sizes
 
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:-------|---------:|---------------:|----------------------:|:----------------|:----------------|
-| 26mm   |      302 |             38 |                  7.95 | =               | ↑1              |
-| 24mm   |      185 |             41 |                  4.51 | =               | ↓1              |
+| 26mm   |      303 |             38 |                  7.97 | =               | ↑1              |
+| 24mm   |      184 |             40 |                  4.6  | =               | ↓1              |
 | 28mm   |      164 |             29 |                  5.66 | =               | =               |
 | 22mm   |       81 |             13 |                  6.23 | ↑1              | ↑2              |
 | 31mm   |       72 |             24 |                  3    | ↓1              | ↑2              |
 | 25mm   |       33 |              4 |                  8.25 | ↑1              | ↑6              |
 | 30mm   |       21 |              8 |                  2.62 | ↓1              | ↓2              |
-| 27mm   |       18 |              8 |                  2.25 | ↑2              | ↓4              |
+| 27mm   |       17 |              8 |                  2.12 | ↑2              | ↓4              |
 | 29mm   |       15 |              4 |                  3.75 | =               | =               |
 | 20mm   |        8 |              1 |                  8    | ↑2              | =               |
 | 21mm   |        2 |              2 |                  1    | ↓1              | =               |
@@ -245,7 +245,7 @@
 | C SB   |       55 |             11 |                  5    | =               | =               |
 | D SB   |       20 |              3 |                  6.67 | =               | =               |
 | B SB   |       19 |              4 |                  4.75 | ↑3              | ↑2              |
-| A SB   |        8 |              1 |                  8    | =               | ↑2              |
+| A SB   |        9 |              1 |                  9    | =               | ↑2              |
 | F OC   |        4 |              2 |                  2    | =               | n/a             |
 | C OC   |        2 |              1 |                  2    | ↓2              | ↓3              |
 | E SB   |        1 |              1 |                  1    | ↓4              | ↓1              |
@@ -304,24 +304,26 @@
 | user                   |   shaves |   missed days | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:-----------------------|---------:|--------------:|:----------------|:----------------|
 | u/djundjila            |       32 |             0 | =               | ↑1              |
-| u/SamIAmShepard        |       31 |             0 | =               | ↑1              |
-| u/scribe__             |       31 |             0 | ↑1              | ↑12             |
-| u/Eructate             |       31 |             0 | ↑1              | ↑1              |
-| u/InfernalInternal     |       31 |             0 | ↑1              | ↑1              |
 | u/gcgallant            |       31 |             0 | ↑3              | ↑1              |
-| u/el_charminman        |       31 |             0 | ↑1              | ↑1              |
-| u/wallygator88         |       31 |             0 | ↑1              | ↑1              |
-| u/oswald_heist         |       31 |             0 | ↑1              | ↑1              |
-| u/Old_Hiker            |       31 |             2 | ↑1              | ↑2              |
-| u/jrhunter25           |       31 |             0 | ↑22             | ↑27             |
-| u/PhilosphicalZombie   |       31 |             0 | ↑2              | ↑1              |
-| u/loudmusicboy         |       31 |             0 | ↑1              | ↑1              |
-| u/AdWorried2804        |       31 |             0 | ↑2              | n/a             |
 | u/35048467             |       31 |             0 | ↑1              | ↑1              |
+| u/scribe__             |       31 |             0 | ↑1              | ↑12             |
 | u/rebdoomer88          |       31 |             0 | ↑1              | n/a             |
-| u/BossHoggins10        |       30 |             1 | ↑4              | n/a             |
+| u/oswald_heist         |       31 |             0 | ↑1              | ↑1              |
+| u/loudmusicboy         |       31 |             0 | ↑1              | ↑1              |
+| u/jrhunter25           |       31 |             0 | ↑22             | ↑27             |
+| u/wallygator88         |       31 |             0 | ↑1              | ↑1              |
+| u/el_charminman        |       31 |             0 | ↑1              | ↑1              |
+| u/PhilosphicalZombie   |       31 |             0 | ↑2              | ↑1              |
+| u/InfernalInternal     |       31 |             0 | ↑1              | ↑1              |
+| u/Impressive_Donut114  |       31 |             0 | ↑1              | ↑1              |
+| u/Eructate             |       31 |             0 | ↑1              | ↑1              |
+| u/AdWorried2804        |       31 |             0 | ↑2              | n/a             |
+| u/SamIAmShepard        |       31 |             0 | =               | ↑1              |
+| u/Environmental-Gap380 |       30 |             1 | =               | =               |
 | u/partyman97_3         |       30 |             1 | =               | n/a             |
 | u/EldrormR             |       30 |             1 | ↑2              | =               |
-| u/Impressive_Donut114  |       30 |             1 | =               | =               |
-| u/Environmental-Gap380 |       30 |             1 | =               | =               |
+| u/BossHoggins10        |       30 |             1 | ↑4              | n/a             |
+| u/Breadheater9876      |       29 |             2 | ↓1              | n/a             |
+| u/Old_Hiker            |       29 |             2 | ↓1              | =               |
+| u/SufficientKnee       |       29 |             2 | ↓1              | ↑10             |
 | u/rocketk455           |       29 |             2 | ↑3              | ↑1              |

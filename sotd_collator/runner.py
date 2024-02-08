@@ -22,7 +22,7 @@ from sotd_collator.staged_name_extractors import (
     StagedUserNameExtractor,
 )
 from sotd_collator.superspeed_tip_extractor import SuperSpeedTipExtractor
-from sotd_collator.utils import add_ranking_delta, get_shave_data, get_user_shave_data
+from sotd_collator.utils import add_ranking_delta, get_shave_data, get_user_shave_data, single_user_report
 
 
 class Runner(object):
@@ -79,12 +79,12 @@ class Runner(object):
                 "renamer": BladeAlternateNamer(),
                 "max_entities": 50,
             },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "renamer": BrushAlternateNamer(),
-                "max_entites": 50,
-            },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "renamer": BrushAlternateNamer(),
+            #     "max_entites": 50,
+            # },
             {
                 "name": "Knot Size",
                 "extractor": KnotSizeExtractor(),
@@ -241,10 +241,21 @@ class Runner(object):
         last = 0
         # curr_month = datetime.strptime(comments_target[0]["created_utc"], "%Y-%m-%d %H:%M:%S")
         # days_in_month = (calendar.monthrange(curr_month.year, curr_month.month)[1])
+        all_rows = []
         for index, row in usage.iterrows():
+            all_rows.append(row)
+        
+        for row in all_rows:
             head += 1
-            if head >= 20 and row["shaves"] < last:
-                break
+            if head >= 21 and row["shaves"] <= last:
+                if len(all_rows) > head:
+                    next_row = all_rows[head+1]
+                    if (row["shaves"] > next_row["shaves"]):
+                        break
+                    elif (row["shaves"] == next_row["shaves"]):
+                        if row["missed days"] < next_row["missed days"]:
+                            break
+
             last = row["shaves"]
 
         usage = usage.head(head)
@@ -272,14 +283,19 @@ if __name__ == "__main__":
     last_month_label = last_month.strftime("%b %Y")
     last_year_label = last_year.strftime("%b %Y")
 
-    usage = Runner().top_shavers(
-        comments_target,
-        comments_last_month,
-        comments_last_year,
-        last_month_label,
-        last_year_label,
-    )
-    print("## Top Contributors\n")
-    print(usage.to_markdown(index=True))
 
-    print("\n")
+    thread_map = pl.get_thread_map(target, target)
+    single_user_report("u/Old_Hiker", comments_target, thread_map, StagedUserNameExtractor(), target, target)
+
+
+    # usage = Runner().top_shavers(
+    #     comments_target,
+    #     comments_last_month,
+    #     comments_last_year,
+    #     last_month_label,
+    #     last_year_label,
+    # )
+    # print("## Top Contributors\n")
+    # print(usage.to_markdown(index=True))
+
+    # print("\n")

@@ -8,6 +8,7 @@ import json
 from numpy import empty
 
 import praw
+from praw.models import MoreComments
 
 from praw.models import Submission
 from sotd_collator.blade_name_extractor import BladeNameExtractor
@@ -268,7 +269,7 @@ class SotdPostLocator(object):
 
         return results
 
-    def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
+    def _get_comments_for_threadsX(self, threads: [Submission]) -> [dict]:
         line_clear = "\x1b[2K"  # <-- ANSI sequence
         comments = []
         for thread in threads:
@@ -283,6 +284,40 @@ class SotdPostLocator(object):
 
         print(end=line_clear)
         return comments
+
+    def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
+        LINE_CLEAR = "\x1b[2K"  # <-- ANSI sequence
+
+        def _get_comments(comment_list):
+            # compatible with recursion / more comments objects
+            collected_comments = []
+            for x in comment_list:
+                if isinstance(x, MoreComments):
+                    collected_comments.extend(_get_comments(x.comments()))
+                else:
+                    if comment.parent_id == comment.link_id:
+                        if hasattr(comment, "body") and comment.body != "[deleted]":
+                            collected_comments.append(comment)
+
+            return collected_comments
+        
+        comments = []
+        for thread in threads:
+            for comment in thread.comments:
+                comments.extend(_get_comments(thread.comments))
+                print(end=LINE_CLEAR)
+                print(
+                    f"Loading comments for {thread.title}: {len(comments)} loaded",
+                    end="\r",
+                )
+
+        dedupe_map = {}
+        for comment in comments:
+            if comment.id not in dedupe_map:
+                dedupe_map[comment.id] = self._comment_to_dict(comment)
+
+        return [x for x in dedupe_map.values()]
+
 
     def _get_comments_for_given_month(self, given_month: date) -> [Comment]:
         threads = self.get_threads_for_given_month(given_month)

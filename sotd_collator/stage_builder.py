@@ -61,8 +61,9 @@ class StageBuilder(object):
             filename = curr_month.strftime("%Y%m.json")
 
             if force_refresh:
-                for file in cached_files[filename]:
-                    os.remove(file)
+                if filename in cached_files:
+                    for file in cached_files[filename]:
+                        os.remove(file)
 
             # threads = pl.get_threads_for_given_month(curr_month)
             comments = pl.get_comments_for_given_month_cached(curr_month)
