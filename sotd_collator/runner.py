@@ -1,3 +1,6 @@
+import datetime
+from dateutil.relativedelta import relativedelta
+
 import inflect
 import pandas as pd
 import praw
@@ -19,15 +22,35 @@ from sotd_collator.staged_name_extractors import (
     StagedUserNameExtractor,
 )
 from sotd_collator.superspeed_tip_extractor import SuperSpeedTipExtractor
-from sotd_collator.utils import add_ranking_delta, get_shave_data
+from sotd_collator.utils import add_ranking_delta, get_shave_data, get_user_shave_data
 
 
 class Runner(object):
     MAX_ENTITIES = 50
 
+    def list_to_english_string(self, input_list):
+        if not input_list:
+            return ""
+
+        if len(input_list) == 1:
+            return input_list[0]
+        
+        if len(input_list) == 2:
+            return f"{input_list[0]} and {input_list[1]}"
+
+        # Join all elements except the last one with commas
+        elements_except_last = ", ".join(input_list[:-1])
+
+        # Combine the elements with commas and "and" for the last element
+        result_string = f"{elements_except_last}, and {input_list[-1]}"
+
+        return result_string
+
+
     def run(
         self,
         header: str,
+        thread_map: dict,
         comments_target: [dict],
         comments_delta_one: [dict],
         comments_delta_two: [dict],
@@ -35,6 +58,8 @@ class Runner(object):
         delta_two_label: str,
         min_shaves: int,
         min_unique_user: int,
+        start_month: datetime.date,
+        end_month: datetime.date,
     ):
         process_entities = [
             {
@@ -54,12 +79,12 @@ class Runner(object):
                 "renamer": BladeAlternateNamer(),
                 "max_entities": 50,
             },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "renamer": BrushAlternateNamer(),
-                "max_entites": 50,
-            },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "renamer": BrushAlternateNamer(),
+            #     "max_entites": 50,
+            # },
             {
                 "name": "Knot Size",
                 "extractor": KnotSizeExtractor(),
@@ -91,15 +116,15 @@ class Runner(object):
 
             # print(f'retrieving {target_label} usage', end='\r')
             usage = get_shave_data(
-                comments_target, entity["extractor"], entity["renamer"]
+                thread_map, comments_target, entity["extractor"], entity["renamer"]
             )
             # print(f'retrieving {delta_one_label} usage', end='\r')
             pm_usage = get_shave_data(
-                comments_delta_one, entity["extractor"], entity["renamer"]
+                thread_map, comments_delta_one, entity["extractor"], entity["renamer"]
             )
             # print(f'retrieving {delta_two_label} usage', end='\r')
             py_usage = get_shave_data(
-                comments_delta_two, entity["extractor"], entity["renamer"]
+                thread_map, comments_delta_two, entity["extractor"], entity["renamer"]
             )
 
             # print(f'adding {delta_one_label} delta', end='\r')
@@ -137,6 +162,7 @@ class Runner(object):
         # do razor plus blade combo, filtered on most popular razors...
         # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
         rpb_usage = get_shave_data(
+            thread_map,
             comments_target,
             RazorPlusBladeNameExtractor(),
             RazorPlusBladeAlternateNamer(),
@@ -168,10 +194,38 @@ class Runner(object):
         print(rpb_usage.to_markdown(index=False))
         print("\n")
 
-        print("## Top Contributors\n")
-        usage = get_shave_data(comments_target, StagedUserNameExtractor(), None)
-        pm_usage = get_shave_data(comments_delta_one, StagedUserNameExtractor(), None)
-        py_usage = get_shave_data(comments_delta_two, StagedUserNameExtractor(), None)
+        usage = self.top_shavers(
+            thread_map,
+            comments_target,
+            comments_delta_one,
+            comments_delta_two,
+            delta_one_label,
+            delta_two_label,
+            start_month,
+            end_month
+        )
+
+        print("## Top Shavers\n")
+        print(usage.to_markdown(index=False))
+
+        print("\n")
+
+    def top_shavers(
+        self,
+        thread_map,
+        comments_target,
+        comments_delta_one,
+        comments_delta_two,
+        delta_one_label,
+        delta_two_label,
+        start_month,
+        end_month
+    ):
+
+        # usage = get_shave_data(thread_map, comments_target, StagedUserNameExtractor(), None)
+        pm_usage = get_shave_data(thread_map, comments_delta_one, StagedUserNameExtractor(), None)
+        py_usage = get_shave_data(thread_map, comments_delta_two, StagedUserNameExtractor(), None)
+        usage = get_user_shave_data(thread_map, comments_target, StagedUserNameExtractor(), start_month, end_month)
         usage = add_ranking_delta(usage, pm_usage, delta_one_label)
         usage = add_ranking_delta(usage, py_usage, delta_two_label)
         usage.drop("rank", inplace=True, axis=1)
@@ -195,10 +249,7 @@ class Runner(object):
 
         usage = usage.head(head)
         usage.rename(columns={"name": "user"}, inplace=True)
-
-        print(usage.to_markdown(index=False))
-
-        print("\n")
+        return usage
 
     # print('## Shaving Frequency Histogram\n')
     # print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
@@ -208,8 +259,27 @@ class Runner(object):
 if __name__ == "__main__":
     pr = praw.Reddit("reddit")
     pl = SotdPostLocator(pr)
-    comments = pl.get_comments_for_given_year_staged(2023)
-    for comment in comments:
-        if "razor" in comment:
-            if "superspeed" in comment["razor"].lower():
-                print(comment["razor"])
+
+    target = datetime.date.today().replace(day=1) - relativedelta(months=1)
+    last_month = target - relativedelta(months=1)
+    last_year = target - relativedelta(years=1)
+
+    comments_target = pl.get_comments_for_given_month_staged(target)
+    comments_last_month = pl.get_comments_for_given_month_staged(last_month)
+    comments_last_year = pl.get_comments_for_given_month_staged(last_year)
+
+    target_label = target.strftime("%B %Y")
+    last_month_label = last_month.strftime("%b %Y")
+    last_year_label = last_year.strftime("%b %Y")
+
+    usage = Runner().top_shavers(
+        comments_target,
+        comments_last_month,
+        comments_last_year,
+        last_month_label,
+        last_year_label,
+    )
+    print("## Top Contributors\n")
+    print(usage.to_markdown(index=True))
+
+    print("\n")

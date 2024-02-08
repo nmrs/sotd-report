@@ -1,7 +1,10 @@
 # shared functions and the like
+from concurrent.futures import thread
+from datetime import datetime, date
+import re
 from time import time
 import pandas as pd
-from calendar import monthrange
+from calendar import calendar, monthrange
 from base_alternate_namer import BaseAlternateNamer
 from base_name_extractor import BaseNameExtractor
 
@@ -20,15 +23,70 @@ def timer_func(func):
 
 
 def get_shave_data(
+    thread_map,
     comments: [dict],
     name_extractor: BaseNameExtractor,
     alternate_namer: BaseAlternateNamer,
     name_fallback=True,
 ):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
-    raw_usage = {"name": [], "user_id": []}
+    raw_usage = get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback)
+
+    df = pd.DataFrame(raw_usage)
+    df = df.groupby("name").agg({"user_id": ["count", "nunique"]}).reset_index()
+    df.columns = ["name", "shaves", "unique users"]
+    df = df[df.apply(lambda x: x["name"].lower() != "none", axis=1)]
+    df.loc[:, "avg shaves per user"] = df.apply(
+        lambda x: "{0:.2f}".format(
+            x["shaves"] / x["unique users"] if x["unique users"] > 0 else 0
+        ),
+        axis=1,
+    )
+    df.loc[:, "rank"] = df["shaves"].rank(method="dense", ascending=False)
+    return df
+
+def get_user_shave_data(
+    thread_map: dict,
+    comments: [dict],
+    name_extractor: BaseNameExtractor,
+    start_month: datetime.date,
+    end_month: datetime.date
+):
+    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
+    raw_usage = get_raw_data(thread_map, comments, name_extractor, None, True)
+    raw_df = pd.DataFrame(raw_usage)
+    raw_df['date'] = pd.to_datetime(raw_df['date'])
+
+    start_day = start_month.replace(day=1)
+    days_in_month = monthrange(end_month.year, end_month.month)[1]
+    end_day = end_month.replace(day=days_in_month)
+
+    # Create a DataFrame with all days of the month for each user
+    date_range = pd.date_range(start_day, end_day, freq='D')
+    users = raw_df['name'].unique()
+    date_user_df = pd.DataFrame([(date, user) for date in date_range for user in users], columns=['date', 'name'])
+    # Merge the original DataFrame with the new one
+    merged_df = pd.merge(date_user_df, raw_df, on=['date', 'name'], how='left')
+    # Filter out days where no comments were made
+    no_comment_days = merged_df[merged_df['user_id'].isnull()]
+
+    # Count the number of days without comments for each user
+    missed_days = no_comment_days.groupby('name')['date'].count()
+    missed_days.name = "missed days"
+
+    shave_df = get_shave_data(thread_map, comments, name_extractor, None, True)
+
+    result = shave_df.merge(missed_days, on="name")
+    return result
+
+
+def get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback):
+
+    raw_usage = {"name": [], "user_id": [], "date": []}
 
     for comment in comments:
+        thread_id = extract_thread_id_from_comment_url(comment['url'])
+        thread_date = extract_date_from_thread_title(thread_map[thread_id]["title"])
         entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None
@@ -44,19 +102,8 @@ def get_shave_data(
 
             raw_usage["name"].append(principal_name)
             raw_usage["user_id"].append(comment["author"])
-
-    df = pd.DataFrame(raw_usage)
-    df = df.groupby("name").agg({"user_id": ["count", "nunique"]}).reset_index()
-    df.columns = ["name", "shaves", "unique users"]
-    df = df[df.apply(lambda x: x["name"].lower() != "none", axis=1)]
-    df.loc[:, "avg shaves per user"] = df.apply(
-        lambda x: "{0:.2f}".format(
-            x["shaves"] / x["unique users"] if x["unique users"] > 0 else 0
-        ),
-        axis=1,
-    )
-    df.loc[:, "rank"] = df["shaves"].rank(method="dense", ascending=False)
-    return df
+            raw_usage["date"].append(thread_date)
+    return raw_usage
 
 
 def get_shave_data_for_month(
@@ -187,3 +234,42 @@ def get_unlinked_entity_data(comments: [dict], name_extractor, alternate_namer):
     df.columns = ["name", "shaves", "unique users"]
     df = df[df.apply(lambda x: x["name"].lower() != "none", axis=1)]
     return df
+
+def extract_date_from_thread_title(title):
+    # Define a regular expression pattern for matching dates with variations in spacing
+    # date_pattern = re.compile(r'.*(\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?).*\s+\d{1,2}\s*,?\s*\d{4})')
+    date_patterns = [
+        r".*(\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*\s+\d{1,2}\s*,?\s*\d{4})",
+        r".*(\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*,?\s+\d{4})",
+    ]
+
+    date_formats = ["%b %d, %Y", "%B %d, %Y", "%b. %d, %Y", "%b %d %Y", "%d %b %Y"]
+
+    replacements = [(r'\b(\d{2})\b', r'\1'), (r'\b(\d{1})\b', r'0\1')]
+
+    for pattern in date_patterns:
+        # regex = re.compile(pattern)
+
+        # Search for the pattern in the input string
+        match = re.search(pattern, title)
+
+        if match:
+            for format in date_formats:
+                for replacement in replacements:
+                    date_string = re.sub(replacement[0], replacement[1], match.group(1))
+                    try:
+                        date_obj = datetime.strptime(date_string, format).date()
+                        return date_obj
+                    except ValueError:
+                        pass
+
+    raise ValueError(f"Unable to extract date from: {title}")
+
+def extract_thread_id_from_comment_url(url):
+    pattern = re.compile(r'/comments/([^/]+)/')
+    match = pattern.search(url)
+
+    if match:
+        return match.group(1)
+    raise ValueError(f"Unable to find thread id in {url}")
+        

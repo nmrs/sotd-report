@@ -1,15 +1,41 @@
-# import calendar
-# import datetime
-# from unittest import TestCase
-# import praw
-# from dateutil import relativedelta
-# import pandas as pd
+import calendar
+import datetime
+from unittest import TestCase
+from numpy import equal
+import praw
+from dateutil import relativedelta
+import pandas as pd
 
+from sotd_collator.sotd_post_locator import SotdPostLocator
 
 # from sotd_collator.sotd_post_locator import SotdPostLocator
 
+'Wednesday SOTD Thread (6 Oct 2021)'
 
-# class TestSotdPostLocator(TestCase):
+class TestSotdPostLocator(TestCase):
+
+    def test_extract_date_from_title(self):
+        test_cases = [
+            {
+                "case": 'Theme Thursday SOTD Thread - Dec. 06, 2018',
+                "expected_result": datetime.date(2018, 12, 6)
+            },
+            {
+                "case": 'Wednesday SOTD Thread (6 Oct 2021)',
+                "expected_result": datetime.date(2021, 10, 6)
+            },
+        ]
+
+        pr = praw.Reddit('reddit')
+        pl = SotdPostLocator(pr)
+        
+        for case in test_cases:
+            result = pl.extract_date_from_thread_title(case['case'])
+            self.assertEqual(case["expected_result"], result)
+
+
+
+
 #     longMessage = True
 
 #     # CONCLUDE WE CAN GO BACK TO 2016-05-01
@@ -50,6 +76,7 @@
 #             )
 
 
-# if __name__ == "__main__":
-#     tspl = TestSotdPostLocator()
-#     tspl.test_get_threads_for_given_month_from_reddit()
+if __name__ == "__main__":
+    tspl = TestSotdPostLocator()
+    # tspl.test_get_threads_for_given_month_from_reddit()
+    tspl.test_extract_date_from_title()

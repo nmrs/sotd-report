@@ -1,5 +1,7 @@
 import os
 from datetime import datetime, date
+import re
+from dateutil import rrule
 import sys
 from tokenize import Comment
 import json
@@ -34,6 +36,23 @@ class SotdPostLocator(object):
         month_full = given_month.strftime("%B").lower()
         year = given_month.year
         return f"flair:SOTD {month_abbr} {month_full} {year} {year}SOTD"
+
+    def get_threads_for_given_month_cached(self, given_month: date) -> [dict]:
+        if not isinstance(given_month, date):
+            raise AttributeError("Must pass in a datetime.date object")
+
+        cache_file = self.cache_provider.get_thread_cache_file_path(given_month)
+
+        with open(cache_file, "r", encoding=sys.getdefaultencoding()) as f_cache:
+            return json.load(f_cache)
+
+    def get_thread_map(self, start_month, end_month):
+        result = {}
+        for m in rrule.rrule(rrule.MONTHLY, dtstart=start_month, until=end_month):
+            for thread in self.get_threads_for_given_month_cached(m):
+                result[thread["id"]] = thread
+
+        return result
 
     def get_threads_for_given_month(self, given_month: date) -> [Submission]:
         """
@@ -118,10 +137,12 @@ class SotdPostLocator(object):
 
         month = given_month.strftime("%Y-%m")
         manual_threads = []
-        with open("misc/threads/manual.json", "r", encoding=sys.getdefaultencoding()) as f:
+        with open(
+            "misc/threads/manual.json", "r", encoding=sys.getdefaultencoding()
+        ) as f:
             manual = json.load(f)
             for thread in manual:
-                if thread['date'].startswith(month):
+                if thread["date"].startswith(month):
                     manual_threads.append(thread)
 
         threads = [t for t in threads]
@@ -129,17 +150,15 @@ class SotdPostLocator(object):
         for m in manual_threads:
             found = False
             for t in threads:
-                if m['id'] == t.id:
+                if m["id"] == t.id:
                     found = True
                     break
-            if not found and m['id'] != '':
-                threads.append(Submission(self.reddit, id=m['id']))
-        
+            if not found and m["id"] != "":
+                threads.append(Submission(self.reddit, id=m["id"]))
+
         return sorted(threads, key=lambda x: x.created_utc, reverse=False)
 
-    def _add_thread_comments_to_cache(
-        self, thread: Submission, given_month: date
-    ):
+    def _add_thread_comments_to_cache(self, thread: Submission, given_month: date):
         cache_file = self.cache_provider.get_comment_cache_file_path(given_month)
         cache = []
         try:
@@ -164,9 +183,9 @@ class SotdPostLocator(object):
         return {
             "author": comment.author.name if comment.author is not None else None,
             "body": comment.body,
-            "created_utc": datetime.fromtimestamp(
-                comment.created_utc
-            ).strftime("%Y-%m-%d %H:%M:%S"),
+            "created_utc": datetime.fromtimestamp(comment.created_utc).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            ),
             "id": comment.id,
             "url": f"https://{base}/{comment.link_id.removeprefix('t3_')}/comment/{comment.id}/",
         }
@@ -200,9 +219,7 @@ class SotdPostLocator(object):
             self.get_comments_for_given_month_cached(given_month)
             return self.__stage_comments(given_month)
 
-    def get_comments_for_given_month_cached(
-            self,
-            given_month: date) -> [dict]:
+    def get_comments_for_given_month_cached(self, given_month: date) -> [dict]:
         # be kind to reddit, persist results to disk
         # so we dont hit it everytime we change the razor cleanup / processing
 
@@ -277,9 +294,7 @@ class SotdPostLocator(object):
         collected_comments = []
         for m in range(1, 13):
             collected_comments.extend(
-                self.get_comments_for_given_month_staged(
-                    date(given_year, m, 1)
-                )
+                self.get_comments_for_given_month_staged(date(given_year, m, 1))
             )
 
         return collected_comments
@@ -288,9 +303,7 @@ class SotdPostLocator(object):
         collected_comments = []
         for m in range(1, 13):
             collected_comments.extend(
-                self.get_comments_for_given_month_cached(
-                    date(given_year, m, 1)
-                )
+                self.get_comments_for_given_month_cached(date(given_year, m, 1))
             )
 
         return collected_comments

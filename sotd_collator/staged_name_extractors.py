@@ -1,3 +1,4 @@
+from datetime import datetime
 import re
 
 from sotd_collator.base_name_extractor import BaseNameExtractor
@@ -25,6 +26,7 @@ class StagedUserNameExtractor(BaseNameExtractor):
     @BaseNameExtractor.post_process_name
     def get_name(self, comment):
         return f'u/{comment["author"]}' if "author" in comment else None
+        # return comment["created_utc"][0:10]
 
 
 class StagedBladeUseExtractor(BaseNameExtractor):
