@@ -9,7 +9,6 @@ class RazorAlternateNamer(BaseAlternateNamer):
 
     _raw = OrderedDict(
         {
-            "Asylum Evolution": ["asylum.*evo"],
             "Above the Tie H1": [
                 "ATT.*h-*1",
                 "tie.*h-*1",
@@ -55,6 +54,9 @@ class RazorAlternateNamer(BaseAlternateNamer):
                 "tie.*se-*1*",
                 "(atlas|bamboo|calypso|colossus|kronos).*se1",
             ],
+            "Asylum Evolution": ["asylum.*evo"],
+            "Aylsworth Drakkant": ["drakk?ant"],
+            "Aylsworth Kopparkant": ["kopp?arkant"],
             "Above the Tie Windsor Pro SB90": ["(ATT|tie).*sb90", "(ATT|tie).*wind"],
             "Baili BR1xx": [r"(baili|BR)(\s|-)*(1|2)\d{2}", "baili.*tto"],
             "Barbaros TR-2": ["barbaros"],

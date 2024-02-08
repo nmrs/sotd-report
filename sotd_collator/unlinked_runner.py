@@ -58,29 +58,15 @@ process_entities = [
     },
 ]
 
-comments = None
-mode = "annual"
-
-if mode == "annual":
-    target = 2023
-    comments = pl.get_comments_for_given_year_staged(2023)
-    print(
-        """
-    Unlinked entity detection for {0}
-    """.format(
-            target
-        )
+target = datetime.date(2024, 1, 1)
+comments = pl.get_comments_for_given_month_staged(target)
+print(
+    """
+Unlinked entity detection for {0}
+""".format(
+        target.strftime("%b %Y")
     )
-else:
-    target = datetime.date(2023, 12, 1)
-    comments = pl.get_comments_for_given_month_staged(target)
-    print(
-        """
-    Unlinked entity detection for {0}
-    """.format(
-            target.strftime("%b %Y")
-        )
-    )
+)
 
 for entity in process_entities:
     print("##{0}\n".format(inf_engine.plural(entity["name"])))
