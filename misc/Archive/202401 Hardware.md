@@ -303,24 +303,25 @@
 
 | user                   |   shaves |   missed days | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:-----------------------|---------:|--------------:|:----------------|:----------------|
+| u/djundjila            |       32 |             0 | =               | ↑1              |
+| u/SamIAmShepard        |       31 |             0 | =               | ↑1              |
+| u/scribe__             |       31 |             0 | ↑1              | ↑12             |
+| u/Eructate             |       31 |             0 | ↑1              | ↑1              |
+| u/InfernalInternal     |       31 |             0 | ↑1              | ↑1              |
+| u/gcgallant            |       31 |             0 | ↑3              | ↑1              |
+| u/el_charminman        |       31 |             0 | ↑1              | ↑1              |
+| u/wallygator88         |       31 |             0 | ↑1              | ↑1              |
+| u/oswald_heist         |       31 |             0 | ↑1              | ↑1              |
 | u/Old_Hiker            |       31 |             2 | ↑1              | ↑2              |
-| u/Environmental-Gap380 |       30 |             1 | =               | =               |
-| u/EldrormR             |       30 |             1 | ↑2              | =               |
-| u/partyman97_3         |       30 |             1 | =               | n/a             |
-| u/Impressive_Donut114  |       30 |             1 | =               | =               |
+| u/jrhunter25           |       31 |             0 | ↑22             | ↑27             |
+| u/PhilosphicalZombie   |       31 |             0 | ↑2              | ↑1              |
+| u/loudmusicboy         |       31 |             0 | ↑1              | ↑1              |
+| u/AdWorried2804        |       31 |             0 | ↑2              | n/a             |
+| u/35048467             |       31 |             0 | ↑1              | ↑1              |
+| u/rebdoomer88          |       31 |             0 | ↑1              | n/a             |
 | u/BossHoggins10        |       30 |             1 | ↑4              | n/a             |
-| u/Breadheater9876      |       29 |             2 | ↓1              | n/a             |
+| u/partyman97_3         |       30 |             1 | =               | n/a             |
+| u/EldrormR             |       30 |             1 | ↑2              | =               |
+| u/Impressive_Donut114  |       30 |             1 | =               | =               |
+| u/Environmental-Gap380 |       30 |             1 | =               | =               |
 | u/rocketk455           |       29 |             2 | ↑3              | ↑1              |
-| u/tsrblke              |       29 |             2 | ↑1              | ↑2              |
-| u/SufficientKnee       |       29 |             2 | ↓1              | ↑10             |
-| u/Marquis90            |       29 |             2 | ↓2              | ↓1              |
-| u/Engineered_Shave     |       28 |             3 | =               | ↓2              |
-| u/Glass_Procedure7497  |       27 |             4 | ↑3              | n/a             |
-| u/frankieIVfingers     |       27 |             4 | ↑21             | n/a             |
-| u/jwoods23             |       27 |             4 | ↓2              | ↑3              |
-| u/OnionMiasma          |       25 |             6 | ↑4              | ↓4              |
-| u/ischiapp             |       24 |             7 | ↓2              | ↑9              |
-| u/RedMosquitoMM        |       24 |             7 | ↓4              | ↓3              |
-| u/bmac92               |       23 |             8 | ↑4              | n/a             |
-| u/Crisp_Mango          |       23 |             8 | ↓6              | ↓6              |
-| u/chronnoisseur42O     |       20 |            11 | ↓8              | n/a             |

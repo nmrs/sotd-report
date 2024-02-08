@@ -76,7 +76,9 @@ def get_user_shave_data(
 
     shave_df = get_shave_data(thread_map, comments, name_extractor, None, True)
 
-    result = shave_df.merge(missed_days, on="name")
+    result = shave_df.merge(missed_days, on="name", how="left")
+    result = result.fillna(value=0)
+    result.sort_values(['shaves', 'missed days'], ascending=[False, True])
     return result
 
 
@@ -272,4 +274,30 @@ def extract_thread_id_from_comment_url(url):
     if match:
         return match.group(1)
     raise ValueError(f"Unable to find thread id in {url}")
-        
+
+def single_user_report(user_id, comments, thread_map, name_extractor, start_month, end_month):
+        # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
+    raw_usage = get_raw_data(thread_map, comments, name_extractor, None, True)
+    raw_df = pd.DataFrame(raw_usage)
+    raw_df['date'] = pd.to_datetime(raw_df['date'])
+
+    start_day = start_month.replace(day=1)
+    days_in_month = monthrange(end_month.year, end_month.month)[1]
+    end_day = end_month.replace(day=days_in_month)
+
+    # Create a DataFrame with all days of the month for each user
+    date_range = pd.date_range(start_day, end_day, freq='D')
+    users = raw_df['name'].unique()
+    date_user_df = pd.DataFrame([(date, user) for date in date_range for user in users], columns=['date', 'name'])
+    # Merge the original DataFrame with the new one
+    merged_df = pd.merge(date_user_df, raw_df, on=['date', 'name'], how='left')
+    # Filter out days where no comments were made
+    user_raw = raw_df[raw_df["name"] == user_id]
+    user_merged_df = merged_df[merged_df["name"] == user_id]
+    no_comment_days = merged_df[merged_df['user_id'].isnull()]
+    user_no_comment_days = no_comment_days[no_comment_days['name'] == user_id]
+    full_multiple_comment_days = raw_df.groupby(['user_id', 'date']).agg({"user_id": ["count"]}).reset_index()
+    full_multiple_comment_days.columns = ['user_id', 'date', 'shaves']
+    multiple_comment_days = full_multiple_comment_days[full_multiple_comment_days['user_id'] == user_id]
+    pass
+
