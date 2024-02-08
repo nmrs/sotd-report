@@ -1,6 +1,19 @@
 ## Observations
 
-* A fairly nondescript month
+* CB back on top after the Game Changer took December.
+
+* /uSufficientKnee propels a 3D printed razor onto the list
+
+* The EldrormR Industries MM24 falls from the top 10, leaving only the GEM Micromatic Open Comb to fight it out with the DEs (though somewhat curiously there were exactly 130 GEM shaves in both December and January)
+
+* I didn't build a fancy pants code driven table to extract and report on Knot Type preferences, but I did copy/paste the Brush table below into excel and create this pivot table of Knot Types. Despite the strong showing over the full year in 2023, boar was a distant third in January while the badgers edged out the synths.
+
+
+| knot type   | shaves   | 
+|:------------|---------:|
+| Badger      | 496      |
+| Synthetic   | 477      |
+| Boar        | 285      |
 
 
 ## Notes & Caveats
