@@ -236,7 +236,8 @@ class Runner(object):
         usage.dropna(subset=["name"], inplace=True)
 
         # sort
-        usage.sort_values(["shaves"], ascending=False, inplace=True)
+        usage['name lower'] = usage.loc[:, 'name'].str.lower()
+        usage = usage.sort_values(["shaves", "missed days", "name lower"], ascending=[False, True, True])
         head = 0
         last = 0
         # curr_month = datetime.strptime(comments_target[0]["created_utc"], "%Y-%m-%d %H:%M:%S")
@@ -257,8 +258,9 @@ class Runner(object):
                             break
 
             last = row["shaves"]
-
         usage = usage.head(head)
+        usage.drop("name lower", inplace=True, axis=1)
+
         usage.rename(columns={"name": "user"}, inplace=True)
         return usage
 
