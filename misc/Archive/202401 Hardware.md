@@ -2,7 +2,7 @@
 
 * CB back on top after the Game Changer took December.
 
-* /uSufficientKnee propels a 3D printed razor onto the list
+* /uSufficientKnee single-handedly propelled a 3D printed razor onto the list
 
 * The EldrormR Industries MM24 falls from the top 10, leaving only the GEM Micromatic Open Comb to fight it out with the DEs (though somewhat curiously there were exactly 130 GEM shaves in both December and January)
 
