@@ -3,6 +3,7 @@ from concurrent.futures import thread
 from datetime import datetime, date
 import re
 from time import time
+from typing import List
 import pandas as pd
 from calendar import calendar, monthrange
 from base_alternate_namer import BaseAlternateNamer
@@ -24,7 +25,7 @@ def timer_func(func):
 
 def get_shave_data(
     thread_map,
-    comments: [dict],
+    comments: List[dict],
     name_extractor: BaseNameExtractor,
     alternate_namer: BaseAlternateNamer,
     name_fallback=True,

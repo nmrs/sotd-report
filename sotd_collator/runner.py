@@ -1,4 +1,5 @@
 import datetime
+from typing import List
 from dateutil.relativedelta import relativedelta
 
 import inflect
@@ -51,11 +52,13 @@ class Runner(object):
         self,
         header: str,
         thread_map: dict,
-        comments_target: [dict],
-        comments_delta_one: [dict],
-        comments_delta_two: [dict],
+        comments_target: List[dict],
+        comments_delta_one: List[dict],
+        comments_delta_two: List[dict],
+        comments_delta_three: List[dict],
         delta_one_label: str,
         delta_two_label: str,
+        delta_three_label: str,
         min_shaves: int,
         min_unique_user: int,
         start_month: datetime.date,
@@ -119,18 +122,28 @@ class Runner(object):
                 thread_map, comments_target, entity["extractor"], entity["renamer"]
             )
             # print(f'retrieving {delta_one_label} usage', end='\r')
-            pm_usage = get_shave_data(
+            d1_usage = get_shave_data(
                 thread_map, comments_delta_one, entity["extractor"], entity["renamer"]
             )
             # print(f'retrieving {delta_two_label} usage', end='\r')
-            py_usage = get_shave_data(
+            d2_usage = get_shave_data(
                 thread_map, comments_delta_two, entity["extractor"], entity["renamer"]
             )
 
+            d3_usage = None
+            if comments_delta_three is not None:
+                d3_usage = get_shave_data(
+                    thread_map, comments_delta_three, entity["extractor"], entity["renamer"]
+                )
+
             # print(f'adding {delta_one_label} delta', end='\r')
-            usage = add_ranking_delta(usage, pm_usage, delta_one_label)
+            usage = add_ranking_delta(usage, d1_usage, delta_one_label)
             # print(f'adding {delta_two_label} delta', end='\r')
-            usage = add_ranking_delta(usage, py_usage, delta_two_label)
+            usage = add_ranking_delta(usage, d2_usage, delta_two_label)
+            
+            if d3_usage is not None:
+                usage = add_ranking_delta(usage, d3_usage, delta_three_label)
+            
             # print(f'dropping rank', end='\r')
             usage.drop("rank", inplace=True, axis=1)
 
@@ -199,8 +212,10 @@ class Runner(object):
             comments_target,
             comments_delta_one,
             comments_delta_two,
+            comments_delta_three,
             delta_one_label,
             delta_two_label,
+            delta_three_label,
             start_month,
             end_month
         )
@@ -216,18 +231,28 @@ class Runner(object):
         comments_target,
         comments_delta_one,
         comments_delta_two,
+        comments_delta_three,
         delta_one_label,
         delta_two_label,
+        delta_three_label,
         start_month,
         end_month
     ):
 
         # usage = get_shave_data(thread_map, comments_target, StagedUserNameExtractor(), None)
-        pm_usage = get_shave_data(thread_map, comments_delta_one, StagedUserNameExtractor(), None)
-        py_usage = get_shave_data(thread_map, comments_delta_two, StagedUserNameExtractor(), None)
+        d1_usage = get_shave_data(thread_map, comments_delta_one, StagedUserNameExtractor(), None)
+        d2_usage = get_shave_data(thread_map, comments_delta_two, StagedUserNameExtractor(), None)
+
+        d3_usage = None
+        if comments_delta_three is not None:
+            d3_usage = get_shave_data(thread_map, comments_delta_three, StagedUserNameExtractor(), None)
+
+
         usage = get_user_shave_data(thread_map, comments_target, StagedUserNameExtractor(), start_month, end_month)
-        usage = add_ranking_delta(usage, pm_usage, delta_one_label)
-        usage = add_ranking_delta(usage, py_usage, delta_two_label)
+        usage = add_ranking_delta(usage, d1_usage, delta_one_label)
+        usage = add_ranking_delta(usage, d2_usage, delta_two_label)
+        if d3_usage is not None:
+            usage = add_ranking_delta(usage, d3_usage, delta_three_label)
         usage.drop("rank", inplace=True, axis=1)
         usage.drop("unique users", inplace=True, axis=1)
         usage.drop("avg shaves per user", inplace=True, axis=1)

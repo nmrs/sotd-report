@@ -19,13 +19,17 @@ pl = SotdPostLocator(pr)
 target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 last_month = target - relativedelta(months=1)
 last_year = target - relativedelta(years=1)
+five_years_ago = target - relativedelta(years=5)
 
 sb = StageBuilder()
 sb.build_stage(last_month, target)
 sb.build_stage(last_year, last_year)
+sb.build_stage(five_years_ago, five_years_ago)
 
-thread_map = pl.get_thread_map(last_year, last_year)
+thread_map = pl.get_thread_map(five_years_ago, five_years_ago)
+thread_map = thread_map | pl.get_thread_map(last_year, last_year)
 thread_map = thread_map | pl.get_thread_map(last_month, target)
+
 day_map = {}
 for d in range(1, calendar.monthrange(target.year, target.month)[1]+1):
     dd = datetime.date(target.year, target.month, d)
@@ -59,10 +63,12 @@ if len(missing_days) > 0:
 comments_target = pl.get_comments_for_given_month_staged(target)
 comments_last_month = pl.get_comments_for_given_month_staged(last_month)
 comments_last_year = pl.get_comments_for_given_month_staged(last_year)
+comments_five_years_ago = pl.get_comments_for_given_month_staged(five_years_ago)
 
 target_label = target.strftime("%B %Y")
 last_month_label = last_month.strftime("%b %Y")
 last_year_label = last_year.strftime("%b %Y")
+five_years_ago_label = five_years_ago.strftime("%b %Y")
 shave_reports = f"{len(comments_target):,}"
 
 header = f"""
@@ -101,8 +107,10 @@ runner.run(
     comments_target,
     comments_last_month,
     comments_last_year,
+    comments_five_years_ago,
     last_month_label,
     last_year_label,
+    five_years_ago_label,
     5,  # min_shaves for most used blade in most userd razor
     2,  # min_unique users for most used blade in most userd razor),
     target,
