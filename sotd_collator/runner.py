@@ -287,7 +287,7 @@ if __name__ == "__main__":
 
 
     thread_map = pl.get_thread_map(target, target)
-    single_user_report("u/Old_Hiker", comments_target, thread_map, StagedUserNameExtractor(), target, target)
+    single_user_report("u/Marquis90", comments_target, thread_map, StagedUserNameExtractor(), target, target)
 
 
     # usage = Runner().top_shavers(

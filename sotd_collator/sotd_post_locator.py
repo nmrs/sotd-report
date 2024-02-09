@@ -269,23 +269,25 @@ class SotdPostLocator(object):
 
         return results
 
-    def _get_comments_for_threadsX(self, threads: [Submission]) -> [dict]:
+    def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
         line_clear = "\x1b[2K"  # <-- ANSI sequence
         comments = []
         for thread in threads:
+            thread.comments.replace_more()
             for comment in thread.comments.list():
-                if hasattr(comment, "body") and comment.body != "[deleted]":
-                    comments.append(self._comment_to_dict(comment))
-                    print(end=line_clear)
-                    print(
-                        f"Loading comments for {thread.title}: {len(comments)} loaded",
-                        end="\r",
-                    )
+                if comment.parent_id == comment.link_id:
+                    if hasattr(comment, "body") and comment.body != "[deleted]":
+                        comments.append(self._comment_to_dict(comment))
+                        print(end=line_clear)
+                        print(
+                            f"Loading comments for {thread.title}: {len(comments)} loaded",
+                            end="\r",
+                        )
 
         print(end=line_clear)
         return comments
 
-    def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
+    def _get_comments_for_threadsX(self, threads: [Submission]) -> [dict]:
         LINE_CLEAR = "\x1b[2K"  # <-- ANSI sequence
 
         def _get_comments(comment_list):

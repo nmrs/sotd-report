@@ -11,7 +11,7 @@
 
 | knot type   | shaves   | 
 |:------------|---------:|
-| Badger      | 496      |
+| Badger      | 498      |
 | Synthetic   | 477      |
 | Boar        | 285      |
 
@@ -41,9 +41,9 @@
 
 | name        |   shaves |   unique users |   avg shaves per user | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:------------|---------:|---------------:|----------------------:|:----------------|:----------------|
-| DE          |     1289 |            120 |                 10.74 | =               | =               |
+| DE          |     1290 |            120 |                 10.75 | =               | =               |
 | GEM         |      130 |             39 |                  3.33 | =               | ↑1              |
-| Straight    |       90 |             11 |                  8.18 | =               | ↓1              |
+| Straight    |       91 |             11 |                  8.27 | =               | ↓1              |
 | AC          |       75 |             21 |                  3.57 | =               | =               |
 | Injector    |       37 |             11 |                  3.36 | =               | =               |
 | Hair Shaper |        7 |              4 |                  1.75 | =               | =               |
@@ -55,7 +55,7 @@
 
 | name                                              |   shaves |   unique users |   avg shaves per user | Δ vs Dec 2023   | Δ vs Jan 2023   |
 |:--------------------------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|
-| Karve Christopher Bradley                         |      129 |             18 |                  7.17 | ↑2              | =               |
+| Karve Christopher Bradley                         |      130 |             18 |                  7.22 | ↑2              | =               |
 | Blackland Blackbird                               |      101 |             21 |                  4.81 | =               | ↑2              |
 | Razorock Game Changer                             |       95 |             15 |                  6.33 | ↓2              | =               |
 | Gillette Superspeed                               |       77 |             19 |                  4.05 | =               | ↑1              |
@@ -81,30 +81,30 @@
 | Razorock Hawk v3                                  |       21 |              4 |                  5.25 | ↑7              | n/a             |
 | Rockwell 6C                                       |       21 |              3 |                  7    | ↓10             | ↑12             |
 | Gillette Slim                                     |       20 |              7 |                  2.86 | ↑3              | ↑3              |
-| Boker Straight                                    |       19 |              2 |                  9.5  | ↓3              | ↓5              |
-| Blackland Vector                                  |       16 |              5 |                  3.2  | ↑5              | ↑4              |
-| Maggard V3                                        |       16 |              3 |                  5.33 | ↑14             | ↑8              |
-| J A Henckels Straight                             |       15 |              3 |                  5    | ↑9              | ↑7              |
-| Mongoose Alumigoose                               |       15 |              3 |                  5    | ↑1              | ↑7              |
-| GEM G-Bar                                         |       15 |              2 |                  7.5  | ↑6              | ↑13             |
-| Karve Bison                                       |       15 |              1 |                 15    | ↑14             | n/a             |
-| Merkur 38C                                        |       15 |              1 |                 15    | ↓2              | n/a             |
-| Razorock Lupo                                     |       14 |              3 |                  4.67 | ↑3              | ↑7              |
+| Boker Straight                                    |       20 |              2 |                 10    | ↓2              | ↓4              |
+| Blackland Vector                                  |       16 |              5 |                  3.2  | ↑6              | ↑5              |
+| Maggard V3                                        |       16 |              3 |                  5.33 | ↑15             | ↑9              |
+| J A Henckels Straight                             |       15 |              3 |                  5    | ↑10             | ↑8              |
+| Mongoose Alumigoose                               |       15 |              3 |                  5    | ↑2              | ↑8              |
+| GEM G-Bar                                         |       15 |              2 |                  7.5  | ↑7              | ↑14             |
+| Karve Bison                                       |       15 |              1 |                 15    | ↑15             | n/a             |
+| Merkur 38C                                        |       15 |              1 |                 15    | ↓1              | n/a             |
+| Razorock Lupo                                     |       14 |              3 |                  4.67 | ↑4              | ↑8              |
 | U/Wrong_Coyote_9525 3D Printed DE Safety Razor V2 |       14 |              1 |                 14    | n/a             | n/a             |
-| Muhle R41                                         |       13 |              4 |                  3.25 | ↑4              | ↑8              |
-| Baili BR1xx                                       |       13 |              1 |                 13    | ↑13             | ↑13             |
-| Tatara Masamune                                   |       12 |              4 |                  3    | ↓4              | ↓1              |
-| Ralf Aust Straight                                |       11 |              3 |                  3.67 | ↑7              | ↓3              |
-| Blackland Dart                                    |       11 |              2 |                  5.5  | ↑2              | ↑7              |
-| Other Shavette                                    |       11 |              2 |                  5.5  | ↑4              | ↑11             |
-| WCS Multi Titanium Collection Razor               |       11 |              1 |                 11    | ↑1              | n/a             |
-| Gillette Aristocrat                               |       10 |              4 |                  2.5  | ↑10             | ↑2              |
-| Stirling Stainless DE Razor                       |       10 |              3 |                  3.33 | ↑1              | ↓1              |
-| Aylsworth Drakkant                                |       10 |              2 |                  5    | ↑7              | ↑9              |
-| Gillette Fatboy                                   |        9 |              2 |                  4.5  | ↑5              | ↑6              |
-| Wolfman WR1                                       |        8 |              4 |                  2    | ↑5              | ↓11             |
-| Blutt Rasur BR-1                                  |        8 |              3 |                  2.67 | ↑7              | ↑6              |
-| GEM Junior                                        |        8 |              3 |                  2.67 | ↑2              | ↑2              |
+| Muhle R41                                         |       13 |              4 |                  3.25 | ↑5              | ↑9              |
+| Baili BR1xx                                       |       13 |              1 |                 13    | ↑14             | ↑14             |
+| Tatara Masamune                                   |       12 |              4 |                  3    | ↓3              | =               |
+| Ralf Aust Straight                                |       11 |              3 |                  3.67 | ↑8              | ↓2              |
+| Blackland Dart                                    |       11 |              2 |                  5.5  | ↑3              | ↑8              |
+| Other Shavette                                    |       11 |              2 |                  5.5  | ↑5              | ↑12             |
+| WCS Multi Titanium Collection Razor               |       11 |              1 |                 11    | ↑2              | n/a             |
+| Gillette Aristocrat                               |       10 |              4 |                  2.5  | ↑11             | ↑3              |
+| Stirling Stainless DE Razor                       |       10 |              3 |                  3.33 | ↑2              | =               |
+| Aylsworth Drakkant                                |       10 |              2 |                  5    | ↑8              | ↑10             |
+| Gillette Fatboy                                   |        9 |              2 |                  4.5  | ↑6              | ↑7              |
+| Wolfman WR1                                       |        8 |              4 |                  2    | ↑6              | ↓10             |
+| Blutt Rasur BR-1                                  |        8 |              3 |                  2.67 | ↑8              | ↑7              |
+| GEM Junior                                        |        8 |              3 |                  2.67 | ↑3              | ↑3              |
 
 
 ##Blades
@@ -189,9 +189,9 @@
 | Omega 10077                      |       18 |              2 |                  9    | ↑12             | ↑14             |
 | Farvour Turn Craft Badger        |       15 |              4 |                  3.75 | ↓2              | ↑18             |
 | Omega Hi-Brush Synthetic         |       14 |              2 |                  7    | ↓2              | n/a             |
+| Declaration Grooming B14         |       13 |              5 |                  2.6  | =               | ↑2              |
 | Van der Hagen Badger             |       13 |              1 |                 13    | ↑4              | ↑16             |
 | Razorock Synthetic               |       12 |              6 |                  2    | ↑4              | ↓4              |
-| Declaration Grooming B14         |       12 |              5 |                  2.4  | ↓1              | ↑1              |
 | Semogue SOC Boar                 |       11 |              7 |                  1.57 | ↓7              | ↓3              |
 | Omega 10049                      |       11 |              5 |                  2.2  | ↑4              | ↓4              |
 | Wild West Brushworks Synthetic   |       10 |              5 |                  2    | ↑7              | ↑6              |
@@ -322,8 +322,5 @@
 | u/BossHoggins10        |       30 |             1 | ↑4              | n/a             |
 | u/EldrormR             |       30 |             1 | ↑2              | =               |
 | u/Environmental-Gap380 |       30 |             1 | =               | =               |
+| u/Marquis90            |       30 |             1 | ↓1              | =               |
 | u/partyman97_3         |       30 |             1 | =               | n/a             |
-| u/Breadheater9876      |       29 |             2 | ↓1              | n/a             |
-| u/Old_Hiker            |       29 |             2 | ↓1              | =               |
-| u/rocketk455           |       29 |             2 | ↑3              | ↑1              |
-| u/SufficientKnee       |       29 |             2 | ↓1              | ↑10             |

@@ -300,6 +300,7 @@ def single_user_report(user_id, comments, thread_map, name_extractor, start_mont
     full_multiple_comment_days = raw_df.groupby(['user_id', 'date']).agg({"user_id": ["count"]}).reset_index()
     full_multiple_comment_days.columns = ['user_id', 'date', 'shaves']
     multiple_comment_days = full_multiple_comment_days[full_multiple_comment_days['user_id'] == user_id]
-    pass
+    result = user_merged_df.fillna('').drop(columns='user_id').astype(str)
+    return result
 
 
