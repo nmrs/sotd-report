@@ -5,6 +5,7 @@ from numpy import equal
 import praw
 from dateutil import relativedelta
 import pandas as pd
+from sotd_collator.utils import extract_date_from_thread_title
 
 from sotd_collator.sotd_post_locator import SotdPostLocator
 
@@ -30,7 +31,7 @@ class TestSotdPostLocator(TestCase):
         pl = SotdPostLocator(pr)
         
         for case in test_cases:
-            result = pl.extract_date_from_thread_title(case['case'])
+            result = extract_date_from_thread_title(case['case'])
             self.assertEqual(case["expected_result"], result)
 
 
