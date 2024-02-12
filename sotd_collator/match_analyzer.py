@@ -35,7 +35,7 @@ class MatchAnalyzer(object):
                 matches.append([entity_name, renamer.get_principal_name(entity_name)])
 
         path = (
-            r"misc/analyzer/{extractor.__class__.__name__}/{renamer.__class__.__name__}"
+            r"cache/analyzer/{extractor.__class__.__name__}/{renamer.__class__.__name__}"
         )
         if not os.path.exists(path):
             # if the demo_folder directory is not present

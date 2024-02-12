@@ -9,9 +9,9 @@ from razor_name_extractor import RazorNameExtractor
 from sotd_post_locator import SotdPostLocator
 from razor_alternate_namer import RazorAlternateNamer
 
-CACHE_DIR = "../misc/"
+CACHE_DIR = "../cache/"
 # only report razors with >= this many shaves
-OUTPUT = "../misc/sotd_razor_stats.csv"
+OUTPUT = "../cache/sotd_razor_stats.csv"
 
 
 pr = praw.Reddit("standard_creds", user_agent="arach")

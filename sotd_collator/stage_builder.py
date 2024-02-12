@@ -6,6 +6,7 @@ import os
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 import praw
+
 from sotd_collator.cache_provider import CacheProvider
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_name_extractor import BrushNameExtractor
@@ -46,7 +47,7 @@ class StageBuilder(object):
 
         curr_month = start_month
         cached_files = {}
-        for dirpath, dirname, filenames in os.walk("misc"):
+        for dirpath, dirname, filenames in os.walk("cache"):
             for filename in filenames:
                 path = os.path.join(dirpath, filename)
                 if filename in cached_files:
@@ -83,7 +84,7 @@ class StageBuilder(object):
                 if match:
                     results.append(comment)
 
-            stage_file = f"misc/staged_comments/{filename}"
+            stage_file = f"cache/staged_comments/{filename}"
 
             with open(stage_file, "w", encoding=sys.getdefaultencoding()) as f_stage:
                 json.dump(results, f_stage, indent=4, sort_keys=False)
@@ -145,7 +146,7 @@ class StageBuilder(object):
 
 if __name__ == "__main__":
     StageBuilder().build_stage(
-        start_month=date(2024, 2, 1), end_month=date(2024, 2, 1), force_refresh=False
+        start_month=date(2024, 2, 1), end_month=date(2024, 2, 1), force_refresh=True
     )
     # StageBuilder().validate_stage(
     #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)

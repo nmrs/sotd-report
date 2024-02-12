@@ -29,7 +29,7 @@ for comment, username in res:
 
 
 with open(
-    "../misc/photo_entries_{0}.csv".format(DAY_TO_PROCESS.strftime("%Y-%m-%d")), "w"
+    "../cache/photo_entries_{0}.csv".format(DAY_TO_PROCESS.strftime("%Y-%m-%d")), "w"
 ) as fout:
     c = csv.writer(fout)
     for row in output:

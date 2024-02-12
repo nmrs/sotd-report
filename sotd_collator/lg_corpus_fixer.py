@@ -2,12 +2,12 @@ import pkg_resources
 import json
 
 INFILES = [
-    pkg_resources.resource_filename("sotd_collator", "../misc/lg_corpuses/2020.json"),
-    pkg_resources.resource_filename("sotd_collator", "../misc/lg_corpuses/2021.json"),
+    pkg_resources.resource_filename("sotd_collator", "../cache/lg_corpuses/2020.json"),
+    pkg_resources.resource_filename("sotd_collator", "../cache/lg_corpuses/2021.json"),
 ]
 
 OUTFILE = pkg_resources.resource_filename(
-    "sotd_collator", "../misc/lg_corpuses/merged.json"
+    "sotd_collator", "../cache/lg_corpuses/merged.json"
 )
 
 

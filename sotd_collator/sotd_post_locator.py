@@ -142,7 +142,7 @@ class SotdPostLocator(object):
         month = given_month.strftime("%Y-%m")
         manual_threads = []
         with open(
-            "misc/threads/manual.json", "r", encoding=sys.getdefaultencoding()
+            "cache/threads/manual.json", "r", encoding=sys.getdefaultencoding()
         ) as f:
             manual = json.load(f)
             for thread in manual:

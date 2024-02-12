@@ -11,7 +11,7 @@ res = []
 PROMPT = "Write a Lather Games SOTD post on the theme of Spring into the Games"
 
 OUTPUT_FILE = pkg_resources.resource_filename(
-    "sotd_collator", "../misc/lg_corpuses/2020.json"
+    "sotd_collator", "../cache/lg_corpuses/2020.json"
 )
 
 for comment, author in lgpl.get_comments_for_theme("2020"):

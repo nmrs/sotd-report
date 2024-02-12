@@ -9,7 +9,7 @@ class ContentType(Enum):
 
 
 class CacheProvider(object):
-    CACHE_DIR = "misc"
+    CACHE_DIR = "cache"
 
     def __init__(self, cache_dir: str = None):
         if cache_dir is not None:

@@ -17,7 +17,7 @@ from sotd_collator.utils import (
 pr = praw.Reddit("standard_creds", user_agent="arach")
 pl = SotdPostLocator(pr)
 OUT_FILE = pkg_resources.resource_filename(
-    "sotd_collator", "../misc/karve_plate_history.csv"
+    "sotd_collator", "../cache/karve_plate_history.csv"
 )
 
 # only report entities with >= this many shaves
