@@ -1,6 +1,9 @@
 import os
 from datetime import datetime, date
 import re
+import time
+from typing import List
+from uu import Error
 from dateutil import rrule
 import sys
 from tokenize import Comment
@@ -8,9 +11,9 @@ import json
 from numpy import empty
 
 import praw
-from praw.models import MoreComments
+from praw import models
+from praw.models import Comment, MoreComments, Submission
 
-from praw.models import Submission
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.cache_provider import CacheProvider
@@ -38,7 +41,7 @@ class SotdPostLocator(object):
         year = given_month.year
         return f"flair:SOTD {month_abbr} {month_full} {year} {year}SOTD"
 
-    def get_threads_for_given_month_cached(self, given_month: date) -> [dict]:
+    def get_threads_for_given_month_cached(self, given_month: date) -> List[dict]:
         if not isinstance(given_month, date):
             raise AttributeError("Must pass in a datetime.date object")
 
@@ -55,7 +58,7 @@ class SotdPostLocator(object):
 
         return result
 
-    def get_threads_for_given_month(self, given_month: date) -> [Submission]:
+    def get_threads_for_given_month(self, given_month: date) -> List[Submission]:
         """
         Return list of threads from given month
         """
@@ -107,7 +110,7 @@ class SotdPostLocator(object):
 
     def _get_threads_for_given_month_from_reddit(
         self, given_month: date
-    ) -> [Submission]:
+    ) -> List[Submission]:
         """
         Searches reddit to retrieve list of threads from given month
         """
@@ -178,7 +181,7 @@ class SotdPostLocator(object):
         with open(cache_file, "w", encoding=sys.getdefaultencoding()) as f_cache:
             json.dump(cache, f_cache, indent=4, sort_keys=True)
 
-    def _comment_to_dict(self, comment: Comment) -> dict:
+    def _comment_to_dict(self, comment: models.Comment) -> dict:
         """Converts a praw Comment to a dictionary for caching"""
         base = "www.reddit.com/r/Wetshaving/comments"
         return {
@@ -205,7 +208,7 @@ class SotdPostLocator(object):
 
     def get_comments_for_given_month_staged(
         self, given_month: datetime, force_refresh=False
-    ) -> [dict]:
+    ) -> List[dict]:
         if not isinstance(given_month, date):
             raise AttributeError("Must pass in a datetime.date object")
 
@@ -220,7 +223,7 @@ class SotdPostLocator(object):
             self.get_comments_for_given_month_cached(given_month)
             return self.__stage_comments(given_month)
 
-    def get_comments_for_given_month_cached(self, given_month: date) -> [dict]:
+    def get_comments_for_given_month_cached(self, given_month: date) -> List[dict]:
         # be kind to reddit, persist results to disk
         # so we dont hit it everytime we change the razor cleanup / processing
 
@@ -241,7 +244,7 @@ class SotdPostLocator(object):
 
         return comments
 
-    def __stage_comments(self, given_month: date) -> [dict]:
+    def __stage_comments(self, given_month: date) -> List[dict]:
         extractors = {
             "razor": RazorNameExtractor(),
             "blade": BladeNameExtractor(),
@@ -269,7 +272,7 @@ class SotdPostLocator(object):
 
         return results
 
-    def _get_comments_for_threads(self, threads: [Submission]) -> [dict]:
+    def _get_comments_for_threads(self, threads: List[Submission]) -> List[dict]:
         line_clear = "\x1b[2K"  # <-- ANSI sequence
         comments = []
         for thread in threads:
@@ -287,7 +290,7 @@ class SotdPostLocator(object):
         print(end=line_clear)
         return comments
 
-    def _get_comments_for_threadsX(self, threads: [Submission]) -> [dict]:
+    def _get_comments_for_threadsX(self, threads: List[Submission]) -> List[dict]:
         LINE_CLEAR = "\x1b[2K"  # <-- ANSI sequence
 
         def _get_comments(comment_list):
@@ -321,13 +324,26 @@ class SotdPostLocator(object):
         return [x for x in dedupe_map.values()]
 
 
-    def _get_comments_for_given_month(self, given_month: date) -> [Comment]:
-        threads = self.get_threads_for_given_month(given_month)
-        comments = self._get_comments_for_threads(threads)
-        # print(f'Processed {format(given_month)} ({len(comments)} comments)')
-        return comments
+    def _get_comments_for_given_month(self, given_month: date, max_retries=10) -> List[models.Comment]:
+        if max_retries == 0:
+            threads = self.get_threads_for_given_month(given_month)
+            comments = self._get_comments_for_threads(threads)
+            return comments
+        else:
+            try:
+                threads = self.get_threads_for_given_month(given_month)
+                comments = self._get_comments_for_threads(threads)
+                return comments
+            except Exception as error:
+                print(error)
+                print(f'retrying. {max_retries} more attempts')
+                time.sleep((11-max_retries)*2)
+                return self._get_comments_for_given_month(self, given_month, max_retries-1)
 
-    def get_comments_for_given_year_staged(self, given_year: int) -> [dict]:
+        # print(f'Processed {format(given_month)} ({len(comments)} comments)')
+
+
+    def get_comments_for_given_year_staged(self, given_year: int) -> List[dict]:
         collected_comments = []
         for m in range(1, 13):
             collected_comments.extend(
@@ -336,7 +352,7 @@ class SotdPostLocator(object):
 
         return collected_comments
 
-    def get_comments_for_given_year_cached(self, given_year: int) -> [dict]:
+    def get_comments_for_given_year_cached(self, given_year: int) -> List[dict]:
         collected_comments = []
         for m in range(1, 13):
             collected_comments.extend(
