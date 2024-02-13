@@ -140,17 +140,17 @@ class SoapNameExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*(?:Lather|Soap)\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|\n|$)".format(
+                r"^[*\s\-+/]*(?!lather games)(?:lather|soap)\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|\n|$)".format(
                     soap_name_re
                 ),
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*(?:Lather|Soap)\*:.*\*\*([{0}]+)\*\*".format(soap_name_re),
+                r"\*(?!lather games)(?:lather|soap)\*:.*\*\*([{0}]+)\*\*".format(soap_name_re),
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             re.compile(
-                r"^[*\s\-+/]*(?:Lather|Soap)\s*[:*\-\\+\s/]+\s*\[*([{0}]+)(?:\+|\n|$|]\()".format(
+                r"^[*\s\-+/]*(?!lather games)(?:lather|soap)\s*[:*\-\\+\s/]+\s*\[*([{0}]+)(?:\+|\n|$|]\()".format(
                     soap_name_re
                 ),
                 re.MULTILINE | re.IGNORECASE,
@@ -158,8 +158,11 @@ class SoapNameExtractor(BaseNameExtractor):
         ]
 
     @BaseNameExtractor.post_process_name
-    def get_name(self, comment_text):
-        comment_text = self._to_ascii(comment_text)
+    def get_name(self, comment):
+        if "soap" in comment:
+            return comment["soap"]
+
+        comment_text = self._to_ascii(comment['body'])
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:

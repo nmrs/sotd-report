@@ -11,7 +11,7 @@ from sotd_collator.cache_provider import CacheProvider
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_name_extractor import BrushNameExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
-from sotd_collator.soap_name_extractor_b import SoapNameExtractor
+from sotd_collator.soap_name_extractor import SoapNameExtractor
 
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.utils import timer_func

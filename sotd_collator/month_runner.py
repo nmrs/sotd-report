@@ -22,9 +22,9 @@ last_year = target - relativedelta(years=1)
 five_years_ago = target - relativedelta(years=5)
 
 sb = StageBuilder()
-sb.build_stage(last_month, target)
-sb.build_stage(last_year, last_year)
-sb.build_stage(five_years_ago, five_years_ago)
+sb.build_stage(last_month, target, True)
+sb.build_stage(last_year, last_year, True)
+sb.build_stage(five_years_ago, five_years_ago, True)
 
 thread_map = pl.get_thread_map(five_years_ago, five_years_ago)
 thread_map = thread_map | pl.get_thread_map(last_year, last_year)

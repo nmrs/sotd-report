@@ -272,20 +272,50 @@ class SotdPostLocator(object):
 
         return results
 
-    def _get_comments_for_threads(self, threads: List[Submission]) -> List[dict]:
+
+        if max_retries == 0:
+            threads = self.get_threads_for_given_month(given_month)
+            comments = self._get_comments_for_threads(threads)
+            return comments
+        else:
+            try:
+                threads = self.get_threads_for_given_month(given_month)
+                comments = self._get_comments_for_threads(threads)
+                return comments
+            except Exception as error:
+                print(error)
+                print(f'retrying. {max_retries} more attempts')
+                time.sleep((11-max_retries)*2)
+                return self._get_comments_for_given_month(self, given_month, max_retries-1)
+
+
+    def _get_comments_for_threads(self, threads: List[Submission], max_retries=10) -> List[dict]:
+        if max_retries == 0:
+            return self.__get_comments_for_threads(self, threads)
+        else:
+            try:
+                return self.__get_comments_for_threads(threads)
+            except Exception as error:
+                print(error)
+                print(f'retrying. {max_retries} more attempts')
+                time.sleep((11-max_retries)*2)
+                return self.__get_comments_for_threads(self, threads, max_retries-1)
+
+
+    def __get_comments_for_threads(self, threads: List[Submission]) -> List[dict]:
         line_clear = "\x1b[2K"  # <-- ANSI sequence
         comments = []
         for thread in threads:
             thread.comments.replace_more()
             for comment in thread.comments.list():
-                if comment.parent_id == comment.link_id:
-                    if hasattr(comment, "body") and comment.body != "[deleted]":
-                        comments.append(self._comment_to_dict(comment))
-                        print(end=line_clear)
-                        print(
-                            f"Loading comments for {thread.title}: {len(comments)} loaded",
-                            end="\r",
-                        )
+                # if comment.parent_id == comment.link_id:
+                if hasattr(comment, "body") and comment.body != "[deleted]":
+                    comments.append(self._comment_to_dict(comment))
+                    print(end=line_clear)
+                    print(
+                        f"Loading comments for {thread.title}: {len(comments)} loaded",
+                        end="\r",
+                    )
 
         print(end=line_clear)
         return comments
