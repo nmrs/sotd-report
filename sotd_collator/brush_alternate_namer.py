@@ -14,16 +14,16 @@ class BrushAlternateNamer(BaseAlternateNamer):
     def __init__(self, link_other: bool = True):
         self.link_other = link_other
 
-    bads = r"(hmw|high.*mo|(2|3)band|shd|badger|silvertip|gelo|bulb|fan|finest|best|two\s*band)"
+    badgers = r"(hmw|high.*mo|(2|3)band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best|two\s*band)"
     boars = "(boar)"
     horses = "(horse)"
-    syns = "(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(mag|wolf)|g4|boss)"
+    synthetics = "(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(mag|wolf)|g4|boss)"
 
     others = {
-        "Other Badger": [bads],
+        "Other Badger": [badgers],
         "Other Boar": [boars],
         "Other Horse": [horses],
-        "Other Synthetic": [syns],
+        "Other Synthetic": [synthetics],
     }
 
     apply_first = {
@@ -55,7 +55,7 @@ class BrushAlternateNamer(BaseAlternateNamer):
             r"^(semogue\s*)*s\.*o\.*c\.*.*boar$",
             "semogue.*owner.*club.*boar$",
             "soc.*boar",
-            r"\ssoc\s",
+            r"\bsoc\b",
             "sem.*owner.*club",
         ],
         "Semogue SOC Badger": [r"^(semogue\s*)*s\.*o\.*c\.*.*badger"],
@@ -104,15 +104,15 @@ class BrushAlternateNamer(BaseAlternateNamer):
         "Carnavis & Richardson": {"patterns": ["carn.*rich"], "default": "Synthetic"},
         "Catalin": {"patterns": ["catalin"], "default": "Badger"},
         "CaYuen": {"patterns": ["cayuen"], "default": "Synthetic"},
-        "Chisel & Hound": {"patterns": ["chis.*hound", r"c\&h"], "default": "Badger"},
+        "Chisel & Hound": {"patterns": ["chis.*hound", r"\bc(?:\&|and|\+)h\b"], "default": "Badger"},
         "Craving Shaving": {"patterns": ["crav.*shav"], "default": "Synthetic"},
         "Cremo": {"patterns": ["cremo"], "default": "Horse"},
         "Crescent City Craftsman": {"patterns": ["cres.*city"], "default": "Synthetic"},
-        "Declaration (Batch not Specified)": {
-            "patterns": ["declaration"],
+        "Declaration Grooming (batch not specified)": {
+            "patterns": ["declaration", r'\bdg\b'],
             "default": "Badger",
         },
-        "DSCosmetics": {"patterns": [r"DS\s*Cosmetic", "DSC"], "default": "Synthetic"},
+        "DSCosmetics": {"patterns": [r"DS\s*Cosmetic", r"\bDSC\b"], "default": "Synthetic"},
         "Den of Man": {"patterns": ["den.*of.*man"], "default": "Synthetic"},
         "Dogwood": {"patterns": ["dogw", "dogc*l", "^voa"], "default": "Badger"},
         "Doug Korn": {"patterns": [r"doug\s*korn"], "default": "Badger"},
@@ -211,9 +211,9 @@ class BrushAlternateNamer(BaseAlternateNamer):
     }
 
     standard_fixup = {
-        "{0} Badger": bads,
+        "{0} Badger": badgers,
         "{0} Boar": boars,
-        "{0} Synthetic": syns,
+        "{0} Synthetic": synthetics,
         "{0} Horse": horses,
         # default to maker default
         "{0} {1}": "",
