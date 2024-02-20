@@ -4,7 +4,7 @@ from sotd_collator.soap_matcher import SoapMatcher
 
 
 class TestSoapMatcher(TestCase):
-    
+
     test_cases = [
         {
             "case": "Barrister & Mann - Soft Heart Series: Sandalwood",
@@ -20,9 +20,9 @@ class TestSoapMatcher(TestCase):
             "case": "B&M - Soft Heart Series: Unknown Soap",
             "expected_soap": "Barrister & Mann",
             "expected_scent": None,
-            "expected_fallback": "Soft Heart Series: Unknown Soap"
-        }   
-     ]
+            "expected_fallback": "Soft Heart Series: Unknown Soap",
+        },
+    ]
 
     def test_soap_cases(self):
         an = SoapMatcher()
@@ -42,6 +42,7 @@ class TestSoapMatcher(TestCase):
             if "expected_fallback" in case:
                 fallback = an.get_scent_fallback(case["case"])
                 self.assertEqual(case["expected_fallback"], fallback)
+
 
 if __name__ == "__main__":
     tester = TestSoapMatcher()
