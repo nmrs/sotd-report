@@ -5,15 +5,14 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
+from blade_parser import BladeParser
+from brush_parser import BrushParser
+from game_changer_plate_parser import GameChangerPlateParser
+from karve_plate_parser import KarvePlateParser
+from razor_parser import RazorParser
+from razor_plus_blade_parser import RazorPlusBladeParser
 
-from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_format_extractor import BladeFormatExtractor
-from sotd_collator.brush_alternate_namer import BrushAlternateNamer
-from sotd_collator.karve_plate_extractor import KarvePlateExtractor
-from sotd_collator.game_changer_plate_extractor import GameChangerPlateExtractor
-from sotd_collator.knot_size_extractor import KnotSizeExtractor
-from sotd_collator.razor_alternate_namer import RazorAlternateNamer
-from sotd_collator.razor_plus_blade_alternate_namer import RazorPlusBladeAlternateNamer
 from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.staged_name_extractors import (
@@ -22,12 +21,18 @@ from sotd_collator.staged_name_extractors import (
     StagedRazorNameExtractor,
     StagedUserNameExtractor,
 )
-from sotd_collator.superspeed_tip_extractor import SuperSpeedTipExtractor
-from sotd_collator.utils import add_ranking_delta, get_shave_data, get_user_shave_data, single_user_report
+from sotd_collator.utils import (
+    add_ranking_delta,
+    get_shave_data_from_parser,
+    get_user_shave_data,
+    single_user_report,
+)
+from superspeed_tip_parser import SuperSpeedTipParser
 
 
 class Runner(object):
     MAX_ENTITIES = 50
+    MIN_SHAVES = 1
 
     def list_to_english_string(self, input_list):
         if not input_list:
@@ -35,7 +40,7 @@ class Runner(object):
 
         if len(input_list) == 1:
             return input_list[0]
-        
+
         if len(input_list) == 2:
             return f"{input_list[0]} and {input_list[1]}"
 
@@ -46,7 +51,6 @@ class Runner(object):
         result_string = f"{elements_except_last}, and {input_list[-1]}"
 
         return result_string
-
 
     def run(
         self,
@@ -64,121 +68,251 @@ class Runner(object):
         start_month: datetime.date,
         end_month: datetime.date,
     ):
+        rne = StagedRazorNameExtractor()
+        bne = StagedBladeNameExtractor()
+
+        rp = RazorParser()
+        blp = BladeParser()
+        brp = BrushParser()
+        kpp = KarvePlateParser(rp)
+        gcp = GameChangerPlateParser(rp)
+        sstp = SuperSpeedTipParser(rp)
+
         process_entities = [
-            {
-                "name": "Blade Format",
-                "extractor": BladeFormatExtractor(),
-                "renamer": None,
-            },
+            # {
+            #     "name": "Blade Format",
+            #     "extractor": BladeFormatExtractor(bne, blp, rne, rp),
+            #     "min_shaves": 1,
+            # },
             {
                 "name": "Razor",
-                "extractor": StagedRazorNameExtractor(),
-                "renamer": RazorAlternateNamer(),
+                "extractor": rne,
+                "parser": rp,
+                "parser field": "name",
                 "max_entities": 50,
             },
             {
-                "name": "Blade",
-                "extractor": StagedBladeNameExtractor(),
-                "renamer": BladeAlternateNamer(),
-                "max_entities": 50,
+                "name": "Razor Manufacturer",
+                "extractor": rne,
+                "parser": rp,
+                "parser field": "brand",
+                "min_shaves": 10,
             },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "renamer": BrushAlternateNamer(),
-                "max_entites": 50,
-            },
-            {
-                "name": "Knot Size",
-                "extractor": KnotSizeExtractor(),
-                "renamer": None,
-            },
-            {
-                "name": "Karve Plate",
-                "extractor": KarvePlateExtractor(),
-                "renamer": None,
-            },
-            {
-                "name": "Game Changer Plate",
-                "extractor": GameChangerPlateExtractor(),
-                "renamer": None,
-            },
-            {
-                "name": "Superspeed Tip",
-                "extractor": SuperSpeedTipExtractor(),
-                "renamer": None,
-            },
+            # {
+            #     "name": "Blade",
+            #     "extractor": bne,
+            #     "parser": blp,
+            #     "parser field": "name",
+            #     "max_entities": 50,
+            # },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "name",
+            #     "max_entites": 50,
+            #     "fallback": True,
+            # },
+            # {
+            #     "name": "Knot Fiber",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "fiber",
+            #     "max_entites": 50,
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Knot Size",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "knot size",
+            #     "max_entites": 50,
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Karve Plate",
+            #     "extractor": rne,
+            #     "parser": kpp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Game Changer Plate",
+            #     "extractor": rne,
+            #     "parser": gcp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Super Speed Tip",
+            #     "extractor": rne,
+            #     "parser": sstp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
         ]
 
         inf_engine = inflect.engine()
 
         print(header)
         razor_usage = None
-        for entity in process_entities:
-            print(f"##{inf_engine.plural(entity['name'])}\n")
+        # for entity in process_entities:
+        #     print(f"##{inf_engine.plural(entity['name'])}\n")
 
-            # print(f'retrieving {target_label} usage', end='\r')
-            usage = get_shave_data(
-                thread_map, comments_target, entity["extractor"], entity["renamer"]
-            )
-            # print(f'retrieving {delta_one_label} usage', end='\r')
-            d1_usage = get_shave_data(
-                thread_map, comments_delta_one, entity["extractor"], entity["renamer"]
-            )
-            # print(f'retrieving {delta_two_label} usage', end='\r')
-            d2_usage = get_shave_data(
-                thread_map, comments_delta_two, entity["extractor"], entity["renamer"]
-            )
+        #     usage = self.entity_usage(
+        #         thread_map,
+        #         comments_target,
+        #         comments_delta_one,
+        #         comments_delta_two,
+        #         comments_delta_three,
+        #         delta_one_label,
+        #         delta_two_label,
+        #         delta_three_label,
+        #         entity,
+        #     )
 
-            d3_usage = None
-            if comments_delta_three is not None:
-                d3_usage = get_shave_data(
-                    thread_map, comments_delta_three, entity["extractor"], entity["renamer"]
-                )
+        #     print(usage.to_markdown(index=False))
+        #     print("\n")
+
+        #     if entity["name"] == "Razor":
+        #         razor_usage = usage
+
+        # print("## Most Used Blades in Most Used Razors\n")
+
+        # # do razor plus blade combo, filtered on most popular razors...
+        # # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
+        # bpr_usage = self.blade_per_razor(
+        #     thread_map,
+        #     comments_target,
+        #     min_shaves,
+        #     min_unique_user,
+        #     rp,
+        #     blp,
+        #     razor_usage,
+        # )
+
+        # print(bpr_usage.to_markdown(index=False))
+        # print("\n")
+
+        usage = self.top_shavers(
+            thread_map,
+            comments_target,
+            comments_delta_one,
+            comments_delta_two,
+            comments_delta_three,
+            delta_one_label,
+            delta_two_label,
+            delta_three_label,
+            start_month,
+            end_month,
+        )
+
+        print("## Top Shavers\n")
+        print(usage.to_markdown(index=False))
+
+        print("\n")
+
+    def entity_usage(
+        self,
+        thread_map,
+        comments_target,
+        comments_delta_one,
+        comments_delta_two,
+        comments_delta_three,
+        delta_one_label,
+        delta_two_label,
+        delta_three_label,
+        entity,
+    ):
+        extractor = entity["extractor"]
+        parser = entity["parser"] if "parser" in entity else None
+        parser_field = entity["parser field"] if "parser field" in entity else None
+        fallback = entity["fallback"] if "fallback" in entity else True
+
+        # print(f'retrieving {target_label} usage', end='\r')
+        usage = get_shave_data_from_parser(
+            thread_map,
+            comments_target,
+            extractor,
+            parser,
+            parser_field,
+            fallback,
+        )
+        # print(f'retrieving {delta_one_label} usage', end='\r')
+        d1_usage = get_shave_data_from_parser(
+            thread_map,
+            comments_delta_one,
+            extractor,
+            parser,
+            parser_field,
+            fallback,
+        )
+        # print(f'retrieving {delta_two_label} usage', end='\r')
+        d2_usage = get_shave_data_from_parser(
+            thread_map,
+            comments_delta_two,
+            extractor,
+            parser,
+            parser_field,
+            fallback,
+        )
+
+        d3_usage = None
+        if comments_delta_three is not None:
+            d3_usage = get_shave_data_from_parser(
+                thread_map,
+                comments_delta_three,
+                extractor,
+                parser,
+                parser_field,
+                fallback,
+            )
 
             # print(f'adding {delta_one_label} delta', end='\r')
-            usage = add_ranking_delta(usage, d1_usage, delta_one_label)
-            # print(f'adding {delta_two_label} delta', end='\r')
-            usage = add_ranking_delta(usage, d2_usage, delta_two_label)
-            
-            if d3_usage is not None:
-                usage = add_ranking_delta(usage, d3_usage, delta_three_label)
-            
+        usage = add_ranking_delta(usage, d1_usage, delta_one_label)
+        # print(f'adding {delta_two_label} delta', end='\r')
+        usage = add_ranking_delta(usage, d2_usage, delta_two_label)
+
+        if d3_usage is not None:
+            usage = add_ranking_delta(usage, d3_usage, delta_three_label)
+
             # print(f'dropping rank', end='\r')
-            usage.drop("rank", inplace=True, axis=1)
+        usage.drop("rank", inplace=True, axis=1)
 
-            # remove nulls
-            # print('removing nulls', end='\r')
-            usage.dropna(subset=["name"], inplace=True)
+        # remove nulls
+        # print('removing nulls', end='\r')
+        usage.dropna(subset=["name"], inplace=True)
 
-            # sort
-            # print('sorting', end='\r')
-            usage.sort_values(["shaves", "unique users"], ascending=False, inplace=True)
+        # sort
+        # print('sorting', end='\r')
+        usage.sort_values(["shaves", "unique users"], ascending=False, inplace=True)
 
-            # enforce max entities
-            # print('enforcing max entities', end='\r')
-            max_entities = (
-                entity["max_entities"]
-                if "max_entities" in entity
-                else self.MAX_ENTITIES
-            )
-            usage = usage.head(max_entities)
+        # enforce max entities
+        # print('enforcing max entities', end='\r')
+        max_entities = (
+            entity["max_entities"] if "max_entities" in entity else self.MAX_ENTITIES
+        )
+        usage = usage.head(max_entities)
 
-            print(usage.to_markdown(index=False))
-            print("\n")
+        min_shaves = entity["min_shaves"] if "min_shaves" in entity else self.MIN_SHAVES
+        usage = usage[usage["shaves"] >= min_shaves]
+        return usage
 
-            if isinstance(entity["extractor"], StagedRazorNameExtractor):
-                razor_usage = usage
-
-        print("## Most Used Blades in Most Used Razors\n")
-
-        # do razor plus blade combo, filtered on most popular razors...
-        # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
-        rpb_usage = get_shave_data(
+    def blade_per_razor(
+        self,
+        thread_map,
+        comments_target,
+        min_shaves,
+        min_unique_user,
+        rp,
+        blp,
+        razor_usage,
+    ):
+        rpb_usage = get_shave_data_from_parser(
             thread_map,
             comments_target,
             RazorPlusBladeNameExtractor(),
-            RazorPlusBladeAlternateNamer(),
+            RazorPlusBladeParser(rp, blp),
         )
         razor_usage.sort_values(
             ["shaves", "unique users"], ascending=False, inplace=True
@@ -204,26 +338,7 @@ class Runner(object):
             .dropna()
         )
 
-        print(rpb_usage.to_markdown(index=False))
-        print("\n")
-
-        usage = self.top_shavers(
-            thread_map,
-            comments_target,
-            comments_delta_one,
-            comments_delta_two,
-            comments_delta_three,
-            delta_one_label,
-            delta_two_label,
-            delta_three_label,
-            start_month,
-            end_month
-        )
-
-        print("## Top Shavers\n")
-        print(usage.to_markdown(index=False))
-
-        print("\n")
+        return rpb_usage
 
     def top_shavers(
         self,
@@ -236,19 +351,30 @@ class Runner(object):
         delta_two_label,
         delta_three_label,
         start_month,
-        end_month
+        end_month,
     ):
 
         # usage = get_shave_data(thread_map, comments_target, StagedUserNameExtractor(), None)
-        d1_usage = get_shave_data(thread_map, comments_delta_one, StagedUserNameExtractor(), None)
-        d2_usage = get_shave_data(thread_map, comments_delta_two, StagedUserNameExtractor(), None)
+        d1_usage = get_shave_data_from_parser(
+            thread_map, comments_delta_one, StagedUserNameExtractor(), None
+        )
+        d2_usage = get_shave_data_from_parser(
+            thread_map, comments_delta_two, StagedUserNameExtractor(), None
+        )
 
         d3_usage = None
         if comments_delta_three is not None:
-            d3_usage = get_shave_data(thread_map, comments_delta_three, StagedUserNameExtractor(), None)
+            d3_usage = get_shave_data_from_parser(
+                thread_map, comments_delta_three, StagedUserNameExtractor(), None
+            )
 
-
-        usage = get_user_shave_data(thread_map, comments_target, StagedUserNameExtractor(), start_month, end_month)
+        usage = get_user_shave_data(
+            thread_map,
+            comments_target,
+            StagedUserNameExtractor(),
+            start_month,
+            end_month,
+        )
         usage = add_ranking_delta(usage, d1_usage, delta_one_label)
         usage = add_ranking_delta(usage, d2_usage, delta_two_label)
         if d3_usage is not None:
@@ -261,8 +387,10 @@ class Runner(object):
         usage.dropna(subset=["name"], inplace=True)
 
         # sort
-        usage['name lower'] = usage.loc[:, 'name'].str.lower()
-        usage = usage.sort_values(["shaves", "missed days", "name lower"], ascending=[False, True, True])
+        usage["name lower"] = usage.loc[:, "name"].str.lower()
+        usage = usage.sort_values(
+            ["shaves", "missed days", "name lower"], ascending=[False, True, True]
+        )
         head = 0
         last = 0
         # curr_month = datetime.strptime(comments_target[0]["created_utc"], "%Y-%m-%d %H:%M:%S")
@@ -270,15 +398,15 @@ class Runner(object):
         all_rows = []
         for index, row in usage.iterrows():
             all_rows.append(row)
-        
+
         for row in all_rows:
             head += 1
             if head >= 21 and row["shaves"] <= last:
                 if len(all_rows) > head:
-                    next_row = all_rows[head+1]
-                    if (row["shaves"] > next_row["shaves"]):
+                    next_row = all_rows[head + 1]
+                    if row["shaves"] > next_row["shaves"]:
                         break
-                    elif (row["shaves"] == next_row["shaves"]):
+                    elif row["shaves"] == next_row["shaves"]:
                         if row["missed days"] < next_row["missed days"]:
                             break
 
@@ -310,10 +438,15 @@ if __name__ == "__main__":
     last_month_label = last_month.strftime("%b %Y")
     last_year_label = last_year.strftime("%b %Y")
 
-
     thread_map = pl.get_thread_map(target, target)
-    single_user_report("u/Marquis90", comments_target, thread_map, StagedUserNameExtractor(), target, target)
-
+    single_user_report(
+        "u/Marquis90",
+        comments_target,
+        thread_map,
+        StagedUserNameExtractor(),
+        target,
+        target,
+    )
 
     # usage = Runner().top_shavers(
     #     comments_target,

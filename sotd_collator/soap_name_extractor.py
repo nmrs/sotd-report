@@ -9,6 +9,10 @@ class SoapNameExtractor(BaseNameExtractor):
     From a given comment, extract the brush size name
     """
 
+    # patterns people use repeatedly to document the brush they used
+    # but that we can't match to anything
+    GARBAGE = [r"^and\b", r"^n/a$", "^buddies", "help me identify it"]
+
     HTML_FIXUPS = [
         ("&#39;", "'"),
         ("&quot;", '"'),
@@ -146,7 +150,9 @@ class SoapNameExtractor(BaseNameExtractor):
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                r"\*(?!lather games)(?:lather|soap)\*:.*\*\*([{0}]+)\*\*".format(soap_name_re),
+                r"\*(?!lather games)(?:lather|soap)\*:.*\*\*([{0}]+)\*\*".format(
+                    soap_name_re
+                ),
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
             re.compile(
@@ -162,7 +168,7 @@ class SoapNameExtractor(BaseNameExtractor):
         if "soap" in comment:
             return comment["soap"]
 
-        comment_text = self._to_ascii(comment['body'])
+        comment_text = self._to_ascii(comment["body"])
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
@@ -273,6 +279,10 @@ class SoapNameExtractor(BaseNameExtractor):
 
                     if len(name) < 4:
                         return None
+
+                    for pattern in self.GARBAGE:
+                        if re.search(pattern, name, re.IGNORECASE):
+                            return None
 
                     return name.strip()
 

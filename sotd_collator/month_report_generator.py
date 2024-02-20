@@ -11,41 +11,46 @@ from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.stage_builder import StageBuilder
 from sotd_collator.utils import extract_date_from_thread_title
 
+FORCE_REFRESH = False
+TIME_PERIOD = "month"
+
 runner = Runner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
 # target = datetime.date(2023,12,1)
 target = datetime.date.today().replace(day=1) - relativedelta(months=1)
-last_month = target - relativedelta(months=1)
-last_year = target - relativedelta(years=1)
-five_years_ago = target - relativedelta(years=5)
+delta_one = target - relativedelta(months=1)
+delta_two = target - relativedelta(years=1)
+delta_three = target - relativedelta(years=5)
 
 sb = StageBuilder()
-sb.build_stage(last_month, target, True)
-sb.build_stage(last_year, last_year, True)
-sb.build_stage(five_years_ago, five_years_ago, True)
+sb.build_stage(delta_one, target, FORCE_REFRESH)
+sb.build_stage(delta_two, delta_two, FORCE_REFRESH)
+sb.build_stage(delta_three, delta_three, FORCE_REFRESH)
 
-thread_map = pl.get_thread_map(five_years_ago, five_years_ago)
-thread_map = thread_map | pl.get_thread_map(last_year, last_year)
-thread_map = thread_map | pl.get_thread_map(last_month, target)
+thread_map = pl.get_thread_map(delta_three, delta_three)
+thread_map = thread_map | pl.get_thread_map(delta_two, delta_two)
+thread_map = thread_map | pl.get_thread_map(delta_one, target)
 
 day_map = {}
-for d in range(1, calendar.monthrange(target.year, target.month)[1]+1):
+for d in range(1, calendar.monthrange(target.year, target.month)[1] + 1):
     dd = datetime.date(target.year, target.month, d)
     day_map[dd] = dd
 
 for id, thread in thread_map.items():
-    dd = extract_date_from_thread_title(thread['title'])
+    dd = extract_date_from_thread_title(thread["title"])
     if dd in day_map:
         del day_map[dd]
     if len(day_map) == 0:
         break
 
 
-missing = ''
+missing = ""
 missing_days = [d for d in day_map.values()]
-missing_days_str = runner.list_to_english_string([d.strftime("%b %-d") for d in missing_days])
+missing_days_str = runner.list_to_english_string(
+    [d.strftime("%b %-d") for d in missing_days]
+)
 
 if len(missing_days) > 0:
     s0 = "threads"
@@ -61,14 +66,14 @@ if len(missing_days) > 0:
     missing = f"\n\n* I was unable to find the SOTD {s0} for {missing_days_str}, so shaves from {s1} were not included. If you have a link to {s2}, please add it to the comments and I will rerun the report with it included."
 
 comments_target = pl.get_comments_for_given_month_staged(target)
-comments_last_month = pl.get_comments_for_given_month_staged(last_month)
-comments_last_year = pl.get_comments_for_given_month_staged(last_year)
-comments_five_years_ago = pl.get_comments_for_given_month_staged(five_years_ago)
+comments_delta_one = pl.get_comments_for_given_month_staged(delta_one)
+comments_delta_two = pl.get_comments_for_given_month_staged(delta_two)
+comments_delta_three = pl.get_comments_for_given_month_staged(delta_three)
 
 target_label = target.strftime("%B %Y")
-last_month_label = last_month.strftime("%b %Y")
-last_year_label = last_year.strftime("%b %Y")
-five_years_ago_label = five_years_ago.strftime("%b %Y")
+delta_one_label = delta_one.strftime("%b %Y")
+delta_two_label = delta_two.strftime("%b %Y")
+delta_three_label = delta_three.strftime("%b %Y")
 shave_reports = f"{len(comments_target):,}"
 
 header = f"""
@@ -76,7 +81,7 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 ## Observations
 
-* A fairly nondescript month
+* A fairly nondescript {TIME_PERIOD}
 
 
 ## Notes & Caveats
@@ -97,7 +102,7 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 * The unique user column shows the number of different users who used a given razor / brush etc in the month. We can combine this with the total number of shaves to get the average number of times a user used a razor / brush etc
 
-* The change Δ vs columns show how an item has moved up or down the rankings since the previous month or year. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to the previous month or year. n/a means the item was not present in the previous month / year.
+* The change Δ vs columns show how an item has moved up or down the rankings since that {TIME_PERIOD}. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to that {TIME_PERIOD}. n/a means the item was not present in that {TIME_PERIOD}.
 
 """
 
@@ -105,14 +110,14 @@ runner.run(
     header,
     thread_map,
     comments_target,
-    comments_last_month,
-    comments_last_year,
-    comments_five_years_ago,
-    last_month_label,
-    last_year_label,
-    five_years_ago_label,
+    comments_delta_one,
+    comments_delta_two,
+    comments_delta_three,
+    delta_one_label,
+    delta_two_label,
+    delta_three_label,
     5,  # min_shaves for most used blade in most userd razor
     2,  # min_unique users for most used blade in most userd razor),
     target,
     target,
-)  
+)

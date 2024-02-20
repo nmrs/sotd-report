@@ -1,6 +1,5 @@
 import re
 from functools import cached_property
-from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.base_name_extractor import BaseNameExtractor
 
 
@@ -9,9 +8,9 @@ class BladeNameExtractor(BaseNameExtractor):
     From a given comment, extract the razor name
     """
 
-    @cached_property
-    def alternative_namer(self):
-        return BladeAlternateNamer()
+    # patterns people use repeatedly to document the brush they used
+    # but that we can't match to anything
+    GARBAGE = ["not sure", "^buddies"]
 
     @cached_property
     def detect_regexps(self):
@@ -41,9 +40,12 @@ class BladeNameExtractor(BaseNameExtractor):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
-                s = str(res.group(1)).strip()
-                if len(s) > 0:
-                    return s
+                result = str(res.group(1)).strip()
+                if len(result) > 0:
+                    for pattern in self.GARBAGE:
+                        if re.search(pattern, result, re.IGNORECASE):
+                            return None
+                    return result
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
         # if principal_name:

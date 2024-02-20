@@ -1,6 +1,5 @@
 import re
 from functools import cached_property
-from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.base_name_extractor import BaseNameExtractor
 
 
@@ -11,11 +10,7 @@ class BrushNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = ["I've had forever"]
-
-    @cached_property
-    def alternative_namer(self):
-        return BrushAlternateNamer()
+    GARBAGE = ["I've had forever", "^buddies"]
 
     @cached_property
     def detect_regexps(self):
@@ -23,11 +18,11 @@ class BrushNameExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                fr"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{brush_name_re}]+)(?:\+|,|\n|$)",
+                rf"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{brush_name_re}]+)(?:\+|,|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                fr"\*brush\*:.*\*\*([{brush_name_re}]+)\*\*",
+                rf"\*brush\*:.*\*\*([{brush_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
         ]

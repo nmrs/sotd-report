@@ -9,10 +9,6 @@ class BaseNameExtractor(object):
     """
 
     @property
-    def alternative_namer(self):
-        raise NotImplementedError("subclass must implement alternative_namer")
-
-    @property
     def detect_regexps(self):
         raise NotImplementedError("subclass must implement detect_regexps")
 

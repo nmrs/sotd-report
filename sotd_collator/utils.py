@@ -1,13 +1,14 @@
 # shared functions and the like
 from concurrent.futures import thread
+from curses import raw
 from datetime import datetime, date
 import re
 from time import time
 from typing import List
 import pandas as pd
 from calendar import calendar, monthrange
-from base_alternate_namer import BaseAlternateNamer
 from base_name_extractor import BaseNameExtractor
+from base_parser import BaseParser
 
 
 def timer_func(func):
@@ -23,15 +24,18 @@ def timer_func(func):
     return wrap_func
 
 
-def get_shave_data(
+def get_shave_data_from_parser(
     thread_map,
     comments: List[dict],
     name_extractor: BaseNameExtractor,
-    alternate_namer: BaseAlternateNamer,
-    name_fallback=True,
+    parser: BaseParser,
+    parser_field: str = "name",
+    name_fallback: bool = True,
 ):
     # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
-    raw_usage = get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback)
+    raw_usage = get_raw_data_from_parser(
+        thread_map, comments, name_extractor, parser, parser_field, name_fallback
+    )
 
     df = pd.DataFrame(raw_usage)
     df = df.groupby("name").agg({"user_id": ["count", "nunique"]}).reset_index()
@@ -46,82 +50,146 @@ def get_shave_data(
     df.loc[:, "rank"] = df["shaves"].rank(method="dense", ascending=False)
     return df
 
-def get_user_shave_data(
-    thread_map: dict,
-    comments: [dict],
-    name_extractor: BaseNameExtractor,
-    start_month: datetime.date,
-    end_month: datetime.date
+
+def get_raw_data_from_parser(
+    thread_map,
+    comments,
+    name_extractor,
+    parser: BaseParser,
+    parser_field="name",
+    name_fallback=True,
 ):
-    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
-    raw_usage = get_raw_data(thread_map, comments, name_extractor, None, True)
-    raw_df = pd.DataFrame(raw_usage)
-    raw_df['date'] = pd.to_datetime(raw_df['date'])
 
-    start_day = start_month.replace(day=1)
-    days_in_month = monthrange(end_month.year, end_month.month)[1]
-    end_day = end_month.replace(day=days_in_month)
-
-    # Create a DataFrame with all days of the month for each user
-    date_range = pd.date_range(start_day, end_day, freq='D')
-    users = raw_df['name'].unique()
-    date_user_df = pd.DataFrame([(date, user) for date in date_range for user in users], columns=['date', 'name'])
-    # Merge the original DataFrame with the new one
-    merged_df = pd.merge(date_user_df, raw_df, on=['date', 'name'], how='left')
-    # Filter out days where no comments were made
-    no_comment_days = merged_df[merged_df['user_id'].isnull()]
-
-    # Count the number of days without comments for each user
-    missed_days = no_comment_days.groupby('name')['date'].count()
-    missed_days.name = "missed days"
-
-    shave_df = get_shave_data(thread_map, comments, name_extractor, None, True)
-
-    result = shave_df.merge(missed_days, on="name", how="left")
-    result = result.fillna(value=0)
-    result = result.sort_values(['shaves', 'missed days', 'name'], ascending=[False, True, True])
-    return result
-
-
-def get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback):
-
-    raw_usage = {"name": [], "user_id": [], "date": [], "url": []}
+    raw_usage = {
+        "name": [],
+        "user_id": [],
+        "date": [],
+        "url": [],
+        "original": [],
+        "matched": [],
+        "body": [],
+    }
 
     for comment in comments:
-        thread_id = extract_thread_id_from_comment_url(comment['url'])
+        thread_id = extract_thread_id_from_comment_url(comment["url"])
         thread_date = extract_date_from_thread_title(thread_map[thread_id]["title"])
         entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None
-            if alternate_namer:
-                principal_name = alternate_namer.get_principal_name(entity_name)
+            if parser:
+                principal_name = parser.get_value(entity_name, parser_field)
             if not principal_name:
                 if not name_fallback:
                     # skip this one if we dont want to fall back to the base entity name
                     continue
                 else:
                     # no renamer or no principal name found, so avoid nulls and use raw entity name
-                    principal_name = entity_name
+                    principal_name = remove_digits_in_parens(entity_name)
+                    raw_usage["matched"].append(False)
+            else:
+                raw_usage["matched"].append(True)
 
             raw_usage["name"].append(principal_name)
             raw_usage["user_id"].append(comment["author"])
             raw_usage["date"].append(thread_date)
-            raw_usage['url'].append(comment['url'])
+            raw_usage["url"].append(comment["url"])
+            raw_usage["original"].append(entity_name)
+            raw_usage["body"].append(comment["body"])
     return raw_usage
 
 
-def get_shave_data_for_month(
-    given_month, post_locator, name_extractor, alternate_namer, name_fallback=True
+def get_user_shave_data(
+    thread_map: dict,
+    comments: List[dict],
+    name_extractor: BaseNameExtractor,
+    start_month: datetime.date,
+    end_month: datetime.date,
 ):
-    comments = post_locator.get_comments_for_given_month_cached(given_month)
-    return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
+    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
+    raw_usage = get_raw_data_from_parser(
+        thread_map, comments, name_extractor, None, True
+    )
+    raw_df = pd.DataFrame(raw_usage)
+    raw_df["date"] = pd.to_datetime(raw_df["date"])
+
+    start_day = start_month.replace(day=1)
+    days_in_month = monthrange(end_month.year, end_month.month)[1]
+    end_day = end_month.replace(day=days_in_month)
+
+    # Create a DataFrame with all days of the month for each user
+    date_range = pd.date_range(start_day, end_day, freq="D")
+    users = raw_df["name"].unique()
+    # merged_df = raw_df.merge(date_df, how="left")
+    date_user_df = pd.DataFrame(
+        [(date, user) for date in date_range for user in users],
+        columns=["date", "name"],
+    )
+    # # Merge the original DataFrame with the new one
+    merged_df = pd.merge(date_user_df, raw_df, on=["date", "name"], how="left")
+    # Filter out days where no comments were made
+    no_comment_days = merged_df[merged_df["user_id"].isnull()]
+
+    # Count the number of days without comments for each user
+    missed_days = no_comment_days.groupby("name")["date"].count()
+    missed_days.name = "missed days"
+
+    shave_df = get_shave_data_from_parser(
+        thread_map, comments, name_extractor, None, True
+    )
+
+    result = shave_df.merge(missed_days, on="name", how="left")
+    result = result.fillna(value=0)
+    result = result.sort_values(
+        ["shaves", "missed days", "name"], ascending=[False, True, True]
+    )
+    return result
 
 
-def get_shave_data_for_year(
-    given_year, post_locator, name_extractor, alternate_namer, name_fallback=True
-):
-    comments = post_locator.get_comments_for_given_year_cached(given_year)
-    return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
+# def get_raw_data(thread_map, comments, name_extractor, alternate_namer, name_fallback):
+
+#     raw_usage = {"name": [], "user_id": [], "date": [], "url": []}
+
+#     for comment in comments:
+#         thread_id = extract_thread_id_from_comment_url(comment["url"])
+#         thread_date = extract_date_from_thread_title(thread_map[thread_id]["title"])
+#         entity_name = name_extractor.get_name(comment)
+#         if entity_name is not None:
+#             principal_name = None
+#             if alternate_namer:
+#                 principal_name = alternate_namer.get_principal_name(entity_name)
+#             if not principal_name:
+#                 if not name_fallback:
+#                     # skip this one if we dont want to fall back to the base entity name
+#                     continue
+#                 else:
+#                     # no renamer or no principal name found, so avoid nulls and use raw entity name
+#                     principal_name = entity_name
+
+#             raw_usage["name"].append(principal_name)
+#             raw_usage["user_id"].append(comment["author"])
+#             raw_usage["date"].append(thread_date)
+#             raw_usage["url"].append(comment["url"])
+#     return raw_usage
+
+
+def remove_digits_in_parens(input_string):
+    pattern = r"\([0-9]+\)|\[[0-9]+\]|\{[0-9]+\}"
+    result = re.sub(pattern, "", input_string)
+    return result
+
+
+# def get_shave_data_for_month(
+#     given_month, post_locator, name_extractor, alternate_namer, name_fallback=True
+# ):
+#     comments = post_locator.get_comments_for_given_month_cached(given_month)
+#     return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
+
+
+# def get_shave_data_for_year(
+#     given_year, post_locator, name_extractor, alternate_namer, name_fallback=True
+# ):
+#     comments = post_locator.get_comments_for_given_year_cached(given_year)
+#     return get_shave_data(comments, name_extractor, alternate_namer, name_fallback)
 
 
 def get_shaving_histogram(given_month, post_locator):
@@ -219,7 +287,7 @@ def add_ranking_delta(df_curr, df_prev, historic_name):
     return df_curr
 
 
-def get_unlinked_entity_data(comments: [dict], name_extractor, alternate_namer):
+def get_unlinked_entity_data(comments: List[dict], name_extractor, alternate_namer):
     # all the cases where we cant match a razor / brush / etc as posted by the user
     raw_unlinked = {"name": [], "user_id": []}
 
@@ -239,6 +307,7 @@ def get_unlinked_entity_data(comments: [dict], name_extractor, alternate_namer):
     df = df[df.apply(lambda x: x["name"].lower() != "none", axis=1)]
     return df
 
+
 def extract_date_from_thread_title(title):
     # Define a regular expression pattern for matching dates with variations in spacing
     # date_pattern = re.compile(r'.*(\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?).*\s+\d{1,2}\s*,?\s*\d{4})')
@@ -249,7 +318,7 @@ def extract_date_from_thread_title(title):
 
     date_formats = ["%b %d, %Y", "%B %d, %Y", "%b. %d, %Y", "%b %d %Y", "%d %b %Y"]
 
-    replacements = [(r'\b(\d{2})\b', r'\1'), (r'\b(\d{1})\b', r'0\1')]
+    replacements = [(r"\b(\d{2})\b", r"\1"), (r"\b(\d{1})\b", r"0\1")]
 
     for pattern in date_patterns:
         # regex = re.compile(pattern)
@@ -269,39 +338,50 @@ def extract_date_from_thread_title(title):
 
     raise ValueError(f"Unable to extract date from: {title}")
 
+
 def extract_thread_id_from_comment_url(url):
-    pattern = re.compile(r'/comments/([^/]+)/')
+    pattern = re.compile(r"/comments/([^/]+)/")
     match = pattern.search(url)
 
     if match:
         return match.group(1)
     raise ValueError(f"Unable to find thread id in {url}")
 
-def single_user_report(user_id, comments, thread_map, name_extractor, start_month, end_month):
-        # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
-    raw_usage = get_raw_data(thread_map, comments, name_extractor, None, True)
+
+def single_user_report(
+    user_id, comments, thread_map, name_extractor, start_month, end_month
+):
+    # pull comments and user ids from reddit, generate per-entity dataframe with shaves, unique users
+    raw_usage = get_raw_data_from_parser(
+        thread_map, comments, name_extractor, None, True
+    )
     raw_df = pd.DataFrame(raw_usage)
-    raw_df['date'] = pd.to_datetime(raw_df['date'])
+    raw_df["date"] = pd.to_datetime(raw_df["date"])
 
     start_day = start_month.replace(day=1)
     days_in_month = monthrange(end_month.year, end_month.month)[1]
     end_day = end_month.replace(day=days_in_month)
 
     # Create a DataFrame with all days of the month for each user
-    date_range = pd.date_range(start_day, end_day, freq='D')
-    users = raw_df['name'].unique()
-    date_user_df = pd.DataFrame([(date, user) for date in date_range for user in users], columns=['date', 'name'])
+    date_range = pd.date_range(start_day, end_day, freq="D")
+    users = raw_df["name"].unique()
+    date_user_df = pd.DataFrame(
+        [(date, user) for date in date_range for user in users],
+        columns=["date", "name"],
+    )
     # Merge the original DataFrame with the new one
-    merged_df = pd.merge(date_user_df, raw_df, on=['date', 'name'], how='left')
+    merged_df = pd.merge(date_user_df, raw_df, on=["date", "name"], how="left")
     # Filter out days where no comments were made
     user_raw = raw_df[raw_df["name"] == user_id]
     user_merged_df = merged_df[merged_df["name"] == user_id]
-    no_comment_days = merged_df[merged_df['user_id'].isnull()]
-    user_no_comment_days = no_comment_days[no_comment_days['name'] == user_id]
-    full_multiple_comment_days = raw_df.groupby(['user_id', 'date']).agg({"user_id": ["count"]}).reset_index()
-    full_multiple_comment_days.columns = ['user_id', 'date', 'shaves']
-    multiple_comment_days = full_multiple_comment_days[full_multiple_comment_days['user_id'] == user_id]
-    result = user_merged_df.fillna('').drop(columns='user_id').astype(str)
+    no_comment_days = merged_df[merged_df["user_id"].isnull()]
+    user_no_comment_days = no_comment_days[no_comment_days["name"] == user_id]
+    full_multiple_comment_days = (
+        raw_df.groupby(["user_id", "date"]).agg({"user_id": ["count"]}).reset_index()
+    )
+    full_multiple_comment_days.columns = ["user_id", "date", "shaves"]
+    multiple_comment_days = full_multiple_comment_days[
+        full_multiple_comment_days["user_id"] == user_id
+    ]
+    result = user_merged_df.fillna("").drop(columns="user_id").astype(str)
     return result
-
-
