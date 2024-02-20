@@ -118,12 +118,11 @@ def get_user_shave_data(
 
     # Create a DataFrame with all days of the month for each user
     date_range = pd.date_range(start_day, end_day, freq="D")
-    users = raw_df["name"].unique()
-    # merged_df = raw_df.merge(date_df, how="left")
-    date_user_df = pd.DataFrame(
-        [(date, user) for date in date_range for user in users],
-        columns=["date", "name"],
-    )
+    users = pd.DataFrame({"name": raw_df["name"].unique()})
+
+    date_df = pd.DataFrame({"date": date_range})
+    date_user_df = users.merge(date_df, how="cross")
+
     # # Merge the original DataFrame with the new one
     merged_df = pd.merge(date_user_df, raw_df, on=["date", "name"], how="left")
     # Filter out days where no comments were made
