@@ -286,7 +286,9 @@ def add_ranking_delta(df_curr, df_prev, historic_name):
     return df_curr
 
 
-def get_unlinked_entity_data(comments: List[dict], name_extractor, alternate_namer):
+def get_unlinked_entity_data(
+    comments: List[dict], name_extractor, parser: BaseParser, parser_field: str = "name"
+):
     # all the cases where we cant match a razor / brush / etc as posted by the user
     raw_unlinked = {"name": [], "user_id": []}
 
@@ -294,8 +296,8 @@ def get_unlinked_entity_data(comments: List[dict], name_extractor, alternate_nam
         entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None
-            if alternate_namer:
-                principal_name = alternate_namer.get_principal_name(entity_name)
+            if parser:
+                principal_name = parser.get_value(entity_name, "name")
             if not principal_name:
                 raw_unlinked["name"].append(entity_name)
                 raw_unlinked["user_id"].append(comment["author"])

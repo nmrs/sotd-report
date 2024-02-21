@@ -1,21 +1,16 @@
 import datetime
-from pprint import pprint
 import inflect
-import pandas as pd
 
 import praw
 from dateutil.relativedelta import relativedelta
+from blade_parser import BladeParser
+from brush_parser import BrushParser
+from razor_parser import RazorParser
 
-from sotd_collator.blade_alternate_namer import BladeAlternateNamer
 from sotd_collator.blade_name_extractor import BladeNameExtractor
-from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
-from sotd_collator.game_changer_plate_extractor import GameChangerPlateExtractor
-from sotd_collator.karve_plate_extractor import KarvePlateExtractor
-from sotd_collator.knot_size_extractor import KnotSizeExtractor
 from sotd_collator.knot_type_extractor import KnotTypeExtractor
 from sotd_collator.razor_name_extractor import RazorNameExtractor
-from sotd_collator.razor_alternate_namer import RazorAlternateNamer
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.staged_name_extractors import (
     StagedRazorNameExtractor,
@@ -41,24 +36,27 @@ process_entities = [
     {
         "name": "Razor",
         "extractor": StagedRazorNameExtractor(),
-        "renamer": RazorAlternateNamer(),
+        "parser": RazorParser(),
+        "parser field": "name",
         "max_entities": 50,
     },
     {
         "name": "Blade",
         "extractor": StagedBladeNameExtractor(),
-        "renamer": BladeAlternateNamer(),
+        "parser": BladeParser(),
+        "parser field": "name",
         "max_entities": 50,
     },
     {
         "name": "Brush",
         "extractor": BrushNameExtractor(),
-        "renamer": BrushAlternateNamer(link_other=False),
+        "parser": BrushParser(),
+        "parser field": "name",
         "max_entites": 50,
     },
 ]
 
-target = datetime.date(2024, 1, 1)
+target = datetime.date(2024, 2, 1)
 comments = pl.get_comments_for_given_month_staged(target)
 print(
     """
@@ -71,7 +69,9 @@ Unlinked entity detection for {0}
 for entity in process_entities:
     print("##{0}\n".format(inf_engine.plural(entity["name"])))
 
-    usage = get_unlinked_entity_data(comments, entity["extractor"], entity["renamer"])
+    usage = get_unlinked_entity_data(
+        comments, entity["extractor"], entity["parser"], entity["parser field"]
+    )
 
     # remove nulls
     usage.dropna(subset=["name"], inplace=True)
