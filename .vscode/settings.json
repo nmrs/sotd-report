@@ -1,9 +1,10 @@
 {
-
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.analysis.extraPaths": ["${workspaceFolder}/sotd_collator/"],    
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/sotd_collator/"
+    ],
     "python.testing.unittestArgs": [
         "-v",
         "-s",
@@ -13,7 +14,6 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
-
     "terminal.integrated.env.osx": {
         "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/sotd_collator",
     },
@@ -22,5 +22,6 @@
     },
     "terminal.integrated.env.windows": {
         "PYTHONPATH": "${env:PYTHONPATH};${workspaceFolder}/sotd_collator",
-    }
+    },
+    "terminal.integrated.scrollback": 10000
 }
