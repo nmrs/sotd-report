@@ -10,7 +10,11 @@ class RazorNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = ["and blade performance", r"^n/a$", "^buddies", "help me identify it"]
+    GARBAGE = []
+
+    @cached_property
+    def _garbage(self):
+        return self.BASE_GARBAGE + self.GARBAGE
 
     @cached_property
     def detect_regexps(self):
@@ -18,13 +22,13 @@ class RazorNameExtractor(BaseNameExtractor):
 
         return [
             re.compile(
+                rf"\*Razor[\*:\s]+([{razor_name_re}]+)\*\*",
+                re.MULTILINE | re.IGNORECASE,
+            ),  # sgrddy
+            re.compile(
                 rf"^[*\s\-+/]*Razor\s*[:*\-\\+\s/]+\s*([{razor_name_re}]+)(?:\+|,|\n|$)",
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
-            re.compile(
-                rf"\*Razor\*:.*\*\*([{razor_name_re}]+)\*\*",
-                re.MULTILINE | re.IGNORECASE,
-            ),  # sgrddy
             re.compile(
                 rf"^\*\*Safety Razor\*\*\s*-\s*([{razor_name_re}]+)[+,\n]",
                 re.MULTILINE | re.IGNORECASE,
@@ -53,7 +57,7 @@ class RazorNameExtractor(BaseNameExtractor):
             if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == "ock"):
                 result = res.group(1).strip()
                 if len(result) > 0:
-                    for pattern in self.GARBAGE:
+                    for pattern in self._garbage:
                         if re.search(pattern, result, re.IGNORECASE):
                             return None
                     return result

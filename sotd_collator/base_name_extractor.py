@@ -1,14 +1,20 @@
+from abc import ABC, abstractmethod
 import functools
 import re
 import unicodedata
 
 
-class BaseNameExtractor(object):
+class BaseNameExtractor(ABC):
     """
     Subclass this to extract specific entities - razors, blades, brushes etc
     """
 
+    # patterns people use repeatedly to document the brush they used
+    # but that we can't match to anything
+    BASE_GARBAGE = ["^n/a$", "^unknown$", "^not sure$"]
+
     @property
+    @abstractmethod
     def detect_regexps(self):
         raise NotImplementedError("subclass must implement detect_regexps")
 
@@ -53,7 +59,11 @@ class BaseNameExtractor(object):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
-                return res.group(1).strip()
+                name = res.group(1).strip()
+                for pattern in self.BASE_GARBAGE:
+                    if re.search(pattern, name, re.IGNORECASE):
+                        return None
+                return name
 
         # # if we cant find the the entity by looking for it in common SOTD formats,
         # # try and find any common entity name within the comment

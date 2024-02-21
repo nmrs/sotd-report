@@ -10,7 +10,11 @@ class BladeNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = ["not sure", "^buddies"]
+    GARBAGE = []
+
+    @cached_property
+    def _garbage(self):
+        return self.BASE_GARBAGE + self.GARBAGE
 
     @cached_property
     def detect_regexps(self):
@@ -18,15 +22,13 @@ class BladeNameExtractor(BaseNameExtractor):
 
         return [
             re.compile(
-                r"^[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*([{0}]+)(?:\+|,|\n|$)".format(
-                    blade_name_re
-                ),
-                re.MULTILINE | re.IGNORECASE,
-            ),  # TTS and similar
-            re.compile(
-                r"\*blade\*:.*\*\*([{0}]+)\*\*".format(blade_name_re),
+                rf"\*blade[\*:\s]+([{blade_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
+            re.compile(
+                rf"^[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*([{blade_name_re}]+)(?:\+|,|\n|$)",
+                re.MULTILINE | re.IGNORECASE,
+            ),  # TTS and similar
             # re.compile(r'^\*\*Safety Razor\*\*\s*-\s*([{0}]+)[+,\n]'.format(blade_name_re),
             #            re.MULTILINE | re.IGNORECASE),  # **Safety Razor** - RazoRock - Gamechanger 0.84P   variant
         ]
@@ -42,7 +44,7 @@ class BladeNameExtractor(BaseNameExtractor):
             if res:
                 result = str(res.group(1)).strip()
                 if len(result) > 0:
-                    for pattern in self.GARBAGE:
+                    for pattern in self._garbage:
                         if re.search(pattern, result, re.IGNORECASE):
                             return None
                     return result

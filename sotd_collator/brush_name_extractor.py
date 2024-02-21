@@ -10,7 +10,11 @@ class BrushNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = ["I've had forever", "^buddies"]
+    GARBAGE = []
+
+    @cached_property
+    def _garbage(self):
+        return self.BASE_GARBAGE + self.GARBAGE
 
     @cached_property
     def detect_regexps(self):
@@ -22,7 +26,7 @@ class BrushNameExtractor(BaseNameExtractor):
                 re.MULTILINE | re.IGNORECASE,
             ),  # TTS and similar
             re.compile(
-                rf"\*brush\*:.*\*\*([{brush_name_re}]+)\*\*",
+                rf"\*brush[\*:\s]+([{brush_name_re}]+)\*\*",
                 re.MULTILINE | re.IGNORECASE,
             ),  # sgrddy
         ]
@@ -45,7 +49,7 @@ class BrushNameExtractor(BaseNameExtractor):
             if res:
                 result = res.group(1).strip()
                 if len(result) > 0:
-                    for pattern in self.GARBAGE:
+                    for pattern in self._garbage:
                         if re.search(pattern, result, re.IGNORECASE):
                             return None
                     return result
