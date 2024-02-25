@@ -12,23 +12,17 @@ class BrushNameExtractor(BaseNameExtractor):
     # but that we can't match to anything
     GARBAGE = []
 
-    @cached_property
     def _garbage(self):
-        return self.BASE_GARBAGE + self.GARBAGE
+        return self.GARBAGE
 
     @cached_property
     def detect_regexps(self):
         brush_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~+"""
 
         return [
-            re.compile(
-                rf"^[*\s\-+/]*brush\s*[:*\-\\+\s/]+\s*([{brush_name_re}]+)(?:\+|,|\n|$)",
-                re.MULTILINE | re.IGNORECASE,
-            ),  # TTS and similar
-            re.compile(
-                rf"\*brush[\*:\s]+([{brush_name_re}]+)\*\*",
-                re.MULTILINE | re.IGNORECASE,
-            ),  # sgrddy
+            self.sgrddy_detector("Brush"),
+            self.imgur_detector("Brush"),
+            self.tts_detector("Brush"),
         ]
 
     @BaseNameExtractor.post_process_name
@@ -49,9 +43,9 @@ class BrushNameExtractor(BaseNameExtractor):
             if res:
                 result = res.group(1).strip()
                 if len(result) > 0:
-                    for pattern in self._garbage:
-                        if re.search(pattern, result, re.IGNORECASE):
-                            return None
+                    # for pattern in self._garbage:
+                    #     if re.search(pattern, result, re.IGNORECASE):
+                    #         return None
                     return result
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)

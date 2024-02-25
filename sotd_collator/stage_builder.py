@@ -66,7 +66,7 @@ class StageBuilder(object):
                     for file in cached_files[filename]:
                         os.remove(file)
 
-            # threads = pl.get_threads_for_given_month(curr_month)
+            # threads = pl.get_threads_for_given_month(curr_month)\
             comments = pl.get_comments_for_given_month_cached(curr_month)
             results = []
             for comment in comments:
@@ -146,7 +146,7 @@ class StageBuilder(object):
 
 if __name__ == "__main__":
     StageBuilder().build_stage(
-        start_month=date(2023, 1, 1), end_month=date(2024, 2, 1), force_refresh=False
+        start_month=date(2024, 2, 1), end_month=date(2024, 2, 1), force_refresh=False
     )
     # StageBuilder().validate_stage(
     #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)

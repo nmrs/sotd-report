@@ -141,7 +141,7 @@ class RazorParser(BaseParser):
                     r"trac[\s-]*2",
                     r"trac[\s-]*ii",
                 ],
-                "format": "Cart",
+                "format": "Cartridge",
             }
         },
         "Carbon": {
@@ -179,6 +179,11 @@ class RazorParser(BaseParser):
                 ]
             },
             "Lithe Head": {"patterns": ["lithe"]},
+        },
+        "Chinchilla": {
+            "Razor": {
+                "patterns": ["chinchilla"],
+            }
         },
         "Chiseled Face": {
             "Legacy": {
@@ -441,7 +446,7 @@ class RazorParser(BaseParser):
             "GC 2.0": {"patterns": ["GC.*2", "green.*cult"]},
         },
         "Headblade": {
-            "ATX": {"patterns": ["headbl.*atx"], "format": "Cart"},
+            "ATX": {"patterns": ["headbl.*atx"], "format": "Cartridge"},
         },
         "Handlebar": {
             "Shaving Company Dali": {"patterns": ["handlebar.*dali"]},
@@ -670,6 +675,7 @@ class RazorParser(BaseParser):
             "99R": {"patterns": ["99R"]},
             "111W": {"patterns": ["111W"]},
             "Semi Slant": {"patterns": ["parker.*semi.*sla"]},
+            "SoloEdge": {"patterns": ["parker.*solo"]},
             "SR1": {"patterns": ["parker.*sr1"]},
             "SRX": {"patterns": ["parker.*srx"]},
             "SRW": {"patterns": ["parker.*srw"]},
@@ -761,7 +767,8 @@ class RazorParser(BaseParser):
             "Razor": {"patterns": ["rolls.*(razor)?"], "format": "Rolls"},
         },
         "Romer-7": {
-            "Wazir": {"patterns": ["romer-?7"]},
+            "Wazir": {"patterns": [r"wazir"]},
+            "CS11": {"patterns": [r"romer.*CS[\s-]*11"]},
         },
         "SCS": {
             "Model A": {"patterns": ["simple.*clean.*shave", r"\bscs\b"]},
@@ -838,7 +845,7 @@ class RazorParser(BaseParser):
         "Thiers Issard": {
             "Straight": {
                 "patterns": [r"th.*iss?ard(.*straight)?"],
-                "format": "Straigt",
+                "format": "Straight",
             },
         },
         "Timeless": {

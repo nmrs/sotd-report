@@ -12,25 +12,20 @@ class BladeNameExtractor(BaseNameExtractor):
     # but that we can't match to anything
     GARBAGE = []
 
-    @cached_property
     def _garbage(self):
-        return self.BASE_GARBAGE + self.GARBAGE
+        return self.GARBAGE
 
     @cached_property
     def detect_regexps(self):
-        blade_name_re = r"""\w\t ./\-_()\[\]#;&\'\"|<>:$~"""
+        blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
+
+        # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
+        # sgrddy =
 
         return [
-            re.compile(
-                rf"\*blade[\*:\s]+([{blade_name_re}]+)\*\*",
-                re.MULTILINE | re.IGNORECASE,
-            ),  # sgrddy
-            re.compile(
-                rf"^[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*([{blade_name_re}]+)(?:\+|,|\n|$)",
-                re.MULTILINE | re.IGNORECASE,
-            ),  # TTS and similar
-            # re.compile(r'^\*\*Safety Razor\*\*\s*-\s*([{0}]+)[+,\n]'.format(blade_name_re),
-            #            re.MULTILINE | re.IGNORECASE),  # **Safety Razor** - RazoRock - Gamechanger 0.84P   variant
+            self.sgrddy_detector("Blade"),
+            self.imgur_detector("Blade"),
+            self.tts_detector("Blade"),
         ]
 
     @BaseNameExtractor.post_process_name
@@ -44,9 +39,13 @@ class BladeNameExtractor(BaseNameExtractor):
             if res:
                 result = str(res.group(1)).strip()
                 if len(result) > 0:
-                    for pattern in self._garbage:
-                        if re.search(pattern, result, re.IGNORECASE):
-                            return None
+                    # for pattern in self._garbage:
+                    #     if re.search(pattern, result, re.IGNORECASE):
+                    #         return None
+                    if res.lastindex > 1:
+                        use_count = res.group(2).strip()
+                        if len(use_count) > 0:
+                            return f"{result} ({use_count})"
                     return result
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)

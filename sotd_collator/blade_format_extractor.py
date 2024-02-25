@@ -1,4 +1,3 @@
-from functools import lru_cache
 from blade_parser import BladeParser
 from razor_parser import RazorParser
 from base_name_extractor import BaseNameExtractor
@@ -20,6 +19,9 @@ class BladeFormatExtractor(BaseNameExtractor):
         self.__blade_parser = blade_parser
         self.__razor_name_extractor = razor_name_extractor
         self.__razor_parser = razor_parser
+
+    def detect_regexps(self):
+        raise NotImplementedError()
 
     def get_name(self, comment):
         FIELD = "format"

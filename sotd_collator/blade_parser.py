@@ -48,7 +48,10 @@ class BladeParser(BaseParser):
         "Big Ben": {"patterns": ["big ben"]},
         "Boker": {"patterns": ["boker"]},
         "Bolzano": {"patterns": ["b(o|a)lzano"]},
-        "Cartridge": {"patterns": ["twin.*pivot"]},
+        "Cartridge": {
+            "patterns": ["twin.*pivot", "gil.*fusion", "gil.*labs"],
+            "format": "Cartridge",
+        },
         "Crystal": {"patterns": ["crystal"]},
         "Derby Blue Bird": {"patterns": ["blue.*bird"]},
         "Derby Concord": {"patterns": ["concord"]},
@@ -85,6 +88,7 @@ class BladeParser(BaseParser):
         "Feather ProGuard (AC)": {"patterns": ["feather.*guard"], "format": "AC"},
         "Feather Soft Guard (AC)": {"patterns": ["feather.*soft"], "format": "AC"},
         "GEM Blue Star": {"patterns": ["gem.*blue.*star"], "format": "GEM"},
+        "Gillette 365": {"patterns": [r"\b365\b"]},
         "Gillette London Bridge": {"patterns": ["london\s*bridge"]},
         "Gillette Minora": {"patterns": ["minora", "minora.*plat"]},
         "Gillette Nacet": {"patterns": ["nan*cet"]},
@@ -211,20 +215,18 @@ class BladeParser(BaseParser):
                 output[pattern] = {"name": name, "format": format}
         return output
 
-    def extract_uses(input_string):
-        match = re.search(r"[[(](\d{1,4})[)\]]", input_string)
-        if match:
-            return int(match.group(1))
+    # def extract_uses(input_string):
+    #     match = re.search(r"[[(](\d{1,4})[)\]]", input_string)
+    #     if match:
+    #         return int(match.group(1))
 
-        return None
+    #     return None
 
     @lru_cache(maxsize=None)
     def _get_value(self, input_string: str, field: str) -> str:
-        if field == "uses":
-            return self.extract_uses(input_string)
-        else:
-            input_string = self.remove_digits_in_parens(input_string)
-            return self.__get_value(input_string, field)
+        return self.__get_value(input_string, field)
+        # input_string = self.remove_digits_in_parens(input_string)
+        # return self.__get_value(input_string, field)
 
     @lru_cache(maxsize=None)
     def __get_value(self, input_string, field):

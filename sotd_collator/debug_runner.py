@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
+from blade_format_extractor import BladeFormatExtractor
 from blade_parser import BladeParser
 from brush_parser import BrushParser
 from razor_parser import RazorParser
@@ -94,12 +95,12 @@ class DebugRunner(object):
 
         inf_engine = inflect.engine()
 
-        # for entity in process_entities:
-        #     self.process_entity(thread_map, comments_target, blp, inf_engine, entity)
+        for entity in process_entities:
+            self.process_entity(thread_map, comments_target, blp, inf_engine, entity)
 
-        self.process_user_shave_data(
-            thread_map, comments_target, start_month, end_month
-        )
+        # self.process_user_shave_data(
+        #     thread_map, comments_target, start_month, end_month
+        # )
         return
 
     def process_entity(self, thread_map, comments_target, blp, inf_engine, entity):
@@ -115,6 +116,7 @@ class DebugRunner(object):
             thread_map, comments_target, extractor, parser, parser_field, fallback
         )
         df_raw = pd.DataFrame(raw_usage)
+        df_raw["original"] = df_raw["original"].apply(lambda x: x[:100])
         df_raw["original"] = df_raw["original"].apply(
             lambda x: blp.remove_digits_in_parens(x)
         )
@@ -129,11 +131,21 @@ class DebugRunner(object):
         df = df.merge(df_counts, how="left")
         df["name"] = df["name"].str[:50]
         # df = df.value_counts(["name"]).reset_index(name="c")
+        # sort by usage desc
+        # df = df.sort_values(
+        #     ["a", "matched", "name", "b"], ascending=[False, False, True, False]
+        # )
+        # sort by matched name
         df = df.sort_values(
-            ["a", "matched", "name", "b"], ascending=[False, False, True, False]
+            ["matched", "name", "a", "b"],
+            ascending=[False, True, True, False],
+            # ["matched", "name", "a", "b"],
+            # ascending=[True, False, False, True],
         )
         print(df.to_markdown(index=False))
         print("\n")
+
+        print(f"{len(df_raw)} shaves")
 
     def process_user_shave_data(
         self, thread_map, comments_target, start_month, end_month
@@ -195,12 +207,12 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    target = datetime.date(2023, 1, 1)
-    end_month = datetime.date(2023, 12, 1)
+    start_month = datetime.date(2024, 2, 1)
+    end_month = datetime.date(2024, 2, 1)
 
     comments_target = []
     thread_map = {}
-    curr_month = target
+    curr_month = start_month
     while curr_month <= end_month:
         comments_target = comments_target + pl.get_comments_for_given_month_staged(
             curr_month
@@ -208,7 +220,7 @@ if __name__ == "__main__":
         thread_map = thread_map | pl.get_thread_map(curr_month, curr_month)
         curr_month = curr_month + relativedelta(months=1)
 
-    DebugRunner().run(thread_map, comments_target, target, end_month)
+    DebugRunner().run(thread_map, comments_target, start_month, end_month)
     # usage = Runner().top_shavers(
     #     comments_target,
     #     comments_last_month,

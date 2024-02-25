@@ -86,6 +86,55 @@ Stay safe and have a great day!""",
             },
             "expected_result": None,
         },
+        {
+            "comment": {
+                "body": """February 17, 2024
+
+Indian products
+
+* Blade [365](https://www.reddit.com/r/Wetshavers_India/s/wSjU38Lgvg)
+
+* Razor : Plearl L55
+* Cream : Yardley Gold
+* Brush : Hajamat Shaving brush
+* Post shave : Alum and Nivea Replenishing Balm
+
+
+Three pass shave WTG+WTG + ATG . The blade was on its third use. Nice shave""",
+            },
+            "expected_result": "365",
+        },
+        {
+            "comment": {
+                "body": """February 17, 2024
+
+* Blade [365](https://www.reddit.com/r/Wetshavers_India/s/wSjU38Lgvg) (12)
+""",
+            },
+            "expected_result": "365 (12)",
+        },
+        {
+            "comment": {
+                "body": """February 17, 2024
+
+* Blade GSB {2}
+""",
+            },
+            "expected_result": "GSB (2)",
+        },
+        {
+            "comment": {
+                "body": """2/17/24
+
+• Prep:  shower     
+• Razor:  Henson ++     
+• Blade:  Nacet (6x)
+• Lather:  Pre de Provance No 63     
+• Post shave:  Stirling Toner      
+• Post:  Soap Commander Integrity balm.""",
+            },
+            "expected_result": "Nacet (6x)",
+        },
     ]
 
     def test_get_blade_name_cases(self):
@@ -93,3 +142,8 @@ Stay safe and have a great day!""",
         for case in self.razor_name_cases:
             r_name = ne.get_name(case["comment"])
             self.assertEqual(case["expected_result"], r_name)
+
+
+if __name__ == "__main__":
+    rne = TestBladeNameExtractor()
+    rne.test_get_blade_name_cases()

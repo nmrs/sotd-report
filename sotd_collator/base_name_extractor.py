@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
-import functools
+from functools import cached_property, wraps
 import re
 import unicodedata
+
+import cache_provider
 
 
 class BaseNameExtractor(ABC):
@@ -11,12 +13,40 @@ class BaseNameExtractor(ABC):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    BASE_GARBAGE = ["^n/a$", "^unknown$", "^not sure$"]
+    __BASE_GARBAGE = ["^n/a$", "^unknown$", "^unknown unknown$" "^not sure$"]
 
     @property
     @abstractmethod
     def detect_regexps(self):
         raise NotImplementedError("subclass must implement detect_regexps")
+
+    __name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~\[\]"
+    __imgur_name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~"
+
+    def tts_detector(self, token):
+        return re.compile(
+            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
+            re.MULTILINE | re.IGNORECASE,
+        )
+
+    def imgur_detector(self, token):
+        return re.compile(
+            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*\[*([{self.__imgur_name_chars}]+)(?:.*[(\[\{{](\d*)[)\]\}}]|.*)$",
+            re.MULTILINE | re.IGNORECASE,
+        )  # TTS style with link to eg imgur
+
+    def sgrddy_detector(self, token):
+        return re.compile(
+            rf"\*{token}[\*:\s]+([{self.__name_chars}]+)\*\*",
+            re.MULTILINE | re.IGNORECASE,
+        )
+
+    @abstractmethod
+    def _garbage(self):
+        raise NotImplementedError("subclass must implement _garbage")
+
+    def __garbage(self):
+        return self.__BASE_GARBAGE + self._garbage()
 
     @staticmethod
     def _to_ascii(str_val):
@@ -34,11 +64,12 @@ class BaseNameExtractor(ABC):
     def post_process_name(callback):
         # decorator that can be implemented across subclasses
         # to shared fixup on entity names before they are returned
-        @functools.wraps(callback)
+        @wraps(callback)
         def wrapped(inst, *args, **kwargs):
             entity_name = callback(inst, *args, **kwargs)
             replacements = [
                 ("|", ""),
+                (r"\t", ""),
                 ("&#39;", "'"),
                 ("&quot;", '"'),
                 ("&amp;", "&"),
@@ -46,12 +77,24 @@ class BaseNameExtractor(ABC):
             if entity_name:
                 for replacement in replacements:
                     entity_name = entity_name.replace(*replacement)
-                return re.sub(r"[\t|]", "", entity_name)
-            else:
-                return entity_name
+
+                for pattern in inst.__garbage():
+                    if re.search(pattern, entity_name, re.IGNORECASE):
+                        return None
+
+                entity_name = entity_name.strip()
+                if len(entity_name) > 0:
+                    return entity_name
+
+            return None
+
+            #     # return re.sub(r"[\t|]", "", entity_name)
+            # else:
+            #     return entity_name
 
         return wrapped
 
+    @post_process_name
     def get_name(self, comment):
         # generally this gets overwritten by subclasses since they have entity type specific fixups
         comment_text = self._to_ascii(comment["body"])
@@ -60,9 +103,9 @@ class BaseNameExtractor(ABC):
             res = detector.search(comment_text)
             if res:
                 name = res.group(1).strip()
-                for pattern in self.BASE_GARBAGE:
-                    if re.search(pattern, name, re.IGNORECASE):
-                        return None
+                # for pattern in self.BASE_GARBAGE:
+                #     if re.search(pattern, name, re.IGNORECASE):
+                #         return None
                 return name
 
         # # if we cant find the the entity by looking for it in common SOTD formats,

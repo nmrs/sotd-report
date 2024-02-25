@@ -79,11 +79,11 @@ class Runner(object):
         sstp = SuperSpeedTipParser(rp)
 
         process_entities = [
-            # {
-            #     "name": "Blade Format",
-            #     "extractor": BladeFormatExtractor(bne, blp, rne, rp),
-            #     "min_shaves": 1,
-            # },
+            {
+                "name": "Blade Format",
+                "extractor": BladeFormatExtractor(bne, blp, rne, rp),
+                "min_shaves": 1,
+            },
             {
                 "name": "Razor",
                 "extractor": rne,
@@ -98,101 +98,101 @@ class Runner(object):
                 "parser field": "brand",
                 "min_shaves": 10,
             },
-            # {
-            #     "name": "Blade",
-            #     "extractor": bne,
-            #     "parser": blp,
-            #     "parser field": "name",
-            #     "max_entities": 50,
-            # },
-            # {
-            #     "name": "Brush",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "name",
-            #     "max_entites": 50,
-            #     "fallback": True,
-            # },
-            # {
-            #     "name": "Knot Fiber",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "fiber",
-            #     "max_entites": 50,
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Knot Size",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "knot size",
-            #     "max_entites": 50,
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Karve Plate",
-            #     "extractor": rne,
-            #     "parser": kpp,
-            #     "parser field": "name",
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Game Changer Plate",
-            #     "extractor": rne,
-            #     "parser": gcp,
-            #     "parser field": "name",
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Super Speed Tip",
-            #     "extractor": rne,
-            #     "parser": sstp,
-            #     "parser field": "name",
-            #     "fallback": False,
-            # },
+            {
+                "name": "Blade",
+                "extractor": bne,
+                "parser": blp,
+                "parser field": "name",
+                "max_entities": 50,
+            },
+            {
+                "name": "Brush",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "name",
+                "max_entites": 50,
+                "fallback": True,
+            },
+            {
+                "name": "Knot Fiber",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "fiber",
+                "max_entites": 50,
+                "fallback": False,
+            },
+            {
+                "name": "Knot Size",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "knot size",
+                "max_entites": 50,
+                "fallback": False,
+            },
+            {
+                "name": "Karve Plate",
+                "extractor": rne,
+                "parser": kpp,
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Game Changer Plate",
+                "extractor": rne,
+                "parser": gcp,
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Super Speed Tip",
+                "extractor": rne,
+                "parser": sstp,
+                "parser field": "name",
+                "fallback": False,
+            },
         ]
 
         inf_engine = inflect.engine()
 
         print(header)
         razor_usage = None
-        # for entity in process_entities:
-        #     print(f"##{inf_engine.plural(entity['name'])}\n")
+        for entity in process_entities:
+            print(f"##{inf_engine.plural(entity['name'])}\n")
 
-        #     usage = self.entity_usage(
-        #         thread_map,
-        #         comments_target,
-        #         comments_delta_one,
-        #         comments_delta_two,
-        #         comments_delta_three,
-        #         delta_one_label,
-        #         delta_two_label,
-        #         delta_three_label,
-        #         entity,
-        #     )
+            usage = self.entity_usage(
+                thread_map,
+                comments_target,
+                comments_delta_one,
+                comments_delta_two,
+                comments_delta_three,
+                delta_one_label,
+                delta_two_label,
+                delta_three_label,
+                entity,
+            )
 
-        #     print(usage.to_markdown(index=False))
-        #     print("\n")
+            print(usage.to_markdown(index=False))
+            print("\n")
 
-        #     if entity["name"] == "Razor":
-        #         razor_usage = usage
+            if entity["name"] == "Razor":
+                razor_usage = usage
 
-        # print("## Most Used Blades in Most Used Razors\n")
+        print("## Most Used Blades in Most Used Razors\n")
 
-        # # do razor plus blade combo, filtered on most popular razors...
-        # # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
-        # bpr_usage = self.blade_per_razor(
-        #     thread_map,
-        #     comments_target,
-        #     min_shaves,
-        #     min_unique_user,
-        #     rp,
-        #     blp,
-        #     razor_usage,
-        # )
+        # do razor plus blade combo, filtered on most popular razors...
+        # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
+        bpr_usage = self.blade_per_razor(
+            thread_map,
+            comments_target,
+            min_shaves,
+            min_unique_user,
+            rp,
+            blp,
+            razor_usage,
+        )
 
-        # print(bpr_usage.to_markdown(index=False))
-        # print("\n")
+        print(bpr_usage.to_markdown(index=False))
+        print("\n")
 
         usage = self.top_shavers(
             thread_map,

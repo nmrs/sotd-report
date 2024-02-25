@@ -12,7 +12,7 @@ class BaseBrushParsingStrategy(ABC):
 
     _fibers = {
         "Boar": r"\b(boar|shoat)\b",
-        "Synthetic": "(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23])",
+        "Synthetic": "(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong)",
         "Horse": "(horse)",
         "Mixed Badger/Boar": "(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
         "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best)",
@@ -384,7 +384,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "default": "Badger",
         },
         "DSCosmetics": {
-            "patterns": [r"DS\s*Cosmetic", r"\bDSC\b"],
+            "patterns": [r"DSC?\s*Cosmetic", r"\bDSC\b"],
             "default": "Synthetic",
         },
         "Den of Man": {"patterns": ["den.*of.*man"], "default": "Synthetic"},
@@ -456,8 +456,8 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Simpson": {"patterns": ["simpson", "duke", "chubby.*2"], "default": "Badger"},
         "Some Making Required": {"patterns": ["some.*maki"], "default": "Synthetic"},
         "Spiffo": {"patterns": ["spiffo"], "default": "Badger"},
-        "Stirling": {"patterns": ["st(i|e)rl"], "default": "Badger"},
-        "Stirling": {"patterns": ["st(i|e)rling.*kong"], "default": "Synthetic"},
+        "Stirling": {"patterns": ["st[ie]rl"], "default": "Badger"},
+        # "Stirling": {"patterns": ["st[ie]rl.*kong"], "default": "Synthetic"},
         "Strike Gold Shave": {"patterns": ["strike.*gold"], "default": "Synthetic"},
         "Summer Break": {"patterns": ["summer.*break"], "default": "Badger"},
         "Supply": {"patterns": ["supply"], "default": "Synthetic"},
