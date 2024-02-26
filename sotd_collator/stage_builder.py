@@ -6,16 +6,14 @@ import os
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 import praw
-from blade_usage_extractor import BladeUsageExtractor
 
-from sotd_collator.cache_provider import CacheProvider
-from sotd_collator.blade_name_extractor import BladeNameExtractor
-from sotd_collator.brush_name_extractor import BrushNameExtractor
-from sotd_collator.razor_name_extractor import RazorNameExtractor
-from sotd_collator.soap_name_extractor import SoapNameExtractor
+from cache_provider import CacheProvider
+from blade_name_extractor import BladeNameExtractor
+from brush_name_extractor import BrushNameExtractor
+from razor_name_extractor import RazorNameExtractor
 
-from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.utils import timer_func
+from sotd_post_locator import SotdPostLocator
+from utils import timer_func
 
 
 class StageBuilder(object):
@@ -42,7 +40,6 @@ class StageBuilder(object):
         extractors = {
             "razor": RazorNameExtractor(),
             "blade": BladeNameExtractor(),
-            "blade usage": BladeUsageExtractor(),
             "brush": BrushNameExtractor(),
             # "soap": SoapNameExtractor(),
         }
@@ -148,7 +145,7 @@ class StageBuilder(object):
 
 if __name__ == "__main__":
     StageBuilder().build_stage(
-        start_month=date(2016, 5, 1), end_month=date(2024, 2, 1), force_refresh=False
+        start_month=date(2016, 5, 1), end_month=date(2024, 2, 1), force_refresh=True
     )
     # StageBuilder().validate_stage(
     #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)

@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
+import blade_name_extractor
 from blade_parser import BladeParser
 from brush_parser import BrushParser
 from game_changer_plate_parser import GameChangerPlateParser
@@ -12,17 +13,19 @@ from karve_plate_parser import KarvePlateParser
 from razor_parser import RazorParser
 from razor_plus_blade_parser import RazorPlusBladeParser
 
-from sotd_collator.blade_format_extractor import BladeFormatExtractor
-from sotd_collator.razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
-from sotd_collator.sotd_post_locator import SotdPostLocator
-from sotd_collator.staged_name_extractors import (
+from blade_format_extractor import BladeFormatExtractor
+from razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
+from sotd_post_locator import SotdPostLocator
+from staged_name_extractors import (
     StagedBladeNameExtractor,
+    StagedBladeUseExtractor,
     StagedBrushNameExtractor,
     StagedRazorNameExtractor,
     StagedUserNameExtractor,
 )
-from sotd_collator.utils import (
+from utils import (
     add_ranking_delta,
+    get_raw_data_from_parser,
     get_shave_data_from_parser,
     get_user_shave_data,
     single_user_report,
@@ -74,14 +77,14 @@ class Runner(object):
         rp = RazorParser()
         blp = BladeParser()
         brp = BrushParser()
+        bfe = BladeFormatExtractor(bne, blp, rne, rp)
         kpp = KarvePlateParser(rp)
         gcp = GameChangerPlateParser(rp)
         sstp = SuperSpeedTipParser(rp)
-
         process_entities = [
             {
                 "name": "Blade Format",
-                "extractor": BladeFormatExtractor(bne, blp, rne, rp),
+                "extractor": bfe,
                 "min_shaves": 1,
             },
             {
@@ -143,13 +146,13 @@ class Runner(object):
                 "parser field": "name",
                 "fallback": False,
             },
-            {
-                "name": "Super Speed Tip",
-                "extractor": rne,
-                "parser": sstp,
-                "parser field": "name",
-                "fallback": False,
-            },
+            # {
+            #     "name": "Super Speed Tip",
+            #     "extractor": rne,
+            #     "parser": sstp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
         ]
 
         inf_engine = inflect.engine()
@@ -194,6 +197,26 @@ class Runner(object):
         print(bpr_usage.to_markdown(index=False))
         print("\n")
 
+        usage = self.blade_heroes(
+            thread_map,
+            comments_target,
+            comments_delta_one,
+            comments_delta_two,
+            comments_delta_three,
+            delta_one_label,
+            delta_two_label,
+            delta_three_label,
+            start_month,
+            end_month,
+            bne,
+            blp,
+            bfe,
+        )
+
+        print("## Highest Use Count per Blade\n")
+        print(usage.to_markdown(index=False))
+        print("\n")
+
         usage = self.top_shavers(
             thread_map,
             comments_target,
@@ -209,7 +232,6 @@ class Runner(object):
 
         print("## Top Shavers\n")
         print(usage.to_markdown(index=False))
-
         print("\n")
 
     def entity_usage(
@@ -420,6 +442,91 @@ class Runner(object):
     # print('## Shaving Frequency Histogram\n')
     # print(get_shaving_histogram(stats_month, pl).to_markdown(index=False))
     # print('\n')
+
+    def blade_heroes(
+        self,
+        thread_map,
+        comments_target,
+        comments_delta_one,
+        comments_delta_two,
+        comments_delta_three,
+        delta_one_label,
+        delta_two_label,
+        delta_three_label,
+        start_month,
+        end_month,
+        bne: blade_name_extractor.BladeNameExtractor,
+        bp: BladeParser,
+        bfe: BladeFormatExtractor,
+    ):
+        raw_blade_count = get_raw_data_from_parser(
+            thread_map, comments_target, StagedBladeUseExtractor(), None
+        )
+        raw_blade_count_df = pd.DataFrame(raw_blade_count)
+        raw_blade_count_df.rename(columns={"name": "uses"}, inplace=True)
+        raw_blade_count_df["uses"] = raw_blade_count_df["uses"].apply(int)
+        raw_blade_count_df.drop(
+            ["body", "original", "matched", "date"], inplace=True, axis=1
+        )
+
+        raw_blade_usage = get_raw_data_from_parser(thread_map, comments_target, bne, bp)
+        raw_blade_usage_df = pd.DataFrame(raw_blade_usage)
+        raw_blade_usage_df.rename(columns={"name": "blade"}, inplace=True)
+        raw_blade_usage_df.drop(
+            ["body", "original", "matched", "date"], inplace=True, axis=1
+        )
+
+        raw_format_usage = get_raw_data_from_parser(
+            thread_map, comments_target, bfe, None
+        )
+        raw_format_usage_df = pd.DataFrame(raw_format_usage)
+        raw_format_usage_df.rename(columns={"name": "format"}, inplace=True)
+        raw_format_usage_df.drop(
+            ["body", "original", "matched", "date"], inplace=True, axis=1
+        )
+
+        raw_merged_df = pd.merge(
+            raw_blade_count_df, raw_blade_usage_df, on=["url", "user_id"], how="inner"
+        )
+        raw_merged_df = pd.merge(
+            raw_merged_df, raw_format_usage_df, on=["url", "user_id"], how="inner"
+        )
+        raw_merged_df.drop("url", inplace=True, axis=1)
+        # raw_merged_df.drop("body", inplace=True, axis=1)
+
+        raw_merged_df2 = (
+            raw_merged_df.groupby(["blade", "format"])["uses"].max().reset_index()
+        )
+
+        raw_merged_df3 = pd.merge(
+            raw_merged_df, raw_merged_df2, on=["blade", "format", "uses"], how="inner"
+        ).sort_values(["uses"], ascending=False)
+
+        df = raw_merged_df3[raw_merged_df3["uses"] >= 30]
+
+        # raw_merged_df2 = (
+        #     raw_merged_df.groupby("uses")[["user_id", "blade", "format"]]
+        #     .max()
+        #     .reset_index()
+        # )
+
+        # de_df = raw_merged_df3[raw_merged_df3["format"] == "DE"]
+        # de_df = de_df.sort_values(["uses", "blade"], ascending=False)
+        # de_df2 = de_df[de_df["uses"] >= 30]
+
+        # gem_df = raw_merged_df3[raw_merged_df3["format"] == "GEM"]
+        # gem_df = gem_df.sort_values(["uses", "blade"], ascending=False)
+        # gem_df2 = gem_df[gem_df["uses"] >= 30]
+
+        # df = pd.concat([de_df2, gem_df2]).sort_values(
+        #     ["uses", "format"], ascending=[False, True]
+        # )
+
+        df2 = df.copy()
+        df2["user"] = df["user_id"].apply(lambda x: f"u/{x}")
+        df3 = df2.drop(["user_id"], axis=1)
+        df4 = df3[["user", "blade", "format", "uses"]]
+        return df4
 
 
 if __name__ == "__main__":

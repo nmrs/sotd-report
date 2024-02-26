@@ -44,20 +44,20 @@ class StagedUserNameExtractor(BaseStagedNameExtractor):
         # return comment["created_utc"][0:10]
 
 
-class StagedBladeUseExtractor(BaseStagedNameExtractor):
+class StagedBladeUseExtractor(StagedBladeNameExtractor):
 
-    @staticmethod
-    def extract_blade_use(input_string):
-        reverse = input_string[::-1]
-        pattern = r"[\)\]}]x?(\d+)[\(\[{]"
-        match = re.search(pattern, reverse)
+    def get_name(self, comment):
+        name = super().get_name(comment)
+        if name:
+            reverse = name[::-1]
+            pattern = r"[\)\]}]x?(\d+)[\(\[{]"
+            match = re.search(pattern, reverse)
 
-        if match:
-            s = match.group(1)[::-1]
-            return int(s)
+            if match:
+                s = match.group(1)[::-1]
+                return s
 
-        else:
-            return None
+        return None
 
 
 class TestStagedBladeUseExtractor(TestCase):

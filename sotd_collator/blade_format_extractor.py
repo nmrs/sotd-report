@@ -1,3 +1,5 @@
+from functools import lru_cache
+from tarfile import LinkOutsideDestinationError
 from blade_parser import BladeParser
 from razor_parser import RazorParser
 from base_name_extractor import BaseNameExtractor
@@ -23,6 +25,7 @@ class BladeFormatExtractor(BaseNameExtractor):
     def detect_regexps(self):
         raise NotImplementedError()
 
+    # @lru_cache
     def get_name(self, comment):
         FIELD = "format"
         blade = self.__blade_name_extractor.get_name(comment)
