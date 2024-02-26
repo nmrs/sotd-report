@@ -1,39 +1,31 @@
 import re
 from functools import cached_property
-from sotd_collator.base_name_extractor import BaseNameExtractor
+from blade_name_extractor import BladeNameExtractor
 
 
-class BladeNameExtractor(BaseNameExtractor):
+class BladeUsageExtractor(BladeNameExtractor):
     """
-    From a given comment, extract the blade name
+    From a given comment, extract the blade usage
     """
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
     GARBAGE = []
 
-    def _garbage(self):
-        return self.GARBAGE
-
-    @cached_property
-    def detect_regexps(self):
-        blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
-
-        # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
-        # sgrddy =
-
-        return [
-            # self.sgrddy_detector("Blade"),
-            self.imgur_detector("Blade"),
-            self.tts_detector("Blade"),
-        ]
-
-    @BaseNameExtractor.post_process_name
     def get_name(self, comment):
-        if "blade" in comment:
-            return comment["blade"]
+        if "blade usage" in comment:
+            return int(comment["blade usage"])
 
-        return super().get_name(comment)
+        name = super().get_name(comment)
+        if name:
+            s = name[::-1]
+            match = re.search("[\)\]}]x?(\d+)[\(\[{]", s, re.IGNORECASE)
+            if match:
+                uses = match.group(1)[::-1]
+                if uses != name:
+                    return int(uses)
+
+        return None
 
         # comment_text = self._to_ascii(comment["body"])
         # for detector in self.detect_regexps:

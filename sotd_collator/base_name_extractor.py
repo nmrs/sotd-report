@@ -25,25 +25,27 @@ class BaseNameExtractor(ABC):
 
     def tts_detector(self, token):
         return re.compile(
-            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
+            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
             re.MULTILINE | re.IGNORECASE,
         )
 
     def imgur_detector(self, token):
         return re.compile(
-            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*\[*([{self.__imgur_name_chars}]+)(?:.*[(\[\{{](\d*)[)\]\}}]|.*)$",
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*\[*([{self.__imgur_name_chars}]+)(?:.*[(\[\{{](\d*)[)\]\}}]|.*)$",
+            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([^\[\n$]*)\[([^\]]*)\]\((?:[^\)]*)\)(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )  # TTS style with link to eg imgur
 
-    def sgrddy_detector(self, token):
-        return re.compile(
-            rf"\*{token}[\*:\s]+([{self.__name_chars}]+)\*\*",
-            re.MULTILINE | re.IGNORECASE,
-        )
+    # def sgrddy_detector(self, token):
+    #     return re.compile(
+    #         rf"\*{token}[\*:\s]+([{self.__name_chars}]+)\*\*",
+    #         re.MULTILINE | re.IGNORECASE,
+    #     )
 
-    @abstractmethod
+    # @abstractmethod
     def _garbage(self):
-        raise NotImplementedError("subclass must implement _garbage")
+        return []
 
     def __garbage(self):
         return self.__BASE_GARBAGE + self._garbage()
@@ -102,11 +104,15 @@ class BaseNameExtractor(ABC):
         for detector in self.detect_regexps:
             res = detector.search(comment_text)
             if res:
-                name = res.group(1).strip()
-                # for pattern in self.BASE_GARBAGE:
-                #     if re.search(pattern, name, re.IGNORECASE):
-                #         return None
-                return name
+                name = ""
+                for group in res.groups():
+                    if group:
+                        name += group
+                # name = res.group(1)
+                # # for pattern in self.BASE_GARBAGE:
+                # #     if re.search(pattern, name, re.IGNORECASE):
+                # #         return None
+                return name.strip()
 
         # # if we cant find the the entity by looking for it in common SOTD formats,
         # # try and find any common entity name within the comment

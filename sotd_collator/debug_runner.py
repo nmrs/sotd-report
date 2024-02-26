@@ -6,8 +6,11 @@ import inflect
 import pandas as pd
 import praw
 from blade_format_extractor import BladeFormatExtractor
+from blade_name_extractor import BladeNameExtractor
 from blade_parser import BladeParser
+from brush_name_extractor import BrushNameExtractor
 from brush_parser import BrushParser
+from razor_name_extractor import RazorNameExtractor
 from razor_parser import RazorParser
 
 from sotd_post_locator import SotdPostLocator
@@ -40,12 +43,12 @@ class DebugRunner(object):
             #     "name": "Blade Format",
             #     "extractor": BladeFormatExtractor(bne, blp, rne, rp),
             # },
-            {
-                "name": "Razor",
-                "extractor": rne,
-                "parser": rp,
-                "parser field": "name",
-            },
+            # {
+            #     "name": "Razor",
+            #     "extractor": rne,
+            #     "parser": rp,
+            #     "parser field": "name",
+            # },
             # {
             #     "name": "Razor Manufacturer",
             #     "extractor": rne,
@@ -58,13 +61,13 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            # {
-            #     "name": "Brush",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "name",
-            #     "fallback": True,
-            # },
+            {
+                "name": "Brush",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "name",
+                "fallback": True,
+            },
             # {
             #     "name": "Fiber",
             #     "extractor": StagedBrushNameExtractor(),
@@ -199,6 +202,20 @@ class DebugRunner(object):
         usage.rename(columns={"name": "user"}, inplace=True)
         print(usage.to_markdown(index=False))
 
+    def find_unmatched_comments(self, comments):
+        rne = RazorNameExtractor()
+        bne = BladeNameExtractor()
+        brne = BrushNameExtractor()
+        for comment in comments:
+            razor = rne.get_name(comment)
+            blade = bne.get_name(comment)
+            brush = brne.get_name(comment)
+            if not razor and not blade and not brush:
+                print(comment["url"])
+                print(comment["body"])
+                print("\n")
+                print("\n")
+
 
 if __name__ == "__main__":
     pr = praw.Reddit("reddit")
@@ -214,6 +231,9 @@ if __name__ == "__main__":
     thread_map = {}
     curr_month = start_month
     while curr_month <= end_month:
+        # comments_target = comments_target + pl.get_comments_for_given_month_staged(
+        #     curr_month
+        # )
         comments_target = comments_target + pl.get_comments_for_given_month_staged(
             curr_month
         )
@@ -221,6 +241,7 @@ if __name__ == "__main__":
         curr_month = curr_month + relativedelta(months=1)
 
     DebugRunner().run(thread_map, comments_target, start_month, end_month)
+    # DebugRunner().find_unmatched_comments(comments_target)
     # usage = Runner().top_shavers(
     #     comments_target,
     #     comments_last_month,

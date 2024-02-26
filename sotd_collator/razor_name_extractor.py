@@ -29,7 +29,7 @@ class RazorNameExtractor(BaseNameExtractor):
     def detect_regexps(self):
 
         return [
-            self.sgrddy_detector("Razor"),
+            # self.sgrddy_detector("Razor"),
             self.imgur_detector("(?:Safety\s+)?Razor"),
             self.tts_detector("(?:Safety\s+)?Razor"),
         ]
@@ -52,22 +52,23 @@ class RazorNameExtractor(BaseNameExtractor):
                 if len(result) > 0:
                     return result
 
-        for detector in self.detect_regexps:
-            res = detector.search(comment_text)
-            # catch case where some jerk writes ❧ Razor and Blade Notes or similar
-            # at some point this can be genericised
-            # to a block words / phrases list to catch razorock too
-            if res and "and blade note" in res.group(1).lower():
-                continue
+        # for detector in self.detect_regexps:
+        #     res = detector.search(comment_text)
+        #     # catch case where some jerk writes ❧ Razor and Blade Notes or similar
+        #     # at some point this can be genericised
+        #     # to a block words / phrases list to catch razorock too
+        #     if res and "and blade note" in res.group(1).lower():
+        #         return None
 
-            # catch case where we match against razorock
-            if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == "ock"):
-                result = res.group(1).strip()
-                if len(result) > 0:
-                    # for pattern in self._garbage:
-                    #     if re.search(pattern, result, re.IGNORECASE):
-                    #         return None
-                    return result
+        return super().get_name(comment)
+        # catch case where we match against razorock
+        # if res and not (len(res.group(1)) >= 3 and res.group(1)[0:3] == "ock"):
+        #     result = res.group(1).strip()
+        #     if len(result) > 0:
+        #         # for pattern in self._garbage:
+        #         #     if re.search(pattern, result, re.IGNORECASE):
+        #         #         return None
+        #         return result
 
         # principal_name = self.alternative_namer.get_principal_name(comment_text)
         # if principal_name:

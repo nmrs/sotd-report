@@ -1,4 +1,5 @@
 from unittest import TestCase
+from blade_usage_extractor import BladeUsageExtractor
 
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 
@@ -18,7 +19,8 @@ class TestBladeNameExtractor(TestCase):
 
 Better late than never.""",
             },
-            "expected_result": "Gillette Nacet (3)",
+            "expected_name": "Gillette Nacet (3)",
+            "expected_usage": 3,
         },
         {
             "comment": {
@@ -31,7 +33,8 @@ Better late than never.""",
 * **Post** \- Barrister and Mann - Ravish Splash
 """,
             },
-            "expected_result": "Rapira (Fresh)",
+            "expected_name": "Rapira (Fresh)",
+            "expected_usage": None,
         },
         {
             "comment": {
@@ -45,7 +48,8 @@ Better late than never.""",
 
 **// Post** \- Pinaud Clubman""",
             },
-            "expected_result": "Voskhod (4)",
+            "expected_name": "Voskhod (4)",
+            "expected_usage": 4,
         },
         {
             "comment": {
@@ -62,7 +66,8 @@ Better late than never.""",
 
 Stay safe and have a great day!""",
             },
-            "expected_result": None,
+            "expected_name": None,
+            "expected_usage": None,
         },
         {
             "comment": {
@@ -76,7 +81,8 @@ Stay safe and have a great day!""",
 
 **// Post** \- Pinaud Clubman""",
             },
-            "expected_result": "Voskhod (4)",
+            "expected_name": "Voskhod (4)",
+            "expected_usage": 4,
         },
         {
             # This comment isn't a SOTD report. Don't match follow on comments where people are replying
@@ -84,7 +90,8 @@ Stay safe and have a great day!""",
             "comment": {
                 "body": """Do you like the Astra SPs or SSs more?""",
             },
-            "expected_result": None,
+            "expected_name": None,
+            "expected_usage": None,
         },
         {
             "comment": {
@@ -102,7 +109,8 @@ Indian products
 
 Three pass shave WTG+WTG + ATG . The blade was on its third use. Nice shave""",
             },
-            "expected_result": "365",
+            "expected_name": "365",
+            "expected_usage": None,
         },
         {
             "comment": {
@@ -111,16 +119,29 @@ Three pass shave WTG+WTG + ATG . The blade was on its third use. Nice shave""",
 * Blade [365](https://www.reddit.com/r/Wetshavers_India/s/wSjU38Lgvg) (12)
 """,
             },
-            "expected_result": "365 (12)",
+            "expected_name": "365 (12)",
+            "expected_usage": 12,
         },
         {
             "comment": {
-                "body": """February 17, 2024
-
-* Blade GSB {2}
-""",
+                "body": "* Blade GSB {2}",
             },
-            "expected_result": "GSB (2)",
+            "expected_name": "GSB {2}",
+            "expected_usage": 2,
+        },
+        {
+            "comment": {
+                "body": "* Blade GSB (2)",
+            },
+            "expected_name": "GSB (2)",
+            "expected_usage": 2,
+        },
+        {
+            "comment": {
+                "body": "* Blade GSB [3]",
+            },
+            "expected_name": "GSB [3]",
+            "expected_usage": 3,
         },
         {
             "comment": {
@@ -133,7 +154,8 @@ Three pass shave WTG+WTG + ATG . The blade was on its third use. Nice shave""",
 • Post shave:  Stirling Toner      
 • Post:  Soap Commander Integrity balm.""",
             },
-            "expected_result": "Nacet (6x)",
+            "expected_name": "Nacet (6x)",
+            "expected_usage": 6,
         },
     ]
 
@@ -141,9 +163,16 @@ Three pass shave WTG+WTG + ATG . The blade was on its third use. Nice shave""",
         ne = BladeNameExtractor()
         for case in self.razor_name_cases:
             r_name = ne.get_name(case["comment"])
-            self.assertEqual(case["expected_result"], r_name)
+            self.assertEqual(case["expected_name"], r_name)
+
+    def test_get_blade_usage_cases(self):
+        ne = BladeUsageExtractor()
+        for case in self.razor_name_cases:
+            r_usage = ne.get_name(case["comment"])
+            self.assertEqual(case["expected_usage"], r_usage)
 
 
 if __name__ == "__main__":
-    rne = TestBladeNameExtractor()
-    rne.test_get_blade_name_cases()
+    bne = TestBladeNameExtractor()
+    bne.test_get_blade_name_cases()
+    bne.test_get_blade_usage_cases()
