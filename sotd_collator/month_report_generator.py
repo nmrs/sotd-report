@@ -104,6 +104,7 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 * The change Δ vs columns show how an item has moved up or down the rankings since that {TIME_PERIOD}. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to that {TIME_PERIOD}. n/a means the item was not present in that {TIME_PERIOD}.
 
+* I added a new table of "Highest Use Count per Blade". I'm not sure if this says more about the longevity of the blade or the tenacity of the user, so I'll leave that to you to assess.
 """
 
 runner.run(

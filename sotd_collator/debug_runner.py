@@ -10,6 +10,7 @@ from blade_name_extractor import BladeNameExtractor
 from blade_parser import BladeParser
 from brush_name_extractor import BrushNameExtractor
 from brush_parser import BrushParser
+import brush_parser
 from razor_name_extractor import RazorNameExtractor
 from razor_parser import RazorParser
 
@@ -239,6 +240,24 @@ if __name__ == "__main__":
         )
         thread_map = thread_map | pl.get_thread_map(curr_month, curr_month)
         curr_month = curr_month + relativedelta(months=1)
+
+    # bp = BrushParser()
+    # map = {}
+    # for comment in comments_target:
+    #     if "brush" in comment:
+    #         brush = comment["brush"]
+    #         brand = bp.get_value(brush, "brand")
+    #         name = bp.get_value(brush, "name")
+    #         if brand is not None:
+    #             if not brand in map:
+    #                 map[brand] = []
+    #             map[brand].append(name)
+
+    # for brand in sorted(map.keys()):
+    #     print(brand)
+    #     for model in sorted(map[brand]):
+    #         print(f"     {model}")
+    #     print("\n\n")
 
     DebugRunner().run(thread_map, comments_target, start_month, end_month)
     # DebugRunner().find_unmatched_comments(comments_target)

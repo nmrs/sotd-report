@@ -231,7 +231,7 @@ class RazorParser(BaseParser):
             },
             "3one6": {"patterns": [r"\b3\s*one\s*6\b", r"EJ\s*316"]},
         },
-        "EldrormR Industries": {
+        "u/EldrormR Industries": {
             "MM24": {"patterns": [r"mm\s*24"], "format": "GEM"},
         },
         "Enders": {

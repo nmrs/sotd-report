@@ -73,6 +73,7 @@ class Runner(object):
     ):
         rne = StagedRazorNameExtractor()
         bne = StagedBladeNameExtractor()
+        brne = StagedBrushNameExtractor()
 
         rp = RazorParser()
         blp = BladeParser()
@@ -110,15 +111,22 @@ class Runner(object):
             },
             {
                 "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
+                "extractor": brne,
                 "parser": brp,
                 "parser field": "name",
                 "max_entites": 50,
                 "fallback": True,
             },
             {
+                "name": "Brush Manufacturer",
+                "extractor": brne,
+                "parser": brp,
+                "parser field": "brand",
+                "min_shaves": 10,
+            },
+            {
                 "name": "Knot Fiber",
-                "extractor": StagedBrushNameExtractor(),
+                "extractor": brne,
                 "parser": brp,
                 "parser field": "fiber",
                 "max_entites": 50,
@@ -126,7 +134,7 @@ class Runner(object):
             },
             {
                 "name": "Knot Size",
-                "extractor": StagedBrushNameExtractor(),
+                "extractor": brne,
                 "parser": brp,
                 "parser field": "knot size",
                 "max_entites": 50,
