@@ -2,7 +2,7 @@ Welcome to your SOTD Hardware Report for February 2024
 
 ## Observations
 
-* The top three razors continue to swap spot, with the Blackbird taking the top spot from January's top razor, the Christopher Bradley. The top razor from December, the Game Changer, climbs from it's third spot slot in January to take second.
+* The top three razors continue to trade positions, with the Blackbird taking the top spot from January's top razor, the Christopher Bradley. The top razor from December, the Game Changer, climbs from its third spot slot in January to take second.
 
 * The 34C leaps forward five spots to claim the final spot in the top 5. The MM24 also has a strong showing, jumping ahead four spots to settle itself firmly back in the top 10 (and with #MMarch24 now under way, I predict an even higher position in the March report).
 
