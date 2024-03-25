@@ -381,6 +381,13 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "patterns": [r"^\s*aos", "art.*of.*sha"],
             "default": "Badger",
         },
+        "Aurora Grooming": {"patterns": ["aurora\s*grooming"], "default": "Synthetic"},
+        "Bass": {
+            "patterns": [
+                r"\bbass\b",
+            ],
+            "default": "Boar",
+        },
         "B&M": {"patterns": [r"b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
         "Beaumont": {"patterns": ["bea.{1,3}mont"], "default": "Badger"},
         "Black Anvil": {"patterns": ["black.*anv"], "default": "Badger"},
@@ -403,7 +410,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Catalin": {"patterns": ["catalin"], "default": "Badger"},
         "CaYuen": {"patterns": ["cayuen"], "default": "Synthetic"},
         "Chisel & Hound": {
-            "patterns": ["chis.*houn", r"\bc(?:\&|and|\+)h\b"],
+            "patterns": ["chis.*hou", "chis.*fou", r"\bc(?:\&|and|\+)h\b"],
             "default": "Badger",
             "knot size": "26mm",
         },
@@ -511,6 +518,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Viking": {"patterns": ["viking"], "default": "Badger"},
         "Vintage Blades": {"patterns": ["vintage.*blades"], "default": "Badger"},
         "Virginia Cheng": {"patterns": ["virginia.*cheng"], "default": "Badger"},
+        "Voigt & Cop": {"patterns": ["v&c", "voigt"], "default": "Badger"},
         "Vulfix": {"patterns": ["vulfix"], "default": "Badger"},
         "Wald": {"patterns": ["wald", "west.*coast"], "default": "Badger"},
         "WCS": {"patterns": ["wcs", "west.*coast"], "default": "Synthetic"},
@@ -521,7 +529,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "default": "Synthetic",
         },
         "Yaqi": {"patterns": ["yaqu*i"], "default": "Synthetic"},
-        "Zenith": {"patterns": ["zenith"], "default": "Boar"},
+        "Zenith": {"patterns": [r"zen\w+"], "default": "Boar"},
     }
 
     @cached_property

@@ -113,6 +113,7 @@ class RazorParser(BaseParser):
             },
             "Dart": {"patterns": [r"\bdart\b"]},
             "Era": {"patterns": ["black.*era", r"\bera\b"]},
+            "Osprey": {"patterns": ["osprey"]},
             "Sabre": {"patterns": ["sabre", "saber"], "format": "GEM"},
             "Tradere": {"patterns": ["tradere"]},
             "Vector": {"patterns": ["vector"], "format": "AC"},
@@ -170,7 +171,8 @@ class RazorParser(BaseParser):
             },
             "Lvl 2": {
                 "patterns": [
-                    r"^(?!.*wcs).*\b(char\w*l|cg).*(level|lvl|lv)(\s*|-)(2|two|ii)\b"
+                    r"^(?!.*wcs).*\b(char\w*l|cg).*(level|lvl|lv)(\s*|-)(2|two|ii)\b",
+                    "charcoal\s*goods",  # Lvl 2 is the most popular so assume just CG is this
                 ]
             },
             "Lvl 3": {
@@ -233,6 +235,10 @@ class RazorParser(BaseParser):
         },
         "u/EldrormR Industries": {
             "MM24": {"patterns": [r"mm\s*24"], "format": "GEM"},
+            "Scrubty-four": {
+                "patterns": [r"mm\s*24\s*scrub", r"scrubty(?:-|\s)*four"],
+                "format": "GEM",
+            },
         },
         "Enders": {
             "Speed Shaver": {"patterns": ["enders"], "format": "Enders"},
@@ -256,6 +262,7 @@ class RazorParser(BaseParser):
                     r"1924.*(ever|er)",
                     r"shovel\s*head",
                     "gem.*1924",
+                    "1924",
                 ],
                 "format": "GEM",
             },
@@ -270,7 +277,11 @@ class RazorParser(BaseParser):
                 "format": "GEM",
             },
         },
-        "Executive Shaving": {"Outlaw": {"patterns": ["exec.*outlaw"]}},
+        "Everyday": {"Stinger": {"patterns": ["everyday", "magnet"]}},
+        "Executive Shaving": {
+            "Claymore": {"patterns": ["claymore"], "format": "AC"},
+            "Outlaw": {"patterns": ["exec.*outlaw", r"\bxec.*outlaw"]},
+        },
         "Fatip": {
             "Grande": {"patterns": ["fatt?ip.*grande", "fatt?ip.*classic"]},
             "Gentile": {"patterns": ["fatt?ip.*gentile", "test.*genti.*"]},
@@ -316,6 +327,7 @@ class RazorParser(BaseParser):
         },
         "Focus": {
             "R48": {"patterns": ["focus.*r48"]},
+            "Tritok Slant": {"patterns": ["focus.*slant"]},
         },
         "FrankenRazor": {
             "": {"patterns": ["franken"]},
@@ -440,6 +452,7 @@ class RazorParser(BaseParser):
         "Goodfellas Smile": {
             "Bayonetta": {"patterns": ["bayonett?a"]},
             "Legione Slant": {"patterns": ["legione"]},
+            "Syntesi": {"patterns": ["syntesi"]},
             "Valynor": {"patterns": ["valyn"]},
         },
         "Greencult": {
@@ -469,6 +482,7 @@ class RazorParser(BaseParser):
             "103": {"patterns": ["ikon.*103"]},
             "B1": {"patterns": ["ikon.*b1"]},
             "SBS": {"patterns": ["ikon.*sbs"]},
+            "Short Comb": {"patterns": ["ikon.*short"]},
             "X3": {"patterns": ["ikon.*x3"]},
         },
         "J A Henckels:": {
@@ -507,6 +521,9 @@ class RazorParser(BaseParser):
         "Koraat": {
             "Straight": {"patterns": [r"koraat(\s+straight)*"], "format": "Straight"},
         },
+        "Krisp Beauty": {
+            "DE Safety Razor": {"patterns": ["krisp"]},
+        },
         "Krect": {
             "Spiral Slant": {"patterns": ["krect"]},
         },
@@ -514,12 +531,21 @@ class RazorParser(BaseParser):
             "GF35": {"patterns": ["kurenai.*35"]},
             "GF36s": {"patterns": ["kurenai.*36"]},
         },
+        "Lambda": {
+            "Athena": {"patterns": [r"lambda\s*athena"]},
+        },
         "LASSCo": {
             "BBS-1": {"patterns": ["BBS-*1"]},
         },
         "Leaf": {
-            "Twig": {"patterns": ["leaf", r"(?:leaf)?\s*twig"]},
-            "Thorn": {"patterns": [r"(?:leaf)?\s*thorn"]},
+            "Twig": {
+                "patterns": ["leaf", r"(?:leaf)?\s*twig"],
+                #  "format": "Half DE"
+            },
+            "Thorn": {
+                "patterns": [r"(?:leaf)?\s*thorn"],
+                #   "format": "Half DE"
+            },
         },
         "Like Grandpa": {
             "Razor": {"patterns": ["like.*grandpa"]},
@@ -609,7 +635,7 @@ class RazorParser(BaseParser):
                     "dubl.*duck",
                     "engels",
                     "frameback",
-                    "fred.*Reynolds",
+                    "fred.*Reynolds?",
                     "french.*point",
                     "friedr.*herd",
                     "gold.*dollar",
@@ -719,7 +745,11 @@ class RazorParser(BaseParser):
         },
         "RazoRock": {
             "Baby Smooth": {"patterns": ["ba*by.*smooth", "razorock.*bbs"]},
-            "Eco": {"patterns": ["eco"]},
+            "DE1": {"patterns": ["razorock.*de1"]},
+            "Eco": {
+                "patterns": ["eco"],
+                # "format": "Half DE"
+            },
             # 'Game Changer .84': ['game.*changer.*84', 'gc.*84', 'game.*changer'],
             # 'Game Changer .84 JAWS': ['JAWS'],
             # 'Game Changer .68': ['game.*changer.*68', 'gc.*68'],
@@ -752,6 +782,12 @@ class RazorParser(BaseParser):
             "Envoy": {"patterns": ["(rex)?.*envoy"]},
             "Konsul": {"patterns": ["konsul"]},
             "Sentry": {"patterns": ["sentry"]},
+        },
+        "Robin": {
+            "Snap 2.0": {
+                "patterns": ["robin.*snap"],
+                #  "format": "Half DE"
+            },
         },
         "Rockwell": {
             "2C": {"patterns": ["rockwell.*2C", "2C"]},
@@ -793,6 +829,7 @@ class RazorParser(BaseParser):
             # "Proline Folding Shavette": ["schick.*proline"],
         },
         "Shield": {
+            "Avenger": {"patterns": ["shield.*avenger", "shield.*ac"]},
             "Predator": {"patterns": ["shield.*pred"]},
         },
         "Smart-Helix": {
@@ -824,6 +861,11 @@ class RazorParser(BaseParser):
                 ]
             },
         },
+        "Superior Cuts": {
+            "": {
+                "patterns": [r"superior\s*cuts"],
+            },
+        },
         "Supply": {
             "SE": {
                 "patterns": [
@@ -841,6 +883,9 @@ class RazorParser(BaseParser):
             # matusumi is a common mispelling apparently
             "Masamune": {"patterns": ["masamune", "Matusumi", "tatara"]},
             "Muramasa": {"patterns": ["muramasa"]},
+        },
+        "Tedalus": {
+            "Essence Shavette": {"patterns": ["tedalus"], "format": "AC"},
         },
         "Thiers Issard": {
             "Straight": {
@@ -952,6 +997,12 @@ class RazorParser(BaseParser):
             "Bohemia": {"patterns": ["yaqi.*bohem"]},
             "DLC": {"patterns": ["yaqi.*dlc"]},
             "Excalibur": {"patterns": ["yaqi.*excal"]},
+            "Flipside": {"patterns": ["yaqi.*flip"]},
+            "Katana": {
+                "patterns": ["yaqi.*katana"],
+                #    "format": "Half DE"
+            },
+            "Remus": {"patterns": ["yaqi.*remus"]},
             "Slant": {"patterns": ["yaqi.*slant"]},
             "Sputnik": {"patterns": ["yaqi.*sput"]},
             "Zephyr": {"patterns": ["yaqi.*zaph"]},
