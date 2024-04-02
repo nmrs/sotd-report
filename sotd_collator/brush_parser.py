@@ -27,13 +27,20 @@ class BrushParser(BaseParser):
 
     @lru_cache(maxsize=None)
     def _get_value(self, input_string: str, field: str) -> str:
-        for stategy in self.__parser_strategies:
-            result = stategy.get_property_map(input_string)
+        s = None
+        for strategy in self.__parser_strategies:
+            result = strategy.get_property_map(input_string)
+            s = strategy
             if result:
                 if field in result:
-                    return result[field]
-                else:
-                    return None
+                    if result[field] is not None:
+                        return result[field]
+
+        if field == "fiber":
+            return s.get_fiber(input_string)
+        elif field == "knot size":
+            return s.get_knot_size(input_string)
+
         return None
 
 

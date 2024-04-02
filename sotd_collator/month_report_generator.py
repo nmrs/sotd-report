@@ -18,7 +18,7 @@ runner = Runner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 2, 1)
+target = datetime.date(2024, 3, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)

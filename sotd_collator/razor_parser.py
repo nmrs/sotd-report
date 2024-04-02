@@ -212,6 +212,7 @@ class RazorParser(BaseParser):
             "Silversmith": {"patterns": ["silversmith"]},
         },
         "Crescent City": {"Closed Comb 79": {"patterns": ["cres.*city.*79"]}},
+        "DSCosmetic": {"T7SE": {"patterns": ["t7se"]}},
         "Dorco": {
             "ST-301": {"patterns": ["ST(?:-*\s*)301"]},
             "PL-602": {"patterns": ["pl(?:-*\s*)602"]},
@@ -243,7 +244,7 @@ class RazorParser(BaseParser):
         "Enders": {
             "Speed Shaver": {"patterns": ["enders"], "format": "Enders"},
         },
-        "Ever Ready": {
+        "Ever-Ready": {
             "1912": {
                 "patterns": [r"(?:ever|er).*1912", r"1912.*(?:ever|er)"],
                 "format": "GEM",
@@ -398,6 +399,7 @@ class RazorParser(BaseParser):
             "Old Type": {
                 "patterns": [
                     r"gillette\s*old",
+                    "oc.*ball",
                     "old.*type",
                     "pocket.*ed",
                     "(single|double).*ring",
@@ -753,7 +755,9 @@ class RazorParser(BaseParser):
             # 'Game Changer .84': ['game.*changer.*84', 'gc.*84', 'game.*changer'],
             # 'Game Changer .84 JAWS': ['JAWS'],
             # 'Game Changer .68': ['game.*changer.*68', 'gc.*68'],
-            "Game Changer": {"patterns": ["game.*changer?", "gc", "game.*center"]},
+            "Game Changer": {
+                "patterns": ["game.*changer?", "gc", "game.*center", "game.*ganger"]
+            },
             "German 37 Slant": {
                 "patterns": [
                     r"german.*\b37\b",
@@ -963,6 +967,9 @@ class RazorParser(BaseParser):
         },
         "Wilkinson Sword": {
             "Classic": {"patterns": ["wilk.*sword."]},
+        },
+        "Wizamet": {
+            "Junior P-1": {"patterns": [r"\bp-?1\b", "wizamet"]},
         },
         "Wolfman": {
             "Guerilla": {

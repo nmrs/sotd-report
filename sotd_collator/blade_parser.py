@@ -26,7 +26,8 @@ class BladeParser(BaseParser):
                 "gil.*et.*super.*stain",
             ]
         },
-        "AccuTec Pro Premium (GEM)": {"patterns": ["acc?utec"], "format": "GEM"},
+        "ABEST Hi Platinum": {"patterns": ["abest"]},
+        # "AccuTec Pro Premium (GEM)": {"patterns": ["acc?utec"], "format": "GEM"},
         "Aeterna": {"patterns": ["aeter"]},
         "Astra Superior Platinum (Green)": {
             "patterns": [
@@ -49,9 +50,16 @@ class BladeParser(BaseParser):
         "Boker": {"patterns": ["boker"]},
         "Bolzano": {"patterns": ["b(o|a)lzano"]},
         "Cartridge": {
-            "patterns": ["twin.*pivot", "gil.*fusion", "gil.*labs", r"cien\s*men"],
+            "patterns": [
+                "twin.*pivot",
+                "gil.*fusion",
+                "gil.*labs",
+                r"cien\s*men",
+                "xtreme2",
+            ],
             "format": "Cartridge",
         },
+        "Croma Diamant": {"patterns": ["croma"]},
         "Crystal": {"patterns": ["crystal"]},
         "Derby Blue Bird": {"patterns": ["blue.*bird"]},
         "Derby Concord": {"patterns": ["concord"]},
@@ -88,8 +96,10 @@ class BladeParser(BaseParser):
         },
         "Feather ProGuard (AC)": {"patterns": ["feather.*guard"], "format": "AC"},
         "Feather Soft Guard (AC)": {"patterns": ["feather.*soft"], "format": "AC"},
+        "FlyDear Super Platinum": {"patterns": ["flydear"]},
         "GEM Blue Star": {"patterns": ["gem.*blue.*star"], "format": "GEM"},
         "Gillette 365": {"patterns": [r"\b365\b"]},
+        "Gillette Blue": {"patterns": ["gil.*blu"]},
         "Gillette London Bridge": {"patterns": ["london\s*bridge"]},
         "Gillette Minora": {"patterns": ["minora", "minora.*plat"]},
         "Gillette Nacet": {"patterns": ["nan*cet"]},
@@ -109,7 +119,7 @@ class BladeParser(BaseParser):
         "Gillette Sputnik": {"patterns": ["sputnik"]},
         "Gillette Super Thin Mejorada": {"patterns": ["mejorada"]},
         "Gillette Wilkinson Sword": {"patterns": ["gil.*et.*wilk.*swor"]},
-        "Gillette Winner": {"patterns": ["gil.*winn"]},
+        "Gillette Winner": {"patterns": ["gil.*winn", "winner"]},
         "Kai (DE)": {"patterns": ["kai", "kai.*sta", "kai.*ss"]},
         "Kai Captain Blade (AC)": {
             "patterns": ["kai.*blade", r"kai captain\s*$", "kai.*cap"],
@@ -126,19 +136,21 @@ class BladeParser(BaseParser):
         },
         "King C Gillette": {"patterns": ["king.*c.*gil.*et", "gil.*et.*king.*c"]},
         "Ladas": {"patterns": ["lada"]},
+        "Laser Ultra": {"patterns": ["laser"]},
         "Leaf": {"patterns": ["leaf"]},
+        "Lord Blue Sword Platinum": {"patterns": ["blue.*sword"]},
         "Lord Classic": {"patterns": ["lord.*cla"]},
         "Lord Cool": {"patterns": ["lord.*cool"]},
         "Lord Platinum": {"patterns": ["lord.*plat"]},
         "Lord Super Stainless": {"patterns": ["lord.*sup"]},
+        "Lord Tajam": {"patterns": ["tajam"]},
         "Kismet Hair Shaper": {"patterns": ["kismet"], "format": "Hair Shaper"},
         "Merkur Super Platinum": {"patterns": ["merkur"]},
         "Mühle": {"patterns": ["m(u|ü)hle"]},
-        "Personna Hair Shaper": {
-            "patterns": ["personn.*hair.*shap"],
-            "format": "Hair Shaper",
+        "Personna 74": {"patterns": [r"p(?:ersonn*a)?\s*74", "pseventy-four", "p74"]},
+        "Personna Blue": {
+            "patterns": ["personn*a.*blue", "personn*a.*c.*c", "personn*a"]
         },
-        "Personna Platinum": {"patterns": ["personn.*plat"]},
         "Personna GEM PTFE": {
             "patterns": [
                 "(person|gem).*(ptfe|pfte)",
@@ -146,28 +158,37 @@ class BladeParser(BaseParser):
                 "(ptfe|pfte).*(person|gem)",
                 "(person|ptfe).*gem",
                 "ptfe",
+                "ptfs",
                 "gem",  # matching just GEM to this blade per guidance here: https://www.reddit.com/r/Wetshaving/comments/19a43q7/comment/kil95r8/
+                "acc?utec",  # matching accutec to Personna GEM since they are the same blade: https://rdgwoodwinds.com/products/gem-razor-blades
             ],
             "format": "GEM",
         },
         "Personna GEM Stainless": {
-            "patterns": ["(personna)*gem.*stainless", "gem.*ss"],
+            "patterns": [
+                "(personna)*gem.*stainless",
+                "gem.*ss",
+                "person.*gem.*uncoated",
+            ],
             "format": "GEM",
+        },
+        "Personna Hair Shaper": {
+            "patterns": ["personn.*hair.*shap"],
+            "format": "Hair Shaper",
         },
         "Personna Injector": {
             "patterns": ["(person|personna).*(inject|injector)"],
             "format": "Injector",
         },  # unecessarily long to ensure priority of checking
         "Personna Med Prep": {"patterns": ["person.*med"]},
-        "Personna 74": {"patterns": [r"p(?:ersonn*a)?\s*74", "pseventy-four", "p74"]},
+        "Personna Platinum": {"patterns": ["per?sonn.*plat"]},
         "Personna Red": {"patterns": ["personn*a.*red"]},
         "Personna Stainless": {
             "patterns": ["personn*a.*stainless", "personn*a.*super"]
         },
-        "Personna Blue": {
-            "patterns": ["personn*a.*blue", "personn*a.*c.*c", "personn*a"]
-        },
+        "Personna TOMY": {"patterns": [r"\btomy\b"]},
         "Polsilver": {"patterns": ["pol(i|-)*silver", "polsiver"]},
+        "QShave Titanium": {"patterns": ["qshave"]},
         "Rapira Super Stainless": {"patterns": ["rapira.*stain", "rapira.*ss"]},
         "Rapira Platinum Lux": {"patterns": ["rapira"]},
         "Rapira Swedish": {"patterns": ["rapira.*swe"]},
@@ -175,19 +196,24 @@ class BladeParser(BaseParser):
         "Rockwell": {"patterns": ["rockwell"]},
         "Sapphoo Red (AC)": {"patterns": ["sapp?hoo(\s*red)?"]},
         "Schick Stainless (DE)": {"patterns": ["schick.*s(?:tainles)*s"]},
-        "Schick Injector": {"patterns": ["schick"], "format": "Injector"},
+        "Schick Injector": {"patterns": ["schick", "inject"], "format": "Injector"},
         "Schick Proline (AC)": {"patterns": ["proline"], "format": "AC"},
         "Shark Chrome": {"patterns": ["shark.*chr"]},
         "Shark Stainless": {"patterns": ["shark"]},
         "Shark Platinum": {"patterns": ["shark.*pla"]},
         "Shaving Revolution Platinum": {"patterns": ["shaving\s*revolution"]},
+        'Silvermax "Cryo" Sputtered Platinum ': {"patterns": [r"silver\s*max"]},
         "Silver Star - Super Stainless": {"patterns": ["silver.*star.*stain"]},
         "Super-Max Blue Diamond": {"patterns": ["super.*max.*(?:blu)*.*dia"]},
         "Super-Max Platinum": {"patterns": ["super.*max.*plat"]},
         "Super-Max Super Stainless": {"patterns": ["super.*max.*stai"]},
+        "Supply Co. Black Label (Injector)": {"patterns": ["supply"]},
         "Tatara": {"patterns": ["tatara"]},
         "Tatra Platinum": {"patterns": ["tatra"]},
-        "Ted Pella Injector": {"patterns": ["pella"], "format": "Injector"},
+        "Ted Pella Injector": {
+            "patterns": ["pella", "pella.*injector"],
+            "format": "Injector",
+        },
         "Ted Pella PTFE": {"patterns": ["pella.*ptfe"], "format": "GEM"},
         "Tiger Platinum": {"patterns": ["tiger"]},
         "Treet Black Beauty": {"patterns": ["treet\s*bla", "treet.*carb"]},

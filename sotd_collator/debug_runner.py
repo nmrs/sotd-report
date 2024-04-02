@@ -62,27 +62,27 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "parser": brp,
-                "parser field": "name",
-                "fallback": True,
-            },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "name",
+            #     "fallback": True,
+            # },
             # {
             #     "name": "Fiber",
             #     "extractor": StagedBrushNameExtractor(),
             #     "parser": brp,
             #     "parser field": "fiber",
-            #     "fallback": False,
+            #     "fallback": True,
             # },
-            # {
-            #     "name": "Knot Size",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "knot size",
-            #     "fallback": False,
-            # },
+            {
+                "name": "Knot Size",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "knot size",
+                "fallback": True,
+            },
             # {
             #     "name": "Karve Plate",
             #     "extractor": KarvePlateExtractor(),
@@ -120,6 +120,7 @@ class DebugRunner(object):
             thread_map, comments_target, extractor, parser, parser_field, fallback
         )
         df_raw = pd.DataFrame(raw_usage)
+
         df_raw["original"] = df_raw["original"].apply(lambda x: x[:100])
         df_raw["original"] = df_raw["original"].apply(
             lambda x: blp.remove_digits_in_parens(x)
@@ -225,8 +226,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 2, 1)
-    end_month = datetime.date(2024, 2, 1)
+    start_month = datetime.date(2024, 3, 1)
+    end_month = datetime.date(2024, 3, 1)
 
     comments_target = []
     thread_map = {}
