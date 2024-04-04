@@ -384,5 +384,10 @@ def single_user_report(
     multiple_comment_days = full_multiple_comment_days[
         full_multiple_comment_days["user_id"] == user_id
     ]
-    result = user_merged_df.fillna("").drop(columns="user_id").astype(str)
+    result = (
+        user_merged_df.fillna("")
+        .drop(columns="user_id")
+        .drop(columns="body")
+        .astype(str)
+    )
     return result
