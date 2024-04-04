@@ -3,6 +3,7 @@ from functools import lru_cache, cached_property
 
 from base_parser import BaseParser
 from brush_parsing_stategies import (
+    ChiselAndHoundParsingStrategy,
     DeclarationGroomingParsingStrategy,
     KnownBrushStrategy,
     OmegaSemogueBrushParsingStrategy,
@@ -19,6 +20,7 @@ class BrushParser(BaseParser):
     def __init__(self) -> None:
         self.__parser_strategies = (
             DeclarationGroomingParsingStrategy(),
+            ChiselAndHoundParsingStrategy(),
             KnownBrushStrategy(),
             OmegaSemogueBrushParsingStrategy(),
             ZenithBrushParsingStrategy(),

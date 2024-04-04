@@ -46,19 +46,6 @@ class BaseBrushParsingStrategy(ABC):
                     continue
                 return f"{num_mm}mm"
 
-        # known_sizes = {
-        #     "T1": {"patterns": ["simp.*t1"], "knot size": "23mm"},
-        #     "T2": {"patterns": ["simp.*t2"], "knot size": "24mm"},
-        #     "T3": {"patterns": ["simp.*t3"], "knot size": "26mm"},
-        #     "CH1": {"patterns": ["simp.*ch1", "chubby\s*1"], "knot size": "22mm"},
-        #     "CH2": {"patterns": ["simp.*ch2", "chubby\s*1"], "knot size": "26mm"},
-        #     "CH3": {"patterns": ["simp.*ch3", "chubby\s*1"], "knot size": "29mm"},
-        # }
-        # for data in known_sizes.values():
-        #     for pattern in data["patterns"]:
-        #         if re.search(pattern, input_string, re.IGNORECASE):
-        #             return data["knot size"]
-
         return None
 
 
@@ -164,6 +151,51 @@ class DeclarationGroomingParsingStrategy(BaseBrushParsingStrategy):
                         result[pattern]["knot size"] = data["knot size"]
                     else:
                         result[pattern]["knot size"] = "28mm"
+
+        return result
+
+    @lru_cache(maxsize=None)
+    def get_property_map(self, input_string: str) -> dict[str, str]:
+        map = self._pattern_map
+        for alt_name_re in sorted(map.keys(), key=len, reverse=True):
+            if re.search(alt_name_re, input_string, re.IGNORECASE):
+                result = map[alt_name_re]
+                knot_size = self.get_knot_size(input_string)
+                if knot_size:
+                    result["knot size"] = knot_size
+                return result
+        return None
+
+
+class ChiselAndHoundParsingStrategy(BaseBrushParsingStrategy):
+
+    # "patterns": ["chis.*hou", "chis.*fou", r"\bc(?:\&|and|\+)h\b"],
+
+    __BRAND = "Chisel & Hound"
+
+    _raw = {}
+
+    for i in range(1, 25):
+        knot = f"V{i}"
+        _raw[knot] = {
+            "patterns": [
+                f"chis.*hou.*v{i}",
+                "chis.*fou.*v{i}",
+                rf"\bc(?:\&|and|\+)h\b.*v{i}",
+            ],
+        }
+
+    @cached_property
+    def _pattern_map(self):
+        result = {}
+        for model, data in self._raw.items():
+            for pattern in data["patterns"]:
+                result[pattern] = {
+                    "brand": self.__BRAND,
+                    "name": f"{self.__BRAND} {model}",
+                    "fiber": "Badger",
+                    "knot size": "26mm",
+                }
 
         return result
 
