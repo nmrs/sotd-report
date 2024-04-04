@@ -41,6 +41,9 @@ class GameChangerPlateParser(BaseParser):
         gap = str(round(float(plate.removeprefix("0")), 2)).removeprefix("0")
         plate = f"{gap}-P"
 
+        if plate in [".85-P", ".94-P"]:
+            plate = ".84-P"
+
         # determine if OC or JAWS
         if self.jaws_re.search(input_string):
             plate_type = "JAWS"
