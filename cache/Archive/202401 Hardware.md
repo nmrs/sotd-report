@@ -308,7 +308,7 @@
 | u/AdWorried2804        |       31 |             0 | ↑2              | n/a             | n/a             |
 | u/el_charminman        |       31 |             0 | ↑1              | ↑1              | n/a             |
 | u/Eructate             |       31 |             0 | ↑1              | ↑1              | n/a             |
-| u/gcgallant            |       31 |             0 | ↑3              | ↑1              | n/a             |
+| u/gcgallant            |       31 |             0 | ↑1              | ↑1              | n/a             |
 | u/Impressive_Donut114  |       31 |             0 | ↑1              | ↑1              | n/a             |
 | u/InfernalInternal     |       31 |             0 | ↑1              | ↑1              | n/a             |
 | u/jrhunter25           |       31 |             0 | ↑22             | ↑27             | n/a             |

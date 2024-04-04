@@ -2,21 +2,27 @@ Welcome to your SOTD Hardware Report for March 2024
 
 ## Observations
 
-*  u/tsrbike's MMarch24 challenge succeeded beyond my (probably anyone's) expectations and decisively lauched the MM24 to the top of the chart. Fun fact there were 349 MM24 shaves in all of 2023, so there were 60% more MM24 shaves this month than in all of last year.
+* u/tsrblke's MMarch24 challenge succeeded beyond my (probably anyone's) expectations and decisively launched the MM24 to the top of the chart with 651 shaves. Fun fact: there were 349 MM24 shaves in all of 2023, so there were 60% more MM24 shaves this month than in all of last year. That 651 from March would have put the MM24 in 7th last year.
 
-* Outside of the MM24, there were other interesting shakeups at the top of the chart. The Blackbird and Game Changer hang on to their typical top 3 positions, while the Karve CB drops precipitously out of the top 3 down to 7th. The Rockwell 6C and Chiseled Face Legacy leap forward 7 positions each to round out the top 5.
+* Outside of the MM24, there were other interesting shakeups at the top of the chart. The Blackbird and Game Changer hang on to their typical top 3 positions, while the Karve CB drops precipitously out of the top 3 down to 7th. The Blackbird was the only one of the big three to see increased usage this month. I suspect the Game Changer and Christopher Bradley gave up many of their normal shaves to the MM24. The Rockwell 6C and Chiseled Face Legacy leap forward 7 positions each to round out the top 5.
+
+* Year to date, the MM24 is solidly in first with over double the number of shaves of its nearest competitor: MM24 (719), Blackbird (340), Christopher Bradley (291), Game Changer (284). That 719 for MM24 would place the MM24 in 6th for 2023.
+
+* Apparently everyone decided this month that the .84-P plate is the only Game Changer plate worth using.
 
 * Piggybacking on the success of the MM24 this month, the Personna GEM PTFE knocks the Astra SP out of the number one blade spot it has held onto for over a year.
 
-* Chisel & Hound jumps 8 slots to claim the top Brush Manufacturer slot, which likely helped propel Badger to the top of the Brush Fiber table.
+* Chisel & Hound jumps eight slots to claim the top Brush Manufacturer slot, which likely helped propel Badger to the top of the Brush Fiber table.
 
-* Hat tip to u/ShavinginCT for organizing such a fantastic event with March Madness. Last month averaged about 61 shaves per day. This month had 77.
+* I'm not sure what kind of science project u/sgrdddy is working on, but just think of all the pennies he's saved.
 
-* u/Impressive_Donut114 wasn't feeling well on [March 24](https://www.reddit.com/r/Wetshaving/comments/1bmdqd9/comment/kwdl5xw/?utm_source=share&utm_medium=web2x&context=3), so he just missed out on the perfect double MMarch24.
+* u/Impressive_Donut114 wasn't feeling well on [March 24](https://www.reddit.com/r/Wetshaving/comments/1bmdqd9/comment/kwdl5xw/?utm_source=share&utm_medium=web2x&context=3), so he just missed out on the perfect double MMarch24. 26 people shaved every day.
+
+* Hat tip to u/ShavinginCT, u/tsrblke, and u/Enndeegee for organizing such fantastic events this month. All that shaving excitement led to an average of 77 shaves per day as compared to 61 in February.
 
 ## Notes & Caveats
 
-* 2,396 shave reports from March 2024 were analyzed to produce this report.
+* 2,396 shave reports from March 2024 were analyzed to produce this report (average of 77 per day).
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
@@ -208,56 +214,56 @@ Welcome to your SOTD Hardware Report for March 2024
 
 | name                                      |   shaves |   unique users |   avg shaves per user | Δ vs Feb 2024   | Δ vs Mar 2023   | Δ vs Mar 2019   |
 |:------------------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| Chisel & Hound Badger                     |      251 |             40 |                  6.28 | ↑1              | ↑4              | n/a             |
-| AP Shave Co Synthetic                     |      197 |             34 |                  5.79 | ↓1              | =               | ↑19             |
-| r/wetshaving MOAR BOAR                    |      169 |             50 |                  3.38 | ↑1              | ↓2              | n/a             |
-| Maggard Synthetic                         |      142 |             27 |                  5.26 | ↓1              | =               | ↓3              |
-| Yaqi Synthetic                            |       77 |             21 |                  3.67 | ↑1              | ↓2              | ↓1              |
-| Stirling 2-Band Synthetic                 |       69 |              4 |                 17.25 | ↑1              | =               | ↑3              |
+| AP Shave Co Synthetic                     |      197 |             34 |                  5.79 | =               | ↑1              | ↑20             |
+| r/wetshaving MOAR BOAR                    |      169 |             50 |                  3.38 | ↑1              | ↓1              | n/a             |
+| Maggard Synthetic                         |      142 |             27 |                  5.26 | ↓1              | ↑1              | ↓2              |
+| Chisel & Hound V20                        |       80 |              9 |                  8.89 | ↑7              | n/a             | n/a             |
+| Yaqi Synthetic                            |       77 |             21 |                  3.67 | =               | ↓2              | ↓1              |
+| Stirling 2-Band Synthetic                 |       69 |              4 |                 17.25 | =               | ↓1              | ↑3              |
 | Stirling Synthetic                        |       52 |              7 |                  7.43 | ↑4              | ↑4              | ↓2              |
-| Maggard Badger                            |       51 |             22 |                  2.32 | ↑1              | ↑2              | ↓2              |
+| Maggard Badger                            |       51 |             22 |                  2.32 | =               | ↑2              | ↓2              |
 | Zenith Boar                               |       49 |              9 |                  5.44 | ↑1              | ↑4              | ↑6              |
 | Declaration Grooming B16                  |       45 |              9 |                  5    | ↑8              | ↑21             | n/a             |
-| Turn-N-Shave Badger                       |       43 |              9 |                  4.78 | ↑7              | ↑23             | ↑7              |
+| Chisel & Hound Badger                     |       43 |              9 |                  4.78 | ↑17             | ↑14             | n/a             |
 | Dogwood Badger                            |       42 |             12 |                  3.5  | =               | ↑16             | ↓3              |
 | DSCosmetics Synthetic                     |       40 |              3 |                 13.33 | =               | ↑19             | =               |
 | Declaration Grooming B15                  |       39 |             17 |                  2.29 | ↑12             | ↑7              | n/a             |
+| Turn-N-Shave Badger                       |       39 |              8 |                  4.88 | ↑4              | ↑20             | ↑4              |
 | AP Shave Co Badger                        |       37 |              9 |                  4.11 | =               | ↑14             | n/a             |
-| Semogue SOC Boar                          |       33 |             13 |                  2.54 | ↑1              | ↑13             | ↑3              |
-| Declaration Grooming B3                   |       25 |             11 |                  2.27 | ↑1              | ↑12             | ↓10             |
-| Declaration Grooming B9A                  |       25 |              7 |                  3.57 | ↑5              | ↑14             | n/a             |
-| Declaration Grooming B14                  |       23 |             11 |                  2.09 | ↓2              | ↑7              | n/a             |
-| Grizzly Bay Badger                        |       21 |             12 |                  1.75 | ↑2              | ↑9              | ↓4              |
-| PAA Synthetic                             |       21 |              4 |                  5.25 | =               | ↑2              | n/a             |
-| Simpson Trafalgar T2                      |       20 |             10 |                  2    | ↑9              | ↓8              | ↓4              |
-| Muhle Badger                              |       20 |              7 |                  2.86 | ↓1              | ↓4              | ↑6              |
-| Wolf Whiskers Badger                      |       20 |              1 |                 20    | ↑9              | ↑15             | ↓12             |
-| Stirling/Zenith 31mmx50mm Boar (510SE-XL) |       19 |              5 |                  3.8  | ↓16             | n/a             | n/a             |
-| Semogue 2000                              |       19 |              3 |                  6.33 | ↑3              | n/a             | ↑2              |
+| Chisel & Hound V21                        |       36 |              2 |                 18    | ↓7              | n/a             | n/a             |
+| Semogue SOC Boar                          |       33 |             13 |                  2.54 | =               | ↑12             | ↑2              |
+| Declaration Grooming B3                   |       25 |             11 |                  2.27 | =               | ↑11             | ↓11             |
+| Declaration Grooming B9A                  |       25 |              7 |                  3.57 | ↑4              | ↑13             | n/a             |
+| Declaration Grooming B14                  |       23 |             11 |                  2.09 | ↓3              | ↑6              | n/a             |
+| Grizzly Bay Badger                        |       21 |             12 |                  1.75 | ↑1              | ↑8              | ↓5              |
+| PAA Synthetic                             |       21 |              4 |                  5.25 | ↓1              | ↑1              | n/a             |
+| Simpson Trafalgar T2                      |       20 |             10 |                  2    | ↑8              | ↓9              | ↓5              |
+| Chisel & Hound V19                        |       20 |              8 |                  2.5  | ↑4              | n/a             | n/a             |
+| Chisel & Hound V23                        |       20 |              7 |                  2.86 | ↑10             | n/a             | n/a             |
+| Muhle Badger                              |       20 |              7 |                  2.86 | ↓2              | ↓5              | ↑5              |
+| Wolf Whiskers Badger                      |       20 |              1 |                 20    | ↑8              | ↑14             | ↓13             |
+| Stirling/Zenith 31mmx50mm Boar (510SE-XL) |       19 |              5 |                  3.8  | ↓18             | n/a             | n/a             |
+| Semogue 2000                              |       19 |              3 |                  6.33 | ↑2              | n/a             | ↑1              |
 | Yaqi Boar                                 |       19 |              1 |                 19    | n/a             | n/a             | n/a             |
-| Oumo Badger                               |       18 |              3 |                  6    | ↓14             | ↑4              | n/a             |
-| CaYuen Synthetic                          |       18 |              1 |                 18    | ↓8              | ↓13             | n/a             |
-| Declaration Grooming B13                  |       17 |             10 |                  1.7  | ↓1              | ↓16             | n/a             |
-| Omega 10049                               |       17 |              7 |                  2.43 | ↓3              | ↑4              | ↓7              |
-| RazoRock Monster                          |       16 |              1 |                 16    | ↓4              | n/a             | n/a             |
-| Maggard Boar                              |       14 |              7 |                  2    | ↓4              | ↑2              | n/a             |
-| AKA Brushworx Synthetic                   |       14 |              4 |                  3.5  | ↓3              | ↑8              | n/a             |
-| Simpson Trafalgar T1                      |       14 |              4 |                  3.5  | ↑1              | n/a             | ↑2              |
-| Omega 10098                               |       14 |              3 |                  4.67 | ↓7              | ↑6              | ↓3              |
-| Declaration Grooming B11                  |       13 |              7 |                  1.86 | ↑3              | ↓2              | n/a             |
-| Omega 11047                               |       13 |              3 |                  4.33 | ↑6              | n/a             | n/a             |
-| Wald A1                                   |       12 |              6 |                  2    | ↓10             | ↑7              | n/a             |
-| Simpson Trafalgar T3                      |       12 |              5 |                  2.4  | ↑1              | ↓5              | =               |
-| Stirling/Zenith 28mmx50mm Boar (510SE)    |       12 |              5 |                  2.4  | ↓9              | n/a             | n/a             |
-| Omega 11137                               |       12 |              4 |                  3    | ↑2              | ↓5              | n/a             |
+| Oumo Badger                               |       18 |              3 |                  6    | ↓16             | ↑3              | n/a             |
+| CaYuen Synthetic                          |       18 |              1 |                 18    | ↓9              | ↓14             | n/a             |
+| Declaration Grooming B13                  |       17 |             10 |                  1.7  | ↓2              | ↓17             | n/a             |
+| Omega 10049                               |       17 |              7 |                  2.43 | ↓4              | ↑3              | ↓8              |
+| RazoRock Monster                          |       16 |              1 |                 16    | ↓5              | n/a             | n/a             |
+| Maggard Boar                              |       14 |              7 |                  2    | ↓5              | ↑1              | n/a             |
+| AKA Brushworx Synthetic                   |       14 |              4 |                  3.5  | ↓4              | ↑7              | n/a             |
+| Simpson Trafalgar T1                      |       14 |              4 |                  3.5  | =               | n/a             | ↑1              |
+| Omega 10098                               |       14 |              3 |                  4.67 | ↓8              | ↑5              | ↓4              |
+| Declaration Grooming B11                  |       13 |              7 |                  1.86 | ↑2              | ↓3              | n/a             |
+| Chisel & Hound V22                        |       13 |              3 |                  4.33 | ↓4              | n/a             | n/a             |
+| Omega 11047                               |       13 |              3 |                  4.33 | ↑5              | n/a             | n/a             |
+| Wald A1                                   |       12 |              6 |                  2    | ↓11             | ↑6              | n/a             |
+| Simpson Trafalgar T3                      |       12 |              5 |                  2.4  | =               | ↓6              | ↓1              |
+| Stirling/Zenith 28mmx50mm Boar (510SE)    |       12 |              5 |                  2.4  | ↓10             | n/a             | n/a             |
+| Omega 11137                               |       12 |              4 |                  3    | ↑1              | ↓6              | n/a             |
 | Aurora Grooming Synthetic                 |       12 |              3 |                  4    | n/a             | n/a             | n/a             |
-| Declaration Grooming B8                   |       11 |              6 |                  1.83 | =               | =               | n/a             |
-| Trotter Handcrafts Synthetic              |       11 |              6 |                  1.83 | ↑2              | ↓4              | n/a             |
-| Declaration Grooming B17                  |       11 |              5 |                  2.2  | ↓5              | n/a             | =               |
-| Wild West Brushworks Synthetic            |       11 |              5 |                  2.2  | ↓4              | ↑7              | ↓15             |
-| Voigt & Cop Badger                        |       11 |              4 |                  2.75 | ↓2              | ↑2              | n/a             |
-| Omega 10048                               |       10 |              6 |                  1.67 | ↓12             | ↑5              | ↓6              |
-| Zenith Unbleached Boar                    |       10 |              6 |                  1.67 | ↓16             | ↑1              | n/a             |
+| Chisel & Hound V18                        |       12 |              3 |                  4    | ↓8              | ↓22             | n/a             |
+| Chisel & Hound V13                        |       12 |              2 |                  6    | ↓7              | n/a             | n/a             |
 
 
 ##Brush Manufacturers
@@ -345,11 +351,9 @@ Welcome to your SOTD Hardware Report for March 2024
 
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs Feb 2024   | Δ vs Mar 2023   | Δ vs Mar 2019   |
 |:-------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| .84-P  |       76 |             10 |                   7.6 | =               | =               | =               |
+| .84-P  |       78 |             10 |                   7.8 | =               | =               | =               |
 | .76-P  |        3 |              2 |                   1.5 | =               | n/a             | n/a             |
 | .68-P  |        2 |              2 |                   1   | =               | ↓1              | ↓2              |
-| .85-P  |        1 |              1 |                   1   | n/a             | n/a             | n/a             |
-| .94-P  |        1 |              1 |                   1   | n/a             | n/a             | n/a             |
 | 1.05-P |        1 |              1 |                   1   | n/a             | n/a             | n/a             |
 
 
@@ -427,3 +431,4 @@ Welcome to your SOTD Hardware Report for March 2024
 | u/sahenders            |       31 |             0 | ↑8              | ↑10             | n/a             |
 | u/scribe__             |       31 |             0 | ↓1              | =               | n/a             |
 | u/SufficientKnee       |       31 |             0 | ↓1              | ↑4              | n/a             |
+| u/tsrblke              |       31 |             0 | =               | ↑2              | n/a             |

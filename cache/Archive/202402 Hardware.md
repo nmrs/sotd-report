@@ -420,3 +420,4 @@ Welcome to your SOTD Hardware Report for February 2024
 | u/Scorpio93x           |       29 |             0 | n/a             | ↑25             | n/a             |
 | u/scribe__             |       29 |             0 | ↓1              | ↑1              | ↑13             |
 | u/SufficientKnee       |       29 |             0 | ↑1              | ↑11             | n/a             |
+| u/wallygator88         |       29 |             0 | ↓1              | =               | ↑17             |
