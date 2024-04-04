@@ -419,7 +419,9 @@ class Runner(object):
         # sort
         usage["name lower"] = usage.loc[:, "name"].str.lower()
         usage = usage.sort_values(
-            ["shaves", "missed days", "name lower"], ascending=[False, True, True]
+            ["shaves", "missed days", "name lower"],
+            ascending=[False, True, True],
+            ignore_index=True,
         )
         head = 0
         last = 0
@@ -431,7 +433,7 @@ class Runner(object):
 
         for row in all_rows:
             head += 1
-            if head >= 21 and row["shaves"] <= last:
+            if head >= 20 and row["shaves"] <= last:
                 if len(all_rows) > head:
                     next_row = all_rows[head + 1]
                     if row["shaves"] > next_row["shaves"]:
@@ -441,7 +443,7 @@ class Runner(object):
                             break
 
             last = row["shaves"]
-        usage = usage.head(head)
+        usage = usage.head(head + 1)
         usage.drop("name lower", inplace=True, axis=1)
 
         usage.rename(columns={"name": "user"}, inplace=True)
@@ -554,14 +556,16 @@ if __name__ == "__main__":
     last_year_label = last_year.strftime("%b %Y")
 
     thread_map = pl.get_thread_map(target, target)
-    single_user_report(
-        "u/Impressive_Donut114",
+    dt = single_user_report(
+        "u/tsrblke",
         comments_target,
         thread_map,
         StagedUserNameExtractor(),
         target,
         target,
     )
+
+    print(dt.to_markdown())
 
     # usage = Runner().top_shavers(
     #     comments_target,
