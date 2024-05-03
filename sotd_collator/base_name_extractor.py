@@ -26,7 +26,8 @@ class BaseNameExtractor(ABC):
     def tts_detector(self, token):
         return re.compile(
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
-            rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
+            rf"^[*\s\-+/]*{token}\s*[:*\-\\+ \t/]*(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )
 
