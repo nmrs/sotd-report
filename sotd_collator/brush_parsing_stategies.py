@@ -12,10 +12,10 @@ class BaseBrushParsingStrategy(ABC):
 
     _fibers = {
         "Boar": r"\b(boar|shoat)\b",
-        "Synthetic": r"(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush)",
+        "Synthetic": r"(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5c|stf)",
         "Horse": "(horse)",
         "Mixed Badger/Boar": "(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
-        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best)",
+        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best|ultralux)",
     }
 
     @abstractmethod
@@ -235,6 +235,21 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "fiber": "Boar",
                 "knot size": "28mm",
             },
+            "10005": {
+                "patterns": ["omega.*10005"],
+                "fiber": "Boar",
+                "knot size": "24mm",
+            },
+            "10029": {
+                "patterns": ["omega.*10029"],
+                "fiber": "Boar",
+                "knot size": "24mm",
+            },
+            "10077": {
+                "patterns": ["omega.*10077"],
+                "fiber": "Boar",
+                "knot size": "23mm",
+            },
             "10048": {
                 "patterns": ["omega.*(pro)*.*48"],
                 "fiber": "Boar",
@@ -275,6 +290,11 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "fiber": "Boar",
                 "knot size": "28mm",
             },
+            "46206": {
+                "patterns": ["omega.*46206"],
+                "fiber": "Synthetic",
+                "knot size": "25mm",
+            },
             "80005": {
                 "patterns": ["80005"],
                 "fiber": "Boar",
@@ -307,7 +327,24 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "knot size": "24mm",
             },
         },
+        "Rich Man Shaving": {
+            "Mojo Maker": {
+                "patterns": ["rich.*man.*mojo*"],
+                "fiber": "Badger",
+                "knot size": "26mm",
+            },
+            "Ultralux": {
+                "patterns": ["rich.*man.*ultraluxe*"],
+                "fiber": "Badger",
+                "knot size": "26mm",
+            },
+        },
         "Semogue": {
+            "610": {
+                "patterns": [r"semogue\s*610"],
+                "fiber": "Boar",
+                "knot size": "21mm",
+            },
             "620": {
                 "patterns": [r"semogue\s*620"],
                 "fiber": "Boar",
@@ -373,6 +410,11 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "fiber": "Boar",
                 "knot size": "26.5mm",
             },
+            "Shave Nook 2012 LE": {
+                "patterns": ["semogue.*2012"],
+                "fiber": "Mixed Badger/Boar",
+                "knot size": "22mm",
+            },
             "SOC Boar": {
                 "patterns": [
                     r"(semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*boar",
@@ -403,7 +445,7 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "knot size": "24mm",
             },
             "r/wetshaving Brushbutt Boar": {
-                "patterns": ["brushbutt"],
+                "patterns": ["brushbutt", "2017 ws"],
                 "fiber": "Boar",
                 "knot size": "22mm",
             },
@@ -699,7 +741,7 @@ class ZenithBrushParsingStrategy(BaseBrushParsingStrategy):
 
 class OtherBrushStrategy(BaseBrushParsingStrategy):
     _raw = {
-        "AKA Brushworx": {"patterns": ["aka.*brush"], "default": "Synthetic"},
+        "AKA Brushworx": {"patterns": ["aka.*brush", "aka"], "default": "Synthetic"},
         "Alpha": {"patterns": ["alpha"], "default": "Synthetic"},
         "AMACK": {"patterns": ["amack"], "default": "Synthetic"},
         "Anbbas": {"patterns": ["anbbas"], "default": "Synthetic"},
@@ -711,14 +753,16 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "patterns": [r"^\s*aos", "art.*of.*sha"],
             "default": "Badger",
         },
+        "Artesania Romera": {"patterns": ["romera"], "default": "Badger"},
         "Aurora Grooming": {"patterns": ["aurora\s*grooming"], "default": "Synthetic"},
+        "B&M": {"patterns": [r"b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
+        "Balea Men": {"patterns": ["balea"], "default": "Synthetic"},
         "Bass": {
             "patterns": [
                 r"\bbass\b",
             ],
             "default": "Boar",
         },
-        "B&M": {"patterns": [r"b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
         "Beaumont": {"patterns": ["bea.{1,3}mont"], "default": "Badger"},
         "Black Anvil": {"patterns": ["black.*anv"], "default": "Badger"},
         "Black Eagle": {"patterns": ["black.*eag"], "default": "Badger"},
@@ -747,6 +791,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Craving Shaving": {"patterns": ["crav.*shav"], "default": "Synthetic"},
         "Cremo": {"patterns": ["cremo"], "default": "Horse"},
         "Crescent City Craftsman": {"patterns": ["cres.*city"], "default": "Synthetic"},
+        "Cumberbatch": {"patterns": ["cumberbatch"], "default": "Badger"},
         "Declaration Grooming (batch not specified)": {
             "patterns": ["declaration", r"\bdg\b"],
             "default": "Badger",
@@ -778,15 +823,18 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Haircut & Shave Co": {"patterns": ["haircut.*shave"], "default": "Badger"},
         "Heritage Collection": {"patterns": ["heritage"], "default": "Badger"},
         "Holzleute": {"patterns": ["holzleute"], "default": "Badger"},
+        "Imperial": {"patterns": ["imperial"], "default": "Synthetic"},
         "L'Occitane en Provence": {"patterns": ["oc*citane"], "default": "Synthetic"},
         "Lancaster Brushworks": {"patterns": ["lancaster"], "default": "Synthetic"},
         "Leavitt & Pierce": {"patterns": ["leav.*pie"], "default": "Badger"},
+        "Lentfer Custom Woodworks": {"patterns": ["lentfer"], "default": "Synthetic"},
         "Leonidam": {"patterns": ["leonidam", "leo.*nem"], "default": "Badger"},
         "Liojuny Shaving": {"patterns": ["liojuny"], "default": "Synthetic"},
         "Long Shaving": {"patterns": [r"long\s*shaving"], "default": "Badger"},
         "Lutin Brushworks": {"patterns": ["lutin"], "default": "Synthetic"},
         "Maggard": {"patterns": ["^.*mag(g?ard)?s?"], "default": "Synthetic"},
         "Maseto": {"patterns": ["maseto"], "default": "Badger"},
+        "Mistic": {"patterns": ["mistic"], "default": "Synthetic"},
         "Mojo": {"patterns": ["mojo"], "default": "Badger"},
         "Mondial": {"patterns": ["mondial"], "default": "Boar"},
         "Morris & Forndran": {
@@ -798,7 +846,12 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Muninn Woodworks": {"patterns": ["munin"], "default": "Badger"},
         "Muhle": {"patterns": [r"\bmuhle\b"], "default": "Badger"},
         "Mutiny": {"patterns": ["mutiny"], "default": "Synthetic"},
+        "New England Shaving Company": {
+            "patterns": ["new.*england"],
+            "default": "Synthetic",
+        },
         "Noble Otter": {"patterns": ["noble", r"no\s*\d{2}mm"], "default": "Badger"},
+        "Nom": {"patterns": [r"\bnom\b"], "default": "Synthetic"},
         "NY Shave Co": {"patterns": [r"ny\s.*shave.*co"], "default": "Badger"},
         "Omega (model not specified)": {"patterns": ["omega"], "default": "Boar"},
         "Oumo": {"patterns": ["o[ou]mo"], "default": "Badger"},
@@ -806,7 +859,11 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "PAA": {"patterns": ["paa", "phoenix.*art"], "default": "Synthetic"},
         "Paladin": {"patterns": ["paladin"], "default": "Badger"},
         "Parker": {"patterns": ["parker"], "default": "Badger"},
-        "Perfecto": {"patterns": ["perfecto"], "default": "Badger"},
+        "Perfecto": {
+            "patterns": ["perfecto"],
+            "default": "Badger",
+            "knot size": "20mm",
+        },
         "Plisson": {"patterns": ["plisson"], "default": "Badger"},
         "Prometheus Handcrafts": {"patterns": ["promethe"], "default": "Synthetic"},
         "Razorock": {
@@ -814,13 +871,16 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "default": "Synthetic",
         },
         "Rockwell": {"patterns": ["rockwell"], "default": "Synthetic"},
+        "Rooney": {"patterns": ["rooney"], "default": "Badger"},
         "Rubberset": {"patterns": ["rubberset"], "default": "Badger"},
         "Rudy Vey": {"patterns": ["rudy.*vey"], "default": "Badger"},
         "Rick Montalvo": {"patterns": ["montalv"], "default": "Synthetic"},
         "Sawdust Creation Studios": {"patterns": ["sawdust"], "default": "Synthetic"},
         "Semogue (model not specified)": {"patterns": ["semogue"], "default": "Boar"},
         "SHAVEDANDY": {"patterns": ["shavedandy"], "default": "Synthetic"},
+        "Shave Forge": {"patterns": ["shave.*forge"], "default": "Synthetic"},
         "Shavemac": {"patterns": ["shavemac"], "default": "Badger"},
+        "Shave Nation": {"patterns": ["shave.*nation"], "default": "Synthetic"},
         "Shore Shaving": {"patterns": ["shore.*shav"], "default": "Synthetic"},
         "Simpson": {
             "patterns": ["simpson", "duke", "chubby.*2", "trafalgar"],
@@ -833,6 +893,8 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Strike Gold Shave": {"patterns": ["strike.*gold"], "default": "Synthetic"},
         "Summer Break": {"patterns": ["summer.*break"], "default": "Badger"},
         "Supply": {"patterns": ["supply"], "default": "Synthetic"},
+        "Surrey": {"patterns": ["surrey"], "default": "Boar"},
+        "TanZ": {"patterns": ["tobs", "tanz"], "default": "Badger"},
         "Teton Shaves": {"patterns": ["teton"], "default": "Badger"},
         "The Bluebeard's Revenge": {
             "patterns": ["bluebeard.*rev"],
@@ -858,6 +920,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Wald": {"patterns": ["wald", "west.*coast"], "default": "Badger"},
         "WCS": {"patterns": ["wcs", "west.*coast"], "default": "Synthetic"},
         "Whipped Dog": {"patterns": ["whipped.*dog"], "default": "Badger"},
+        "Wilkinson Sword": {"patterns": ["wilkinson"], "default": "Synthetic"},
         "Wolf Whiskers": {"patterns": ["wolf.*whis"], "default": "Badger"},
         "Wild West Brushworks": {
             "patterns": ["wild.*west", "wwb", "ww.*brushw"],

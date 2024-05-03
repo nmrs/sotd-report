@@ -29,6 +29,7 @@ class BladeParser(BaseParser):
         "ABEST Hi Platinum": {"patterns": ["abest"]},
         # "AccuTec Pro Premium (GEM)": {"patterns": ["acc?utec"], "format": "GEM"},
         "Aeterna": {"patterns": ["aeter"]},
+        "Asco Platium": {"patterns": ["asco.*plat"]},
         "Astra Superior Platinum (Green)": {
             "patterns": [
                 "astra.*plat",
@@ -86,7 +87,11 @@ class BladeParser(BaseParser):
         },
         "Feather FHS-1": {"patterns": ["fhs-1"], "format": "FHS"},
         "Feather Pro (AC)": {
-            "patterns": ["feather.*pro", "feather.*a.*c.*"],
+            "patterns": [
+                "feather.*pro",
+                "feather.*a.*c.*",
+                "^(?!.*(?:schick|kai|proline))(?=.*artist\ club).*",
+            ],
             "format": "AC",
         },
         "Feather Pro Light (AC)": {"patterns": ["feather.*light"], "format": "AC"},
@@ -96,6 +101,7 @@ class BladeParser(BaseParser):
         },
         "Feather ProGuard (AC)": {"patterns": ["feather.*guard"], "format": "AC"},
         "Feather Soft Guard (AC)": {"patterns": ["feather.*soft"], "format": "AC"},
+        "Fromm": {"patterns": ["fromm"], "format": "hair shaper"},
         "FlyDear Super Platinum": {"patterns": ["flydear"]},
         "GEM Blue Star": {"patterns": ["gem.*blue.*star"], "format": "GEM"},
         "Gillette 365": {"patterns": [r"\b365\b"]},
@@ -147,9 +153,16 @@ class BladeParser(BaseParser):
         "Kismet Hair Shaper": {"patterns": ["kismet"], "format": "Hair Shaper"},
         "Merkur Super Platinum": {"patterns": ["merkur"]},
         "Mühle": {"patterns": ["m(u|ü)hle"]},
+        "My-Blades": {"patterns": ["my.*blades"]},
         "Personna 74": {"patterns": [r"p(?:ersonn*a)?\s*74", "pseventy-four", "p74"]},
-        "Personna Blue": {
-            "patterns": ["personn*a.*blue", "personn*a.*c.*c", "personn*a"]
+        "Personna Lab Blue": {
+            "patterns": [
+                "personn*a *lab *blue",
+                "personn*a.*blue",
+                "personn*a.*c.*c",
+                "personn*a",
+                "accuforge",  # matching Accuforge Super Stainless MicroCoat to Lab Blue since they are the same blade: https://www.razoremporium.com/personna-lab-blue-super-stainless-steel-double-edge-razor-blade2/
+            ]
         },
         "Personna GEM PTFE": {
             "patterns": [
@@ -180,20 +193,24 @@ class BladeParser(BaseParser):
             "patterns": ["(person|personna).*(inject|injector)"],
             "format": "Injector",
         },  # unecessarily long to ensure priority of checking
-        "Personna Med Prep": {"patterns": ["person.*med"]},
-        "Personna Platinum": {"patterns": ["per?sonn.*plat"]},
-        "Personna Red": {"patterns": ["personn*a.*red"]},
-        "Personna Stainless": {
-            "patterns": ["personn*a.*stainless", "personn*a.*super"]
+        "Personna Med Prep": {
+            "patterns": ["person.*med", "med.*prep"]
+        },  # match Accuthrive Super Med Prep to Personna Med Prep per https://damnfineshave.com/thread-personna-med-prep-rebrand
+        "Personna Platinum": {"patterns": ["personn*a.*plat"]},
+        "Personna Red": {
+            "patterns": ["personn*a.*red", "personn*a.*stainless", "personn*a.*super"]
         },
         "Personna TOMY": {"patterns": [r"\btomy\b"]},
-        "Polsilver": {"patterns": ["pol(i|-)*silver", "polsiver"]},
+        "Polsilver": {
+            "patterns": ["pol(i|-)*silver", "polsiver", "pol.*super.*iridium"]
+        },
         "QShave Titanium": {"patterns": ["qshave"]},
         "Rapira Super Stainless": {"patterns": ["rapira.*stain", "rapira.*ss"]},
         "Rapira Platinum Lux": {"patterns": ["rapira"]},
         "Rapira Swedish": {"patterns": ["rapira.*swe"]},
         "RK Stainless": {"patterns": ["rk"]},
         "Rockwell": {"patterns": ["rockwell"]},
+        "Rolls Razor Wedge": {"patterns": ["rolls"], "format": "Rolls"},
         "Sapphoo Red (AC)": {"patterns": ["sapp?hoo(\s*red)?"]},
         "Schick Stainless (DE)": {"patterns": ["schick.*s(?:tainles)*s"]},
         "Schick Injector": {"patterns": ["schick", "inject"], "format": "Injector"},
@@ -201,6 +218,7 @@ class BladeParser(BaseParser):
         "Shark Chrome": {"patterns": ["shark.*chr"]},
         "Shark Stainless": {"patterns": ["shark"]},
         "Shark Platinum": {"patterns": ["shark.*pla"]},
+        "Sharp Titanium": {"patterns": ["sharp.*ti"]},
         "Shaving Revolution Platinum": {"patterns": ["shaving\s*revolution"]},
         'Silvermax "Cryo" Sputtered Platinum ': {"patterns": [r"silver\s*max"]},
         "Silver Star - Super Stainless": {"patterns": ["silver.*star.*stain"]},
@@ -216,7 +234,9 @@ class BladeParser(BaseParser):
         },
         "Ted Pella PTFE": {"patterns": ["pella.*ptfe"], "format": "GEM"},
         "Tiger Platinum": {"patterns": ["tiger"]},
-        "Treet Black Beauty": {"patterns": ["treet\s*bla", "treet.*carb"]},
+        "Treet Black Beauty": {
+            "patterns": ["treet\s*bla", "treet.*carb", "treet"]
+        },  # matching just treet to these
         "Treet Classic": {"patterns": ["treet.*classic"]},
         "Treet Dura Sharp": {"patterns": ["treet.*dura.*shar"]},
         "Treet Falcon": {"patterns": ["treet.*falcon"]},
@@ -226,10 +246,12 @@ class BladeParser(BaseParser):
         "Treet New Steel": {"patterns": ["treet.*new.*steel"]},
         "Treet Platinum": {"patterns": ["treet.*pla"]},
         "Treet Silver": {"patterns": ["treet.*silv"]},
+        "Van Der Hagen Stainless": {"patterns": ["hagen"]},
         "Viking's Sword Stainless": {"patterns": ["vik.*swor.*sta"]},
         "Wilkinson Sword": {"patterns": ["wilk.*swor", "wilkinson"]},
-        "Wizamet": {"patterns": ["wizamet", "wiz"]},
+        "Wizamet": {"patterns": ["wizamet", "wiz", "super.*iridium"]},
         "Voskhod": {"patterns": ["vokshod", "voskhod", "voshk"]},
+        "XR RhinoceRos": {"patterns": ["rhinoceros"]},
     }
 
     # @lru_cache(maxsize=1024)

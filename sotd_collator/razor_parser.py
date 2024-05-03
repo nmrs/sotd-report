@@ -70,6 +70,7 @@ class RazorParser(BaseParser):
         },
         "Atelier Durdan": {
             "Vestige": {"patterns": ["dur.*vestig"], "format": "GEM"},
+            "Le Faulx": {"patterns": ["atelier.*durdan.*faulx"], "format": "AC"},
             "Le Maurice": {
                 "patterns": ["dur.*maurice"],
             },
@@ -96,6 +97,7 @@ class RazorParser(BaseParser):
             "TR-3": {"patterns": [r"barbaros.*tr[\s-]3"]},
             "TR-4": {"patterns": [r"barbaros.*tr[\s-]4"]},
         },
+        "Baxter": {"Safety Razor": {"patterns": ["baxter"]}},
         "BBNY": {"Safety Razor": {"patterns": ["bbny"]}},
         "Bevel": {"Razor": {"patterns": ["bevel"]}},
         "Blackland": {
@@ -193,6 +195,7 @@ class RazorParser(BaseParser):
                     "chiseled.*face.*(ti|legacy|alum)",
                     "cfl*.*(ti|legacy|alum)",
                     "face.*legacy",
+                    "legacy",
                 ]
             }
         },
@@ -268,7 +271,10 @@ class RazorParser(BaseParser):
                 "format": "GEM",
             },
             "E-Bar": {"patterns": [r"(ever|er).*e-bar"], "format": "GEM"},
-            "Featherweight": {"patterns": [r"(ever|er).*feather.*"], "format": "GEM"},
+            "Featherweight": {
+                "patterns": [r"(ever|er).*feather.*", "featherweight"],
+                "format": "GEM",
+            },
             "G-Bar": {"patterns": [r"(ever|er).*g-bar"], "format": "GEM"},
             "Streamline": {
                 "patterns": [
@@ -439,7 +445,7 @@ class RazorParser(BaseParser):
                     "TV special",
                     "gil.*rocket",
                     "rocket.*hd",
-                    r"gil.*milord",
+                    r"gil.*mii*lord",
                 ]
             },
             "Toggle": {"patterns": ["Toggle"]},
@@ -485,6 +491,7 @@ class RazorParser(BaseParser):
             "B1": {"patterns": ["ikon.*b1"]},
             "SBS": {"patterns": ["ikon.*sbs"]},
             "Short Comb": {"patterns": ["ikon.*short"]},
+            "Tek": {"patterns": ["ikon.*tek"]},
             "X3": {"patterns": ["ikon.*x3"]},
         },
         "J A Henckels:": {
@@ -518,7 +525,7 @@ class RazorParser(BaseParser):
             "Excelia Kamisori": {"patterns": ["kai.*excelia"], "format": "AC"},
         },
         "King C Gillette": {
-            "": {"patterns": ["king.*c.*gil.*et", "gil.*et.*king.*c"]},
+            "": {"patterns": ["k*.*c.*gil.*et", "gil.*et.*king.*c"]},
         },
         "Koraat": {
             "Straight": {"patterns": [r"koraat(\s+straight)*"], "format": "Straight"},
@@ -572,12 +579,10 @@ class RazorParser(BaseParser):
         },
         "Merkur": {
             "15C": {"patterns": ["(merkur.*)?15c"]},
-            "23C": {"patterns": ["(merkur.*)?23c"]},
+            "23C": {"patterns": ["(merkur.*)?23-?[bc]"]},
             "24C": {"patterns": ["(merkur.*)?24c"]},
-            "33C": {"patterns": [r"(merkur.*)?33\(*c"]},
-            "34C": {
-                "patterns": [r"(merkur.*)?34\(*(c|g)", "merk.*hd", "^HD$", "merkur"]
-            },
+            "33C": {"patterns": ["(merkur.*)?33-*c"]},
+            "34C": {"patterns": ["(merkur.*)?34-*[cg]", "merk.*hd", "^HD$", "merkur"]},
             # "34G": ["34g"], # 34G is just a color variety of 34C so collapse them
             "37C": {"patterns": ["(merkur.*)?37c", "merkur.*37c.*(slant)*"]},
             "38C": {"patterns": ["(merkur.*)?38c"]},
@@ -631,9 +636,11 @@ class RazorParser(BaseParser):
                     r"(&|and)\s+son",
                     r"\d{1,2}/(8|16)",
                     "20th.*Century.*Mfg.*HH",
+                    "alberta",
                     "case.*red",
                     "Cattaraugus",
                     "diamondine",
+                    "ditzer",
                     "dubl.*duck",
                     "engels",
                     "frameback",
@@ -647,7 +654,10 @@ class RazorParser(BaseParser):
                     "hollow",
                     r"joseph\s*(elliot|allen)",
                     "kamisori",
+                    "maher.*grosh",
+                    "otto.*busc?h",
                     "red.*imp",
+                    "solingen",
                     "straight",
                     "suzumasa",
                     "tornblom",
@@ -832,6 +842,13 @@ class RazorParser(BaseParser):
             "BBR-1J Kamisori Shavette": {"patterns": ["schick.*kami"], "format": "AC"},
             # "Proline Folding Shavette": ["schick.*proline"],
         },
+        "Shavent": {
+            "Razor": {
+                "patterns": [
+                    "shavent",
+                ]
+            },
+        },
         "Shield": {
             "Avenger": {"patterns": ["shield.*avenger", "shield.*ac"]},
             "Predator": {"patterns": ["shield.*pred"]},
@@ -1012,6 +1029,7 @@ class RazorParser(BaseParser):
             "Remus": {"patterns": ["yaqi.*remus"]},
             "Slant": {"patterns": ["yaqi.*slant"]},
             "Sputnik": {"patterns": ["yaqi.*sput"]},
+            "Telstar": {"patterns": ["yaqi.*telstar"]},
             "Zephyr": {"patterns": ["yaqi.*zaph"]},
         },
         "Yintal": {
