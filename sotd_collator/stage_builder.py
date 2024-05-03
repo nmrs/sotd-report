@@ -94,7 +94,10 @@ class StageBuilder(object):
             m = format(curr_month)
             cin = len(comments)
             cout = len(results)
-            reduction = round((cout - cin) / cin * -100, 2)
+            reduction = 0
+            if cin > 0:
+                reduction = round((cout - cin) / cin * -100, 2)
+
             print(
                 f"{m} - {cin} comments in -> {cout} comments out ({reduction}% reduction)"
             )
@@ -103,7 +106,10 @@ class StageBuilder(object):
 
         cin = comments_in
         cout = comments_out
-        reduction = round((comments_out - comments_in) / comments_in * -100, 2)
+        reduction = 0
+        if cin > 0:
+            reduction = round((comments_out - comments_in) / comments_in * -100, 2)
+
         print(
             f"Total - {cin} comments in -> {cout} comments out ({reduction}% reduction)"
         )
@@ -145,7 +151,7 @@ class StageBuilder(object):
 
 if __name__ == "__main__":
     StageBuilder().build_stage(
-        start_month=date(2024, 3, 1), end_month=date(2024, 3, 1), force_refresh=True
+        start_month=date(2024, 4, 1), end_month=date(2024, 4, 1), force_refresh=True
     )
     # StageBuilder().validate_stage(
     #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)

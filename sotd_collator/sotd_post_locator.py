@@ -39,7 +39,8 @@ class SotdPostLocator(object):
         month_abbr = given_month.strftime("%b").lower()
         month_full = given_month.strftime("%B").lower()
         year = given_month.year
-        return f"flair:SOTD {month_abbr} {month_full} {year} {year}SOTD"
+        return f"flair:SOTD {month_abbr} {month_full} {year}"
+        # return f"flair:SOTD {month_abbr} {month_full} {year} {year}SOTD"
 
     def get_threads_for_given_month_cached(self, given_month: date) -> List[dict]:
         if not isinstance(given_month, date):
@@ -127,7 +128,7 @@ class SotdPostLocator(object):
         )
         ids = []
         for thread in rec:
-            created_utc = datetime.utcfromtimestamp(thread.created_utc)
+            created_utc = datetime.fromtimestamp(thread.created_utc)
             if (
                 created_utc.month == given_month.month
                 and created_utc.year == given_month.year

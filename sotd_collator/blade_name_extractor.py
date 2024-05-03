@@ -17,7 +17,7 @@ class BladeNameExtractor(BaseNameExtractor):
 
     @cached_property
     def detect_regexps(self):
-        blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
+        # blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
         # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
         # sgrddy =

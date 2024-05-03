@@ -62,13 +62,13 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            # {
-            #     "name": "Brush",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "name",
-            #     "fallback": True,
-            # },
+            {
+                "name": "Brush",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "name",
+                "fallback": True,
+            },
             # {
             #     "name": "Fiber",
             #     "extractor": StagedBrushNameExtractor(),
@@ -76,13 +76,13 @@ class DebugRunner(object):
             #     "parser field": "fiber",
             #     "fallback": True,
             # },
-            {
-                "name": "Knot Size",
-                "extractor": StagedBrushNameExtractor(),
-                "parser": brp,
-                "parser field": "knot size",
-                "fallback": True,
-            },
+            # {
+            #     "name": "Knot Size",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "knot size",
+            #     "fallback": True,
+            # },
             # {
             #     "name": "Karve Plate",
             #     "extractor": KarvePlateExtractor(),
@@ -226,8 +226,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 3, 1)
-    end_month = datetime.date(2024, 3, 1)
+    start_month = datetime.date(2024, 4, 1)
+    end_month = datetime.date(2024, 4, 1)
 
     comments_target = []
     thread_map = {}
