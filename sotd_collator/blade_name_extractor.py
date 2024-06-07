@@ -24,8 +24,8 @@ class BladeNameExtractor(BaseNameExtractor):
 
         return [
             # self.sgrddy_detector("Blade"),
-            self.imgur_detector("Blade"),
-            self.tts_detector("Blade"),
+            self.imgur_detector("Blade(?!\s*Holder)"),
+            self.tts_detector("Blade(?!\s*Holder)"),
         ]
 
     @BaseNameExtractor.post_process_name

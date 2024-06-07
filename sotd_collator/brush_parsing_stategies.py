@@ -11,11 +11,11 @@ class BaseBrushParsingStrategy(ABC):
     #     return {}
 
     _fibers = {
+        "Synthetic": r"(acrylic|timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5(a|b|c)|stf|quartermoon|fibre)",
+        "Mixed Badger/Boar": r"(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
         "Boar": r"\b(boar|shoat)\b",
-        "Synthetic": r"(timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5c|stf)",
-        "Horse": "(horse)",
-        "Mixed Badger/Boar": "(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
         "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best|ultralux)",
+        "Horse": "(horse)",
     }
 
     @abstractmethod
@@ -169,33 +169,31 @@ class DeclarationGroomingParsingStrategy(BaseBrushParsingStrategy):
 
 class ChiselAndHoundParsingStrategy(BaseBrushParsingStrategy):
 
-    # "patterns": ["chis.*hou", "chis.*fou", r"\bc(?:\&|and|\+)h\b"],
-
-    __BRAND = "Chisel & Hound"
-
-    _raw = {}
-
-    for i in range(1, 25):
-        knot = f"V{i}"
-        _raw[knot] = {
-            "patterns": [
-                f"chis.*hou.*v{i}",
-                "chis.*fou.*v{i}",
-                rf"\bc(?:\&|and|\+)h\b.*v{i}",
-            ],
-        }
+    # _raw = {
+    #     "Chisel & Hound": {
+    #         "V23": {
+    #             "patterns": [r"v\d{1,2}"],
+    #         },
+    #     },
+    # }
 
     @cached_property
     def _pattern_map(self):
         result = {}
-        for model, data in self._raw.items():
-            for pattern in data["patterns"]:
-                result[pattern] = {
-                    "brand": self.__BRAND,
-                    "name": f"{self.__BRAND} {model}",
+        for v in range(24, 9, -1):
+            # print(v)
+            for pattern in [
+                "chis.*hou",
+                "chis.*fou",
+                r"\bc(?:\&|and|\+)h\b",
+            ]:
+                result[f"{pattern}.*v{v}"] = {
+                    "brand": "Chisel & Hound",
+                    "name": f"Chisel & Hound V{v}",
                     "fiber": "Badger",
                     "knot size": "26mm",
                 }
+                # print(result[pattern])
 
         return result
 
@@ -204,21 +202,86 @@ class ChiselAndHoundParsingStrategy(BaseBrushParsingStrategy):
         map = self._pattern_map
         for alt_name_re in sorted(map.keys(), key=len, reverse=True):
             if re.search(alt_name_re, input_string, re.IGNORECASE):
-                result = map[alt_name_re]
-                knot_size = self.get_knot_size(input_string)
-                if knot_size:
-                    result["knot size"] = knot_size
-                return result
+                return map[alt_name_re]
         return None
+
+
+# class ChiselAndHoundParsingStrategy(BaseBrushParsingStrategy):
+
+#     # "patterns": ["chis.*hou", "chis.*fou", r"\bc(?:\&|and|\+)h\b"],
+
+#     __BRAND = "Chisel & Hound"
+
+#     _raw = {}
+
+#     for i in range(1, 25):
+#         knot = f"V{i}"
+#         _raw[knot] = {
+#             "patterns": [
+#                 # f"chis.*hou.*v{i}",
+#                 # "chis.*fou.*v{i}",
+#                 rf"\bc(?:\&|and|\+)h\b.*v{i}",
+#             ],
+#         }
+
+#     @cached_property
+#     def _pattern_map(self):
+#         result = {}
+#         for model, data in self._raw.items():
+#             for pattern in data["patterns"]:
+#                 result[pattern] = {
+#                     "brand": self.__BRAND,
+#                     "name": f"{self.__BRAND} {model}",
+#                     "fiber": "Badger",
+#                     "knot size": "26mm",
+#                 }
+
+#         return result
+
+#     @lru_cache(maxsize=None)
+#     def get_property_map(self, input_string: str) -> dict[str, str]:
+#         map = self._pattern_map
+#         for alt_name_re in sorted(map.keys(), key=len, reverse=True):
+#             if re.search(alt_name_re, input_string, re.IGNORECASE):
+#                 result = map[alt_name_re]
+#                 knot_size = self.get_knot_size(input_string)
+#                 if knot_size:
+#                     result["knot size"] = knot_size
+#                 return result
+#         return None
 
 
 class KnownBrushStrategy(BaseBrushParsingStrategy):
 
     _raw = {
+        "AP Shave Co": {
+            "G5C": {
+                "patterns": [r"g5c"],
+                "fiber": "Synthetic",
+            },
+            "Cashmere": {
+                "patterns": [r"cashmere"],
+                "fiber": "Synthetic",
+            },
+            "Gelousy": {
+                "patterns": [r"gelous"],
+                "fiber": "Synthetic",
+            },
+            "Synbad": {
+                "patterns": [r"synbad"],
+                "fiber": "Synthetic",
+            },
+        },
         "Hand Lather": {
             "": {
                 "patterns": [r"^\s*hands*\s*$", "hand.*lather"],
                 "fiber": "Hand",
+            },
+        },
+        "Muhle": {
+            "STF": {
+                "patterns": [r"\bstf\b"],
+                "fiber": "Synthetic",
             },
         },
         "Omega": {
@@ -527,6 +590,8 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
             "Boar": {
                 "patterns": [r"^(?=.*zenith)(?=.*st(i|e)rling).*"],
                 "fiber": "Boar",
+                "handle maker": "Stirling",
+                "knot maker": "Zenith",
             },
             "28mmx50mm Boar (510SE)": {
                 "patterns": [
@@ -535,6 +600,7 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 ],
                 "fiber": "Boar",
                 "knot size": "28mm",
+                "knot maker": "Zenith",
             },
             "31mmx50mm Boar (510SE-XL)": {
                 "patterns": [
@@ -543,12 +609,41 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 ],
                 "fiber": "Boar",
                 "knot size": "31mm",
+                "knot maker": "Zenith",
             },
             "r/wetshaving MOAR BOAR": {
                 "patterns": ["moar.*boar", r"508\s*xl", "wetshaving.*exc"],
                 "fiber": "Boar",
                 "knot size": "31mm",
                 "name": "r/wetshaving MOAR BOAR",
+                "knot maker": "Zenith",
+            },
+        },
+        "Turn-N-Shave": {
+            "Badger": {"patterns": [r"turn.{1,5}shave", "tns"], "fiber": "Badger"},
+            "High Density Badger (H*)": {
+                "patterns": [r"turn.{1,5}shave.*h\d", r"tns.*h\d"],
+                "fiber": "Badger",
+            },
+            "Low Density Badger (L*)": {
+                "patterns": [r"turn.{1,5}shave.*l\d", r"tns.*l\d"],
+                "fiber": "Badger",
+            },
+            "Medium Density Badger (M*)": {
+                "patterns": [r"turn.{1,5}shave.*m\d", r"tns.*m\d"],
+                "fiber": "Badger",
+            },
+            "BoBa (50/50 Boar Badger)": {
+                "patterns": [r"turn.{1,5}shave.*boba", "tns.*mix", "tns.*boba"],
+                "fiber": "Mixed Badger/Boar",
+            },
+            "Quartermoon": {
+                "patterns": [r"turn.{1,5}shave.*quarter", "tns.*quarter"],
+                "fiber": "Synthetic",
+            },
+            "Shoat": {
+                "patterns": [r"turn.{1,5}shave.*shoat", "tns.*shoat"],
+                "fiber": "Boar",
             },
         },
         "Wald": {
@@ -581,6 +676,16 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "patterns": ["wald.*j4"],
                 "fiber": "Badger",
                 "knot size": "27mm",
+            },
+        },
+        "Yaqi": {
+            "Cashmere": {
+                "patterns": [r"yaqi.*cashmere"],
+                "fiber": "Synthetic",
+            },
+            "Synbad": {
+                "patterns": [r"yaqi.*synbad"],
+                "fiber": "Synthetic",
             },
         },
         "Zenith": {
@@ -635,7 +740,7 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
                 "knot size": "31mm",
             },
             "Butterscotch Chubby": {
-                "patterns": ["zen.*B34", "butter.*chub", "chub.*butter"],
+                "patterns": ["zen.*B34", "zen.*butter.*chub", "zen.*chub.*butter"],
                 "fiber": "Boar",
                 "knot size": "28mm",
             },
@@ -754,7 +859,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
             "default": "Badger",
         },
         "Artesania Romera": {"patterns": ["romera"], "default": "Badger"},
-        "Aurora Grooming": {"patterns": ["aurora\s*grooming"], "default": "Synthetic"},
+        "Aurora Grooming": {"patterns": ["auror.*gr"], "default": "Synthetic"},
         "B&M": {"patterns": [r"b\s*(&|a)\s*m", "barrister"], "default": "Synthetic"},
         "Balea Men": {"patterns": ["balea"], "default": "Synthetic"},
         "Bass": {
@@ -784,7 +889,11 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Catalin": {"patterns": ["catalin"], "default": "Badger"},
         "CaYuen": {"patterns": ["cayuen"], "default": "Synthetic"},
         "Chisel & Hound": {
-            "patterns": ["chis.*hou", "chis.*fou", r"\bc(?:\&|and|\+)h\b"],
+            "patterns": [
+                r"chis.*hou",
+                r"chis.*fou",
+                r"\bc(?:\&|and|\+)h\b",
+            ],
             "default": "Badger",
             "knot size": "26mm",
         },
@@ -843,7 +952,7 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         },
         "Mozingo": {"patterns": ["mozingo"], "default": "Badger"},
         "MRed": {"patterns": ["mred"], "default": "Badger"},
-        "Muninn Woodworks": {"patterns": ["munin"], "default": "Badger"},
+        "Muninn Woodworks": {"patterns": ["mun+in"], "default": "Badger"},
         "Muhle": {"patterns": [r"\bmuhle\b"], "default": "Badger"},
         "Mutiny": {"patterns": ["mutiny"], "default": "Synthetic"},
         "New England Shaving Company": {
@@ -853,11 +962,12 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Noble Otter": {"patterns": ["noble", r"no\s*\d{2}mm"], "default": "Badger"},
         "Nom": {"patterns": [r"\bnom\b"], "default": "Synthetic"},
         "NY Shave Co": {"patterns": [r"ny\s.*shave.*co"], "default": "Badger"},
-        "Omega (model not specified)": {"patterns": ["omega"], "default": "Boar"},
-        "Oumo": {"patterns": ["o[ou]mo"], "default": "Badger"},
+        "Omega": {"patterns": ["omega"], "default": "Boar"},
+        "Oumo": {"patterns": [r"o[ou]mo(?:adkjhgasjkdgh)*"], "default": "Badger"},
         "Oz Shaving": {"patterns": ["oz.*sha"], "default": "Synthetic"},
         "PAA": {"patterns": ["paa", "phoenix.*art"], "default": "Synthetic"},
         "Paladin": {"patterns": ["paladin"], "default": "Badger"},
+        "Paragon": {"patterns": [r"paragon(?:aldkjgajklk)*"], "default": "Synthetic"},
         "Parker": {"patterns": ["parker"], "default": "Badger"},
         "Perfecto": {
             "patterns": ["perfecto"],
@@ -876,14 +986,14 @@ class OtherBrushStrategy(BaseBrushParsingStrategy):
         "Rudy Vey": {"patterns": ["rudy.*vey"], "default": "Badger"},
         "Rick Montalvo": {"patterns": ["montalv"], "default": "Synthetic"},
         "Sawdust Creation Studios": {"patterns": ["sawdust"], "default": "Synthetic"},
-        "Semogue (model not specified)": {"patterns": ["semogue"], "default": "Boar"},
+        "Semogue": {"patterns": ["semogue"], "default": "Boar"},
         "SHAVEDANDY": {"patterns": ["shavedandy"], "default": "Synthetic"},
         "Shave Forge": {"patterns": ["shave.*forge"], "default": "Synthetic"},
         "Shavemac": {"patterns": ["shavemac"], "default": "Badger"},
         "Shave Nation": {"patterns": ["shave.*nation"], "default": "Synthetic"},
         "Shore Shaving": {"patterns": ["shore.*shav"], "default": "Synthetic"},
         "Simpson": {
-            "patterns": ["simpson", "duke", "chubby.*2", "trafalgar"],
+            "patterns": ["simpson", "duke", "trafalgar"],
             "default": "Badger",
         },
         "Some Making Required": {"patterns": ["some.*maki"], "default": "Synthetic"},

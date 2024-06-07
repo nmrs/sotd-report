@@ -5,8 +5,10 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
+from blackbird_plate_parser import BlackbirdPlateParser
 import blade_name_extractor
 from blade_parser import BladeParser
+from brush_handle_parser import BrushHandleParser
 from brush_parser import BrushParser
 from game_changer_plate_parser import GameChangerPlateParser
 from karve_plate_parser import KarvePlateParser
@@ -22,6 +24,11 @@ from staged_name_extractors import (
     StagedBrushNameExtractor,
     StagedRazorNameExtractor,
     StagedUserNameExtractor,
+)
+from straight_parsers import (
+    StraightGrindParser,
+    StraightPointParser,
+    StraightWidthParser,
 )
 from utils import (
     add_ranking_delta,
@@ -118,10 +125,17 @@ class Runner(object):
                 "fallback": True,
             },
             {
-                "name": "Brush Manufacturer",
+                "name": "Brush Handle Maker",
+                "extractor": brne,
+                "parser": BrushHandleParser(),
+                "parser field": "name",
+                "min_shaves": 10,
+            },
+            {
+                "name": "Brush Knot Maker",
                 "extractor": brne,
                 "parser": brp,
-                "parser field": "brand",
+                "parser field": "knot maker",
                 "min_shaves": 10,
             },
             {
@@ -141,7 +155,14 @@ class Runner(object):
                 "fallback": False,
             },
             {
-                "name": "Karve Plate",
+                "name": "Blackbird Plate",
+                "extractor": rne,
+                "parser": BlackbirdPlateParser(rp),
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Christopher Bradley Plate",
                 "extractor": rne,
                 "parser": kpp,
                 "parser field": "name",
@@ -151,6 +172,27 @@ class Runner(object):
                 "name": "Game Changer Plate",
                 "extractor": rne,
                 "parser": gcp,
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Straight Width",
+                "extractor": rne,
+                "parser": StraightWidthParser(rp),
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Straight Grind",
+                "extractor": rne,
+                "parser": StraightGrindParser(rp),
+                "parser field": "name",
+                "fallback": False,
+            },
+            {
+                "name": "Straight Point",
+                "extractor": rne,
+                "parser": StraightPointParser(rp),
                 "parser field": "name",
                 "fallback": False,
             },

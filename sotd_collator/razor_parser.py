@@ -55,8 +55,11 @@ class RazorParser(BaseParser):
                 ],
                 "format": "AC",
             },
+            "Windsor SSRH2": {
+                "patterns": [r"\b(?:att|tie)\b.*(?:windsor)*\b.*ssrh2"],
+            },
             "Windsor Pro SB90": {
-                "patterns": [r"\b(?:att|tie)\b.*sb90", r"\b(?:att|tie)\b.*wind"],
+                "patterns": [r"\b(?:att|tie)\b.*sb90", r"\b(?:att|tie)\b.*windsor"],
             },
         },
         "Alpha": {
@@ -79,6 +82,7 @@ class RazorParser(BaseParser):
             },
         },
         "Aylsworth": {
+            "Apex": {"patterns": ["aylsworth.*apex"]},
             "Drakkant": {"patterns": ["drakk?ant", "aylsworth"]},
             "Kopparkant": {"patterns": ["kopp?arkant"]},
         },
@@ -114,7 +118,7 @@ class RazorParser(BaseParser):
                 ]
             },
             "Dart": {"patterns": [r"\bdart\b"]},
-            "Era": {"patterns": ["black.*era", r"\bera\b"]},
+            "Era": {"patterns": ["black.*era", r"\bera\b", "black.*dna"]},
             "Osprey": {"patterns": ["osprey"]},
             "Sabre": {"patterns": ["sabre", "saber"], "format": "GEM"},
             "Tradere": {"patterns": ["tradere"]},
@@ -160,9 +164,13 @@ class RazorParser(BaseParser):
         },
         "CV Heljestrand": {
             "Straight": {
-                "patterns": [r"heljestrand(\s+straight)?"],
+                "patterns": [r"heljestra.*(stra)?"],
                 "format": "Straight",
-            }
+            },
+            "Lather Catcher": {
+                "patterns": [r"heljestrand.*catcher"],
+                "format": "Wedge",
+            },
         },
         "Charcoal Goods": {
             "Everyday": {"patterns": [r"^(?!.*wcs).*\b(char\w*l|cg).*every"]},
@@ -199,7 +207,12 @@ class RazorParser(BaseParser):
                 ]
             }
         },
-        "CJB": {"Shavette": {"patterns": ["cjb*vett*e"], "format": "AC"}},
+        "CJB": {
+            "Kamisori Shavette": {
+                "patterns": ["cjb*vett*e", "cjb.*kamisori"],
+                "format": "AC",
+            }
+        },
         "Classic": {
             "King Cobra": {"patterns": ["king.*cobra"], "format": "AC"},
             "Cobra Classic": {
@@ -237,7 +250,7 @@ class RazorParser(BaseParser):
             },
             "3one6": {"patterns": [r"\b3\s*one\s*6\b", r"EJ\s*316"]},
         },
-        "u/EldrormR Industries": {
+        "EldrormR Industries": {
             "MM24": {"patterns": [r"mm\s*24"], "format": "GEM"},
             "Scrubty-four": {
                 "patterns": [r"mm\s*24\s*scrub", r"scrubty(?:-|\s)*four"],
@@ -272,7 +285,7 @@ class RazorParser(BaseParser):
             },
             "E-Bar": {"patterns": [r"(ever|er).*e-bar"], "format": "GEM"},
             "Featherweight": {
-                "patterns": [r"(ever|er).*feather.*", "featherweight"],
+                "patterns": [r"(ever|er).*featherw", "featherweight"],
                 "format": "GEM",
             },
             "G-Bar": {"patterns": [r"(ever|er).*g-bar"], "format": "GEM"},
@@ -494,7 +507,7 @@ class RazorParser(BaseParser):
             "Tek": {"patterns": ["ikon.*tek"]},
             "X3": {"patterns": ["ikon.*x3"]},
         },
-        "J A Henckels:": {
+        "J A Henckels": {
             "Straight": {
                 "patterns": [
                     r"friodur(\s+straight)*",
@@ -506,7 +519,8 @@ class RazorParser(BaseParser):
         },
         "Kampfe": {
             "Star Lather Catcher 1902 ": {
-                "patterns": ["kampfe(.*1902)?", "1902.*lather"]
+                "patterns": ["kampfe(.*1902)?", "1902.*lather"],
+                "format": "Wedge",
             },
         },
         "Karve": {
@@ -600,9 +614,12 @@ class RazorParser(BaseParser):
             "Alumigoose": {"patterns": ["al[iu]migoose"], "format": "AC"},
             "II": {"patterns": ["goose.*(2|two|ii)"], "format": "AC"},
         },
+        "Muninn Woodworks": {
+            "Sextoblade": {"patterns": ["mun+in.*sexto"], "format": "Hair Shaper"},
+        },
         "Mühle": {
             "Companion": {"patterns": ["companion"]},
-            "R41": {"patterns": ["R(41|103)"]},
+            "R41": {"patterns": ["R ?(41|103)"]},
             "R89": {"patterns": ["R(89|106)", "m[uü]hle.*89"]},
             "Rocca": {"patterns": ["(m[uü]hle)?.*rocca"]},
         },
@@ -654,18 +671,22 @@ class RazorParser(BaseParser):
                     "hollow",
                     r"joseph\s*(elliot|allen)",
                     "kamisori",
+                    "leger",
                     "maher.*grosh",
                     "otto.*busc?h",
                     "red.*imp",
+                    "robeson",
                     "solingen",
                     "straight",
                     "suzumasa",
+                    "thomas.*turner",
                     "tornblom",
                     "torrey",
                     "wacker",
                     "wedge",
                     "wester.*brothers",
                     "wostenholm",
+                    "yankee.*cutlery",
                     # 'chani|trillian|triilian|mariko',# SSS named razors
                 ],
                 "format": "Straight",
@@ -686,12 +707,14 @@ class RazorParser(BaseParser):
         },
         "Paradigm": {
             "17-4": {"patterns": ["parad.*17"]},
-            "Diamondback": {"patterns": ["parad.*diamondb"]},
+            "Diamondback": {"patterns": ["parad.*diam"]},
             "Salient": {
                 "patterns": ["parad.*sal.*"],
             },
             "SE": {"patterns": ["parad.*se"], "format": "AC"},
-            "Ti": {"patterns": ["parad.*ti"]},
+            "Ti Diamondback": {
+                "patterns": ["parad.*ti", "parad.*ti.*diam", "parad.*diam.*ti"]
+            },
             "Ti II": {"patterns": ["parad.*ii"]},
         },
         "Paragon": {
@@ -813,6 +836,9 @@ class RazorParser(BaseParser):
             "Elite 2019": {"patterns": ["Roc.*elite.*2019", "2019.*Roc.*elite"]},
             "Sailor": {"patterns": ["Roc.*sail"]},
         },
+        "Rocky Mountain Barber": {
+            "Double Edge Safety Razor": {"patterns": ["rocky moun"]},
+        },
         "Rolls": {
             "Razor": {"patterns": ["rolls.*(razor)?"], "format": "Rolls"},
         },
@@ -850,7 +876,8 @@ class RazorParser(BaseParser):
             },
         },
         "Shield": {
-            "Avenger": {"patterns": ["shield.*avenger", "shield.*ac"]},
+            "Avenger": {"patterns": ["shield.*avenger", "shield.*ac"], "format": "AC"},
+            "Evolution": {"patterns": ["shield.*evo"], "format": "AC"},
             "Predator": {"patterns": ["shield.*pred"]},
         },
         "Smart-Helix": {
@@ -969,7 +996,7 @@ class RazorParser(BaseParser):
         },
         "Weber": {
             "ARC": {"patterns": ["weber.*arc"]},
-            "DLC": {"patterns": ["weber.*dlc"]},
+            "DLC": {"patterns": ["weber.*dlc", "weber"]},
             "PH": {"patterns": ["weber.*ph"]},
         },
         "Weck": {
@@ -1011,7 +1038,7 @@ class RazorParser(BaseParser):
         },
         "Yates": {
             "921": {"patterns": [r"921-*\w", "(yates|ypm).*921", "921.*yates", "921"]},
-            "BYOR": {"patterns": [r"yates\s+(?!Winning|Merica|921)\S*\s+(M|E|EH)"]},
+            # "BYOR": {"patterns": [r"yates\s+(?!Winning|Merica|921)\S*\s+(M|E|EH)"]},
             "'Merica": {"patterns": [r"('|\s|^)merica"]},
             "Winning": {"patterns": ["winning.*razor", "winning"]},
         },

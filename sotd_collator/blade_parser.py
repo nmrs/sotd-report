@@ -13,7 +13,7 @@ class BladeParser(BaseParser):
     __raw = {
         "7 O'Clock - Permasharp": {"patterns": ["clock.*perm"]},
         "7 O'Clock - Sharpedge (Yellow)": {
-            "patterns": ["clock.*sharp.*edg", "clock.*yellow"]
+            "patterns": ["clock.*sharp.*edg", "clock.*yellow", "gill.*yellow"]
         },
         "7 O'Clock - Super Platinum (Black)": {
             "patterns": ["clock.*pla", "clock.*black", "gill.*black"]
@@ -29,6 +29,7 @@ class BladeParser(BaseParser):
         "ABEST Hi Platinum": {"patterns": ["abest"]},
         # "AccuTec Pro Premium (GEM)": {"patterns": ["acc?utec"], "format": "GEM"},
         "Aeterna": {"patterns": ["aeter"]},
+        "Albatross": {"patterns": ["albatross"]},
         "Asco Platium": {"patterns": ["asco.*plat"]},
         "Astra Superior Platinum (Green)": {
             "patterns": [
@@ -67,12 +68,13 @@ class BladeParser(BaseParser):
         "Derby Extra": {"patterns": ["derb.*extra", "derby"]},
         "Derby Extra Blue": {"patterns": ["derb.*blue"]},
         "Derby Premium": {"patterns": ["derb.*prem"]},
-        "Diane Hair Shaper": {"patterns": ["diane"]},
+        "Diane Hair Shaper": {"patterns": ["diane"], "format": "Hair Shaper"},
         "Dorco BB-20 (AC)": {"patterns": ["dorco.*bb*"], "format": "AC"},
         "Dorco ST-300": {"patterns": ["dorco.*st.*300", "dorco"]},
         "Dorco ST-301": {"patterns": ["dorco.*st.*301"]},
         "Durablade Sharp Titanium": {"patterns": ["durablade"]},
         "Dorco Titan": {"patterns": ["dorco.*titan"]},
+        "Dovo Super Platinum": {"patterns": ["dovo.*plat"]},
         "Eddison Stainless": {"patterns": ["eddison"]},
         "Elios": {"patterns": ["elios"]},
         "Euromax": {"patterns": ["euromax"]},
@@ -101,11 +103,12 @@ class BladeParser(BaseParser):
         },
         "Feather ProGuard (AC)": {"patterns": ["feather.*guard"], "format": "AC"},
         "Feather Soft Guard (AC)": {"patterns": ["feather.*soft"], "format": "AC"},
-        "Fromm": {"patterns": ["fromm"], "format": "hair shaper"},
+        "Fromm": {"patterns": ["fromm"], "format": "Hair Shaper"},
         "FlyDear Super Platinum": {"patterns": ["flydear"]},
         "GEM Blue Star": {"patterns": ["gem.*blue.*star"], "format": "GEM"},
         "Gillette 365": {"patterns": [r"\b365\b"]},
         "Gillette Blue": {"patterns": ["gil.*blu"]},
+        "Gillette Goal": {"patterns": ["gil.*goal"]},
         "Gillette London Bridge": {"patterns": ["london\s*bridge"]},
         "Gillette Minora": {"patterns": ["minora", "minora.*plat"]},
         "Gillette Nacet": {"patterns": ["nan*cet"]},
@@ -140,6 +143,7 @@ class BladeParser(BaseParser):
             "patterns": ["kai.*pro\s*touch"],
             "format": "AC",
         },
+        "Kampfe (Wedge)": {"patterns": ["kampfe"], "format": "Wedge"},
         "King C Gillette": {"patterns": ["king.*c.*gil.*et", "gil.*et.*king.*c"]},
         "Ladas": {"patterns": ["lada"]},
         "Laser Ultra": {"patterns": ["laser"]},
@@ -157,7 +161,7 @@ class BladeParser(BaseParser):
         "Personna 74": {"patterns": [r"p(?:ersonn*a)?\s*74", "pseventy-four", "p74"]},
         "Personna Lab Blue": {
             "patterns": [
-                "personn*a *lab *blue",
+                "lab *blue",
                 "personn*a.*blue",
                 "personn*a.*c.*c",
                 "personn*a",
@@ -222,7 +226,9 @@ class BladeParser(BaseParser):
         "Shaving Revolution Platinum": {"patterns": ["shaving\s*revolution"]},
         'Silvermax "Cryo" Sputtered Platinum ': {"patterns": [r"silver\s*max"]},
         "Silver Star - Super Stainless": {"patterns": ["silver.*star.*stain"]},
-        "Super-Max Blue Diamond": {"patterns": ["super.*max.*(?:blu)*.*dia"]},
+        "Super-Max Blue Diamond": {
+            "patterns": ["super.*max.*(?:blu)*.*dia", "diamond.*edge.*super.*plat"]
+        },
         "Super-Max Platinum": {"patterns": ["super.*max.*plat"]},
         "Super-Max Super Stainless": {"patterns": ["super.*max.*stai"]},
         "Supply Co. Black Label (Injector)": {"patterns": ["supply"]},

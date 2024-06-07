@@ -32,6 +32,8 @@ class RazorNameExtractor(BaseNameExtractor):
             # self.sgrddy_detector("Razor"),
             self.imgur_detector("(?:Safety\s+)?Razor"),
             self.tts_detector("(?:Safety\s+)?Razor"),
+            self.imgur_detector("Blade\sHolder"),
+            self.tts_detector("Blade\sHolder"),
         ]
 
     @BaseNameExtractor.post_process_name

@@ -42,6 +42,8 @@ class BrushParser(BaseParser):
             return s.get_fiber(input_string)
         elif field == "knot size":
             return s.get_knot_size(input_string)
+        elif field == "knot maker":
+            return self._get_value(input_string, "brand")
 
         return None
 

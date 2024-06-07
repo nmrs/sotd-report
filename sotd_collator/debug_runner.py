@@ -5,9 +5,11 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
+from blackbird_plate_parser import BlackbirdPlateParser
 from blade_format_extractor import BladeFormatExtractor
 from blade_name_extractor import BladeNameExtractor
 from blade_parser import BladeParser
+from brush_handle_parser import BrushHandleParser
 from brush_name_extractor import BrushNameExtractor
 from brush_parser import BrushParser
 import brush_parser
@@ -20,6 +22,11 @@ from staged_name_extractors import (
     StagedBrushNameExtractor,
     StagedRazorNameExtractor,
     StagedUserNameExtractor,
+)
+from straight_parsers import (
+    StraightGrindParser,
+    StraightPointParser,
+    StraightWidthParser,
 )
 from utils import (
     get_raw_data_from_parser,
@@ -51,6 +58,27 @@ class DebugRunner(object):
             #     "parser field": "name",
             # },
             # {
+            #     "name": "Straight Width",
+            #     "extractor": rne,
+            #     "parser": StraightWidthParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Point",
+            #     "extractor": rne,
+            #     "parser": StraightPointParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Grind",
+            #     "extractor": rne,
+            #     "parser": StraightGrindParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
             #     "name": "Razor Manufacturer",
             #     "extractor": rne,
             #     "parser": rp,
@@ -62,13 +90,27 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "parser": brp,
-                "parser field": "name",
-                "fallback": True,
-            },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "name",
+            #     "fallback": True,
+            # },
+            # {
+            #     "name": "Brush Handle Maker",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": BrushHandleParser(),
+            #     "parser field": "name",
+            #     "fallback": True,
+            # },
+            # {
+            #     "name": "Brush Knot Maker",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "knot maker",
+            #     "fallback": "True",
+            # },
             # {
             #     "name": "Fiber",
             #     "extractor": StagedBrushNameExtractor(),
@@ -91,6 +133,13 @@ class DebugRunner(object):
             #     "name": "Game Changer Plate",
             #     "extractor": GameChangerPlateExtractor(),
             # },
+            {
+                "name": "Blackbird Plate",
+                "extractor": rne,
+                "parser": BlackbirdPlateParser(rp),
+                "parser field": "name",
+                "fallback": False,
+            },
             # {
             #     "name": "Superspeed Tip",
             #     "extractor": SuperSpeedTipExtractor(),
@@ -226,8 +275,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 4, 1)
-    end_month = datetime.date(2024, 4, 1)
+    start_month = datetime.date(2024, 5, 1)
+    end_month = datetime.date(2024, 5, 1)
 
     comments_target = []
     thread_map = {}

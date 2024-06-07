@@ -103,9 +103,8 @@ Welcome to your SOTD Hardware Report for April 2024
 | Fatip Piccolo                    |        9 |              5 |                  1.8  | ↑3              | ↑9              | ↓1              |
 | Koraat Straight                  |        9 |              4 |                  2.25 | ↑7              | ↓12             | ↓8              |
 | Ever-Ready 1912                  |        9 |              3 |                  3    | ↑5              | ↓3              | =               |
+| Yates 921                        |        9 |              3 |                  3    | ↑1              | ↑4              | n/a             |
 | Blackland Dart                   |        9 |              2 |                  4.5  | ↑4              | ↑9              | ↑4              |
-| GEM Junior                       |        9 |              2 |                  4.5  | ↑6              | ↑4              | ↑3              |
-
 
 ##Razor Manufacturers
 

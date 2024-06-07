@@ -18,7 +18,7 @@ runner = Runner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 4, 1)
+target = datetime.date(2024, 5, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)
@@ -88,6 +88,7 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 * A fairly nondescript {TIME_PERIOD}
 
+* Lots of changes to the brushes section. I've attempted to distinguish between handle makers and knot makers for the many, many frankenbrushes. For the "Brushes" section, the knot takes priority.
 
 ## Notes & Caveats
 
@@ -117,7 +118,6 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 * The change Δ vs columns show how an item has moved up or down the rankings since that {TIME_PERIOD}. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to that {TIME_PERIOD}. n/a means the item was not present in that {TIME_PERIOD}.
 
-* I added a new table of "Highest Use Count per Blade". I'm not sure if this says more about the longevity of the blade or the tenacity of the user, so I'll leave that to you to assess.
 """
 
 runner.run(
