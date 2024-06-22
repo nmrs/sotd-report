@@ -1,0 +1,585 @@
+345 Soap Co.: { patterns: ['345'] }
+  
+Ariana & Evans:
+  patterns: ['\ba ?(and|&|\+) ?e\b', 'arian+a.*evans']
+  scents:
+    Kaizen:
+       patterns: ['\bkaizen\b']
+
+Arko: { patterns: ['\barko\b'] }
+Arsenal Grooming: { patterns: ['arsenal grooming'] }
+
+Art of Shaving:
+    patterns: ['art of shaving']
+    scents:
+        Oud: 
+          patterns: ['art of shaving.*\boud\b']
+
+Asylum Shave Works: { patterns: ['asylum shave works', '\basw\b'] }
+Australian Private Reserve: { patterns: ['\bapr\b', 'australian private reserve'] }
+Abbate Y La Mantia: { patterns: ['\baylm\b', 'abbate y la mantia'] }
+
+Ach Brito:
+    patterns: ['\bach.*brito\b']
+    scents:
+        Lavanda (Cream): 
+          patterns: ['\bach.*brito\b.*lavanda'] 
+          format: "Cream"
+
+Ballenclaugh: { patterns: ['ballenclaugh'] }
+
+Barrister and Mann:
+    patterns: ['\bb ?(and|&|\+) ?m\b', 'barrister (and|\+|&) mann']
+    scents:
+        Bay Rum:  { patterns: ['\bb ?(and|&|\+) ?m\b.*bay rum', 'barris.*bay rum'] }            
+        Beaudelaire:  { patterns: ['\bb ?(and|&|\+) ?m\b.*be?audel', 'barris.*be?audel'] }            
+        Behold the Whatsis!: { patterns: ['\bwhatsis\b'] }
+        Cheshire: { patterns: ['\bb ?(and|&|\+) ?m\b.*cheshire', 'barris.*cheshire'] }
+        Fern: { patterns: ['\bb ?(and|&|\+) ?m\b.*fern', 'barris.*fern'] }
+        Fougère Angelique: { patterns: ['\bb ?(and|&|\+) ?m\b.*foug.*angel', 'barris.*foug.*angel'] }
+        Lavender: { patterns: ['\bb ?(and|&|\+) ?m\b.*lavender', 'barris.*lavender'] }
+        Le Grand Chypre: { patterns: ['grand chyp', 'grand cyph'] }
+        Le Petit Chypre: { patterns: ["petite? chyp"] }
+        Lyssa: { patterns: ['\bb ?(and|&|\+) ?m\b.*lyssa', 'barris.*lyssa'] }
+        Marilyn: { patterns: ['\bb ?(and|&|\+) ?m\b.*mar\w*n', 'barris.*mar\w*n'] }
+        Mélange: { patterns: ['\bb ?(and|&|\+) ?m\b.*m\wlange', 'barris.*m\wlange'] }
+        Nordost: { patterns: ['nordost'] }
+        Passiflora: { patterns: ['passiflora'] }
+        Paganini's Violin: { patterns: ['pagan.*violin'] }
+        Sandalwood: { patterns: [ '\bb ?(and|&|\+) ?m\b.*sandalwood', 'barris.*sandalwood' ] }
+        Seville: { patterns: ['seville'] }
+        Soapmakers of Awesometown: {patterns: ["awesometown"] }
+        Spice: { patterns: ['\bb ?(and|&|\+) ?m\b.*spice', 'barris.*spice'] }
+        The Full Measure of Man: { patterns: ['full measure of man' ] }
+        Waves: { patterns: ['\bb ?(and|&|\+) ?m\b.*wave', 'barris.*wave'] }
+
+Barbasol:
+  patterns: ['barbasol']
+  scents:
+    Original:  { patterns: ['barbasol.*original'], format: "Foam" }            
+
+Bartigan & Stark: { patterns: ['bartigan (and|&) stark'] }
+
+Baume.be:
+  patterns: ['baume.?be']
+  scents:
+    Shaving Cream:  { patterns: ['baume.?be'], format: "Cream" }            
+
+Black Ship Grooming: { patterns: ['black ship(?: grooming)?'] }
+
+Black Mountain Shaving:
+  patterns:
+    - 'black mountain shaving'
+    - '^\W*bms\b'
+    - 'murphy.*mcneil.*\bbms\b'
+  scents:
+    Gotland: { patterns: ['gotland'] }
+    Valle Crucis: { patterns: ['valle crucis'] }
+
+Böker: { patterns: ['b(ö|o)ker'] }
+Bundubeard: { patterns: ['bundubeard', 'boendoebaard'] }
+
+CBL Soaps: 
+  patterns: ['cbl(?: soaps)?']
+  scents:
+    Hombres Dos Spaghetti Western: { patterns: ['hombres.*western'] } 
+
+Captain's Choice: 
+  patterns: ['captain.*choice']
+  scents:
+    45th Parallel (Cream): { patterns: ['45.*parallel'], format: "Cream" }
+
+Carnavis & Richardson: { patterns: ['carnavis.*richardson'] }
+
+Castle Forbes: { patterns: ['castle forbes'] }
+
+Catie's Bubbles: 
+  patterns: ['catie.*bubbles', '\bcb\b']
+  scents:
+    Azure: { patterns: ['catie.*bubbles.*azure', '\bcb\b.*azure']}
+    Blugere: { patterns: ['blug(e|è)re']}
+    DFTR: { patterns: ['catie.*bubbles.*dftr', '\bcb\b.*dftr']}
+    Glace Herbe: { patterns: ['glac(e|é) herbe']}
+    Le Marche du Rasage: { patterns: ['marche? du rasage'] }
+
+Cella: 
+  patterns: ['cella']
+  default format: Cream
+  scents:
+    Buongiorno al Sandalo:
+      patterns: ['buon.*sandalo']
+      format: Cream
+    Almond Shaving Cream:
+      patterns: ['cella']
+      format: Cream
+
+Central Texas Soaps: { patterns: ['central texas soaps'] }
+
+Chicago Grooming Co.:
+  patterns:
+    - 'chicago grooming( co.?)?'
+  scents:
+    AG 1889: { patterns: ['1889'] }
+    Armonía: { patterns: ['armon(i|í)a'] }
+    Windy City Barbershop: { patterns: ['windy city barber'] }
+
+Chiseled Face: 
+  patterns: ['chisel.*face', '\bcf\b']
+  scents:
+    Cryogen: { patterns: ['cryogen'] }
+    Ghost Town Barber: { patterns: ['ghost town barber'] }
+    Midnight Stag: { patterns: ['midnight stag'] }
+
+Col. Ichabod Conk: { patterns: ['col.*conk\b'] } 
+Crown & Crane: { patterns: ['crown.*crane'] } 
+
+D'Amaris Barber:
+  default format: Cream
+  patterns: ['d''?amaris barber']
+  scents:
+    Shaving Cream:
+      patterns: ['d''?amaris barber']
+      format: Cream
+
+D.R. Harris:
+  patterns: ['d.?r.? ?harris']
+  scents:
+    Windsor: { patterns: ['d.?r.? ?harris.*windsor'] }
+
+DentonMajik: { patterns: ['denton ?majik'] } 
+Dr. Jon's: { patterns: ['dr.*jon''?s?'] } 
+
+De Vergulde Hand:
+  patterns: ['de vergul.*hand']
+  scents:
+    Shaving Soap: { patterns: ['de vergul.*hand'] }
+
+Declaration Grooming:
+  patterns:
+    - 'declaration grooming'
+    - '\bdg\b'
+    - 'declaration grooming/chatillon lux'
+    - 'chatillon lux/declaration grooming'
+    - 'l&l grooming'
+  scents:
+    Cerberus: { patterns: ['cerberus'] }
+    Dirtyver: { patterns: ['dirtyver'] }
+    Marshlands: { patterns: ['marshlands'] }
+    Mayflower: { patterns: ['mayflower'] }
+    Vide Poche: { patterns: ['vide poche'] }
+    Gratiot League Square: { patterns: ['gratiot league'] }
+    Massacre of the Innocents: { patterns: ['massa.*innoc'] }
+
+E&S Rasage: { patterns: ['e&s rasage( tradition+el)?'] } 
+Eleven:
+  patterns: ['eleven']
+  scents:
+    Lime and Basil: { patterns: ['eleven.*lime.*basil'] }
+
+Elysian: { patterns: ['elysian( soap( shop)?)?'] } 
+
+Ethos:
+  patterns: ['ethos']
+  scents:
+    Lavender Supreme: { patterns: ['ethos.*lavender supreme']}
+
+Eufros: { patterns: ['eufros'] } 
+Extrò Cosmesi: { patterns: ['extr(ò|o) cosmesi'] } 
+Faena: { patterns: ['faena']}
+
+Fine Accoutrements:
+  patterns: ['fine accoutrements']
+  scents:
+    Italian Citrus: { patterns: ['italian citrus']}
+
+First Line Shave: { patterns: ['first line shave']}
+Fresh Thyme Farmacy: { patterns: ['fresh thyme farmacy']}
+Gentleman's Nod: { patterns: ['gentlem.*nod']}
+Gillete: { patterns: ['gil+et+e'] }
+
+Goodfellas Smile:
+  patterns: ['(the )?goodfellas(''|’)? smile']
+  scents:
+    Orange Empire: { patterns: ['orange empire'] }
+
+Grooming Dept: { patterns: ['grooming dep\w*t'] }
+GZD: { patterns: ['\bgzd\b'] }
+
+HAGS:
+  patterns: ['hags']
+  scents:
+    Dance Macabre: { patterns: ['dance macabre'] }
+    Darkside: { patterns: ['hags.*dark ?side'] }
+
+Hendrix Classics & Co.:
+  patterns: ['hendrix classics(.*\bco.?)?', 'hc&c']
+  scents:
+    Just One Riot: { patterns: ['hendrix classics(.*\bco.?)?.*riot', 'hc&c.*riot'] }
+    Magique: { patterns: ['hendrix classics(.*\bco.?)?.*magiq', 'hc&c.*magiq'] }
+    Roasted: { patterns: ['hendrix classics(.*\bco.?)?.*roasted', 'hc&c.*roasted'] }
+
+Haslinger: { patterns: ['haslinger'] }
+Henri & Crocket: { patterns: ['henri.*crocket'] }
+Henri et Victoria:
+  patterns: ['henri.*victoria']
+  scents:
+    Cognac and Cuban Cigars: { patterns: ['cognac.*cuban'] }
+    Lime: { patterns: ['henri.*victoria.*lime'] }
+
+Hoffman's: { patterns: ['hoffman''?s', 'hoffman.*soap co.?', 'hoffman.*grooming'] }
+
+House of Mammoth:
+  patterns: ['hous.*mammoth', '\bhom\b']
+  scents:
+    Avocado (Cream):
+      patterns: ['hous.*mammoth.*av(o|a)cado', '\bhom\b.*av(o|a)cado']
+      format: Cream
+    Everett: { patterns: ['hous.*mammoth.*everet', '\bhom\b.*everet']}
+    Indigo: { patterns: ['hous.*mammoth.*indigo', '\bhom\b.*indigo']}
+    Shire: { patterns: ['hous.*mammoth.*shire', '\bhom\b.*shire']}
+
+Jordan's: { patterns: ['jordan''?s'] }
+Klar Seifen: { patterns: ['klar seifen'] }
+La Toja:
+  patterns: ['la toja']
+  scents:
+    Shaving Soap:
+      patterns: ['la toja']
+      
+Los Jabones de Joserra: { patterns: ['los jabones.*joserra'] }
+Lothur: { patterns: ['lothur'] }
+
+KEPKINH: { patterns: ['kepkinh'] }
+
+Kyna:
+  patterns: ['kyna']
+  scents:
+    Shave Cream:
+      patterns: ['kyna']
+      format: Cream
+
+MacDuff's Soap Co.:
+  patterns: ['macduff''?s?( soap co.?)?']
+
+Maggard Razors:
+  patterns: ['maggard( razors?)?']
+  scents:
+    Orange Menthol: { patterns: ['mag.*orange menthol']}
+
+Mario Fissi:
+  patterns: ['mario fissi']
+  default format: Cream
+
+Martin de Candre:
+  patterns: ['martin.*candre']
+
+Master Soap Creations:
+  patterns: ['master soap creations', '\bmsc\b']
+  scents:
+    Bloom: { patterns: ['master soap creations.*bloom', '\bmsc\b.*bloom'] }
+
+Mastro Miche:
+  patterns: ['mastro miche']
+  scents:
+    Moonlight Serenade: { patterns: ['mastro miche.*moonlight serenade'] }
+
+Mäurer & Wirtz:
+  patterns: ['m(a|ä)urer & wirtz']
+  scents:
+      Tabac: { patterns: ['\btabac\b'] }
+      Sir Irisch Moos: { patterns: ['(sir )?irisc?h moos'] }
+
+Mickey Lee Soapworks:
+  patterns: ['mickey lee( soapworks)?']
+
+Mike's Natural Soaps:
+  patterns: ['mike.*natural( soaps?)?']
+
+Mitchell's:
+  patterns: ['mitchell?''s']
+  scents:
+    Wool Fat: { patterns: ['mitch.*wool fat', '^\W*mwf\b']}
+
+Moon Soap:
+  patterns: ['^\W*moon( soaps)?']
+
+MORE FOR YOU:
+  patterns: ['^\W*more for you']
+  scents:
+    Shaving Stick: { patterns: ['^\W*more for you'] }
+
+Murphy & McNeil:
+  patterns: ['murphy.*neil+']
+  scents:
+    Barbershop de Los Muertos 2: { patterns: ['barbershop de los muertos 2', 'bdlm2']}
+    Barbershop de Los Muertos 3: { patterns: ['barbershop de los muertos 3', 'bdlm3']}
+    Pisgah: { patterns: ['\bpisgah\b']}
+
+Mystic Water:
+  patterns: ['mystic water']
+
+Nivea:
+  patterns: ['nivea']
+  scents:
+    Original Shaving Cream:
+      patterns: ['nivea']
+      format: Cream
+
+Noble Otter:
+  patterns: ['nob.*otter', '^\W*no\b']
+  scents:
+    BarrBarr: { patterns: ['bar+bar'] }
+    Batters Up: { patterns: ['batter''?s up'] }
+    Monoi De Tahiti: { patterns: ['mono.*tahiti'] }
+    Jasmine Green Tea: { patterns: ['jasmine green tea', '茉莉綠茶'] }
+    Northern Elixir: { patterns: ['northern elixir'] }
+    Rawr: { patterns: ['\brawr\b'] }
+    Thé Noir et Vanille: { patterns: ['nob.*otter.*noir.*vanil', '^\W*no\b.*noir.*vanil'] }
+
+Oaken Lab:
+  patterns: ['oaken lab']
+
+Ogallala: { patterns: ['ogallala'] }
+
+Old Spice:
+  patterns: ['old spice']
+  scents:
+      Classic: { patterns: ['old spice'] }
+
+Oleo: { patterns: ['\boleo\b'] }
+
+Omega:
+  patterns: ['^\W*omega']
+  scents:
+    Eucalyptus Shaving Cream:
+      patterns: ['^\W*omega.*euc']
+      format: Cream
+
+PAA:
+  patterns: ['phoenix.*ments', 'paa']
+
+Palmira:
+  patterns: ['palmira']
+  scents:
+    Shaving Cream:
+      patterns: ['palmira']
+      format: Cream
+
+Palmolive:
+  patterns: ['Palmolive']
+  scents:
+    Classic:
+      patterns: ['palmolive']
+      format: Cream
+    Sensitive:
+      patterns: ['palmolive.*sensitive']
+      format: Cream
+
+Phoenix & Beau: { patterns: ['phoenix.*beau'] }
+
+Proraso:
+  patterns: ['proraso']
+  default format: Cream
+  scents:
+    Blue (Cream):
+      patterns: ['proraso.*blue', 'proraso.*aloe', 'proraso.*protect']
+      format: Cream
+    Cypress & Vetyver (Cream):
+      patterns: ['proraso.*cypress', 'proraso.*vety']
+      format: Cream
+    Green (Cream):
+      patterns:
+        - 'proraso'
+        - '^(?!\btea\b).*proraso.*green'
+        - '^(?!\btea\b).*proraso.*eucal'
+        - '^(?!\btea\b).*proraso.*menthol'
+        - '^(?!\btea\b).*proraso.*refresh'
+      format: Cream
+    Red (Cream):
+      patterns:
+        - 'proraso.*red'
+        - 'proraso.*sandal'
+        - 'proraso.*nourish'
+        - 'proraso.*course'
+      format: Cream
+    White (Cream):
+      patterns:
+        - proraso.*white'
+        - proraso.*tea'
+        - proraso.*sensitive'
+      format: Cream
+
+RazoRock:
+  patterns: ['razorock']
+  scents:
+    Mudder Focker: { patterns: ['razorock.*mudder focker'] }
+
+Red House Farm: { patterns: ['red house farm'] }
+Rex Supply Co.: { patterns: ['rex supply( co.?)?'] }
+
+Saponificio Varesino:
+  patterns: ['sapon.*sino']
+
+Shannon's Soaps:
+  patterns: ['shannon.*soaps?']
+
+Smitten Soapery:
+  patterns: ['smitten soapery']
+  scents:
+     Stud Muffin: { patterns: ['smitten.*stud muffi?n']}
+
+Southern Witchcrafts:
+  patterns: ['southern witchcrafts', '^\W*sw\b']
+  scents:
+    Fougère Nemeta: { patterns: ['foug.*nemeta']}
+    Valley of Ashes: { patterns: ['valley of ashes']}
+
+Spearhead Shaving Co.:
+  patterns: ['spearhead(shaving( co.?)?)?', 'seaforth!']
+  scents:
+    Seaforth! 3 Scots: { patterns: ['spearhead.*scots', 'seaforth.*scots'] }      
+    Seaforth! Black Watch: { patterns: ['black ?watch'] }
+    Seaforth! Fleur de France: { patterns: ['fleur de france'] }
+    Seaforth! Heather: { patterns: ['spearhead.*heather', 'seaforth.*heather'] }
+    Seaforth! Roman Spice: { patterns: ['roman spice'] }
+    Seaforth! Sea Ice Lime: { patterns: ['sea ice lime'] }
+    Seaforth! Sea Spice Lime: { patterns: ['sea spice lime'] }
+    Seaforth! Spiced: { patterns: ['spearhead.*spiced', 'seaforth.*spiced'] }
+
+St. James of London:
+  patterns: ['st.? james.*london']
+  scents:
+    Mandarin & Patchouli: { patterns: ['james.*mandarin.*patch']}
+
+Stirling Soap Co.:
+  patterns: ['stirling( soap (co.?)?)?']
+  scents:
+    Margaritas in the Arctic: { patterns: ['marg.*arctic']}
+
+Strike Gold Shave:
+  patterns: ['strike gold( shave)?']
+
+Summer Break Soaps:
+  patterns: ['summer break( soaps)?', '^\W*sbs\b']
+  scents:
+    Cannonball!: { patterns: ['(summer|sbs).*cannonball']}
+    Mountain Laurel: { patterns: ['mountain laurel']}
+    Prom King: { patterns: ['prom king']}
+    Valedictorian: { patterns: ['val\w*torian']}
+
+Storybooy Soapworks:
+  patterns: ['storybook soapworks']
+
+Sudsy Soapery: { patterns: ['sudsy soapery'] }
+
+SUPPLY:
+  patterns: ['^\W?supply']
+  scents: 
+    Ultra Lather Lavender and Lemon:
+      patterns: ['supply.*lavender.*lemon']
+      format: Cream
+
+Talent Soap Factory:
+  patterns: ['talent soap factory', '^\W*tsf\b']
+  scents:
+    Cakehole: { patterns: ['cakehole'] }
+    Fizz: { patterns: ['talent soap factory.*fizz', '^\W*tsf\b.*fizz'] }
+    Tonka Bean & Tobacco: { patterns: ['tonka.*acco'] }
+
+Tallow + Steel:
+  patterns: ['tallow.*steel']
+  scents:
+    Rainforest Two: { patterns: ['rainforest two'] }
+
+Taylor of Old Bond Street:
+  patterns: ['taylor.*bond( st\w*.?)?', '^\W*tobs\b']
+  scents:
+    Sandalwood: { patterns: ['taylor.*bond( st\w*.?)?.*sandalwood', '^\W*tobs\b.*sandalwood'] }
+
+Tcheon Fung Sing:
+  patterns: ['tcheon fung sing', '^\W*tfs\b']
+  scents:
+    Ciotola Rossa: { patterns: ['^\W*tfs\b.*red'] }
+
+The Club:
+  patterns: ['the club']
+  scents:
+    Boo!!: { patterns: ['club.*boo'] }
+    Boca Negra: { patterns: ['club.*boca'] }
+    Dirty Ginger: { patterns: ['club.*ginger'] }
+    Khalifa: { patterns: ['khalifa']}
+    Low Scent Skeleton: { patterns: ['club.*skele'] }
+    Signature: { patterns: ['club.*signat'] }
+    The Graveyand: { patterns: ['club.*grave'] }
+    Vanille Vendetta: { patterns: ['club.*vanil'] }
+    Fruit de la Passion: { patterns: ['club.*passion']}
+
+
+The Holy Black:
+  patterns: ['the holy black( new york)?']
+
+The Razor Company:
+  patterns: ['the razor company', '^\W*trc\b']
+
+Through the Fire Fine Crafts:
+  patterns: ['through the fire( fine crafts?)?']
+
+Truefitt & Hill:
+  patterns: ['truefit.*hill']
+  scents:
+    No. 10 Finest Shaving Cream:
+      patterns: ['truefit.*10']
+      format: Cream
+
+Van Der Hagen:
+  patterns: ['van der hag(a|e)n', '^\W*vdh\b']
+  scents:
+    Scented Luxury: { patterns: ['van der hag(a|e)n.*luxury', '^\W*vdh\b.*luxury']}
+
+Vitos:
+  patterns: ['^\W*vitos']
+  scents:
+    Extra Super: { patterns: ['vitos.*extra super']}
+
+West Coast Shaving:
+  patterns: ['west coast shaving', '^\W*wcs\b']
+  scents:
+    Fougere: { patterns: ['west coast shaving.*foug', '^\W*wcs\b.*foug'] }
+
+WestMan Shaving: { patterns: ['west ?man shaving'] }
+
+Wet Shaving Products:
+  patterns: ['wet ?shaving products', '^\W*wsp\b']
+  scents:
+    Gaelic Tweed:
+      patterns: ['wet ?shaving products.*gaelic', '^\W*wsp\b.*gaelic']
+    Olympus (Cream):
+      patterns: ['wet ?shaving products.*olympus.*cream', '^\W*wsp\b.*olympus.*cream']
+      format: Cream
+
+Wholly Kaw:
+  patterns: ['wholly kaw']
+  scents:
+    Aranceto: { patterns: ['\bkaw\b.*aranceto'] }
+    Yuzu/Rose/Patchouli: { patterns: ['\bkaw\b.*yuzu.*rose.*patch'] }
+
+Wickham Soap Co.:
+  patterns: ['wickham soap co.?']
+
+Wilkinson Sword:
+  patterns: ['wilk.*sword']
+
+Williams:
+  patterns: ['williams']
+  scents:
+    Mug Shaving Soap: { patterns: ['williams.*mug'] }
+
+Xabons Xavieiro:
+  patterns: ['xabons xavieiro']
+
+Zingari Man:
+  patterns: ['zingari( man)?']
+  scents:
+    Mousse Illuminee: { patterns: ['zingari.*illumin'] }
+    The Amir: { patterns: ['zingari.*amir'] }
+    The Royal: { patterns: ['zingari.*royal'] }

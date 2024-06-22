@@ -1,6 +1,6 @@
 # test what our extractors pull from a sample SOTD
 from sotd_collator.blade_alternate_namer import BladeAlternateNamer
-from sotd_collator.blade_format_extractor import BladeFormatExtractor
+from sotd_collator.blade_format_extractor import RazorFormatExtractor
 from sotd_collator.blade_name_extractor import BladeNameExtractor
 from sotd_collator.brush_alternate_namer import BrushAlternateNamer
 from sotd_collator.brush_name_extractor import BrushNameExtractor
@@ -27,7 +27,7 @@ Post Shave: Razor Emporium - Sandalwood - Beard Oil
 extractors = [
     {
         "name": "Blade Format",
-        "extractor": BladeFormatExtractor(),
+        "extractor": RazorFormatExtractor(),
         "renamer": None,
     },
     {

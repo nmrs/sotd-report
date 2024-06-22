@@ -1,4 +1,6 @@
+from argparse import ArgumentError
 import datetime
+from enum import Enum
 from typing import List
 from dateutil.relativedelta import relativedelta
 
@@ -6,7 +8,7 @@ import inflect
 import pandas as pd
 import praw
 from blackbird_plate_parser import BlackbirdPlateParser
-from blade_format_extractor import BladeFormatExtractor
+from blade_format_extractor import RazorFormatExtractor
 from blade_name_extractor import BladeNameExtractor
 from blade_parser import BladeParser
 from brush_handle_parser import BrushHandleParser
@@ -16,11 +18,14 @@ import brush_parser
 from razor_name_extractor import RazorNameExtractor
 from razor_parser import RazorParser
 
+from soap_name_extractor import SoapNameExtractor
+from soap_parser import SoapParser
 from sotd_post_locator import SotdPostLocator
 from staged_name_extractors import (
     StagedBladeNameExtractor,
     StagedBrushNameExtractor,
     StagedRazorNameExtractor,
+    StagedSoapNameExtractor,
     StagedUserNameExtractor,
 )
 from straight_parsers import (
@@ -32,6 +37,11 @@ from utils import (
     get_raw_data_from_parser,
     get_user_shave_data,
 )
+
+
+class DebugRunnerMode(Enum):
+    COMPARE_TO_ORGINAL = 1
+    UNIQUE = 2
 
 
 class DebugRunner(object):
@@ -48,35 +58,14 @@ class DebugRunner(object):
 
         process_entities = [
             # {
-            #     "name": "Blade Format",
+            #     "name": "Razor Format",
             #     "extractor": BladeFormatExtractor(bne, blp, rne, rp),
             # },
-            # {
+            # # {
             #     "name": "Razor",
             #     "extractor": rne,
             #     "parser": rp,
             #     "parser field": "name",
-            # },
-            # {
-            #     "name": "Straight Width",
-            #     "extractor": rne,
-            #     "parser": StraightWidthParser(rp),
-            #     "parser field": "name",
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Straight Point",
-            #     "extractor": rne,
-            #     "parser": StraightPointParser(rp),
-            #     "parser field": "name",
-            #     "fallback": False,
-            # },
-            # {
-            #     "name": "Straight Grind",
-            #     "extractor": rne,
-            #     "parser": StraightGrindParser(rp),
-            #     "parser field": "name",
-            #     "fallback": False,
             # },
             # {
             #     "name": "Razor Manufacturer",
@@ -90,13 +79,13 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            # {
-            #     "name": "Brush",
-            #     "extractor": StagedBrushNameExtractor(),
-            #     "parser": brp,
-            #     "parser field": "name",
-            #     "fallback": True,
-            # },
+            {
+                "name": "Brush",
+                "extractor": StagedBrushNameExtractor(),
+                "parser": brp,
+                "parser field": "name",
+                "fallback": True,
+            },
             # {
             #     "name": "Brush Handle Maker",
             #     "extractor": StagedBrushNameExtractor(),
@@ -133,30 +122,80 @@ class DebugRunner(object):
             #     "name": "Game Changer Plate",
             #     "extractor": GameChangerPlateExtractor(),
             # },
-            {
-                "name": "Blackbird Plate",
-                "extractor": rne,
-                "parser": BlackbirdPlateParser(rp),
-                "parser field": "name",
-                "fallback": False,
-            },
+            # {
+            #     "name": "Blackbird Plate",
+            #     "extractor": rne,
+            #     "parser": BlackbirdPlateParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
             # {
             #     "name": "Superspeed Tip",
             #     "extractor": SuperSpeedTipExtractor(),
+            # },
+            # {
+            #     "name": "Straight Width",
+            #     "extractor": rne,
+            #     "parser": StraightWidthParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Point",
+            #     "extractor": rne,
+            #     "parser": StraightPointParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Grind",
+            #     "extractor": rne,
+            #     "parser": StraightGrindParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Soap",
+            #     "extractor": StagedSoapNameExtractor(),
+            #     "parser": SoapParser(),
+            #     "parser field": "name",
             # },
         ]
 
         inf_engine = inflect.engine()
 
         for entity in process_entities:
-            self.process_entity(thread_map, comments_target, blp, inf_engine, entity)
+            self.process_entity(
+                thread_map,
+                comments_target,
+                blp,
+                inf_engine,
+                entity,
+                DebugRunnerMode.COMPARE_TO_ORGINAL,
+            )
+            # self.process_entity(
+            #     thread_map,
+            #     comments_target,
+            #     blp,
+            #     inf_engine,
+            #     entity,
+            #     DebugRunnerMode.UNIQUE,
+            # )
 
         # self.process_user_shave_data(
         #     thread_map, comments_target, start_month, end_month
         # )
         return
 
-    def process_entity(self, thread_map, comments_target, blp, inf_engine, entity):
+    def process_entity(
+        self,
+        thread_map,
+        comments_target,
+        blp,
+        inf_engine,
+        entity,
+        mode: DebugRunnerMode,
+    ):
         print(f"##{inf_engine.plural(entity['name'])}\n")
 
         extractor = entity["extractor"]
@@ -170,7 +209,20 @@ class DebugRunner(object):
         )
         df_raw = pd.DataFrame(raw_usage)
 
-        df_raw["original"] = df_raw["original"].apply(lambda x: x[:100])
+        if mode == DebugRunnerMode.COMPARE_TO_ORGINAL:
+            df = self.compare_to_original(blp, df_raw)
+        elif mode == DebugRunnerMode.UNIQUE:
+            df = self.unique_names_only(blp, df_raw)
+        else:
+            raise ArgumentError(f"Unknown DebugRunnerMode: {mode}")
+
+        print(df.to_markdown(index=False))
+        print("\n")
+
+        print(f"{len(df_raw)} shaves")
+
+    def compare_to_original(self, blp, df_raw):
+        df_raw["original"] = df_raw["original"].apply(lambda x: x[:50])
         df_raw["original"] = df_raw["original"].apply(
             lambda x: blp.remove_digits_in_parens(x)
         )
@@ -190,16 +242,47 @@ class DebugRunner(object):
         #     ["a", "matched", "name", "b"], ascending=[False, False, True, False]
         # )
         # sort by matched name
+        df["name.lower"] = df["name"].str.lower()
         df = df.sort_values(
-            ["matched", "name", "a", "b"],
+            ["matched", "name.lower", "a", "b"],
             ascending=[False, True, True, False],
             # ["matched", "name", "a", "b"],
             # ascending=[True, False, False, True],
         )
-        print(df.to_markdown(index=False))
-        print("\n")
+        del df["name.lower"]
+        return df
 
-        print(f"{len(df_raw)} shaves")
+    def unique_names_only(self, blp, df_raw):
+        # df_raw["original"] = df_raw["original"].apply(lambda x: x[:50])
+        # df_raw["original"] = df_raw["original"].apply(
+        #     lambda x: blp.remove_digits_in_parens(x)
+        # )
+        df = df_raw.drop("user_id", inplace=False, axis=1)
+        df = df.drop("date", inplace=False, axis=1)
+        df = df.drop("url", inplace=False, axis=1)
+        df = df.drop("original", inplace=False, axis=1)
+        # df = df.groupby(["name", "original"]).agg(count=("original", "count"))
+        # df = df.groupby(["name", "original"])[["original"]].agg("count")
+        df = df.value_counts(["name"]).reset_index(name="a")
+        # df = df.value_counts(["name", "original", "matched"]).reset_index(name="b")
+        # df_unique = df.value_counts(["name", "original"]).reset_index(name="b")
+        # df = df.merge(df_counts, how="left")
+        # df["name"] = df["name"].str[:50]
+        # df = df.value_counts(["name"]).reset_index(name="c")
+        # sort by usage desc
+        # df = df.sort_values(
+        #     ["a", "matched", "name", "b"], ascending=[False, False, True, False]
+        # )
+        # sort by matched name
+        df["name.lower"] = df["name"].str.lower()
+        df = df.sort_values(
+            ["name.lower", "a"],
+            ascending=[True, True],
+            # ["matched", "name", "a", "b"],
+            # ascending=[True, False, False, True],
+        )
+        del df["name.lower"]
+        return df
 
     def process_user_shave_data(
         self, thread_map, comments_target, start_month, end_month
@@ -275,8 +358,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 5, 1)
-    end_month = datetime.date(2024, 5, 1)
+    start_month = datetime.date(2024, 6, 1)
+    end_month = datetime.date(2024, 6, 1)
 
     comments_target = []
     thread_map = {}

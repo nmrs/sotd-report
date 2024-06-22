@@ -1,5 +1,8 @@
+import os
 import re
 from functools import lru_cache, cached_property
+
+import yaml
 
 from base_parser import BaseParser
 from brush_parsing_stategies import (
@@ -49,5 +52,21 @@ class BrushParser(BaseParser):
 
 
 if __name__ == "__main__":
-    pass
+    # ban = BladeAlternateNamer()
+    # print(ban.get_principal_name('Gillette 7 O\'Clock Super Platinum'))
+
+    # print(re.search("feather.*(?:de)?", "Feather (de)", re.IGNORECASE))
+    # # print(rp._razors_from_yaml)
+
+    class CustomDumper(yaml.Dumper):
+        def represent_data(self, data):
+            # if isinstance(data, str) and "\\" in data:
+            #     return self.represent_scalar("tag:yaml.org,2002:str", data, style="'")
+
+            return super(CustomDumper, self).represent_data(data)
+
+    parser = OtherBrushStrategy()
+
+    with open(f"{os.getcwd()}/sotd_collator/brush_yaml/other_brushes.yaml", "w") as f:
+        yaml.dump(parser._raw, f, default_flow_style=False, Dumper=CustomDumper)
     # print(BrushAlternateNamer().get_principal_name(name="Zenith foo h24"))

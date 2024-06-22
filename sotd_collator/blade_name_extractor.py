@@ -10,7 +10,10 @@ class BladeNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = []
+    GARBAGE = [
+        r"\d{1,2}/(8|16)",  # don't match straight blades
+        r"\bstraight\b",
+    ]
 
     def _garbage(self):
         return self.GARBAGE

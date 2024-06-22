@@ -60,6 +60,12 @@ class StagedBladeUseExtractor(StagedBladeNameExtractor):
         return None
 
 
+class StagedSoapNameExtractor(BaseStagedNameExtractor):
+    @BaseNameExtractor.post_process_name
+    def get_name(self, comment):
+        return comment["soap"] if "soap" in comment else None
+
+
 class TestStagedBladeUseExtractor(TestCase):
 
     cases = [

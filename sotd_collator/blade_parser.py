@@ -1,6 +1,9 @@
 from collections import OrderedDict
 from functools import cached_property, lru_cache
+import os
 from unittest.mock import Base
+
+import yaml
 from base_parser import BaseParser
 import re
 
@@ -10,7 +13,7 @@ class BladeParser(BaseParser):
     Amalgamate names
     """
 
-    __raw = {
+    _raw = {
         "7 O'Clock - Permasharp": {"patterns": ["clock.*perm"]},
         "7 O'Clock - Sharpedge (Yellow)": {
             "patterns": ["clock.*sharp.*edg", "clock.*yellow", "gill.*yellow"]
@@ -266,9 +269,14 @@ class BladeParser(BaseParser):
     #     return super().get_principal_name(stripped)
 
     @cached_property
+    def __blades_from_yaml(self):
+        with open(f"{os.getcwd()}/sotd_collator/blades.yaml", "r") as f:
+            return yaml.load(f, Loader=yaml.SafeLoader)
+
+    @cached_property
     def __mapper(self):
         output = {}
-        for name, property_map in self.__raw.items():
+        for name, property_map in self.__blades_from_yaml.items():
             for pattern in property_map["patterns"]:
                 format = property_map["format"] if "format" in property_map else "DE"
                 output[pattern] = {"name": name, "format": format}
@@ -301,7 +309,16 @@ class BladeParser(BaseParser):
 
 
 if __name__ == "__main__":
-    # ban = BladeAlternateNamer()
-    # print(ban.get_principal_name('Gillette 7 O\'Clock Super Platinum'))
 
-    print(re.search("feather.*(?:de)?", "Feather (de)", re.IGNORECASE))
+    class CustomDumper(yaml.Dumper):
+        def represent_data(self, data):
+            if isinstance(data, str) and "\\" in data:
+                return self.represent_scalar("tag:yaml.org,2002:str", data, style="'")
+
+            return super(CustomDumper, self).represent_data(data)
+
+    bp = BladeParser()
+    # print(rp._razors_from_yaml)
+
+    with open(f"{os.getcwd()}/sotd_collator/blades.yaml", "w") as f:
+        yaml.dump(bp._raw, f, default_flow_style=False, Dumper=CustomDumper)

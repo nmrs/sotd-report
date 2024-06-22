@@ -27,7 +27,7 @@ class BaseNameExtractor(ABC):
         return re.compile(
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
-            rf"^[*\s\-+/]*{token}\s*[:*\-\\+ \t/]*(.*)$",
+            rf"^[*\s\-+/\\]*{token}\s*[:*\-\\+ \t/]*(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )
 
@@ -57,10 +57,10 @@ class BaseNameExtractor(ABC):
             return None
         else:
             return (
-                unicodedata.normalize("NFKD", str_val)
-                .encode("ascii", "ignore")
-                .strip()
-                .decode("ascii")
+                unicodedata.normalize("NFKD", str_val).replace("•", "*")
+                # .encode("ascii", "ignore")
+                # .strip()
+                # .decode("ascii")
             )
 
     @staticmethod
@@ -102,18 +102,21 @@ class BaseNameExtractor(ABC):
         # generally this gets overwritten by subclasses since they have entity type specific fixups
         comment_text = self._to_ascii(comment["body"])
         # try to extract entity name using regexps - ie SOTD is in a common format
-        for detector in self.detect_regexps:
-            res = detector.search(comment_text)
-            if res:
-                name = ""
-                for group in res.groups():
-                    if group:
-                        name += group
-                # name = res.group(1)
-                # # for pattern in self.BASE_GARBAGE:
-                # #     if re.search(pattern, name, re.IGNORECASE):
-                # #         return None
-                return name.strip()
+        lines = comment_text.split("\n")
+        for line in lines:
+            for detector in self.detect_regexps:
+                res = detector.search(line)
+                if res:
+                    name = ""
+                    for group in res.groups():
+                        if group:
+                            name += group
+                    # name = res.group(1)
+                    # # for pattern in self.BASE_GARBAGE:
+                    # #     if re.search(pattern, name, re.IGNORECASE):
+                    # #         return None
+                    name = self.remove_hashtags(name)
+                    return name.strip()
 
         # # if we cant find the the entity by looking for it in common SOTD formats,
         # # try and find any common entity name within the comment
@@ -122,3 +125,10 @@ class BaseNameExtractor(ABC):
         #     return principal_name
 
         return None
+
+    def remove_hashtags(self, text):
+        # Define the regex pattern for hashtags
+        pattern = r"#\w+"
+        # Use re.sub() to replace hashtags with an empty string
+        cleaned_text = re.sub(pattern, "", text)
+        return cleaned_text.strip()

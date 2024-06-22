@@ -6,19 +6,22 @@ import praw
 from dateutil.relativedelta import relativedelta
 
 
+from soap_parser import SoapNameParser
+from soap_runner import SoapRunner
 from sotd_collator.runner import Runner
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.stage_builder import StageBuilder
 from sotd_collator.utils import extract_date_from_thread_title
+from staged_name_extractors import StagedSoapNameExtractor
 
 FORCE_REFRESH = False
 TIME_PERIOD = "month"
 
-runner = Runner()
+runner = SoapRunner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 6, 1)
+target = datetime.date(2024, 5, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)
@@ -80,42 +83,58 @@ shavers = {}
 for comment in comments_target:
     shavers[comment["author"]] = 0
 
+sne = StagedSoapNameExtractor()
+snp = SoapNameParser()
+brand_usage = runner.usage_for_field(
+    thread_map,
+    comments_target,
+    comments_delta_one,
+    comments_delta_two,
+    comments_delta_three,
+    delta_one_label,
+    delta_two_label,
+    delta_three_label,
+    sne,
+    snp,
+    "brand",
+    False,
+)
+
+scent_usage = runner.usage_for_field(
+    thread_map,
+    comments_target,
+    comments_delta_one,
+    comments_delta_two,
+    comments_delta_three,
+    delta_one_label,
+    delta_two_label,
+    delta_three_label,
+    sne,
+    snp,
+    "name",
+    False,
+)
 
 header = f"""
-Welcome to your SOTD Hardware Report for {target_label}
+Welcome to your SOTD Lather Log for {target_label}
+
+* {shave_reports} shave reports from {len(shavers.keys())} distnct shavers during the month of {target_label} were analyzed to produce this report. Collectively, these shavers used {len(scent_usage.index)} distinct soaps from {len(brand_usage.index)} distinct brands.
 
 ## Observations
 
-* A fairly nondescript {TIME_PERIOD}
+* Tabac Tuesday is clearly a thing.
 
+* Folks were pretty excited about the Roman Spice release.
+
+* It's pretty easy to push a particular soap pretty far up the list if you're motivated (and boring).
 
 ## Notes & Caveats
 
-* {shave_reports} shave reports from {len(shavers.keys())} distnct shavers during the month of {target_label} were analyzed to produce this report.
-
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
-* Blade Format stats now differentiate between DE and half DE razors.
+* The unique user column shows the number of different users who used a given brand/soap/etc in the {TIME_PERIOD}.
 
-* "Other" in the Blade Format table includes vintage reusable blades (including Rolls, Valet Auto Strop, and old-style lather catchers with wedge blades) as well as other antique proprietary blade formats (e.g. Enders Speed Blade)
-
-* Blades recorded as just 'GEM' will be matched to 'Personna GEM PTFE' per guidance [here](https://www.reddit.com/r/Wetshaving/comments/19a43q7/comment/kil95r8/)
-
-* The Personna blade name is [going away](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.badgerandblade.com/forum/threads/what-do-you-know-about-this-personna-no-longer-exists.647703/&ved=2ahUKEwiyi4n7pPKFAxXeLtAFHfNVDz8QFnoECAQQAQ&usg=AOvVaw38QYgjzknuIIIV94b6VDP5), but the majority of entries are still coming in under Personna, so I am sticking to that for this report. Once more than 50% of the entries come in under the new names, I will reverse this and map any old Personna entries to the new name.
-
-    * Personna GEM PTFE is now Accutec Pro Premium (GEM)
-  
-    * Personna Lab Blue is now Accuforge Super Stainless MicroCoat
-  
-    * Personna Med Prep is now Accuthrive Super Med Prep
-
-* Any brush with a DG knot will come under the DG Bx category - eg Dogwood B8 is recorded as 'DG B8'
-
-* In the case of most brush makers (eg Maggard) - knots are split into synthetic / badger / boar and attributed to the maker - eg 'Maggard Synthetic'
-
-* Notable exceptions to this are Omega and Semogue, in order to retain the model number. Unless someone just puts 'Omega Boar' which I then report as 'Omega (model not specified) Boar' .
-
-* The unique user column shows the number of different users who used a given razor / brush etc in the month. We can combine this with the total number of shaves to get the average number of times a user used a razor / brush etc
+* The Brand Diversity table details the number of distinct soaps used during the {TIME_PERIOD} from that particular brand.
 
 * The change Δ vs columns show how an item has moved up or down the rankings since that {TIME_PERIOD}. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to that {TIME_PERIOD}. n/a means the item was not present in that {TIME_PERIOD}.
 

@@ -1,0 +1,621 @@
+Acca Kappa:
+  default: Badger
+  patterns:
+  - acca kappa
+All-Star Grooming Co.:
+  default: Badger
+  patterns:
+  - all(\s|-)?star
+AKA Brushworx:
+  default: Synthetic
+  patterns:
+  - \baka\b.*brush
+  - \baka\b
+AMACK:
+  default: Synthetic
+  patterns:
+  - amack
+Alpha:
+  default: Synthetic
+  patterns:
+  - alpha
+Anbbas:
+  default: Synthetic
+  patterns:
+  - anbbas
+AP Shave Co:
+  default: Synthetic
+  patterns:
+  - AP\s*shave\s*(co)?
+  - \bap\b
+Ariana & Evans:
+  default: Synthetic
+  patterns:
+  - ariana.*evan
+Art of Shaving:
+  default: Badger
+  patterns:
+  - ^\s*aos
+  - art.*of.*sha
+Artesania Romera:
+  default: Badger
+  patterns:
+  - romera
+Aurora Grooming:
+  default: Synthetic
+  patterns:
+  - auror.*gr
+B&M:
+  default: Synthetic
+  patterns:
+  - b\s*(&|a)\s*m
+  - barrister
+Balea Men:
+  default: Synthetic
+  patterns:
+  - balea
+Bass:
+  default: Boar
+  patterns:
+  - \bbass\b
+Beaumont:
+  default: Badger
+  patterns:
+  - bea.{1,3}mont
+Black Anvil:
+  default: Badger
+  patterns:
+  - black.*anv
+Black Eagle:
+  default: Badger
+  patterns:
+  - black.*eag
+Blackland:
+  default: Synthetic
+  knot size: 23mm
+  patterns:
+  - blackland
+Boker:
+  default: Synthetic
+  patterns:
+  - boker
+Boti:
+  default: Synthetic
+  patterns:
+  - boti
+Brad Sears:
+  default: Badger
+  patterns:
+  - brad.*sears
+Bristle Brushwerks:
+  default: Badger
+  patterns:
+  - huck
+  - bristle.*brush
+Brushcraft:
+  default: Synthetic
+  patterns:
+  - brushcraft
+Bullseye Brushworks:
+  default: Synthetic
+  patterns:
+  - bullseye
+Bundubeard:
+  default: Badger
+  patterns:
+  - bundubeard
+CaYuen:
+  default: Synthetic
+  patterns:
+  - cayuen
+Carnavis & Richardson:
+  default: Synthetic
+  patterns:
+  - carn.*rich
+Catalin:
+  default: Badger
+  patterns:
+  - catalin
+Chisel & Hound:
+  default: Badger
+  knot size: 26mm
+  patterns:
+  - chis.*hou
+  - chis.*fou
+  - \bc(?:\&|and|\+)h\b
+CommonWealth CW:
+  default: Badger
+  patterns:
+  - commonwealth
+  - \bcw\b
+Craving Shaving:
+  default: Synthetic
+  patterns:
+  - crav.*shav
+Cremo:
+  default: Horse
+  patterns:
+  - cremo
+Crescent City Craftsman:
+  default: Synthetic
+  patterns:
+  - cres.*city
+Cumberbatch:
+  default: Badger
+  patterns:
+  - cumberbatch
+DSCosmetics:
+  default: Synthetic
+  patterns:
+  - DSC?\s*Cosmetic
+  - \bDSC\b
+Declaration Grooming (batch not specified):
+  default: Badger
+  patterns:
+  - declaration
+  - \bdg\b
+Den of Man:
+  default: Synthetic
+  patterns:
+  - den.*of.*man
+DISCARD:
+  default: DISCARD
+  patterns:
+  - had forever.*mark rubbed off
+Dogwood:
+  default: Badger
+  patterns:
+  - dogw
+  - dogc*l
+  - ^voa
+  - \bdw\b
+Doug Korn:
+  default: Badger
+  patterns:
+  - doug\s*korn
+Dubl Duck:
+  default: Boar
+  patterns:
+  - dubl.*duck
+Edwin Jagger:
+  default: Badger
+  patterns:
+  - edwin.*jag
+El Druida:
+  default: Badger
+  patterns:
+  - druidi*a
+Elite:
+  default: Badger
+  patterns:
+  - elite
+Erskine:
+  default: Boar
+  patterns:
+  - erskine
+Ever Ready:
+  default: Badger
+  patterns:
+  - ever.*read
+Executive Shaving:
+  default: Synthetic
+  patterns:
+  - execut.*shav
+Extro Cosmesi:
+  default: Synthetic
+  patterns:
+  - extro.*comesi
+Farvour Turn Craft:
+  default: Badger
+  patterns:
+  - farvour
+Fendrihan:
+  default: Badger
+  patterns:
+  - fendri
+Fine:
+  default: Synthetic
+  patterns:
+  - fine\b
+Firehouse Potter:
+  default: Synthetic
+  patterns:
+  - fireh.*pott
+Frank Shaving:
+  default: Synthetic
+  patterns:
+  - frank.*sha
+Geo F. Trumper:
+  default: Badger
+  patterns:
+  - geo.*trumper
+Gillette:
+  default: Badger
+  patterns:
+  - gil+et+e
+Grizzly Bay:
+  default: Badger
+  patterns:
+  - griz.*bay
+Haircut & Shave Co:
+  default: Badger
+  patterns:
+  - haircut.*shave
+Heritage Collection:
+  default: Badger
+  patterns:
+  - heritage
+Holzleute:
+  default: Badger
+  patterns:
+  - holzleute
+Imperial:
+  default: Synthetic
+  patterns:
+  - imperial
+L'Occitane en Provence:
+  default: Synthetic
+  patterns:
+  - oc*citane
+Lancaster Brushworks:
+  default: Synthetic
+  patterns:
+  - lancaster
+Leavitt & Pierce:
+  default: Badger
+  patterns:
+  - leav.*pie
+Lentfer Custom Woodworks:
+  default: Synthetic
+  patterns:
+  - lentfer
+Leonidam:
+  default: Badger
+  patterns:
+  - leonidam
+  - leo.*nem
+Liojuny Shaving:
+  default: Synthetic
+  patterns:
+  - liojuny
+Long Shaving:
+  default: Badger
+  patterns:
+  - long\s*shaving
+Lutin Brushworks:
+  default: Synthetic
+  patterns:
+  - lutin
+MRed:
+  default: Badger
+  patterns:
+  - mred
+Maggard:
+  default: Synthetic
+  patterns:
+  - ^.*mag(g?ard)?s?
+Maseto:
+  default: Badger
+  patterns:
+  - maseto
+Mistic:
+  default: Synthetic
+  patterns:
+  - mistic
+Mojo:
+  default: Badger
+  patterns:
+  - mojo
+Mondial:
+  default: Boar
+  patterns:
+  - mondial
+Morris & Forndran:
+  default: Badger
+  patterns:
+  - morris
+  - m\s*&\s*f
+Mozingo:
+  default: Badger
+  patterns:
+  - mozingo
+Muhle:
+  default: Badger
+  patterns:
+  - \bmuhle\b
+Muninn Woodworks:
+  default: Badger
+  patterns:
+  - mun+in
+Mutiny:
+  default: Synthetic
+  patterns:
+  - mutiny
+NY Shave Co:
+  default: Badger
+  patterns:
+  - ny\s.*shave.*co
+New England Shaving Company:
+  default: Synthetic
+  patterns:
+  - new.*england
+Noble Otter:
+  default: Badger
+  patterns:
+  - noble
+  - no\s*\d{2}mm
+Nom:
+  default: Synthetic
+  patterns:
+  - \bnom\b
+Omega:
+  default: Boar
+  patterns:
+  - omega
+Oumo:
+  default: Badger
+  patterns:
+  - o[ou]mo(?:adkjhgasjkdgh)*
+Oz Shaving:
+  default: Synthetic
+  patterns:
+  - oz.*sha
+PAA:
+  default: Synthetic
+  patterns:
+  - paa
+  - phoenix.*art
+Paladin:
+  default: Badger
+  patterns:
+  - paladin
+Paragon:
+  default: Synthetic
+  patterns:
+  - paragon(?:aldkjgajklk)*
+Parker:
+  default: Badger
+  patterns:
+  - parker
+Perfecto:
+  default: Badger
+  knot size: 20mm
+  patterns:
+  - perfecto
+Plisson:
+  default: Badger
+  patterns:
+  - plisson
+Prometheus Handcrafts:
+  default: Synthetic
+  patterns:
+  - promethe
+QSHAVE:
+  default: Badger
+  patterns:
+  - qshave
+Razorock:
+  default: Synthetic
+  patterns:
+  - Razorr*ock
+  - (^|\s)rr\s
+  - plissoft
+  - razor rock
+Rick Montalvo:
+  default: Synthetic
+  patterns:
+  - montalv
+Rockwell:
+  default: Synthetic
+  patterns:
+  - rockwell
+Rooney:
+  default: Badger
+  patterns:
+  - rooney
+Rubberset:
+  default: Badger
+  patterns:
+  - rubberset
+Rudy Vey:
+  default: Badger
+  patterns:
+  - rudy.*vey
+SHAVEDANDY:
+  default: Synthetic
+  patterns:
+  - shavedandy
+Sawdust Creation Studios:
+  default: Synthetic
+  patterns:
+  - sawdust
+Semogue:
+  default: Boar
+  patterns:
+  - semogue
+Shave Forge:
+  default: Synthetic
+  patterns:
+  - shave.*forge
+Shave Nation:
+  default: Synthetic
+  patterns:
+  - shave.*nation
+Shavemac:
+  default: Badger
+  patterns:
+  - shavemac
+Shore Shaving:
+  default: Synthetic
+  patterns:
+  - shore.*shav
+Simpson:
+  default: Badger
+  patterns:
+  - simpson
+  - duke
+  - trafalgar
+SmilezforMilez:
+  default: Synthetic
+  patterns:
+  - smile\w*mile
+Some Making Required:
+  default: Synthetic
+  patterns:
+  - some.*maki
+Spokar:
+  default: Boar
+  patterns:
+  - spokar
+Spiffo:
+  default: Badger
+  patterns:
+  - spiffo
+Stirling:
+  default: Badger
+  patterns:
+  - st[ie]rl
+Strike Gold Shave:
+  default: Synthetic
+  patterns:
+  - strike.*gold
+Summer Break:
+  default: Badger
+  patterns:
+  - summer.*break
+Supply:
+  default: Synthetic
+  patterns:
+  - supply
+Surrey:
+  default: Boar
+  patterns:
+  - surrey
+TOBS:
+  default: Badger
+  patterns:
+  - tobs
+  - taylor.*bond
+TanZ:
+  default: Badger
+  patterns:
+  - tobs
+  - tanz
+Teton Shaves:
+  default: Badger
+  patterns:
+  - teton
+That Darn Rob:
+  default: Badger
+  patterns:
+  - darn.*rob
+  - tdr
+Thater:
+  default: Badger
+  patterns:
+  - thater
+The Bluebeard's Revenge:
+  default: Synthetic
+  patterns:
+  - bluebeard.*rev
+The Golden Nib:
+  default: Boar
+  patterns:
+  - tgn
+  - golden.*nib
+The Holy Black:
+  default: Synthetic
+  patterns:
+  - tgn
+  - golden.*nib
+The Razor Company:
+  default: Synthetic
+  patterns:
+  - razor.*co
+  - trc
+The Varlet:
+  default: Badger
+  patterns:
+  - varlet
+Tony Forsyth:
+  default: Badger
+  patterns:
+  - tony.*fors
+Trotter Handcrafts:
+  default: Synthetic
+  patterns:
+  - trotter
+Truefitt & Hill:
+  default: Badger
+  patterns:
+  - truefitt.*hill
+Turn-N-Shave:
+  default: Badger
+  patterns:
+  - turn.{1,5}shave
+  - tns
+Van der Hagen:
+  default: Boar
+  patterns:
+  - van.*hag.*
+Vie Long:
+  default: Horse
+  patterns:
+  - vie.*long
+Viking:
+  default: Badger
+  patterns:
+  - viking
+Vintage Blades:
+  default: Badger
+  patterns:
+  - vintage.*blades
+Virginia Cheng:
+  default: Badger
+  patterns:
+  - virginia.*cheng
+Voigt & Cop:
+  default: Badger
+  patterns:
+  - v&c
+  - voigt
+Vulfix:
+  default: Badger
+  patterns:
+  - vulfix
+WCS:
+  default: Synthetic
+  patterns:
+  - wcs
+  - west.*coast
+Wald:
+  default: Badger
+  patterns:
+  - wald
+  - west.*coast
+Whipped Dog:
+  default: Badger
+  patterns:
+  - whipped.*dog
+Wild West Brushworks:
+  default: Synthetic
+  patterns:
+  - wild.*west
+  - wwb
+  - ww.*brushw
+Wilkinson Sword:
+  default: Synthetic
+  patterns:
+  - wilkinson
+Wolf Whiskers:
+  default: Badger
+  patterns:
+  - wolf.*whis
+Yaqi:
+  default: Synthetic
+  patterns:
+  - yaqu*i
+Zenith:
+  default: Boar
+  patterns:
+  - zen\w+

@@ -2,5 +2,7 @@ inflect
 pandas
 praw
 python-dateutil
+pyyaml
 simplejson
 tabulate
+unidecode

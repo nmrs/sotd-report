@@ -87,9 +87,12 @@ def get_raw_data_from_parser(
                     principal_name = remove_digits_in_parens(entity_name)
                     raw_usage["matched"].append(False)
             else:
+                if principal_name.strip() == "DISCARD":
+                    continue
+
                 raw_usage["matched"].append(True)
 
-            raw_usage["name"].append(principal_name)
+            raw_usage["name"].append(principal_name.strip())
             raw_usage["user_id"].append(comment["author"])
             raw_usage["date"].append(thread_date)
             raw_usage["url"].append(comment["url"])

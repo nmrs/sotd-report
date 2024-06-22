@@ -3,6 +3,8 @@ import re
 from functools import lru_cache, cached_property
 from typing import Dict
 
+import unidecode
+
 
 class BaseParser(ABC):
     """
@@ -36,7 +38,12 @@ class BaseParser(ABC):
         return None
 
     def get_value(self, input_string: str, field: str) -> str:
+        s = unidecode.unidecode(input_string).strip()
+
+        if s == "":
+            s = input_string
+
         if field == "original":
-            return input_string
+            return s
         else:
-            return self._get_value(input_string, field)
+            return self._get_value(s, field)

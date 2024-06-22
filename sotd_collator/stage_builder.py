@@ -11,6 +11,7 @@ from cache_provider import CacheProvider
 from blade_name_extractor import BladeNameExtractor
 from brush_name_extractor import BrushNameExtractor
 from razor_name_extractor import RazorNameExtractor
+from soap_name_extractor_b import SoapNameExtractor
 
 from sotd_post_locator import SotdPostLocator
 from utils import timer_func
@@ -41,7 +42,7 @@ class StageBuilder(object):
             "razor": RazorNameExtractor(),
             "blade": BladeNameExtractor(),
             "brush": BrushNameExtractor(),
-            # "soap": SoapNameExtractor(),
+            "soap": SoapNameExtractor(),
         }
 
         curr_month = start_month
@@ -151,7 +152,7 @@ class StageBuilder(object):
 
 if __name__ == "__main__":
     StageBuilder().build_stage(
-        start_month=date(2024, 5, 1), end_month=date(2024, 5, 1), force_refresh=True
+        start_month=date(2024, 6, 1), end_month=date(2024, 6, 1), force_refresh=False
     )
     # StageBuilder().validate_stage(
     #     start_month=date(2022, 4, 1), end_month=date(2022, 5, 1)

@@ -1,0 +1,505 @@
+AP Shave Co:
+  Cashmere:
+    fiber: Synthetic
+    patterns:
+    - cashmere
+  G5C:
+    fiber: Synthetic
+    patterns:
+    - g5c
+  Gelousy:
+    fiber: Synthetic
+    patterns:
+    - gelous
+  Synbad:
+    fiber: Synthetic
+    patterns:
+    - synbad
+Badger & Blade:
+  Essential:
+    fiber: Boar
+    handle maker: Omega
+    knot maker: Omega
+    knot size: 22mm
+    patterns:
+    - badger.*blade.*essential
+Hand Lather:
+  ? ''
+  : fiber: Hand
+    patterns:
+    - \bhands?\b
+    - hand.*lather
+Muhle:
+  STF:
+    fiber: Synthetic
+    patterns:
+    - \bstf\b
+Omega:
+  '10005':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - omega.*10005
+  '10029':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - omega.*10029
+  '10048':
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - omega.*(pro)*.*48
+  '10049':
+    fiber: Boar
+    knot size: 26mm
+    patterns:
+    - omega.*(pro)*.*49
+  '10077':
+    fiber: Boar
+    knot size: 23mm
+    patterns:
+    - omega.*10077
+  '10098':
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - '10098'
+  '11047':
+    fiber: Mixed Badger/Boar
+    knot size: 22mm
+    patterns:
+    - '11047'
+  '11126':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - '11126'
+  '11137':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - '11137'
+  '20102':
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - '20102'
+  '20106':
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - '20106'
+  '46206':
+    fiber: Synthetic
+    knot size: 25mm
+    patterns:
+    - omega.*46206
+  '80005':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - '80005'
+  EVO Sythetic:
+    fiber: Synthetic
+    patterns:
+    - omega.*evo
+    - evo.*omega
+  Hi-Brush Synthetic:
+    fiber: Synthetic
+    patterns:
+    - hi-*brush
+    - omega.*syn
+  Proraso Professional:
+    fiber: Boar
+    knot maker: Omega
+    knot size: 28mm
+    patterns:
+    - proraso.*(pro)?
+    - omega.*proraso
+    - proraso.*omega
+  Special Veteran - E1860:
+    fiber: Synthetic
+    knot size: 28mm
+    patterns:
+    - omega.*evo.*e1860
+    - e1860
+RazoRock:
+  Big Bruce:
+    fiber: Synthetic
+    knot size: 26mm
+    patterns:
+    - razo.*big.*bruce
+  Bruce:
+    fiber: Synthetic
+    knot size: 24mm
+    patterns:
+    - razo.*bruce
+  Monster:
+    fiber: Synthetic
+    knot size: 26mm
+    patterns:
+    - razo.*monster
+Rich Man Shaving:
+  Mojo Maker:
+    fiber: Badger
+    knot size: 26mm
+    patterns:
+    - rich.*man.*mojo*
+  Ultralux:
+    fiber: Badger
+    knot size: 26mm
+    patterns:
+    - rich.*man.*ultraluxe*
+Semogue:
+  '1250':
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - semogue.*1250
+  '1305':
+    fiber: Boar
+    knot size: 21mm
+    patterns:
+    - semogue.*1305
+  '1438':
+    fiber: Boar
+    knot size: 21mm
+    patterns:
+    - semogue.*1438
+  '1800':
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - semogue.*1800
+  '2000':
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - semogue.*2000
+  '2015':
+    fiber: Badger
+    knot size: 22mm
+    patterns:
+    - semogue.*2015
+  '2020':
+    fiber: Badger
+    knot size: 22mm
+    patterns:
+    - semogue.*2020
+  '610':
+    fiber: Boar
+    knot size: 21mm
+    patterns:
+    - semogue\s*610
+  '620':
+    fiber: Boar
+    knot size: 21mm
+    patterns:
+    - semogue\s*620
+  '820':
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - semogue\s*820
+  '830':
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - semogue.*830
+  Galahad C3:
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - galahad
+  Pharos C3:
+    fiber: Synthetic
+    knot size: 21mm
+    patterns:
+    - pharos
+  SOC Badger:
+    fiber: Badger
+    knot size: 24mm
+    patterns:
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*badger
+  SOC Boar:
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*boar
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*)
+    - owner.*club
+  SOC Mixed Badger/Boar:
+    fiber: Mixed Badger/Boar
+    knot size: 24mm
+    patterns:
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*badg.*boar
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*boar.*badg
+    - (semogue\s*owner.*club|s\.?\s*o\.?\s*c\.?\s*).*mi[sx]t
+    - semogue.*mist
+  Shave Nook 2012 LE:
+    fiber: Mixed Badger/Boar
+    knot size: 22mm
+    patterns:
+    - semogue.*2012
+  Shave Nook Final Edition:
+    fiber: Boar
+    knot size: 26.5mm
+    patterns:
+    - semogue.*bullgoose
+    - semogue.*shave.*nook
+  Torga C5 Boar:
+    fiber: Boar
+    knot size: 24mm
+    patterns:
+    - torga.*c5
+  r/wetshaving Brushbutt Boar:
+    fiber: Boar
+    knot size: 22mm
+    patterns:
+    - brushbutt
+    - 2017 ws
+Simpson:
+  Captain 2:
+    fiber: Badger
+    knot size: 24mm
+    patterns:
+    - captain\s*2
+  Chubby 1:
+    fiber: Badger
+    knot size: 22mm
+    patterns:
+    - simp.*chubby\s*1
+    - simp.*ch1
+  Chubby 2:
+    fiber: Badger
+    knot size: 27mm
+    patterns:
+    - simp.*chubby\s*2
+    - simp.*ch2
+  Chubby 3:
+    fiber: Badger
+    knot size: 29mm
+    patterns:
+    - simp.*chubby\s*3
+    - simp.*ch3
+  Colonel X2L:
+    fiber: Badger
+    knot size: 22mm
+    patterns:
+    - colonel
+  Trafalgar T1:
+    fiber: Synthetic
+    knot size: 23mm
+    patterns:
+    - simp(?:.*traf)?.*t?1
+  Trafalgar T2:
+    fiber: Synthetic
+    knot size: 24mm
+    patterns:
+    - simp(?:.*traf)?.*t?2
+  Trafalgar T3:
+    fiber: Synthetic
+    knot size: 28mm
+    patterns:
+    - simp(?:.*traf)?.*t?3
+  Tulip T1:
+    fiber: Synthetic
+    knot size: 19mm
+    patterns:
+    - simp.*tulip.*t1
+  Tulip T2:
+    fiber: Synthetic
+    knot size: 20mm
+    patterns:
+    - simp.*tulip.*t2
+  Tulip T3:
+    fiber: Synthetic
+    knot size: 22mm
+    patterns:
+    - simp.*tulip.*t3
+Stirling:
+  2-Band Synthetic:
+    fiber: Synthetic
+    knot size: 24mm
+    patterns:
+    - stirl.*(?:2|two)(?:-|\s)+band
+  Li'l Bridder:
+    fiber: Synthetic
+    knot size: 22mm
+    patterns:
+    - brudder
+  Synthetic:
+    fiber: Synthetic
+    patterns:
+    - st(i|e)rling.*kong
+Stirling/Zenith:
+  28mmx50mm Boar (510SE):
+    fiber: Boar
+    knot maker: Zenith
+    knot size: 28mm
+    patterns:
+    - (510(\s*|-*)se|jhdsajkghjkdhagkgkjgkhagdkjagdassd)
+    - ^(?=.*zenith)(?=.*st(i|e)rling)(?=.*28).*
+  31mmx50mm Boar (510SE-XL):
+    fiber: Boar
+    knot maker: Zenith
+    knot size: 31mm
+    patterns:
+    - (510(\s*|-*)se(\s*|-*)xl|jhdsajkghjkdhagkgkjgkhagdkjagdassd)
+    - ^(?=.*zenith)(?=.*st(i|e)rling)(?=.*31).*
+  Boar:
+    fiber: Boar
+    handle maker: Stirling
+    knot maker: Zenith
+    patterns:
+    - ^(?=.*zenith)(?=.*st(i|e)rling).*
+  r/wetshaving MOAR BOAR:
+    fiber: Boar
+    knot maker: Zenith
+    knot size: 31mm
+    name: r/wetshaving MOAR BOAR
+    patterns:
+    - moar(.*boar)?
+    - 508\s*xl
+    - wetshaving.*exc
+Turn-N-Shave:
+  Badger:
+    fiber: Badger
+    patterns:
+    - turn.{1,5}shave
+    - tns
+  BoBa (50/50 Boar Badger):
+    fiber: Mixed Badger/Boar
+    patterns:
+    - turn.{1,5}shave.*boba
+    - tns.*mix
+    - tns.*boba
+  High Density Badger (H*):
+    fiber: Badger
+    patterns:
+    - turn.{1,5}shave.*h\d
+    - tns.*h\d
+  Low Density Badger (L*):
+    fiber: Badger
+    patterns:
+    - turn.{1,5}shave.*l\d
+    - tns.*l\d
+  Medium Density Badger (M*):
+    fiber: Badger
+    patterns:
+    - turn.{1,5}shave.*m\d
+    - tns.*m\d
+  Quartermoon:
+    fiber: Synthetic
+    patterns:
+    - turn.{1,5}shave.*quarter
+    - tns.*quarter
+  Shoat:
+    fiber: Boar
+    patterns:
+    - turn.{1,5}shave.*shoat
+    - tns.*shoat
+Wald:
+  A1:
+    fiber: Synthetic
+    knot size: 29mm
+    patterns:
+    - wald.*a1
+  Calyx:
+    fiber: Synthetic
+    knot size: 27mm
+    patterns:
+    - (?:wald.*)?calyx
+  J1:
+    fiber: Badger
+    knot size: 27mm
+    patterns:
+    - wald.*j1
+  J2:
+    fiber: Badger
+    knot size: 27mm
+    patterns:
+    - wald.*j2
+  J3:
+    fiber: Badger
+    knot size: 27mm
+    patterns:
+    - wald.*j3
+  J4:
+    fiber: Badger
+    knot size: 27mm
+    patterns:
+    - wald.*j4
+Yaqi:
+  Cashmere:
+    fiber: Synthetic
+    patterns:
+    - yaqi.*cashmere
+  Synbad:
+    fiber: Synthetic
+    patterns:
+    - yaqi.*synbad
+Zenith:
+  502B XSE:
+    fiber: Boar
+    knot size: 26mm
+    patterns:
+    - 502B
+  506U SE:
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - 506U
+  '507U ':
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - 507U
+  '508 ':
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - zen.*B26
+  B03-A26:
+    fiber: Boar
+    knot size: 26mm
+    patterns:
+    - b03-a26
+  B26:
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - zen.*B26
+  B28:
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - zen.*B28
+  B30:
+    fiber: Boar
+    knot size: 27.5mm
+    patterns:
+    - zen.*B30
+  B33:
+    fiber: Boar
+    knot size: 27.5mm
+    patterns:
+    - zen.*B33
+  B35:
+    fiber: Boar
+    knot size: 31mm
+    patterns:
+    - zen.*B35
+  Butterscotch Chubby:
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - zen.*B34
+    - zen.*butter.*chub
+    - zen.*chub.*butter
+  Unbleached Boar:
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - ^(?=.*zenith)(?=.*unbleach).*

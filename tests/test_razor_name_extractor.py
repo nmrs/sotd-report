@@ -347,39 +347,99 @@ class TestRazorNameExtractor(TestCase):
         #             "expected_result": None,
         #             "expected_result_principal": None,
         #         },
+        #         {
+        #             "comment": {
+        #                 "body": """*Razor*: Blackland - **Dart** (Machined)
+        # *Blade*: **Gillette - Nacet** (4)
+        # *Lather*: **Williams Mug Soap**
+        # *Brush*: Whipped Dog - **Boar** (7th use)
+        # *Post*: Afta - Fresh
+        # ----
+        # **Razor and Blade Notes**  another very close shave with no irritation.
+        # *Cheek Feel During Shave*: Smooth
+        # *Neck Feel During Shave*: Felt blade but comfortable
+        # *Cheek Closeness After Shave*: Near BBS - About as close as I'll ever get
+        # *Neck Closeness After Shave*: Cut flush to where I just see the tips (above average for me)
+        # **Soap Notes**
+        # 1 min load w/ .5 tsp wtr fm start = lather perhaps right on target if not justa bit thick. This gave me a lather that was drier (than yesterday's) on first pass and perfect by 3rd.  and I ended up wtih too much lather.  Will try 45s load next time with same 2tsp water.
+        # Scent strength 3-4/10.
+        # Slick as usual and very protective!  Only thing missing was more cushion/luxury.
+        # Past attempts:
+        # * 1 min of loading and 2.5 tsp of water was a little to thin.
+        # """
+        #             },
+        #             "expected_result": "Blackland - **Dart** (Machined)",
+        #             "expected_result_principal": "Blackland Dart",
+        #         },
+        # {
+        #     "comment": {"body": "* **Razor:** Gillette - Flare Tip Super Speed 1950’s"},
+        #     "expected_result": "Gillette - Flare Tip Super Speed 1950\u2019s",
+        #     "expected_result_principal": "Gillette Super Speed",
+        # },
+        # {
+        #     "comment": {
+        #         "body": """**June 16, 2024** - **[Father\u2019s Day](https://imgur.com/a/qA0WDPw)**
+        # * **Brush:**  Stirling - Synthetic 24mm
+        # * **Razor:** Gillette - Flare Tip Super Speed 1950\u2019s
+        # * **Blade:** Gillette - Super Blues
+        # * **Lather:** Gillette - Shave Gel Island Breeze
+        # * **Post Shave:** Brut - Signature Scent Splash
+        # * **Fragrance** Brut - Signature Scent Cologne
+        # **SOAP** - Gillette is old! [Like super old!](https://media4.giphy.com/media/EB3EJiPHzIP8k/giphy.gif?cid=6c09b9529x68w2lb9obnfkd25jebnj9ft4n6c8mhue4yq70f&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g)
+        # So does that makes their shaving gel any good? [FAT NOOPE!](https://media0.giphy.com/media/JtLrtaN4VPoKXJRKGB/giphy.gif?cid=6c09b952unvruchp7cltj0w517dignv23kzljg95cskpgggx&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g)
+        # It\u2019s awful and then some. I mean there is no hydrating your skin with a foamy gel filled with chemicals. But the brand label is old and today OLD is Theme! So I am pairing the rest of my set with old like Brut which is what my father used to use! What does it smell like? Well it smells like the color!!! Green. I don\u2019t think you could make anything that would literally smell like a color and they nailed it. [Green and old](https://media1.giphy.com/media/zwKkpZMJJ802k/giphy.gif?cid=6c09b95288id89vcef1bf1ld95vdewairzsc3ply78ps02l7&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g).
+        # **RAZOR** - Another oldie from the 1950\u2019s TTO. Shaves like a hot knife on butter.. [clean as a whistle\u2026.](https://media4.giphy.com/media/NAj3Mh9ISQ2Ff9oBZO/giphy.gif?cid=6c09b952xl16rcm278ax9r4qify192k7hkxr4mqqjue9de8w&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g)
+        # **THE THEME** - Why leg day on FATHER\u2019s DAY?? Why??? Well this is not my first rodeo but right when it\u2019s hot and sticky and humid! Okay pre shave and I set [myself up HERE](https://imgur.com/a/wtK6muM)!
+        # And went to work. I wear my shorts low so not a big deal there. Thank goodness this was a one man show cause let\u2019s say if we had to shave our backs then another person would have to get involved and logistics would be tricky. HINT\u2026HINT\u2026 maybe next year who knows. [FINAL RESULT](https://imgur.com/a/cLkYjpF)!!
+        # Yeah that was not fun. Razor kept getting clogged and took forever. Okay ready for the day so my kids can make fun of me all day for shaving my legs! Happy freaking Father\u2019s Day!
+        # """
+        #     },
+        #     "expected_result": "Gillette - Flare Tip Super Speed 1950\u2019s",
+        #     "expected_result_principal": "Gillette Super Speed",
+        # },
+        # {
+        #     "comment": {
+        #         "body": """**June 16, 2024** - **[Father\u2019s Day](https://imgur.com/a/qA0WDPw)**
+        # * **Brush:**  Stirling - Synthetic 24mm
+        # * **Razor:** Gillette - Flare Tip Super Speed 1950\u2019s
+        # * **Blade:** Gillette - Super Blues
+        # * **Lather:** Gillette - Shave Gel Island Breeze
+        # * **Post Shave:** Brut - Signature Scent Splash
+        # * **Fragrance** Brut - Signature Scent Cologne
+        # """
+        #     },
+        #     "expected_result": "Gillette - Flare Tip Super Speed 1950\u2019s",
+        #     "expected_result_principal": "Gillette Super Speed",
+        # },
         {
             "comment": {
-                "body": """*Razor*: Blackland - **Dart** (Machined)  
-*Blade*: **Gillette - Nacet** (4)  
-*Lather*: **Williams Mug Soap**  
-*Brush*: Whipped Dog - **Boar** (7th use)  
-*Post*: Afta - Fresh  
+                "body": """**June 1, 2024**
 
-----
+**\u2022 Brush:** Aurora Grooming LG24 Synthetic (\"Lux Emerald Green\")  #SUBBROOSH
 
-**Razor and Blade Notes**  another very close shave with no irritation.
+**\u2022 Razor:**\u00a0Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY                                           
 
-*Cheek Feel During Shave*: Smooth  
-*Neck Feel During Shave*: Felt blade but comfortable  
-*Cheek Closeness After Shave*: Near BBS - About as close as I'll ever get  
-*Neck Closeness After Shave*: Cut flush to where I just see the tips (above average for me)  
+**\u2022 Lather:**\u00a0AA Shaving - Wapiti (smush courtesy of u/OnionMiasma!)    
 
-**Soap Notes**  
-1 min load w/ .5 tsp wtr fm start = lather perhaps right on target if not justa bit thick. This gave me a lather that was drier (than yesterday's) on first pass and perfect by 3rd.  and I ended up wtih too much lather.  Will try 45s load next time with same 2tsp water.
+**\u2022 Post Shave:** Wholly Kaw - Ikigai    
 
-Scent strength 3-4/10.
+**\u2022 Fragrance:** Atelier Cologne - Bergemote Soleil   
 
-Slick as usual and very protective!  Only thing missing was more cushion/luxury. 
+*\"Got me a movie, I want you to know...\"*
 
-Past attempts:
+Losing your virginity can be awkward and fumbling. At least that's been my experience. This is my first Lather Games. It's also, because of the Daily Challenge, my first ever attempt to shave with a straight razor. The Shumate was purchased used (and ostensibly shave-ready) on Ebay. It didn't seem to pass the \"hair test,\" and after several minutes of careful stropping I went into the shave apprehensive.  
 
-* 1 min of loading and 2.5 tsp of water was a little to thin.
+In the end I'm proud of myself. Despite struggling with the angle of the blade, I managed to cleanly shave the flatter, accessible parts of my face\u2014sideburns and cheeks\u2014with only one nick, before bailing when I got to the jawline and chin. Too precarious for the time being. Whenever the blade was near the upper part of the face, near the eye sockets, I found myself thinking of the film *Un Chien Andalou*. 
 
+Lather, Post Shave, and Fragrance items were all used by me for the first time. Wapiti has a wonderful misty, atmospheric vibe, but also a note I can't quite place (like a more pleasant version of chlorine?) With Ikigai I get vanilla and musk more than any other notes. 
 
+**Brush Strokes** is a SOTD coda wherein I highlight a single work of art that, somehow or other, I perceive to be on-theme. Today's work is Tintoretto's [Presentation of the Virgin](https://imgur.com/a/TcLkDKW)*,* which hangs in the church of Madonna dell'Orto in Venice. It's a striking image that seems at once grounded and immediate, while also affording a distinct sensation of ascent, or possibly transcendence.
+
+#ROTY
 """
             },
-            "expected_result": "Blackland - **Dart** (Machined)",
-            "expected_result_principal": "Blackland Dart",
+            "expected_result": "Shumate Trusty",
+            "expected_result_principal": "Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY",
         },
     ]
 

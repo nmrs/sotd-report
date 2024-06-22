@@ -15,7 +15,7 @@ from karve_plate_parser import KarvePlateParser
 from razor_parser import RazorParser
 from razor_plus_blade_parser import RazorPlusBladeParser
 
-from blade_format_extractor import BladeFormatExtractor
+from blade_format_extractor import RazorFormatExtractor
 from razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from sotd_post_locator import SotdPostLocator
 from staged_name_extractors import (
@@ -85,117 +85,117 @@ class Runner(object):
         rp = RazorParser()
         blp = BladeParser()
         brp = BrushParser()
-        bfe = BladeFormatExtractor(bne, blp, rne, rp)
+        bfe = RazorFormatExtractor(bne, blp, rne, rp)
         kpp = KarvePlateParser(rp)
         gcp = GameChangerPlateParser(rp)
         sstp = SuperSpeedTipParser(rp)
         process_entities = [
-            {
-                "name": "Blade Format",
-                "extractor": bfe,
-                "min_shaves": 1,
-            },
-            {
-                "name": "Razor",
-                "extractor": rne,
-                "parser": rp,
-                "parser field": "name",
-                "max_entities": 50,
-            },
-            {
-                "name": "Razor Manufacturer",
-                "extractor": rne,
-                "parser": rp,
-                "parser field": "brand",
-                "min_shaves": 10,
-            },
-            {
-                "name": "Blade",
-                "extractor": bne,
-                "parser": blp,
-                "parser field": "name",
-                "max_entities": 50,
-            },
-            {
-                "name": "Brush",
-                "extractor": brne,
-                "parser": brp,
-                "parser field": "name",
-                "max_entites": 50,
-                "fallback": True,
-            },
-            {
-                "name": "Brush Handle Maker",
-                "extractor": brne,
-                "parser": BrushHandleParser(),
-                "parser field": "name",
-                "min_shaves": 10,
-            },
-            {
-                "name": "Brush Knot Maker",
-                "extractor": brne,
-                "parser": brp,
-                "parser field": "knot maker",
-                "min_shaves": 10,
-            },
-            {
-                "name": "Knot Fiber",
-                "extractor": brne,
-                "parser": brp,
-                "parser field": "fiber",
-                "max_entites": 50,
-                "fallback": False,
-            },
-            {
-                "name": "Knot Size",
-                "extractor": brne,
-                "parser": brp,
-                "parser field": "knot size",
-                "max_entites": 50,
-                "fallback": False,
-            },
-            {
-                "name": "Blackbird Plate",
-                "extractor": rne,
-                "parser": BlackbirdPlateParser(rp),
-                "parser field": "name",
-                "fallback": False,
-            },
-            {
-                "name": "Christopher Bradley Plate",
-                "extractor": rne,
-                "parser": kpp,
-                "parser field": "name",
-                "fallback": False,
-            },
-            {
-                "name": "Game Changer Plate",
-                "extractor": rne,
-                "parser": gcp,
-                "parser field": "name",
-                "fallback": False,
-            },
-            {
-                "name": "Straight Width",
-                "extractor": rne,
-                "parser": StraightWidthParser(rp),
-                "parser field": "name",
-                "fallback": False,
-            },
-            {
-                "name": "Straight Grind",
-                "extractor": rne,
-                "parser": StraightGrindParser(rp),
-                "parser field": "name",
-                "fallback": False,
-            },
-            {
-                "name": "Straight Point",
-                "extractor": rne,
-                "parser": StraightPointParser(rp),
-                "parser field": "name",
-                "fallback": False,
-            },
+            # {
+            #     "name": "Razor Format",
+            #     "extractor": bfe,
+            #     "min_shaves": 1,
+            # },
+            # {
+            #     "name": "Razor",
+            #     "extractor": rne,
+            #     "parser": rp,
+            #     "parser field": "name",
+            #     "max_entities": 50,
+            # },
+            # {
+            #     "name": "Razor Manufacturer",
+            #     "extractor": rne,
+            #     "parser": rp,
+            #     "parser field": "brand",
+            #     "min_shaves": 10,
+            # },
+            # {
+            #     "name": "Blade",
+            #     "extractor": bne,
+            #     "parser": blp,
+            #     "parser field": "name",
+            #     "max_entities": 50,
+            # },
+            # {
+            #     "name": "Brush",
+            #     "extractor": brne,
+            #     "parser": brp,
+            #     "parser field": "name",
+            #     "max_entites": 50,
+            #     "fallback": True,
+            # },
+            # {
+            #     "name": "Brush Handle Maker",
+            #     "extractor": brne,
+            #     "parser": BrushHandleParser(),
+            #     "parser field": "name",
+            #     "min_shaves": 10,
+            # },
+            # {
+            #     "name": "Brush Knot Maker",
+            #     "extractor": brne,
+            #     "parser": brp,
+            #     "parser field": "knot maker",
+            #     "min_shaves": 10,
+            # },
+            # {
+            #     "name": "Knot Fiber",
+            #     "extractor": brne,
+            #     "parser": brp,
+            #     "parser field": "fiber",
+            #     "max_entites": 50,
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Knot Size",
+            #     "extractor": brne,
+            #     "parser": brp,
+            #     "parser field": "knot size",
+            #     "max_entites": 50,
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Blackbird Plate",
+            #     "extractor": rne,
+            #     "parser": BlackbirdPlateParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Christopher Bradley Plate",
+            #     "extractor": rne,
+            #     "parser": kpp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Game Changer Plate",
+            #     "extractor": rne,
+            #     "parser": gcp,
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Width",
+            #     "extractor": rne,
+            #     "parser": StraightWidthParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Grind",
+            #     "extractor": rne,
+            #     "parser": StraightGrindParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
+            #     "name": "Straight Point",
+            #     "extractor": rne,
+            #     "parser": StraightPointParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
             # {
             #     "name": "Super Speed Tip",
             #     "extractor": rne,
@@ -234,17 +234,17 @@ class Runner(object):
 
         # do razor plus blade combo, filtered on most popular razors...
         # razor_usage = get_shave_data(comments_target, RazorNameExtractor(), RazorAlternateNamer())
-        bpr_usage = self.blade_per_razor(
-            thread_map,
-            comments_target,
-            min_shaves,
-            min_unique_user,
-            rp,
-            blp,
-            razor_usage,
-        )
+        # bpr_usage = self.blade_per_razor(
+        #     thread_map,
+        #     comments_target,
+        #     min_shaves,
+        #     min_unique_user,
+        #     rp,
+        #     blp,
+        #     razor_usage,
+        # )
 
-        print(bpr_usage.to_markdown(index=False))
+        # print(bpr_usage.to_markdown(index=False))
         print("\n")
 
         usage = self.blade_heroes(
@@ -509,7 +509,7 @@ class Runner(object):
         end_month,
         bne: blade_name_extractor.BladeNameExtractor,
         bp: BladeParser,
-        bfe: BladeFormatExtractor,
+        bfe: RazorFormatExtractor,
     ):
         raw_blade_count = get_raw_data_from_parser(
             thread_map, comments_target, StagedBladeUseExtractor(), None
@@ -529,7 +529,7 @@ class Runner(object):
         )
 
         raw_format_usage = get_raw_data_from_parser(
-            thread_map, comments_target, bfe, None
+            thread_map, comments_target, bne, bp, "format", None
         )
         raw_format_usage_df = pd.DataFrame(raw_format_usage)
         raw_format_usage_df.rename(columns={"name": "format"}, inplace=True)

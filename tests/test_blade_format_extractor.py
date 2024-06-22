@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 
-from sotd_collator.blade_format_extractor import BladeFormatExtractor
+from sotd_collator.blade_format_extractor import RazorFormatExtractor
 
 
 class TestBladeFormatExtractor(TestCase):
@@ -33,7 +33,7 @@ class TestBladeFormatExtractor(TestCase):
     ]
 
     def test_get_razor_name_cases(self):
-        bfe = BladeFormatExtractor()
+        bfe = RazorFormatExtractor()
         for case in self.blade_format_cases:
             bf = bfe.get_name(case["comment"])
             self.assertEqual(case["expected_result"], bf)
