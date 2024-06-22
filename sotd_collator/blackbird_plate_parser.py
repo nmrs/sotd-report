@@ -2,7 +2,7 @@ import re
 from functools import cached_property, lru_cache
 from base_parser import BaseParser
 from razor_parser import RazorParser
-from sotd_collator.base_name_extractor import BaseNameExtractor
+from base_name_extractor import BaseNameExtractor
 
 
 class BlackbirdPlateParser(BaseParser):

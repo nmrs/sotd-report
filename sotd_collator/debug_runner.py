@@ -8,13 +8,13 @@ import inflect
 import pandas as pd
 import praw
 from blackbird_plate_parser import BlackbirdPlateParser
-from blade_format_extractor import RazorFormatExtractor
 from blade_name_extractor import BladeNameExtractor
 from blade_parser import BladeParser
 from brush_handle_parser import BrushHandleParser
 from brush_name_extractor import BrushNameExtractor
 from brush_parser import BrushParser
 import brush_parser
+from razor_format_extractor import RazorFormatExtractor
 from razor_name_extractor import RazorNameExtractor
 from razor_parser import RazorParser
 
