@@ -10,7 +10,7 @@ class SoapNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = []
+    GARBAGE = ["air bud ruler"]
 
     def _garbage(self):
         return self.GARBAGE
@@ -34,5 +34,8 @@ class SoapNameExtractor(BaseNameExtractor):
     def get_name(self, comment):
         if "soap" in comment:
             return comment["soap"]
+
+        if comment["author"] == "AirBudRuler":
+            return None
 
         return super().get_name(comment)

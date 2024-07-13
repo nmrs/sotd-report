@@ -43,6 +43,10 @@ Alpha:
   Outlaw:
     patterns:
     - alpha.*outl
+Alshabab:
+  Razor:
+    patterns:
+    - al ?shabab
 Assured for Men:
   TTO:
     patterns:
@@ -120,6 +124,10 @@ Beard Struggle:
   SEAX:
     patterns:
     - '\bseax\b'
+Berkeley:
+  Shave Selector:
+    patterns:
+    - berkeley
 Bevel:
   Razor:
     patterns:
@@ -249,6 +257,11 @@ Chiseled Face:
     - cfl*.*(ti|legacy|alum)
     - face.*legacy
     - legacy
+CJB:
+  GR-100B:
+    format: Shavette (AC)
+    patterns:
+    - gr-?100b
 Classic:
   Cobra Classic:
     format: AC
@@ -283,6 +296,10 @@ Crescent City:
   Closed Comb 79:
     patterns:
     - cres.*city.*79
+Diane:
+  Double Edge Shaver:
+    patterns:
+    - \bdiane\b
 DSCosmetic:
   T7SE:
     patterns:
@@ -313,6 +330,10 @@ Durham:
     format: Shavette
     patterns:
     - durham.*duplex
+Eclipse:
+  Red Ring:
+    patterns:
+    - eclipse.*red ring
 Edwin Jagger:
   3one6:
     patterns:
@@ -447,6 +468,10 @@ Fine:
   World's Finest:
     patterns:
     - fine.*world
+Flying Eagle:
+  '':
+    patterns:
+    - flying.*eagle
 Focus:
   Dynamic R48:
     format: Half DE
@@ -469,7 +494,7 @@ Futur Clone:
   : patterns:
     - futur.*clone
     - Ming.*Shi.*(2000|adj)
-    - qshave
+    - qs?have
 GEM:
   '1912':
     format: GEM
@@ -600,6 +625,9 @@ Gillette:
   Super Blue:
     patterns:
     - 'super\s*blue'
+  Super Click:
+    patterns:
+    - gil.*super click
   Super Speed:
     patterns:
     - Super.*speed
@@ -613,9 +641,10 @@ Gillette:
     - gil.*mii*lord
   Tech:
     patterns:
-    - ^(?!.*milord).*(gil|war|contract|slot|triangle|flat|hybrid|canada|english).*Tech
+    - ^(?!.*milord|.*clone|.*knock-?off).*(gil|war|contract|slot|triangle|flat|hybrid|canada|english).*Tech
     - fbt
     - 'triangle\s*slot'
+    - \btech\b
   Toggle:
     patterns:
     - Toggle
@@ -623,6 +652,9 @@ Goodfellas Smile:
   Bayonetta:
     patterns:
     - bayonett?a
+  Impero:
+    patterns:
+    - \bimpero\b
   Kamisori Shavette:
     format: Shavette (Half DE)
     patterns:
@@ -632,7 +664,7 @@ Goodfellas Smile:
     - legione
   Syntesi:
     patterns:
-    - syntesi
+    - s(y|i)ntesi
   Valynor:
     patterns:
     - valyn
@@ -661,6 +693,10 @@ Henson:
     - henson.*ti
     - ti22
     - ti.*henson
+Hendrix Classics & Co:
+  Garand:
+    patterns:
+    - garand
 Heritage:
   Adjustable:
     patterns:
@@ -718,6 +754,10 @@ King C Gillette:
   : patterns:
     - k*.*c.*gil.*et
     - gil.*et.*king.*c
+Kingever:
+  Refillable Razor:
+    patterns:
+    - kingever
 Koraat:
   Straight:
     format: Straight
@@ -930,7 +970,7 @@ OneBlade:
 Other:
   DE Clone:
     patterns:
-    - '^(?!.*\bfutur\b).*(\bclone|knock-?off|kinghood)\b.*'
+    - ^(?!.*(futur|eagle)).*(knockoff|clone)
   Shavette:
     format: Shavette
     patterns:
@@ -949,6 +989,7 @@ Other:
     - diamondine
     - ditzer
     - dubl.*duck
+    - dorko
     - engels
     - frameback
     - fred.*Reynolds?
@@ -962,9 +1003,11 @@ Other:
     - 'joseph\s*(elliot|allen)'
     - kamisori
     - leger
+    - leresche
     - maher.*grosh
     - otto.*busc?h
     - perfect temper
+    - puma
     - red.*imp
     - robeson
     - shumate
@@ -1054,6 +1097,9 @@ Parker:
   66R:
     patterns:
     - 66R
+  78R:
+    patterns:
+    - 78R
   87R:
     patterns:
     - 87R
@@ -1063,6 +1109,9 @@ Parker:
   91R:
     patterns:
     - 91R
+  92R:
+    patterns:
+    - 92R
   94R:
     patterns:
     - 94R
@@ -1140,6 +1189,10 @@ Ralf Aust:
     format: Straight
     patterns:
     - 'ralf.*aust(\s+straight)*'
+Rapira:
+  Double Edge Safety Razor:
+    patterns:
+    - rapira
 Raw Shaving:
   RS-10:
     patterns:
@@ -1210,6 +1263,7 @@ RazoRock:
   Teck II:
     patterns:
     - teck
+    - razorock \btec(h|k)\b
   Wunderbar Slant:
     patterns:
     - wunderbar
@@ -1284,6 +1338,10 @@ Rubin:
     - russian.*ruby
     - '\brubin\b'
     - ruby adjustable
+Saiver:
+  Profimed:
+    patterns:
+    - saiver
 SCS:
   Model A:
     patterns:
@@ -1421,6 +1479,10 @@ Timeless:
   Razor:
     patterns:
     - '\btime?less?\b.*(\.?\d\d)?'
+Treet:
+  TTO:
+    patterns:
+      - treet
 Utopia:
   Shavette:
     format: Shavette (Half DE)
@@ -1487,6 +1549,10 @@ Wade & Butcher:
     patterns:
     - 'wade.*butcher(\s+straight)*'
     - 'w&b\s+straight'
+Wardonia:
+  '':
+    patterns:
+    - wardonia
 Weber:
   ARC:
     patterns:
@@ -1526,7 +1592,7 @@ Weishi:
 Wilkinson Sword:
   Classic:
     patterns:
-    - wilk.*sword.
+    - wilk.*sword
 Wizamet:
   Junior P-1:
     patterns:
@@ -1580,12 +1646,19 @@ Yaqi:
   Katana:
     patterns:
     - yaqi.*katana
+  Pink:
+    patterns:
+    - yaqi.*pink
   Raster:
     patterns:
     - yaqi.*raster
   Remus:
     patterns:
     - yaqi.*remus
+  SE:
+    format: Half DE
+    patterns:
+    - yaqi \bse\b
   Slant:
     patterns:
     - yaqi.*slant

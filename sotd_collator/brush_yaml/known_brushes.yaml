@@ -15,6 +15,12 @@ AP Shave Co:
     fiber: Synthetic
     patterns:
     - synbad
+Aurora Grooming:
+  LG24:
+    fiber: Synthetic
+    knot size: 24mm
+    patterns:
+    - aurora.*lg24
 Badger & Blade:
   Essential:
     fiber: Boar
@@ -24,11 +30,14 @@ Badger & Blade:
     patterns:
     - badger.*blade.*essential
 Hand Lather:
-  ? ''
-  : fiber: Hand
+  '':
+    # fiber: Hand
     patterns:
-    - \bhands?\b
-    - hand.*lather
+    # - \bhand(?![\s-]*(?:tied|made|painted|crafted|altered))\b
+    - ^(?!.*\boumo\b)(?=.*\bhand\b)(?!.*\bhand\s*(tied|made|painted|crafted|altered)\b)
+    - \bhands\b
+    - hand(\s|-)lather
+    - \bfingers?\b
 Muhle:
   STF:
     fiber: Synthetic
@@ -285,9 +294,9 @@ Simpson:
     - simp.*ch3
   Colonel X2L:
     fiber: Badger
-    knot size: 22mm
+    knot size: 21mm
     patterns:
-    - colonel
+    - sim.*colonel
   Trafalgar T1:
     fiber: Synthetic
     knot size: 23mm

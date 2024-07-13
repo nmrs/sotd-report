@@ -11,7 +11,7 @@ class SoapNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = [r"^and\b", r"^n/a$", "^buddies", "help me identify it"]
+    GARBAGE = [r"^and\b", r"^n/a$", "^buddies", "help me identify it", "air bud ruler"]
 
     HTML_FIXUPS = [
         ("&#39;", "'"),
@@ -165,6 +165,10 @@ class SoapNameExtractor(BaseNameExtractor):
 
     @BaseNameExtractor.post_process_name
     def get_name(self, comment):
+        print(comment["author"])
+        if comment["author"] == "AirBudRuler":
+            return None
+
         if "soap" in comment:
             return comment["soap"]
 

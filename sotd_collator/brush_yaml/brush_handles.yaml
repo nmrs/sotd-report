@@ -5,10 +5,6 @@ AKA Brushworx:
 AMACK:
   patterns:
   - amack
-AP Shave Co:
-  patterns:
-  - AP\s*shave
-  - \bap\b
 Alpha:
   patterns:
   - alpha
@@ -22,9 +18,12 @@ Art of Shaving:
 Artesania Romera:
   patterns:
   - romera
+Aylsworth Razors:
+  patterns:
+  - aylsworth
 Aurora Grooming:
   patterns:
-  - aurora\s*grooming
+  - auroro?a\s*grooming
 B&M:
   patterns:
   - b&m
@@ -72,6 +71,10 @@ Brushcraft:
 Bullseye Brushworks:
   patterns:
   - bullseye
+Bundubeard:
+  patterns:
+  - bund\wbeard
+  - boendoebaard
 C-Mon:
   patterns:
   - c-mon
@@ -158,6 +161,7 @@ Executive Shaving:
 Farvour Turn Craft:
   patterns:
   - farvour.*(?:turn).*(?:craft)
+  - farvour
 Fendrihan:
   patterns:
   - fendri
@@ -192,6 +196,9 @@ Holzleute:
 Imperial:
   patterns:
   - imperial
+Jayaruh:
+  patterns:
+  - jayaruh
 L'Occitane en Provence:
   patterns:
   - oc*citane
@@ -214,6 +221,9 @@ Liojuny Shaving:
 Long Shaving:
   patterns:
   - long\s*shaving
+Lowborn Supply:
+  patterns:
+  - lowborn\s?supply
 Lutin Brushworks:
   patterns:
   - lutin
@@ -269,9 +279,6 @@ Omega:
   - omega
   - badger.*blade.*essential
   - proraso
-Oumo:
-  patterns:
-  - o[ou]mo
 Oz Shaving:
   patterns:
   - oz.*sha
@@ -368,12 +375,12 @@ Strike Gold Shave:
 Summer Break:
   patterns:
   - summer.*break
-Supply:
-  patterns:
-  - supply
 Surrey:
   patterns:
   - surrey
+Terra Firma Soapery:
+  patterns:
+  - terra ?firma
 TOBS:
   patterns:
   - tobs
@@ -385,6 +392,9 @@ TanZ:
 Teton Shaves:
   patterns:
   - teton
+Timeless:
+  patterns:
+  - timeless
 Truefitt & Hill:
   patterns:
   - truefitt.*hill
@@ -399,10 +409,6 @@ The Bluebeard's Revenge:
   patterns:
   - bluebeard.*rev
 The Golden Nib:
-  patterns:
-  - tgn
-  - golden.*nib
-The Holy Black:
   patterns:
   - tgn
   - golden.*nib
@@ -452,7 +458,6 @@ WCS:
 Wald:
   patterns:
   - wald
-  - west.*coast
 Whipped Dog:
   patterns:
   - whipped.*dog

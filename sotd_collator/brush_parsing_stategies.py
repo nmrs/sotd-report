@@ -14,11 +14,11 @@ class BaseBrushParsingStrategy(ABC):
     #     return {}
 
     _fibers = {
-        "Synthetic": r"(acrylic|timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5(a|b|c)|stf|quartermoon|fibre)",
+        "Synthetic": r"(acrylic|timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5(a|b|c)|stf|quartermoon|fibre|\bmig\b)",
         "Mixed Badger/Boar": r"(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
         "Boar": r"\b(boar|shoat)\b",
-        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|bulb|fan|finest|best|ultralux)",
-        "Horse": "(horse)",
+        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|finest|best|ultralux)",
+        "Horse": r"\bhorse(hair)?\b",
     }
 
     @abstractmethod
@@ -167,7 +167,7 @@ class DeclarationGroomingParsingStrategy(BaseBrushParsingStrategy):
         map = self._pattern_map
         for alt_name_re in sorted(map.keys(), key=len, reverse=True):
             if re.search(alt_name_re, input_string, re.IGNORECASE):
-                result = map[alt_name_re]
+                result = map[alt_name_re].copy()
                 knot_size = self.get_knot_size(input_string)
                 if knot_size:
                     result["knot size"] = knot_size
@@ -789,7 +789,7 @@ class KnownBrushStrategy(BaseBrushParsingStrategy):
         map = self._pattern_map
         for alt_name_re in sorted(map.keys(), key=len, reverse=True):
             if re.search(alt_name_re, input_string, re.IGNORECASE):
-                result = map[alt_name_re]
+                result = map[alt_name_re].copy()
                 # if "knot size" not in result:
                 knot_size = self.get_knot_size(input_string)
                 if knot_size:

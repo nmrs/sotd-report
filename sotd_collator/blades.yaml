@@ -40,6 +40,9 @@ Astra Superior Stainless (Blue):
   - astra.*sta
   - astra.*blue
   - astra.*ss
+Assured for Men:
+  patterns:
+  - assured.*men
 Baile Platinum:
   patterns:
     - baili.*plat
@@ -67,6 +70,7 @@ Cartridge:
   patterns:
   - cartridge
   - cien\s*men
+  - disposable
   - gil.*fusion
   - gil.*labs
   - gil.*proglide
@@ -82,6 +86,13 @@ Clifton Classic:
 Croma Diamant:
   patterns:
   - croma
+Crown Super Stainless:
+  patterns:
+  - crown.*stainless
+Crown Super Stainless SE:
+  format: Half DE
+  patterns:
+  - crown.*stainless.*\bse\b
 Crystal:
   patterns:
   - crystal
@@ -146,6 +157,9 @@ Enders Speed Blade:
 Euromax:
   patterns:
   - euromax
+Fatip Stainless Steel:
+  patterns:
+  - fatip
 Feather (DE):
   patterns:
   - feather
@@ -153,10 +167,10 @@ Feather (DE):
   - feather.*hs
   - 'feather\s*blade'
   - feather.*de
-Feather FHS-1:
+Feather FHS-1 (FHS):
   format: FHS
   patterns:
-  - fhs-1
+  - (feather)?.*\bfhs\b
 Feather Pro (AC):
   format: AC
   patterns:
@@ -250,7 +264,6 @@ Kai (DE):
   patterns:
   - kai
   - kai.*sta
-  - kai.*ss
 Kai Captain Blade (AC):
   format: AC
   patterns:
@@ -266,10 +279,11 @@ Kai Captain Titan Mild (AC):
   patterns:
   - kai.*titan
   - kai.*cap.*mild
-Kai Captain Titan Mild Protouch (AC):
+Kai Captain Titan Mild Protouch MG (AC):
   format: AC
   patterns:
   - 'kai.*pro\s*touch'
+  - 'protouch'
 Kampfe (Wedge):
   format: Other
   patterns:
@@ -319,9 +333,20 @@ Merkur Super Platinum:
 My-Blades:
   patterns:
   - my.*blades
+PAA Platinum Strangelet Super Sharps:
+  patterns:
+  - \bpaa\b|strangelet
+PAL Blue Blade:
+  format: GEM
+  patterns:
+  - \bpal\b.*blue
 Mühle:
   patterns:
   - muhle
+Neva:
+  patterns:
+  - Нева
+  - neva
 Personna 74:
   patterns:
   - 'p(?:ersonn*a)?\s*74'
@@ -354,7 +379,7 @@ Personna Injector:
   - (person|personna).*(inject|injector)
 Personna Lab Blue:
   patterns:
-  - lab *blue
+  - (person+a)?.*lab *blue
   - personn*a.*blue
   - personn*a.*c.*c
   - personn*a
@@ -442,7 +467,7 @@ Silver Star - Super Stainless:
 Super-Max Blue Diamond:
   patterns:
   - super.*max.*(?:blu)*.*dia
-  - diamond.*edge.*super.*plat
+  - diamond(.*edge)?.*super.*plat
 Super-Max Platinum:
   patterns:
   - super.*max.*plat
@@ -471,6 +496,9 @@ Ted Pella PTFE:
 Tiger Platinum:
   patterns:
   - tiger
+Timor:
+  patterns:
+  - timor
 Treet Black Beauty:
   patterns:
   - 'treet\s*bla'

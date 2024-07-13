@@ -1,20 +1,17 @@
-Acca Kappa:
-  default: Badger
-  patterns:
-  - acca kappa
-All-Star Grooming Co.:
-  default: Badger
-  patterns:
-  - all(\s|-)?star
 AKA Brushworx:
   default: Synthetic
   patterns:
-  - \baka\b.*brush
-  - \baka\b
+  - aka.*brush
+  - aka
 AMACK:
   default: Synthetic
   patterns:
   - amack
+AP Shave Co:
+  default: Synthetic
+  patterns:
+  - AP\s*shave\s*(co)?
+  - \bap\b
 Alpha:
   default: Synthetic
   patterns:
@@ -23,15 +20,6 @@ Anbbas:
   default: Synthetic
   patterns:
   - anbbas
-AP Shave Co:
-  default: Synthetic
-  patterns:
-  - AP\s*shave\s*(co)?
-  - \bap\b
-Ariana & Evans:
-  default: Synthetic
-  patterns:
-  - ariana.*evan
 Art of Shaving:
   default: Badger
   patterns:
@@ -48,7 +36,7 @@ Aurora Grooming:
 B&M:
   default: Synthetic
   patterns:
-  - b\s*(&|a)\s*m
+  - b\s*(&|a)\s*m\b
   - barrister
 Balea Men:
   default: Synthetic
@@ -103,7 +91,8 @@ Bullseye Brushworks:
 Bundubeard:
   default: Badger
   patterns:
-  - bundubeard
+  - bund\wbeard
+  - boendoebaard
 CaYuen:
   default: Synthetic
   patterns:
@@ -123,7 +112,11 @@ Chisel & Hound:
   - chis.*hou
   - chis.*fou
   - \bc(?:\&|and|\+)h\b
-CommonWealth CW:
+Col. Ichabod Conk:
+  default: Badger
+  patterns:
+  - col.*\bconk\b
+Commonwealth 'CW':
   default: Badger
   patterns:
   - commonwealth
@@ -158,10 +151,6 @@ Den of Man:
   default: Synthetic
   patterns:
   - den.*of.*man
-DISCARD:
-  default: DISCARD
-  patterns:
-  - had forever.*mark rubbed off
 Dogwood:
   default: Badger
   patterns:
@@ -201,10 +190,6 @@ Executive Shaving:
   default: Synthetic
   patterns:
   - execut.*shav
-Extro Cosmesi:
-  default: Synthetic
-  patterns:
-  - extro.*comesi
 Farvour Turn Craft:
   default: Badger
   patterns:
@@ -229,10 +214,10 @@ Geo F. Trumper:
   default: Badger
   patterns:
   - geo.*trumper
-Gillette:
-  default: Badger
+Goodfellas Smile:
+  default: Synthetic
   patterns:
-  - gil+et+e
+  - goodfella.*smile
 Grizzly Bay:
   default: Badger
   patterns:
@@ -355,7 +340,7 @@ Omega:
 Oumo:
   default: Badger
   patterns:
-  - o[ou]mo(?:adkjhgasjkdgh)*
+  - \bo(o|u)+mo\b
 Oz Shaving:
   default: Synthetic
   patterns:
@@ -390,10 +375,6 @@ Prometheus Handcrafts:
   default: Synthetic
   patterns:
   - promethe
-QSHAVE:
-  default: Badger
-  patterns:
-  - qshave
 Razorock:
   default: Synthetic
   patterns:
@@ -456,17 +437,14 @@ Simpson:
   - duke
   - trafalgar
 SmilezforMilez:
-  default: Synthetic
+  default: Badger
+  knot size: 26mm
   patterns:
   - smile\w*mile
 Some Making Required:
   default: Synthetic
   patterns:
   - some.*maki
-Spokar:
-  default: Boar
-  patterns:
-  - spokar
 Spiffo:
   default: Badger
   patterns:
@@ -526,8 +504,7 @@ The Golden Nib:
 The Holy Black:
   default: Synthetic
   patterns:
-  - tgn
-  - golden.*nib
+  - holy black
 The Razor Company:
   default: Synthetic
   patterns:
@@ -545,10 +522,6 @@ Trotter Handcrafts:
   default: Synthetic
   patterns:
   - trotter
-Truefitt & Hill:
-  default: Badger
-  patterns:
-  - truefitt.*hill
 Turn-N-Shave:
   default: Badger
   patterns:

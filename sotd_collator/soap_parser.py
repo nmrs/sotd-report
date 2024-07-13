@@ -732,7 +732,7 @@ class SoapParser(BaseParser):
     @lru_cache(maxsize=None)
     def _get_value(self, input_string: str, field: str) -> str:
 
-        input_string = input_string.replace("*", "")
+        input_string = input_string.replace("*", "").replace("(sample)", "").strip()
         regexes = sorted(self.__mapper.keys(), key=len, reverse=True)
         for alt_name_re in regexes:
             if re.search(alt_name_re, input_string, re.IGNORECASE):

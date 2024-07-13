@@ -427,20 +427,23 @@ class BrushHandleParser(BaseParser):
         # },
     }
 
-    @cached_property
-    def _from_yaml(self):
-        with open(f"{os.getcwd()}/sotd_collator/brush_handles.yaml", "r") as f:
+    # @cached_property
+    def _from_yaml(self, filename):
+        with open(f"{os.getcwd()}/sotd_collator/brush_yaml/{filename}.yaml", "r") as f:
             return yaml.load(f, Loader=yaml.SafeLoader)
 
     @cached_property
-    def __mapper(self):
-        output = {}
-        for name, property_map in self._from_yaml.items():
-            for pattern in property_map["patterns"]:
-                output[pattern] = {
-                    "name": name,
-                }
-        return output
+    def __mappers(self):
+        result = []
+        for filename in ["brush_handles", "other_handles"]:
+            output = {}
+            for name, property_map in self._from_yaml(filename).items():
+                for pattern in property_map["patterns"]:
+                    output[pattern] = {
+                        "name": name,
+                    }
+            result.append(output)
+        return result
 
     # def extract_uses(input_string):
     #     match = re.search(r"[[(](\d{1,4})[)\]]", input_string)
@@ -457,14 +460,15 @@ class BrushHandleParser(BaseParser):
 
     @lru_cache(maxsize=None)
     def __get_value(self, input_string, field):
-        regexes = sorted(self.__mapper.keys(), key=len, reverse=True)
-        for alt_name_re in regexes:
-            if re.search(alt_name_re, input_string, re.IGNORECASE):
-                property_map = self.__mapper[alt_name_re]
-                if field in property_map:
-                    return self.__mapper[alt_name_re][field]
-                # else:
-                #     raise ValueError(f"Unsupported field: {field}")
+        for mapper in self.__mappers:
+            regexes = sorted(mapper.keys(), key=len, reverse=True)
+            for alt_name_re in regexes:
+                if re.search(alt_name_re, input_string, re.IGNORECASE):
+                    property_map = mapper[alt_name_re]
+                    if field in property_map:
+                        return mapper[alt_name_re][field]
+                    # else:
+                    #     raise ValueError(f"Unsupported field: {field}")
         return None
 
 

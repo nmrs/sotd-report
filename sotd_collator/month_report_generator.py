@@ -109,11 +109,7 @@ Welcome to your SOTD Hardware Report for {target_label}
   
     * Personna Med Prep is now Accuthrive Super Med Prep
 
-* Any brush with a DG knot will come under the DG Bx category - eg Dogwood B8 is recorded as 'DG B8'
-
-* In the case of most brush makers (eg Maggard) - knots are split into synthetic / badger / boar and attributed to the maker - eg 'Maggard Synthetic'
-
-* Notable exceptions to this are Omega and Semogue, in order to retain the model number. Unless someone just puts 'Omega Boar' which I then report as 'Omega (model not specified) Boar' .
+* In the case of most brush makers (eg Maggard) - knots are split into synthetic / badger / boar and attributed to the maker - eg 'Maggard Synthetic', though for particularly popular brush models (e.g. specific models from Semogue and Omega) or knots (e.g. DG, Chisel & Hound, or AP Shave Co.) they are reported on indvidually.
 
 * The unique user column shows the number of different users who used a given razor / brush etc in the month. We can combine this with the total number of shaves to get the average number of times a user used a razor / brush etc
 

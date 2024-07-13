@@ -5,20 +5,9 @@ from dateutil.relativedelta import relativedelta
 import inflect
 import pandas as pd
 import praw
-from blackbird_plate_parser import BlackbirdPlateParser
-import blade_name_extractor
-from blade_parser import BladeParser
-from brush_handle_parser import BrushHandleParser
-from brush_parser import BrushParser
-from game_changer_plate_parser import GameChangerPlateParser
-from karve_plate_parser import KarvePlateParser
-from razor_parser import RazorParser
-from razor_plus_blade_parser import RazorPlusBladeParser
 
-from blade_format_extractor import RazorFormatExtractor
-from razor_plus_blade_name_extractor import RazorPlusBladeNameExtractor
 from soap_name_extractor import SoapNameExtractor
-from soap_parser import SoapNameParser
+from soap_parser import SoapParser
 from sotd_post_locator import SotdPostLocator
 from staged_name_extractors import (
     StagedSoapNameExtractor,
@@ -74,7 +63,7 @@ class SoapRunner(object):
     ):
         sne = StagedSoapNameExtractor()
 
-        snp = SoapNameParser()
+        snp = SoapParser()
 
         process_entities = [
             {
@@ -288,7 +277,7 @@ class SoapRunner(object):
         delta_two_label,
         delta_three_label,
         extractor: SoapNameExtractor,
-        parser: SoapNameParser,
+        parser: SoapParser,
         min_scents=5,
     ):
 

@@ -6,9 +6,8 @@ import praw
 from dateutil.relativedelta import relativedelta
 
 
-from soap_parser import SoapNameParser
+from soap_parser import SoapParser
 from soap_runner import SoapRunner
-from sotd_collator.runner import Runner
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.stage_builder import StageBuilder
 from sotd_collator.utils import extract_date_from_thread_title
@@ -21,7 +20,7 @@ runner = SoapRunner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 5, 1)
+target = datetime.date(2024, 6, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)
@@ -84,7 +83,7 @@ for comment in comments_target:
     shavers[comment["author"]] = 0
 
 sne = StagedSoapNameExtractor()
-snp = SoapNameParser()
+snp = SoapParser()
 brand_usage = runner.usage_for_field(
     thread_map,
     comments_target,
@@ -118,15 +117,11 @@ scent_usage = runner.usage_for_field(
 header = f"""
 Welcome to your SOTD Lather Log for {target_label}
 
-* {shave_reports} shave reports from {len(shavers.keys())} distnct shavers during the month of {target_label} were analyzed to produce this report. Collectively, these shavers used {len(scent_usage.index)} distinct soaps from {len(brand_usage.index)} distinct brands.
+* {shave_reports} shave reports from {len(shavers.keys())} distinct shavers during the month of {target_label} were analyzed to produce this report. Collectively, these shavers used {len(scent_usage.index)} distinct soaps from {len(brand_usage.index)} distinct brands.
 
 ## Observations
 
-* Tabac Tuesday is clearly a thing.
-
-* Folks were pretty excited about the Roman Spice release.
-
-* It's pretty easy to push a particular soap pretty far up the list if you're motivated (and boring).
+* Somthing insightful
 
 ## Notes & Caveats
 

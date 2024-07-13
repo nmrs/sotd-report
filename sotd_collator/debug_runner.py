@@ -57,11 +57,11 @@ class DebugRunner(object):
         brp = BrushParser()
 
         process_entities = [
-            # {
+            # {rush
             #     "name": "Razor Format",
             #     "extractor": BladeFormatExtractor(bne, blp, rne, rp),
             # },
-            # # {
+            # {
             #     "name": "Razor",
             #     "extractor": rne,
             #     "parser": rp,
@@ -79,13 +79,13 @@ class DebugRunner(object):
             #     "parser": blp,
             #     "parser field": "name",
             # },
-            {
-                "name": "Brush",
-                "extractor": StagedBrushNameExtractor(),
-                "parser": brp,
-                "parser field": "name",
-                "fallback": True,
-            },
+            # {
+            #     "name": "Brush",
+            #     "extractor": StagedBrushNameExtractor(),
+            #     "parser": brp,
+            #     "parser field": "name",
+            #     "fallback": True,
+            # },
             # {
             #     "name": "Brush Handle Maker",
             #     "extractor": StagedBrushNameExtractor(),
@@ -155,32 +155,36 @@ class DebugRunner(object):
             #     "fallback": False,
             # },
             # {
-            #     "name": "Soap",
+            #     "name": "Soap Brands",
             #     "extractor": StagedSoapNameExtractor(),
             #     "parser": SoapParser(),
-            #     "parser field": "name",
+            #     "parser field": "brand",
             # },
+            {
+                "name": "Soap",
+                "extractor": StagedSoapNameExtractor(),
+                "parser": SoapParser(),
+                "parser field": "name",
+            },
         ]
 
         inf_engine = inflect.engine()
 
+        modes = [
+            # DebugRunnerMode.COMPARE_TO_ORGINAL,
+            DebugRunnerMode.UNIQUE,
+        ]
+
         for entity in process_entities:
-            self.process_entity(
-                thread_map,
-                comments_target,
-                blp,
-                inf_engine,
-                entity,
-                DebugRunnerMode.COMPARE_TO_ORGINAL,
-            )
-            # self.process_entity(
-            #     thread_map,
-            #     comments_target,
-            #     blp,
-            #     inf_engine,
-            #     entity,
-            #     DebugRunnerMode.UNIQUE,
-            # )
+            for mode in modes:
+                self.process_entity(
+                    thread_map,
+                    comments_target,
+                    blp,
+                    inf_engine,
+                    entity,
+                    mode,
+                )
 
         # self.process_user_shave_data(
         #     thread_map, comments_target, start_month, end_month
