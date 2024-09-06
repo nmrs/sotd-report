@@ -18,7 +18,7 @@ runner = Runner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 6, 1)
+target = datetime.date(2024, 8, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)
@@ -91,7 +91,7 @@ Welcome to your SOTD Hardware Report for {target_label}
 
 ## Notes & Caveats
 
-* {shave_reports} shave reports from {len(shavers.keys())} distnct shavers during the month of {target_label} were analyzed to produce this report.
+* {shave_reports} shave reports from {len(shavers.keys())} distinct shavers during the month of {target_label} were analyzed to produce this report.
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 

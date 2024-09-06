@@ -40,6 +40,10 @@ Above the Tie:
     patterns:
     - '\b(?:att|tie)\b.*(?:windsor)*\b.*ssrh2'
 Alpha:
+  Spirit:
+    format: AC
+    patterns:
+    - alpha.*spirit
   Outlaw:
     patterns:
     - alpha.*outl
@@ -71,10 +75,13 @@ Atelier Durdan:
   Mauritius:
     patterns:
     - dur.*mauritius
+  Number 7:
+    patterns:
+    - atelier.*durdan.*(number|no).*(7|seven)
   Vestige:
     format: GEM
     patterns:
-    - dur.*vestig
+    - atelier.*durdan.*.*vestige(.*(number|no).*(7|seven) handle)?
 Aylsworth:
   Apex:
     patterns:
@@ -142,30 +149,30 @@ Blackland:
     - Blaclbird
     - Blckbird
     - Blclbird
-    - 'Blackland\s*Tb?ird'
+    - Blackland\s*Tb?ird
+    - blackland
   Dart:
     patterns:
-    - '\bdart\b'
+    - (?:blackland)?.*\bdart\b
   Era:
     patterns:
-    - black.*era
-    - '\bera\b'
+    - (?:blackland)?.*\bera\b
     - black.*dna
   Osprey:
     patterns:
-    - osprey
+    - (?:blackland)?.*osprey
   Sabre:
     format: GEM
     patterns:
-    - sabre
-    - saber
+    - (?:blackland)?.*sabre
+    - (?:blackland)?.*saber
   Tradere:
     patterns:
-    - tradere
+    - (?:blackland)?.*tradere
   Vector:
     format: AC
     patterns:
-    - vector
+    - (?:blackland)?.*vector
 Blutt Rasur:
   BR-1:
     patterns:
@@ -215,6 +222,7 @@ Cartridge / Disposable:
     patterns:
     - atra
     - '\bbic\b'
+    - \bcart\b
     - cartridge
     - disposable
     - fusion
@@ -250,6 +258,10 @@ Chinchilla:
   Razor:
     patterns:
     - chinchilla
+# Chisel & Hound:
+#   Briar Brushworks Collab Slim:
+#     patterns:
+#     - chisel.*hound.*briar.*slim
 Chiseled Face:
   Legacy:
     patterns:
@@ -427,6 +439,7 @@ Fatip:
   Lo Storto:
     patterns:
     - fatt?ip.*stor[tn]o
+    - fatt?ip.*strobo
   Olive Wood:
     patterns:
     - fatt?ip.*(olive|ulivo|wood)
@@ -647,7 +660,10 @@ Gillette:
     - \btech\b
   Toggle:
     patterns:
-    - Toggle
+    - toggle
+  Tuckaway:
+    patterns:
+    - gil.*tuckaway
 Goodfellas Smile:
   Bayonetta:
     patterns:
@@ -710,13 +726,16 @@ Homelike:
   START:
     patterns:
     - Homelike.*start
-J A Henckels:
+J.A. Henckels:
   Straight:
     format: Straight
     patterns:
-    - 'friodur(\s+straight)*'
     - 'Henckels(\s+straight)*'
     - 'henkels(\s+straight)*'
+  Friodur Straight:
+    format: Straight
+    patterns:
+    - (?:henck)?.*friodur(\s+straight)*
 Kai:
   Captain Folding:
     format: Shavette
@@ -737,6 +756,10 @@ Kampfe:
     - kampfe(.*1902)?
     - 1902.*lather
     - lather catcher
+Kanzy:
+  Double Edge Safety Razor:
+    patterns:
+    - kanzy
 Karve:
   Bison:
     patterns:
@@ -871,6 +894,7 @@ Merkur:
     patterns:
     - (merkur.*)?37c
     - merkur.*37c.*(slant)*
+    - coles slant
   38C:
     patterns:
     - (merkur.*)?38c
@@ -946,6 +970,10 @@ Occams Razor:
     format: AC
     patterns:
     - enoch
+OliWorks:
+  OliBlade:
+    patterns:
+    - oli(works|blade)
 OneBlade:
   Core:
     format: FHS
@@ -977,6 +1005,7 @@ Other:
     - shavette
     - hess.*ezy
     - hair.*sha
+    - marianna
   Straight Razor:
     format: Straight
     patterns:
@@ -991,6 +1020,7 @@ Other:
     - dubl.*duck
     - dorko
     - engels
+    - \bern\b
     - frameback
     - fred.*Reynolds?
     - french.*point
@@ -1017,12 +1047,14 @@ Other:
     - suzumasa
     - thomas.*turner
     - tornblom
+    - tonsorial
     - torrey
     - wacker
     - wedge
     - wester.*brothers
     - wostenholm
     - yankee.*cutlery
+    - \bm\b.*karam
 PAA:
   Alpha Ecliptic:
     patterns:
@@ -1094,6 +1126,9 @@ Parker:
   60R:
     patterns:
     - 60R
+  65R:
+    patterns:
+    - 65R
   66R:
     patterns:
     - 66R
@@ -1643,6 +1678,9 @@ Yaqi:
   Flipside:
     patterns:
     - yaqi.*flip
+  Ghost:
+    patterns:
+    - yaqi.*ghost
   Katana:
     patterns:
     - yaqi.*katana

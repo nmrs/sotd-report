@@ -43,6 +43,12 @@ Muhle:
     fiber: Synthetic
     patterns:
     - \bstf\b
+OKU:
+  Caceres:
+    fiber: Badger
+    knot size: 26mm
+    patterns:
+    - c(a|á)ceres
 Omega:
   '10005':
     fiber: Boar
@@ -160,6 +166,11 @@ Rich Man Shaving:
     knot size: 26mm
     patterns:
     - rich.*man.*ultraluxe*
+Rubab Men:
+  Bomber:
+    fiber: Synthetic
+    patterns:
+    - rubab.*bomber
 Semogue:
   '1250':
     fiber: Boar
@@ -409,6 +420,12 @@ Turn-N-Shave:
     patterns:
     - turn.{1,5}shave.*shoat
     - tns.*shoat
+Truefitt & Hill:
+  Wellington:
+    fiber: Badger
+    knot size: 24mm
+    patterns:
+    - wellington
 Wald:
   A1:
     fiber: Synthetic
@@ -450,22 +467,37 @@ Yaqi:
     patterns:
     - yaqi.*synbad
 Zenith:
+  2006 XSE:
+    fiber: Boar
+    knot size: 21mm
+    patterns:
+    - 'zenith.*\b2006(?:\s?xse)?\b'
   502B XSE:
     fiber: Boar
     knot size: 26mm
     patterns:
     - 502B
+  505BC SE:
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - 505BC
   506U SE:
     fiber: Boar
     knot size: 27mm
     patterns:
     - 506U
-  '507U ':
+  507U:
     fiber: Boar
     knot size: 27mm
     patterns:
     - 507U
-  '508 ':
+  507N XSE:
+    fiber: Boar
+    knot size: 27mm
+    patterns:
+    - 507N
+  '508':
     fiber: Boar
     knot size: 27mm
     patterns:
@@ -500,6 +532,11 @@ Zenith:
     knot size: 31mm
     patterns:
     - zen.*B35
+  B36:
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - zen.*B36
   Butterscotch Chubby:
     fiber: Boar
     knot size: 28mm
@@ -507,8 +544,8 @@ Zenith:
     - zen.*B34
     - zen.*butter.*chub
     - zen.*chub.*butter
-  Unbleached Boar:
-    fiber: Boar
-    knot size: 27mm
-    patterns:
-    - ^(?=.*zenith)(?=.*unbleach).*
+  # Unbleached Boar:
+  #   fiber: Boar
+  #   knot size: 27mm
+  #   patterns:
+  #   - ^(?=.*zenith)(?=.*unbleach).*

@@ -13,6 +13,8 @@ class BladeNameExtractor(BaseNameExtractor):
     GARBAGE = [
         r"\d{1,2}/(8|16)",  # don't match straight blades
         r"\bstraight\b",
+        r"edge by\b",
+        r"u/whosgotthepudding edge",
     ]
 
     def _garbage(self):

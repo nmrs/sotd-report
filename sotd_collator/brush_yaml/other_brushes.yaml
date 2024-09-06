@@ -96,7 +96,7 @@ Bundubeard:
 CaYuen:
   default: Synthetic
   patterns:
-  - cayuen
+  - ca\s*?yuen
 Carnavis & Richardson:
   default: Synthetic
   patterns:
@@ -178,6 +178,10 @@ Elite:
   default: Badger
   patterns:
   - elite
+Envy Shave:
+  default: Badger
+  patterns:
+  - envy.*(?:shave)?
 Erskine:
   default: Boar
   patterns:
@@ -527,6 +531,10 @@ Turn-N-Shave:
   patterns:
   - turn.{1,5}shave
   - tns
+Vulfix:
+  default: Badger
+  patterns:
+  - vul?fix
 Van der Hagen:
   default: Boar
   patterns:
@@ -555,7 +563,7 @@ Voigt & Cop:
 Vulfix:
   default: Badger
   patterns:
-  - vulfix
+  - vul?fix
 WCS:
   default: Synthetic
   patterns:

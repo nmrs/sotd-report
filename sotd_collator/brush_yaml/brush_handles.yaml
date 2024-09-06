@@ -80,7 +80,7 @@ C-Mon:
   - c-mon
 CaYuen:
   patterns:
-  - cayuen
+  - ca\s?yuen
 Carnavis & Richardson:
   patterns:
   - carn.*rich
@@ -148,7 +148,7 @@ Elite:
   - elite
 Envy Shave:
   patterns:
-  - envy.*shave
+  - envy.*(?:shave)?
 Erskine:
   patterns:
   - erskine
@@ -304,7 +304,7 @@ Plisson:
   - plisson
 Prometheus Handcrafts:
   patterns:
-  - prometheus.*(?:handcraft)+
+  - prometheus.*(?:handcraft)?
 Razorock:
   patterns:
   - Razorr*ock
@@ -339,6 +339,8 @@ Sawdust Creation Studios:
 Semogue:
   patterns:
   - semogue
+  - owner.*club
+  - \bsoc\b
 Shave Forge:
   patterns:
   - shave.*forge
@@ -450,7 +452,7 @@ Voigt & Cop:
   - voigt
 Vulfix:
   patterns:
-  - vulfix
+  - \bvulfix\b
 WCS:
   patterns:
   - wcs

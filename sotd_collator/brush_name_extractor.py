@@ -10,7 +10,7 @@ class BrushNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = []
+    GARBAGE = ["Splash of warm water"]
 
     def _garbage(self):
         return self.GARBAGE

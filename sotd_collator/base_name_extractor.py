@@ -20,6 +20,11 @@ class BaseNameExtractor(ABC):
     def detect_regexps(self):
         raise NotImplementedError("subclass must implement detect_regexps")
 
+    @property
+    @abstractmethod
+    def detect_regexps(self):
+        raise NotImplementedError("subclass must implement detect_regexps")
+
     __name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~\[\]"
     __imgur_name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~"
 
@@ -104,19 +109,9 @@ class BaseNameExtractor(ABC):
         # try to extract entity name using regexps - ie SOTD is in a common format
         lines = comment_text.split("\n")
         for line in lines:
-            for detector in self.detect_regexps:
-                res = detector.search(line)
-                if res:
-                    name = ""
-                    for group in res.groups():
-                        if group:
-                            name += group
-                    # name = res.group(1)
-                    # # for pattern in self.BASE_GARBAGE:
-                    # #     if re.search(pattern, name, re.IGNORECASE):
-                    # #         return None
-                    name = self.remove_hashtags(name)
-                    return name.strip()
+            name = self.get_name_from_line(line)
+            if name != None:
+                return name
 
         # # if we cant find the the entity by looking for it in common SOTD formats,
         # # try and find any common entity name within the comment
@@ -125,6 +120,25 @@ class BaseNameExtractor(ABC):
         #     return principal_name
 
         return None
+
+    def get_name_from_line(self, line):
+        for detector in self.detect_regexps:
+            res = detector.search(line)
+            if res:
+                name = ""
+                for group in res.groups():
+                    if group:
+                        name += group
+                # name = res.group(1)
+                # # for pattern in self.BASE_GARBAGE:
+                # #     if re.search(pattern, name, re.IGNORECASE):
+                # #         return None
+                name = self.remove_hashtags(name).strip()
+                for pattern in self.__garbage():
+                    if re.search(pattern, name, re.IGNORECASE):
+                        return None
+
+                return name.strip()
 
     def remove_hashtags(self, text):
         # Define the regex pattern for hashtags
