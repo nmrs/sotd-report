@@ -11,7 +11,7 @@ from sotd_collator.base_name_extractor import BaseNameExtractor
 
 class BaseStagedNameExtractor(BaseNameExtractor):
 
-    def detect_regexps(self):
+    def detect_labels(self):
         return []
 
     def _garbage(self):

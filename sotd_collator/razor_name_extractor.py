@@ -25,15 +25,22 @@ class RazorNameExtractor(BaseNameExtractor):
     #         re.MULTILINE | re.IGNORECASE,
     #     )
 
-    @cached_property
-    def detect_regexps(self):
+    # @cached_property
+    # def detect_regexps(self):
+
+    #     return [
+    #         # self.sgrddy_detector("Razor"),
+    #         self.imgur_detector("(?:safety\s+)?razor(?!\s*blade)"),
+    #         self.tts_detector("(?:safety\s+)?razor(?!\s*blade)"),
+    #         self.imgur_detector("Blade\sHolder"),
+    #         self.tts_detector("Blade\sHolder"),
+    #     ]
+
+    def detect_labels(self):
 
         return [
-            # self.sgrddy_detector("Razor"),
-            self.imgur_detector("(?:safety\s+)?razor(?!\s*blade)"),
-            self.tts_detector("(?:safety\s+)?razor(?!\s*blade)"),
-            self.imgur_detector("Blade\sHolder"),
-            self.tts_detector("Blade\sHolder"),
+            "(?:safety\s+)?razor(?!\s*blade)",
+            "Blade\sHolder",
         ]
 
     @BaseNameExtractor.post_process_name

@@ -97,7 +97,7 @@ class SoapRunner(object):
 
         print(header)
         for entity in process_entities:
-            print(f"##{inf_engine.plural(entity['name'])}\n")
+            print(f"## {inf_engine.plural(entity['name'])}\n")
 
             usage = self.entity_usage(
                 thread_map,

@@ -15,14 +15,19 @@ class BrushNameExtractor(BaseNameExtractor):
     def _garbage(self):
         return self.GARBAGE
 
-    @cached_property
-    def detect_regexps(self):
-        brush_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~+"""
+    # @cached_property
+    # def detect_regexps(self):
+    #     brush_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~+"""
 
+    #     return [
+    #         # self.sgrddy_detector("Brush"),
+    #         self.imgur_detector("Brush"),
+    #         self.tts_detector("Brush"),
+    #     ]
+
+    def detect_labels(self):
         return [
-            # self.sgrddy_detector("Brush"),
-            self.imgur_detector("Brush"),
-            self.tts_detector("Brush"),
+            "Brush",
         ]
 
     @BaseNameExtractor.post_process_name

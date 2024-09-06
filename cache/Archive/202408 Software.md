@@ -1,10 +1,10 @@
 Welcome to your SOTD Lather Log for August 2024
 
-* 2,504 shave reports from 132 distinct shavers during the month of August 2024 were analyzed to produce this report. Collectively, these shavers used 238 distinct soaps from 75 distinct brands.
+* 2,533 shave reports from 132 distinct shavers during the month of August 2024 were analyzed to produce this report. Collectively, these shavers used 238 distinct soaps from 75 distinct brands.
 
 ## Observations
 
-* With [768 shaves](https://www.djudge.me/22/view) shaves from [$MammothMafia24](https://www.reddit.com/r/Wetshaving/comments/1dv6576/mammoth_mafia_recruiting_call_officially/) participants (plus another 64 shaves from non participants), it's no surprise at all that House of Mammoth landed at the top of the chart this month, though I'll admit that I was a little surpised to see that they had nearly double the shaves of the next nearest soaper, Stirling, especially seeing as Stirling had an [AA challenge of their own](https://www.reddit.com/r/Wetshaving/comments/1egmjc4/shepherds_of_stirling_challenge_austere_august/), albeit a pretty relaxed one.
+* With [768 shaves](https://www.djudge.me/22/view) shaves from [$MammothMafia24](https://www.reddit.com/r/Wetshaving/comments/1dv6576/mammoth_mafia_recruiting_call_officially/) participants (plus another 93 shaves from non-participants), it's no surprise at all that House of Mammoth landed at the top of the chart this month, though I'll admit that I was a little surpised to see that they had over double the shaves of the next nearest soaper, Stirling, especially seeing as Stirling had an [AA challenge of their own](https://www.reddit.com/r/Wetshaving/comments/1egmjc4/shepherds_of_stirling_challenge_austere_august/), albeit a pretty relaxed one.
 
 * Chiseled Face was only able to attract [nine participants](https://www.djudge.me/23/view) that may or may not love their partners to shave with [Midnight Stag](https://www.reddit.com/r/Wetshaving/comments/1dxvo6z/hark_the_substantialstag_side_challenge_is_here/) all month, but that was still enough for them to leapfrog Barrister and Mann to claim third in the Soap Maker contest. And since $SubstantialStag was focused on a single scent (unlike $MammothMafia24 and $ShepherdsofStirling), Midnight Stag easily claimed the top spot in the Soaps race.
 
@@ -27,10 +27,10 @@ Welcome to your SOTD Lather Log for August 2024
 
 | name                  |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:----------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| House of Mammoth      |      832 |             38 |                 21.89 | ↑2              | =               | n/a             |
+| House of Mammoth      |      861 |             38 |                 22.66 | ↑2              | =               | n/a             |
 | Stirling Soap Co.     |      417 |             30 |                 13.9  | =               | ↑1              | ↑3              |
 | Chiseled Face         |      373 |             18 |                 20.72 | ↑9              | ↓1              | ↓2              |
-| Barrister and Mann    |      108 |             24 |                  4.5  | ↓3              | =               | ↓2              |
+| Barrister and Mann    |      109 |             24 |                  4.54 | ↓3              | =               | ↓2              |
 | Declaration Grooming  |       60 |              8 |                  7.5  | ↑1              | ↑9              | ↓2              |
 | Spearhead Shaving Co. |       44 |              7 |                  6.29 | ↓1              | ↑1              | n/a             |
 | Catie's Bubbles       |       41 |              6 |                  6.83 | ↓3              | ↑1              | ↑6              |
@@ -67,8 +67,8 @@ Welcome to your SOTD Lather Log for August 2024
 | Chiseled Face - Midnight Stag                 |      348 |             12 |                 29    | ↑16             | =               | =               |
 | House of Mammoth - Everett                    |      148 |              6 |                 24.67 | ↑10             | n/a             | n/a             |
 | Stirling Soap Co. - Varen                     |      141 |              7 |                 20.14 | ↑14             | ↑21             | n/a             |
-| House of Mammoth - Kryptonite                 |      109 |              5 |                 21.8  | ↑8              | ↑31             | n/a             |
-| House of Mammoth - Sonder                     |      108 |              6 |                 18    | =               | ↓3              | n/a             |
+| House of Mammoth - Sonder                     |      137 |              6 |                 22.83 | ↑1              | ↓2              | n/a             |
+| House of Mammoth - Kryptonite                 |      109 |              5 |                 21.8  | ↑7              | ↑30             | n/a             |
 | Stirling Soap Co. - Sheep                     |       77 |              4 |                 19.25 | ↑16             | ↓3              | n/a             |
 | House of Mammoth - Indigo                     |       64 |              3 |                 21.33 | ↑11             | ↓2              | n/a             |
 | House of Mammoth - Hygge                      |       58 |              5 |                 11.6  | ↑11             | ↑5              | n/a             |
@@ -125,9 +125,9 @@ Welcome to your SOTD Lather Log for August 2024
 
 | name                  |   unique scents |   shaves |   avg shaves per scent | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:----------------------|----------------:|---------:|-----------------------:|:----------------|:----------------|:----------------|
-| Barrister and Mann    |              33 |      108 |                   3.27 | ↑1              | ↑1              | ↑1              |
+| Barrister and Mann    |              33 |      109 |                   3.3  | ↑1              | ↑1              | ↑1              |
 | Stirling Soap Co.     |              24 |      417 |                  17.38 | ↓1              | ↓1              | ↑1              |
-| House of Mammoth      |              17 |      832 |                  48.94 | ↑3              | ↑1              | n/a             |
+| House of Mammoth      |              17 |      861 |                  50.65 | ↑3              | ↑1              | n/a             |
 | Declaration Grooming  |              12 |       60 |                   5    | =               | ↑1              | ↓3              |
 | Chiseled Face         |               8 |      373 |                  46.62 | ↑7              | ↑1              | ↑3              |
 | Zingari Man           |               8 |        9 |                   1.12 | ↑1              | ↑5              | ↑7              |
@@ -158,6 +158,7 @@ Welcome to your SOTD Lather Log for August 2024
 | u/Breadheater9876      |       31 |             0 | ↑1              | n/a             | n/a             |
 | u/brokenjaw622         |       31 |             0 | ↑6              | n/a             | n/a             |
 | u/ChrisDaBombz         |       31 |             0 | ↑29             | ↓1              | ↑27             |
+| u/chronnoisseur42O     |       31 |             0 | ↑28             | ↑1              | n/a             |
 | u/Crisp_Mango          |       31 |             0 | ↑12             | =               | n/a             |
 | u/Crossan1983          |       31 |             0 | ↑1              | ↓2              | n/a             |
 | u/el_charminman        |       31 |             0 | ↑1              | =               | n/a             |

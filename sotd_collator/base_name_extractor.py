@@ -15,18 +15,20 @@ class BaseNameExtractor(ABC):
     # but that we can't match to anything
     __BASE_GARBAGE = ["^n/a$", "^unknown$", "^unknown unknown$" "^not sure$"]
 
-    @property
+    def __detect_regexps(self):
+        result = []
+        for label in self.detect_labels():
+            result.append(self.imgur_detector(label))
+            result.append(self.tts_detector(label))
+            result.append(self.double_asterisk_detector(label))
+        return result
+
     @abstractmethod
-    def detect_regexps(self):
+    def detect_labels(self):
         raise NotImplementedError("subclass must implement detect_regexps")
 
-    @property
-    @abstractmethod
-    def detect_regexps(self):
-        raise NotImplementedError("subclass must implement detect_regexps")
-
-    __name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~\[\]"
-    __imgur_name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~"
+    # __name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~\[\]"
+    # __imgur_name_chars = r"\w\t ./\-_()#;&\'\"|<>:$~"
 
     def tts_detector(self, token):
         return re.compile(
@@ -42,6 +44,22 @@ class BaseNameExtractor(ABC):
             rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([^\[\n$]*)\[([^\]]*)\]\((?:[^\)]*)\)(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )  # TTS style with link to eg imgur
+
+    def tts_detector(self, token):
+        return re.compile(
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
+            rf"^[*\s\-+/\\]*{token}\s*[:*\-\\+ \t/]*(.*)$",
+            re.MULTILINE | re.IGNORECASE,
+        )
+
+    def double_asterisk_detector(self, token):
+        return re.compile(
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
+            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
+            rf"^.*\*+{token}\s*[:*\-\\+ \t/]*(.*)$",
+            re.MULTILINE | re.IGNORECASE,
+        )
 
     # def sgrddy_detector(self, token):
     #     return re.compile(
@@ -122,7 +140,7 @@ class BaseNameExtractor(ABC):
         return None
 
     def get_name_from_line(self, line):
-        for detector in self.detect_regexps:
+        for detector in self.__detect_regexps():
             res = detector.search(line)
             if res:
                 name = ""

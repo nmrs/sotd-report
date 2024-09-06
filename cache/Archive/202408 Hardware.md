@@ -1,14 +1,14 @@
 Welcome to your SOTD Hardware Report for August 2024
 
-* 2,504 shave reports from 132 distinct shavers during the month of August 2024 were analyzed to produce this report.
+* 2,533 shave reports from 132 distinct shavers during the month of August 2024 were analyzed to produce this report.
 
 ## Observations
 
-* The various Austere August straight razor challenges clearly drove user behavior, with straight razors claiming the top two spots on the razor tables^1 and for the first time ever there were over 1/3 as many straight razor shaves as DE (though still didn't quite reach the level of GEM shaves from #MMarch24). If you're curious, here's what the ratio of DE to Straight shaves (and DE to GEM shaves) looks like since I've been doing this report:
+* The various Austere August straight razor challenges clearly drove user behavior, with straight razors claiming the top two spots on the razor tables^1 and for the first time ever there were 1/3 as many straight razor shaves as DE (though still didn't quite reach the level of GEM shaves from #MMarch24). If you're curious, here's what the ratio of DE to Straight shaves (and DE to GEM shaves) looks like since I've been doing this report:
 
 | Month       | DE    | Straight | Straight : DE  | GEM | GEM : DE |
 |:-----------:|:-----:|:--------:|:--------------:|:---:|:--------:|
-| Aug         | 1352  | 682      | 34%            |228  |14%       |
+| Aug         | 1381  | 682      | 33%            |228  |14%       |
 | Jul         | 1225  | 146      | 11%            |106  |8%        |
 | Jun         | 1961  | 166      | 8%             |227  |10%       |
 | May         | 1214  | 137      | 10%            |136  |10%       |
@@ -31,7 +31,7 @@ Welcome to your SOTD Hardware Report for August 2024
 
 * Not surprisingly, that trend also appears in the Brush Knot Makers table where the Big 3 boar brands (Zenith, Omega, and Semogue) claim the top three slots. 
 
-* There were 49 daily shavers this month as compared to 57 in June, just in case anyone needed another data point that Lather Games is a more popular event than Austere August.
+* There were 50 daily shavers this month as compared to 57 in June, just in case anyone needed another data point that Lather Games is a more popular event than Austere August.
 
 ## Notes & Caveats
 
@@ -62,7 +62,7 @@ Welcome to your SOTD Hardware Report for August 2024
 
 | name                   |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:-----------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| DE                     |     1352 |             90 |                 15.02 | =               | =               | =               |
+| DE                     |     1381 |             90 |                 15.34 | =               | =               | =               |
 | Straight               |      682 |             27 |                 25.26 | =               | ↑2              | =               |
 | GEM                    |      228 |             16 |                 14.25 | =               | =               | ↑3              |
 | AC                     |       90 |              6 |                 15    | ↑1              | ↑2              | ↓1              |
@@ -80,7 +80,7 @@ Welcome to your SOTD Hardware Report for August 2024
 |:-------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
 | J.A. Henckels Friodur Straight |      355 |             12 |                 29.58 | ↑14             | ↑36             | n/a             |
 | Other Straight Razor           |      202 |             11 |                 18.36 | ↑2              | ↑33             | ↑16             |
-| RazoRock Game Changer          |       98 |              8 |                 12.25 | =               | ↑1              | ↑1              |
+| RazoRock Game Changer          |       99 |              8 |                 12.38 | =               | ↑1              | ↑1              |
 | EldrormR Industries MM24       |       91 |              5 |                 18.2  | ↑8              | ↑17             | n/a             |
 | Blackland Blackbird            |       82 |              9 |                  9.11 | ↓3              | ↑1              | ↑24             |
 | Karve Christopher Bradley      |       68 |              6 |                 11.33 | ↓5              | ↓4              | ↓4              |
@@ -101,6 +101,7 @@ Welcome to your SOTD Hardware Report for August 2024
 | iKon Tek                       |       32 |              1 |                 32    | n/a             | n/a             | n/a             |
 | Gillette Fatboy                |       31 |              3 |                 10.33 | ↑13             | ↑10             | ↓5              |
 | Aylsworth Drakkant             |       31 |              1 |                 31    | ↑8              | n/a             | n/a             |
+| Blackland Osprey               |       31 |              1 |                 31    | ↑15             | n/a             | n/a             |
 | Fatip Grande                   |       31 |              1 |                 31    | ↑14             | n/a             | n/a             |
 | Feather AS-D2                  |       31 |              1 |                 31    | ↑14             | n/a             | ↑13             |
 | Filarmonica Straight           |       31 |              1 |                 31    | ↑11             | =               | n/a             |
@@ -112,9 +113,9 @@ Welcome to your SOTD Hardware Report for August 2024
 | Yates Winning                  |       31 |              1 |                 31    | ↓6              | ↑5              | n/a             |
 | Merkur 37C                     |       30 |              1 |                 30    | ↓2              | ↑5              | ↓9              |
 | Yates 921                      |       30 |              1 |                 30    | ↓2              | n/a             | n/a             |
+| Henson AL13                    |       29 |              6 |                  4.83 | ↓5              | ↑10             | n/a             |
 | Van Der Hagen Razor            |       29 |              2 |                 14.5  | ↓9              | ↑2              | ↑15             |
 | Böker Straight                |       29 |              1 |                 29    | =               | n/a             | n/a             |
-| Henson AL13                    |       28 |              6 |                  4.67 | ↓6              | ↑9              | n/a             |
 | GEM Featherweight              |       28 |              1 |                 28    | ↑13             | n/a             | n/a             |
 | RazoRock Lupo                  |       27 |              3 |                  9    | ↓9              | ↑14             | ↑2              |
 | Henson Ti22                    |       26 |              2 |                 13    | ↓11             | ↑9              | n/a             |
@@ -127,7 +128,6 @@ Welcome to your SOTD Hardware Report for August 2024
 | Alpha Outlaw                   |       18 |              2 |                  9    | ↑5              | n/a             | n/a             |
 | Wolfman WR2                    |       15 |              3 |                  5    | ↓12             | ↓2              | ↓25             |
 | Wolfman Guerilla               |       15 |              2 |                  7.5  | n/a             | ↓2              | ↑5              |
-| Atelier Durdan Le Maurice      |       15 |              1 |                 15    | n/a             | n/a             | n/a             |
 
 
 ## Razor Manufacturers
@@ -136,9 +136,9 @@ Welcome to your SOTD Hardware Report for August 2024
 |:--------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
 | J.A. Henckels       |      355 |             12 |                 29.58 | ↑11             | ↑30             | ↑21             |
 | Other               |      221 |             14 |                 15.79 | ↑6              | ↑7              | ↑8              |
-| RazoRock            |      214 |             17 |                 12.59 | ↓1              | ↑2              | ↑4              |
+| RazoRock            |      216 |             17 |                 12.71 | ↓1              | ↑2              | ↑4              |
 | Gillette            |      188 |             16 |                 11.75 | ↓3              | ↓2              | ↓2              |
-| Blackland           |      148 |             15 |                  9.87 | ↓1              | ↑1              | ↑15             |
+| Blackland           |      177 |             15 |                 11.8  | ↓1              | ↑1              | ↑15             |
 | Karve               |      107 |              9 |                 11.89 | ↓3              | ↓2              | ↓3              |
 | Rockwell            |       93 |              6 |                 15.5  | ↑3              | ↑2              | ↑1              |
 | EldrormR Industries |       91 |              5 |                 18.2  | ↑7              | ↑10             | n/a             |
@@ -148,7 +148,7 @@ Welcome to your SOTD Hardware Report for August 2024
 | Yates               |       62 |              2 |                 31    | ↓7              | ↑8              | n/a             |
 | Merkur              |       61 |              5 |                 12.2  | ↓4              | ↓3              | ↓7              |
 | Timeless            |       56 |              3 |                 18.67 | ↑18             | ↓1              | ↓4              |
-| Henson              |       54 |              8 |                  6.75 | ↓6              | ↑7              | n/a             |
+| Henson              |       55 |              8 |                  6.88 | ↓6              | ↑7              | n/a             |
 | Feather             |       37 |              4 |                  9.25 | ↑6              | ↑14             | ↑9              |
 | Aylsworth           |       36 |              2 |                 18    | ↑1              | ↑14             | n/a             |
 | Weck                |       35 |              2 |                 17.5  | ↑2              | ↓17             | ↑6              |
@@ -179,61 +179,61 @@ Welcome to your SOTD Hardware Report for August 2024
 | Astra Superior Platinum (Green) |      214 |             16 |                 13.38 | ↓1              | ↑1              | =               |
 | Gillette Nacet                  |      203 |             14 |                 14.5  | ↑1              | ↑1              | ↓2              |
 | Feather (DE)                    |      128 |              9 |                 14.22 | ↑11             | ↑2              | ↑2              |
-| Gillette Silver Blue            |       93 |              8 |                 11.62 | ↓2              | =               | ↓2              |
-| Gillette Platinum               |       83 |             10 |                  8.3  | =               | ↑11             | ↑3              |
-| Schick Injector                 |       75 |              5 |                 15    | ↑7              | ↑5              | ↑6              |
-| Personna Lab Blue               |       56 |              7 |                  8    | ↑1              | ↑5              | =               |
-| Wizamet                         |       56 |              5 |                 11.2  | ↓3              | ↑6              | ↑3              |
-| Schick Proline (AC)             |       51 |              2 |                 25.5  | ↑10             | ↑18             | ↑19             |
-| Bic Chrome                      |       41 |              5 |                  8.2  | ↑15             | ↑11             | ↑15             |
-| Kai Captain Titan Mild (AC)     |       41 |              3 |                 13.67 | ↑17             | ↑21             | n/a             |
-| 7 O'Clock - Sharpedge (Yellow)  |       37 |              2 |                 18.5  | ↑1              | ↓2              | ↓4              |
-| Bolzano                         |       34 |              2 |                 17    | ↑5              | ↑10             | ↑16             |
-| Voskhod                         |       34 |              2 |                 17    | ↓6              | ↑5              | ↓7              |
-| Gillette Blue                   |       31 |              1 |                 31    | ↑16             | n/a             | n/a             |
-| Kismet Hair Shaper              |       31 |              1 |                 31    | ↑4              | ↓11             | n/a             |
-| Rainbow Super Stainless         |       31 |              1 |                 31    | ↑19             | n/a             | n/a             |
-| Personna Platinum               |       27 |              3 |                  9    | ↑2              | ↓1              | n/a             |
-| Treet Platinum                  |       24 |              3 |                  8    | ↑4              | ↑12             | ↑7              |
-| Personna 74                     |       20 |              1 |                 20    | ↑10             | ↓8              | ↑13             |
-| Wilkinson Sword                 |       17 |              4 |                  4.25 | ↓10             | ↑1              | ↓1              |
-| Fromm (Hair Shaper)             |       17 |              2 |                  8.5  | ↑13             | ↓1              | n/a             |
-| Polsilver                       |       16 |              4 |                  4    | ↓8              | ↑4              | ↓14             |
-| Dorco ST-300                    |       15 |              1 |                 15    | ↓8              | ↑11             | ↓7              |
-| Bic Astor Stainless             |       14 |              2 |                  7    | ↑4              | ↑7              | n/a             |
+| Gillette Silver Blue            |       94 |              8 |                 11.75 | ↓2              | =               | ↓2              |
+| Personna Lab Blue               |       84 |              7 |                 12    | ↑3              | ↑7              | ↑2              |
+| Gillette Platinum               |       83 |             10 |                  8.3  | ↓1              | ↑10             | ↑2              |
+| Schick Injector                 |       75 |              5 |                 15    | ↑6              | ↑4              | ↑5              |
+| Wizamet                         |       56 |              5 |                 11.2  | ↓4              | ↑5              | ↑2              |
+| Schick Proline (AC)             |       51 |              2 |                 25.5  | ↑9              | ↑17             | ↑18             |
+| Bic Chrome                      |       41 |              5 |                  8.2  | ↑14             | ↑10             | ↑14             |
+| Kai Captain Titan Mild (AC)     |       41 |              3 |                 13.67 | ↑16             | ↑20             | n/a             |
+| 7 O'Clock - Sharpedge (Yellow)  |       37 |              2 |                 18.5  | =               | ↓3              | ↓5              |
+| Bolzano                         |       34 |              2 |                 17    | ↑4              | ↑9              | ↑15             |
+| Voskhod                         |       34 |              2 |                 17    | ↓7              | ↑4              | ↓8              |
+| Gillette Blue                   |       31 |              1 |                 31    | ↑15             | n/a             | n/a             |
+| Kismet Hair Shaper              |       31 |              1 |                 31    | ↑3              | ↓12             | n/a             |
+| Rainbow Super Stainless         |       31 |              1 |                 31    | ↑18             | n/a             | n/a             |
+| Personna Platinum               |       27 |              3 |                  9    | ↑1              | ↓2              | n/a             |
+| Treet Platinum                  |       24 |              3 |                  8    | ↑3              | ↑11             | ↑6              |
+| Personna 74                     |       20 |              1 |                 20    | ↑9              | ↓9              | ↑12             |
+| Wilkinson Sword                 |       17 |              4 |                  4.25 | ↓11             | =               | ↓2              |
+| Fromm (Hair Shaper)             |       17 |              2 |                  8.5  | ↑12             | ↓2              | n/a             |
+| Polsilver                       |       16 |              4 |                  4    | ↓9              | ↑3              | ↓15             |
+| Dorco ST-300                    |       15 |              1 |                 15    | ↓9              | ↑10             | ↓8              |
+| Bic Astor Stainless             |       14 |              2 |                  7    | ↑3              | ↑6              | n/a             |
 | Gillette Goal                   |       14 |              1 |                 14    | n/a             | n/a             | n/a             |
-| Vikings Blade Mild              |       13 |              1 |                 13    | ↑8              | n/a             | n/a             |
-| Rapira Platinum Lux             |       12 |              1 |                 12    | ↓4              | =               | ↑1              |
-| Gillette Perma-Sharp            |       11 |              4 |                  2.75 | ↓7              | ↓12             | ↓6              |
-| Rockwell                        |       11 |              3 |                  3.67 | ↑2              | ↑5              | n/a             |
-| Sharp Star Platinum             |       11 |              1 |                 11    | ↑7              | n/a             | n/a             |
-| Gillette Minora                 |        8 |              3 |                  2.67 | ↑1              | ↑2              | n/a             |
-| Durablade Sharp Titanium        |        7 |              2 |                  3.5  | ↑1              | ↑5              | n/a             |
-| RK Stainless                    |        7 |              2 |                  3.5  | ↑2              | ↑6              | ↑4              |
-| Feather ProGuard (AC)           |        6 |              2 |                  3    | n/a             | n/a             | ↑2              |
-| Gillette London Bridge          |        6 |              1 |                  6    | n/a             | ↑5              | n/a             |
+| Vikings Blade Mild              |       13 |              1 |                 13    | ↑7              | n/a             | n/a             |
+| Rapira Platinum Lux             |       12 |              1 |                 12    | ↓5              | ↓1              | =               |
+| Gillette Perma-Sharp            |       11 |              4 |                  2.75 | ↓8              | ↓13             | ↓7              |
+| Rockwell                        |       11 |              3 |                  3.67 | ↑1              | ↑4              | n/a             |
+| Sharp Star Platinum             |       11 |              1 |                 11    | ↑6              | n/a             | n/a             |
+| Gillette Minora                 |        8 |              3 |                  2.67 | =               | ↑1              | n/a             |
+| Durablade Sharp Titanium        |        7 |              2 |                  3.5  | =               | ↑4              | n/a             |
+| RK Stainless                    |        7 |              2 |                  3.5  | ↑1              | ↑5              | ↑3              |
+| Feather ProGuard (AC)           |        6 |              2 |                  3    | n/a             | n/a             | ↑1              |
+| Gillette London Bridge          |        6 |              1 |                  6    | n/a             | ↑4              | n/a             |
 | Lord Super Stainless            |        6 |              1 |                  6    | n/a             | n/a             | n/a             |
-| Lord Platinum                   |        5 |              2 |                  2.5  | ↑2              | n/a             | ↑2              |
-| Personna Red                    |        5 |              1 |                  5    | ↑2              | =               | ↓7              |
-| Rapira Swedish                  |        5 |              1 |                  5    | n/a             | n/a             | ↑3              |
-| Derby Extra                     |        4 |              3 |                  1.33 | ↓5              | n/a             | ↓9              |
-| Derby Premium                   |        4 |              1 |                  4    | ↑4              | n/a             | n/a             |
-| Gillette Rubie                  |        4 |              1 |                  4    | ↑4              | ↓1              | n/a             |
-| Van Der Hagen Stainless         |        4 |              1 |                  4    | ↑2              | n/a             | n/a             |
-| Astra Superior Stainless (Blue) |        3 |              2 |                  1.5  | ↓9              | ↑1              | ↓1              |
-| King C Gillette                 |        3 |              2 |                  1.5  | ↓1              | n/a             | n/a             |
-| Shark Stainless                 |        3 |              1 |                  3    | ↑3              | ↓3              | ↓5              |
-| Shaving Revolution Platinum     |        3 |              1 |                  3    | ↓6              | ↓9              | n/a             |
-| Gillette Wilkinson Sword        |        2 |              2 |                  1    | ↓17             | ↓5              | ↓12             |
+| Lord Platinum                   |        5 |              2 |                  2.5  | ↑1              | n/a             | ↑1              |
+| Personna Red                    |        5 |              1 |                  5    | ↑1              | ↓1              | ↓8              |
+| Rapira Swedish                  |        5 |              1 |                  5    | n/a             | n/a             | ↑2              |
+| Derby Extra                     |        4 |              3 |                  1.33 | ↓6              | n/a             | ↓10             |
+| Derby Premium                   |        4 |              1 |                  4    | ↑3              | n/a             | n/a             |
+| Gillette Rubie                  |        4 |              1 |                  4    | ↑3              | ↓2              | n/a             |
+| Van Der Hagen Stainless         |        4 |              1 |                  4    | ↑1              | n/a             | n/a             |
+| Astra Superior Stainless (Blue) |        3 |              2 |                  1.5  | ↓10             | =               | ↓2              |
+| King C Gillette                 |        3 |              2 |                  1.5  | ↓2              | n/a             | n/a             |
+| Shark Stainless                 |        3 |              1 |                  3    | ↑2              | ↓4              | ↓6              |
+| Shaving Revolution Platinum     |        3 |              1 |                  3    | ↓7              | ↓10             | n/a             |
+| Gillette Wilkinson Sword        |        2 |              2 |                  1    | ↓18             | ↓6              | ↓13             |
 
 
 ## Brushes
 
 | name                             |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:---------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| Yaqi Synthetic                   |      111 |             10 |                 11.1  | ↑1              | ↑5              | ↑3              |
-| Omega 10098                      |       97 |              4 |                 24.25 | ↑30             | ↑34             | n/a             |
-| r/wetshaving MOAR BOAR           |       84 |              8 |                 10.5  | ↑2              | ↓2              | n/a             |
+| r/wetshaving MOAR BOAR           |      113 |              8 |                 14.12 | ↑4              | =               | n/a             |
+| Yaqi Synthetic                   |      111 |             10 |                 11.1  | =               | ↑4              | ↑2              |
+| Omega 10098                      |       97 |              4 |                 24.25 | ↑29             | ↑33             | n/a             |
 | AP Shave Co Synthetic            |       82 |             10 |                  8.2  | ↑4              | ↑1              | ↑9              |
 | Chisel & Hound Boar              |       80 |              3 |                 26.67 | ↑27             | n/a             | n/a             |
 | Semogue Torga C5 Boar            |       79 |              3 |                 26.33 | ↑21             | n/a             | n/a             |
@@ -287,7 +287,7 @@ Welcome to your SOTD Hardware Report for August 2024
 
 | name                                                           |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:---------------------------------------------------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| Zenith                                                         |      407 |             24 |                 16.96 | ↑1              | =               | ↑12             |
+| Zenith                                                         |      436 |             24 |                 18.17 | ↑1              | =               | ↑12             |
 | Semogue                                                        |      307 |             19 |                 16.16 | ↑5              | =               | ↑4              |
 | Omega                                                          |      293 |             21 |                 13.95 | ↑1              | ↑1              | ↑1              |
 | Dogwood Handcrafts                                             |      200 |             12 |                 16.67 | =               | ↑1              | ↓1              |
@@ -308,21 +308,21 @@ Welcome to your SOTD Hardware Report for August 2024
 | Wild West Brushworks                                           |       31 |              1 |                 31    | ↑10             | ↑13             | ↑7              |
 | Prometheus Handcrafts                                          |       30 |              1 |                 30    | ↑1              | n/a             | ↑4              |
 | Bristle Brushwerks                                             |       26 |              1 |                 26    | n/a             | ↑11             | ↑10             |
-| Vulfix                                                         |       22 |              1 |                 22    | n/a             | n/a             | n/a             |
+| Vulfix                                                         |       23 |              1 |                 23    | n/a             | n/a             | n/a             |
 | WCS                                                            |       19 |              3 |                  6.33 | ↑9              | ↑9              | ↓8              |
 | Wolf Whiskers                                                  |       18 |              2 |                  9    | ↓7              | ↑8              | ↓3              |
 | Declaration Grooming                                           |       16 |              5 |                  3.2  | ↓7              | ↓6              | ↓15             |
 | TanZ                                                           |       16 |              1 |                 16    | ↑6              | ↓3              | n/a             |
 | Aurora Grooming                                                |       13 |              3 |                  4.33 | ↓5              | n/a             | n/a             |
+| Frank Shaving                                                  |       13 |              1 |                 13    | ↑6              | n/a             | ↑10             |
 | Simpson                                                        |       11 |              5 |                  2.2  | ↓8              | ↓10             | ↑7              |
-| Frank Shaving                                                  |       10 |              1 |                 10    | ↑4              | n/a             | ↑8              |
 
 
 ## Brush Knot Makers
 
 | name                  |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:----------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| Zenith                |      399 |             23 |                 17.35 | ↑3              | =               | ↑15             |
+| Zenith                |      428 |             23 |                 18.61 | ↑3              | =               | ↑15             |
 | Omega                 |      356 |             24 |                 14.83 | ↑3              | ↑3              | ↑2              |
 | Semogue               |      307 |             19 |                 16.16 | ↑5              | ↑1              | ↑2              |
 | AP Shave Co           |      175 |             21 |                  8.33 | ↓3              | ↓1              | ↑2              |
@@ -342,16 +342,16 @@ Welcome to your SOTD Hardware Report for August 2024
 | WCS                   |       18 |              2 |                  9    | ↑9              | n/a             | ↓8              |
 | Paragon               |       17 |              3 |                  5.67 | ↓3              | n/a             | ↑4              |
 | TanZ                  |       16 |              1 |                 16    | ↑7              | ↓6              | n/a             |
-| Simpson               |       11 |              5 |                  2.2  | ↓9              | ↓12             | ↑2              |
-| Frank Shaving         |       10 |              1 |                 10    | ↑4              | n/a             | ↑4              |
+| Frank Shaving         |       13 |              1 |                 13    | ↑5              | n/a             | ↑5              |
+| Simpson               |       11 |              5 |                  2.2  | ↓10             | ↓13             | ↑1              |
 
 
 ## Knot Fibers
 
 | name              |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:------------------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| Boar              |     1261 |             69 |                 18.28 | ↑2              | =               | ↑2              |
-| Synthetic         |      653 |             55 |                 11.87 | ↓1              | =               | =               |
+| Boar              |     1290 |             69 |                 18.7  | ↑2              | =               | ↑2              |
+| Synthetic         |      656 |             55 |                 11.93 | ↓1              | =               | =               |
 | Badger            |      502 |             40 |                 12.55 | ↓1              | =               | ↓2              |
 | Mixed Badger/Boar |       54 |              2 |                 27    | ↑1              | ↑1              | =               |
 | Horse             |       15 |              2 |                  7.5  | ↓1              | ↓1              | n/a             |
@@ -361,13 +361,13 @@ Welcome to your SOTD Hardware Report for August 2024
 
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:-------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| 24mm   |      554 |             33 |                 16.79 | ↑1              | =               | =               |
+| 24mm   |      557 |             33 |                 16.88 | ↑1              | =               | =               |
 | 28mm   |      386 |             28 |                 13.79 | ↑1              | ↑1              | =               |
 | 26mm   |      368 |             31 |                 11.87 | ↓2              | ↓1              | =               |
 | 27mm   |      259 |             12 |                 21.58 | ↑1              | ↑2              | ↑4              |
-| 25mm   |      102 |              7 |                 14.57 | ↑2              | ↑2              | ↑5              |
-| 22mm   |       95 |              8 |                 11.88 | ↓2              | ↓1              | ↓2              |
-| 31mm   |       92 |             10 |                  9.2  | ↓1              | ↓4              | n/a             |
+| 31mm   |      121 |             10 |                 12.1  | ↑1              | ↓2              | n/a             |
+| 25mm   |      102 |              7 |                 14.57 | ↑1              | ↑1              | ↑4              |
+| 22mm   |       95 |              8 |                 11.88 | ↓3              | ↓2              | ↓3              |
 | 30mm   |       76 |              6 |                 12.67 | =               | ↓4              | ↓3              |
 | 21mm   |       56 |              4 |                 14    | ↑1              | =               | ↓3              |
 | 18mm   |       31 |              1 |                 31    | ↑3              | n/a             | n/a             |
@@ -401,8 +401,8 @@ Welcome to your SOTD Hardware Report for August 2024
 
 | name   |   shaves |   unique users |   avg shaves per user | Δ vs Jul 2024   | Δ vs Aug 2023   | Δ vs Aug 2019   |
 |:-------|---------:|---------------:|----------------------:|:----------------|:----------------|:----------------|
-| .84-P  |       97 |              7 |                 13.86 | =               | =               | =               |
-| .68-P  |        1 |              1 |                  1    | =               | ↑1              | =               |
+| .84-P  |       98 |              7 |                    14 | =               | =               | =               |
+| .68-P  |        1 |              1 |                     1 | =               | ↑1              | =               |
 
 
 ## Straight Widths
@@ -451,21 +451,22 @@ Welcome to your SOTD Hardware Report for August 2024
 
 ## Highest Use Count per Blade
 
-| user              | blade                           | format      |   uses |
-|:------------------|:--------------------------------|:------------|-------:|
-| u/sgrdddy         | Gillette Nacet                  | DE          |    575 |
-| u/el_charminman   | Feather (DE)                    | DE          |    100 |
-| u/wyze0ne         | Personna GEM PTFE               | GEM         |     63 |
-| u/RedMosquitoMM   | Astra Superior Platinum (Green) | DE          |     54 |
-| u/wallygator88    | Gillette Silver Blue            | DE          |     38 |
-| u/B_S80           | Gillette Platinum               | DE          |     32 |
-| u/KerblimeySkal   | Bolzano                         | DE          |     31 |
-| u/Eructate        | Kismet Hair Shaper              | Hair Shaper |     31 |
-| u/bmac92          | Schick Proline (AC)             | AC          |     31 |
-| u/tinyturtlefrog  | Rainbow Super Stainless         | DE          |     31 |
-| u/Ramjet615       | Schick Injector                 | Injector    |     31 |
-| u/tsrblke         | Schick Injector                 | Injector    |     31 |
-| u/OBeardWanKenobe | Voskhod                         | DE          |     30 |
+| user               | blade                           | format      |   uses |
+|:-------------------|:--------------------------------|:------------|-------:|
+| u/sgrdddy          | Gillette Nacet                  | DE          |    575 |
+| u/el_charminman    | Feather (DE)                    | DE          |    100 |
+| u/wyze0ne          | Personna GEM PTFE               | GEM         |     63 |
+| u/RedMosquitoMM    | Astra Superior Platinum (Green) | DE          |     54 |
+| u/wallygator88     | Gillette Silver Blue            | DE          |     38 |
+| u/chronnoisseur42O | Personna Lab Blue               | DE          |     33 |
+| u/B_S80            | Gillette Platinum               | DE          |     32 |
+| u/bmac92           | Schick Proline (AC)             | AC          |     31 |
+| u/Ramjet615        | Schick Injector                 | Injector    |     31 |
+| u/tsrblke          | Schick Injector                 | Injector    |     31 |
+| u/KerblimeySkal    | Bolzano                         | DE          |     31 |
+| u/Eructate         | Kismet Hair Shaper              | Hair Shaper |     31 |
+| u/tinyturtlefrog   | Rainbow Super Stainless         | DE          |     31 |
+| u/OBeardWanKenobe  | Voskhod                         | DE          |     30 |
 
 
 ## Top Shavers
@@ -485,6 +486,7 @@ Welcome to your SOTD Hardware Report for August 2024
 | u/Breadheater9876      |       31 |             0 | ↑1              | n/a             | n/a             |
 | u/brokenjaw622         |       31 |             0 | ↑6              | n/a             | n/a             |
 | u/ChrisDaBombz         |       31 |             0 | ↑29             | ↓1              | ↑27             |
+| u/chronnoisseur42O     |       31 |             0 | ↑28             | ↑1              | n/a             |
 | u/Crisp_Mango          |       31 |             0 | ↑12             | =               | n/a             |
 | u/Crossan1983          |       31 |             0 | ↑1              | ↓2              | n/a             |
 | u/el_charminman        |       31 |             0 | ↑1              | =               | n/a             |

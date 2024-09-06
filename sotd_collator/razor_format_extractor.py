@@ -28,7 +28,7 @@ class RazorFormatExtractor(BaseNameExtractor):
         self.__razor_name_extractor = razor_name_extractor
         self.__razor_parser = razor_parser
 
-    def detect_regexps(self):
+    def detect_labels(self):
         raise NotImplementedError()
 
     # @lru_cache

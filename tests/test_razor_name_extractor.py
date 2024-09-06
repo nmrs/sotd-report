@@ -411,35 +411,43 @@ class TestRazorNameExtractor(TestCase):
         #     "expected_result": "Gillette - Flare Tip Super Speed 1950\u2019s",
         #     "expected_result_principal": "Gillette Super Speed",
         # },
+        #         {
+        #             "comment": {
+        #                 "body": """**June 1, 2024**
+        # **\u2022 Brush:** Aurora Grooming LG24 Synthetic (\"Lux Emerald Green\")  #SUBBROOSH
+        # **\u2022 Razor:**\u00a0Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY
+        # **\u2022 Lather:**\u00a0AA Shaving - Wapiti (smush courtesy of u/OnionMiasma!)
+        # **\u2022 Post Shave:** Wholly Kaw - Ikigai
+        # **\u2022 Fragrance:** Atelier Cologne - Bergemote Soleil
+        # *\"Got me a movie, I want you to know...\"*
+        # Losing your virginity can be awkward and fumbling. At least that's been my experience. This is my first Lather Games. It's also, because of the Daily Challenge, my first ever attempt to shave with a straight razor. The Shumate was purchased used (and ostensibly shave-ready) on Ebay. It didn't seem to pass the \"hair test,\" and after several minutes of careful stropping I went into the shave apprehensive.
+        # In the end I'm proud of myself. Despite struggling with the angle of the blade, I managed to cleanly shave the flatter, accessible parts of my face\u2014sideburns and cheeks\u2014with only one nick, before bailing when I got to the jawline and chin. Too precarious for the time being. Whenever the blade was near the upper part of the face, near the eye sockets, I found myself thinking of the film *Un Chien Andalou*.
+        # Lather, Post Shave, and Fragrance items were all used by me for the first time. Wapiti has a wonderful misty, atmospheric vibe, but also a note I can't quite place (like a more pleasant version of chlorine?) With Ikigai I get vanilla and musk more than any other notes.
+        # **Brush Strokes** is a SOTD coda wherein I highlight a single work of art that, somehow or other, I perceive to be on-theme. Today's work is Tintoretto's [Presentation of the Virgin](https://imgur.com/a/TcLkDKW)*,* which hangs in the church of Madonna dell'Orto in Venice. It's a striking image that seems at once grounded and immediate, while also affording a distinct sensation of ascent, or possibly transcendence.
+        # #ROTY
+        # """
+        #             },
+        #             "expected_result": "Shumate Trusty",
+        #             "expected_result_principal": "Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY",
+        #         },
         {
             "comment": {
-                "body": """**June 1, 2024**
+                "body": """**August 31, 2024 \u2013 AA Mammoth Month**
 
-**\u2022 Brush:** Aurora Grooming LG24 Synthetic (\"Lux Emerald Green\")  #SUBBROOSH
+\u2022\t\u2060**Brush**: r/wetshaving Zentih MOAR BOAR 31mm  
+\u2022\t\u2060**Razor**: Blackland SS Osprey  
+\u2022\t\u2060**Blade**: Personna Lab Blue (33)  
+\u2022\t\u2060**Lather**: House of Mammoth \u2013 Sonder  
+\u2022\t\u2060**Post Shave**: House of Mammoth \u2013 Sonder  
+\u2022\t\u2060**Fragrance**: DR Harris \u2013 St James\u2019s 1684
 
-**\u2022 Razor:**\u00a0Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY                                           
+[Ending point of the tubs](https://imgur.com/a/MFn08IB). Used 21g of soap for an average of ~.68 per shave, up from my midpoint and an increase of about .3 relative to beginning of month and last years AA. Balm used 9 grams so about .29g for the month, slightly down from the .35 in the first half. What a cool razor. I tweaked the setting a couple times in the monthly but am thinking 3-7 range is optimal for me. Haven\u2019t taken the brass insert out at all to see how that affects it. 3 piece adjustable is for sure unique. 
 
-**\u2022 Lather:**\u00a0AA Shaving - Wapiti (smush courtesy of u/OnionMiasma!)    
-
-**\u2022 Post Shave:** Wholly Kaw - Ikigai    
-
-**\u2022 Fragrance:** Atelier Cologne - Bergemote Soleil   
-
-*\"Got me a movie, I want you to know...\"*
-
-Losing your virginity can be awkward and fumbling. At least that's been my experience. This is my first Lather Games. It's also, because of the Daily Challenge, my first ever attempt to shave with a straight razor. The Shumate was purchased used (and ostensibly shave-ready) on Ebay. It didn't seem to pass the \"hair test,\" and after several minutes of careful stropping I went into the shave apprehensive.  
-
-In the end I'm proud of myself. Despite struggling with the angle of the blade, I managed to cleanly shave the flatter, accessible parts of my face\u2014sideburns and cheeks\u2014with only one nick, before bailing when I got to the jawline and chin. Too precarious for the time being. Whenever the blade was near the upper part of the face, near the eye sockets, I found myself thinking of the film *Un Chien Andalou*. 
-
-Lather, Post Shave, and Fragrance items were all used by me for the first time. Wapiti has a wonderful misty, atmospheric vibe, but also a note I can't quite place (like a more pleasant version of chlorine?) With Ikigai I get vanilla and musk more than any other notes. 
-
-**Brush Strokes** is a SOTD coda wherein I highlight a single work of art that, somehow or other, I perceive to be on-theme. Today's work is Tintoretto's [Presentation of the Virgin](https://imgur.com/a/TcLkDKW)*,* which hangs in the church of Madonna dell'Orto in Venice. It's a striking image that seems at once grounded and immediate, while also affording a distinct sensation of ascent, or possibly transcendence.
-
-#ROTY
+$MammothMonth24
 """
             },
-            "expected_result": "Shumate Trusty",
-            "expected_result_principal": "Shumate Trusty (w/ orange scales, orange tang)  #RAINBOW  #RUSTYBUTTRUSTY",
+            "expected_result": "Blackland SS Osprey",
+            "expected_result_principal": "Blackland Osprey",
         },
     ]
 

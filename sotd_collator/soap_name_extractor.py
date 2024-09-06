@@ -15,22 +15,27 @@ class SoapNameExtractor(BaseNameExtractor):
     def _garbage(self):
         return self.GARBAGE
 
-    @cached_property
-    def detect_regexps(self):
-        # blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
+    # @cached_property
+    # def detect_regexps(self):
+    #     # blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
-        # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
-        # sgrddy =
+    #     # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
+    #     # sgrddy =
 
-        # "l4fg7co"
-        labels = (
-            # r"(?:\blather\b|\bsoap\b)(?:\s*(&|and|\/|\\)\s*(splash|\bas\b))?(?! bowl)"
-            r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as))?(?! bowl)"
-        )
+    #     # "l4fg7co"
+    #     labels = (
+    #         # r"(?:\blather\b|\bsoap\b)(?:\s*(&|and|\/|\\)\s*(splash|\bas\b))?(?! bowl)"
+    #         r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as))?(?! bowl)"
+    #     )
+    #     return [
+    #         # self.sgrddy_detector("Blade"),
+    #         self.imgur_detector(labels),
+    #         self.tts_detector(labels),
+    #     ]
+
+    def detect_labels(self):
         return [
-            # self.sgrddy_detector("Blade"),
-            self.imgur_detector(labels),
-            self.tts_detector(labels),
+            r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as))?(?! bowl)"
         ]
 
     @BaseNameExtractor.post_process_name

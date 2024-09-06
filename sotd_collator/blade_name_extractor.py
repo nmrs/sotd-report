@@ -20,17 +20,27 @@ class BladeNameExtractor(BaseNameExtractor):
     def _garbage(self):
         return self.GARBAGE
 
-    @cached_property
-    def detect_regexps(self):
+    # @cached_property
+    # def detect_regexps(self):
+    #     # blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
+
+    #     # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
+    #     # sgrddy =
+
+    #     return [
+    #         # self.sgrddy_detector("Blade"),
+    #         self.imgur_detector("Blade(?!\s*Holder)"),
+    #         self.tts_detector("Blade(?!\s*Holder)"),
+    #     ]
+
+    def detect_labels(self):
         # blade_name_re = r"""\w\t ./\-_()#;&\'\"|<>:$~"""
 
         # prefix = r"[*\s\-+/]*blade\s*[:*\-\\+\s/]+\s*\""
         # sgrddy =
 
         return [
-            # self.sgrddy_detector("Blade"),
-            self.imgur_detector("Blade(?!\s*Holder)"),
-            self.tts_detector("Blade(?!\s*Holder)"),
+            "Blade(?!\s*Holder)",
         ]
 
     @BaseNameExtractor.post_process_name

@@ -211,7 +211,7 @@ class Runner(object):
         print(header)
         razor_usage = None
         for entity in process_entities:
-            print(f"##{inf_engine.plural(entity['name'])}\n")
+            print(f"## {inf_engine.plural(entity['name'])}\n")
 
             usage = self.entity_usage(
                 thread_map,

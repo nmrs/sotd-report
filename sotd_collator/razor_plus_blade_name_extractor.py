@@ -12,7 +12,7 @@ class RazorPlusBladeNameExtractor(BaseNameExtractor):
         self.bne = BladeNameExtractor()
         self.rne = RazorNameExtractor()
 
-    def detect_regexps(self):
+    def detect_labels(self):
         return []
 
     @BaseNameExtractor.post_process_name
