@@ -188,7 +188,7 @@ class ChiselAndHoundParsingStrategy(BaseBrushParsingStrategy):
     @cached_property
     def _pattern_map(self):
         result = {}
-        for v in range(24, 9, -1):
+        for v in range(25, 9, -1):
             # print(v)
             for pattern in [
                 "chis.*hou",

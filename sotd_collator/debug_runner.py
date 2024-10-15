@@ -61,12 +61,12 @@ class DebugRunner(object):
             #     "name": "Razor Format",
             #     "extractor": RazorFormatExtractor(bne, blp, rne, rp),
             # },
-            {
-                "name": "Razor",
-                "extractor": rne,
-                "parser": rp,
-                "parser field": "name",
-            },
+            # {
+            #     "name": "Razor",
+            #     "extractor": rne,
+            #     "parser": rp,
+            #     "parser field": "name",
+            # },
             # {
             #     "name": "Razor Manufacturer",
             #     "extractor": rne,
@@ -160,12 +160,12 @@ class DebugRunner(object):
             #     "parser": SoapParser(),
             #     "parser field": "brand",
             # },
-            # {
-            #     "name": "Soap",
-            #     "extractor": StagedSoapNameExtractor(),
-            #     "parser": SoapParser(),
-            #     "parser field": "name",
-            # },
+            {
+                "name": "Soap",
+                "extractor": StagedSoapNameExtractor(),
+                "parser": SoapParser(),
+                "parser field": "name",
+            },
         ]
 
         inf_engine = inflect.engine()
@@ -362,8 +362,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 8, 1)
-    end_month = datetime.date(2024, 8, 1)
+    start_month = datetime.date(2024, 9, 1)
+    end_month = datetime.date(2024, 9, 1)
 
     comments_target = []
     thread_map = {}

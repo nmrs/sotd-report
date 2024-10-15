@@ -18,7 +18,7 @@ runner = Runner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2024, 8, 1)
+target = datetime.date(2024, 9, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)
@@ -127,8 +127,8 @@ runner.run(
     delta_one_label,
     delta_two_label,
     delta_three_label,
-    5,  # min_shaves for most used blade in most userd razor
-    2,  # min_unique users for most used blade in most userd razor),
+    10,  # min_shaves for most used blade in most used razor
+    1,  # min_unique users for most used blade in most userd razor),
     target,
     target,
 )

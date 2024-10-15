@@ -383,6 +383,19 @@ Stirling/Zenith:
     - moar(.*boar)?
     - 508\s*xl
     - wetshaving.*exc
+Tatara:
+  Masamune Finest Badger:
+    fiber: Badger
+    knot size: 24mm
+    patterns:
+    - tatara
+    - masamune
+  BoBa (50/50 Boar Badger):
+    fiber: Mixed Badger/Boar
+    patterns:
+    - turn.{1,5}shave.*boba
+    - tns.*mix
+    - tns.*boba
 Turn-N-Shave:
   Badger:
     fiber: Badger

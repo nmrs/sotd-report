@@ -51,6 +51,9 @@ Assured for Men:
 Baile Platinum:
   patterns:
     - baili.*plat
+Bevel Double Edge:
+  patterns:
+  - bevel
 Bic Astor Stainless:
   patterns:
   - bic.*(ast|stai)
@@ -89,6 +92,10 @@ Cartridge:
 Clifton Classic:
   patterns:
   - clifton
+Cloud A77:
+  format: Antelope/A77
+  patterns:
+  - cloud.*a77
 Croma Diamant:
   patterns:
   - croma
@@ -234,7 +241,7 @@ Gillette Minora:
   - minora.*plat
 Gillette Nacet:
   patterns:
-  - nan*cet
+  - nan?(c|v)et
 Gillette Perma-Sharp:
   patterns:
   - 'perma\s*-*sharp'
@@ -450,7 +457,7 @@ Sapphoo Red (AC):
 Schick Injector:
   format: Injector
   patterns:
-  - schick
+  - s?chick
   - inject
 Schick Proline (AC):
   format: AC
@@ -476,7 +483,7 @@ Shaving Revolution Platinum:
   - 'shaving\s*revolution'
 Silver Star - Super Stainless:
   patterns:
-  - silver.*star.*stain
+  - silver.*star(?:.*stain)?
 'Silvermax "Cryo" Sputtered Platinum':
   patterns:
   - 'silver\s*max'
@@ -518,6 +525,9 @@ Tiger Platinum:
 Timor:
   patterns:
   - timor
+Topaz Platinum:
+  patterns:
+  - topaz\splatinum
 Treet Black Beauty:
   patterns:
   - 'treet\s*bla'
@@ -551,6 +561,9 @@ Treet Platinum:
 Treet Silver:
   patterns:
   - treet.*silv
+Trig Silver Edge Stainless:
+  patterns:
+  - \btrig\b
 Valet:
   format: Other
   patterns:

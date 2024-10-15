@@ -118,6 +118,7 @@ Declaration Grooming:
   patterns:
   - ^(?!.*dogwood)declaration
   - ^(?!.*dogwood)\bdg\b
+  - \bdg\b
 Den of Man:
   patterns:
   - den.*of.*man
@@ -233,6 +234,9 @@ MRed:
 Maggard:
   patterns:
   - magg
+Maritime Brush Co.:
+  patterns:
+  - maritime\sbrush
 Maseto:
   patterns:
   - maseto
@@ -302,6 +306,9 @@ Perfecto:
 Plisson:
   patterns:
   - plisson
+Priusaurus' Shaving Brush Handle Company To Be Named Later:
+  patterns:
+  - priusaurus
 Prometheus Handcrafts:
   patterns:
   - prometheus.*(?:handcraft)?
@@ -391,6 +398,10 @@ TanZ:
   patterns:
   - tobs
   - tanz
+Tatara:
+  patterns:
+  - tatara
+  - masamune
 Teton Shaves:
   patterns:
   - teton

@@ -69,7 +69,6 @@ class SoapParser(BaseParser):
                 if field in property_map:
                     return property_map[field]
 
-        map = self.split_name(input_string)
         # we didn't find an exact scent, try to match at least brand by regex
         regexes = sorted(self.__brand_map.keys(), key=len, reverse=True)
         for alt_name_re in regexes:
@@ -77,6 +76,7 @@ class SoapParser(BaseParser):
             if match:
                 property_map = self.__brand_map[alt_name_re]
                 brand = property_map["brand"]
+                map = self.split_name(input_string)
                 scent = map["scent"] if map is not None else None
                 if scent is None:
                     # strip brand out of input string and scent is what is left at the end
@@ -87,6 +87,7 @@ class SoapParser(BaseParser):
                         .removesuffix(".")
                         .strip()
                     )
+                    scent = " ".join(scent.split())
 
                 name = f"{brand} - {scent}"
                 format = map["format"] if map is not None and "format" in map else None

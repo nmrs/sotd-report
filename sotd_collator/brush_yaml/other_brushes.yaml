@@ -283,6 +283,10 @@ Maggard:
   default: Synthetic
   patterns:
   - ^.*mag(g?ard)?s?
+Maritime Brush Co.:
+  default: Synthetic
+  patterns:
+  - maritime\sbrush
 Maseto:
   default: Badger
   patterns:

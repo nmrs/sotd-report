@@ -600,7 +600,7 @@ if __name__ == "__main__":
 
     thread_map = pl.get_thread_map(target, target)
     dt = single_user_report(
-        "u/loudmusicboy",
+        "u/Impressive_Donut114",
         comments_target,
         thread_map,
         StagedUserNameExtractor(),
@@ -609,6 +609,10 @@ if __name__ == "__main__":
     )
 
     print(dt.to_markdown())
+
+    dt = dt.loc[dt["url"] != "", :]
+
+    print(len(dt))
 
     # usage = Runner().top_shavers(
     #     comments_target,

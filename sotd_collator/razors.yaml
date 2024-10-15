@@ -290,6 +290,9 @@ Clix:
     patterns:
     - '\bclix\b'
 Colonial:
+  CR7:
+    patterns:
+    - CR7
   General:
     format: AC
     patterns:
@@ -313,6 +316,9 @@ Diane:
     patterns:
     - \bdiane\b
 DSCosmetic:
+  S9:
+    patterns:
+    - dscosmetic.*\bs9\b
   T7SE:
     patterns:
     - t7se
@@ -321,6 +327,10 @@ Daune:
     format: Shavette (DE)
     patterns:
     - daune
+Design94:
+  Aviation94:
+    patterns:
+    - aviation94
 Dorco:
   PL-602:
     patterns:
@@ -1015,6 +1025,7 @@ Other:
     - alberta
     - case.*red
     - Cattaraugus
+    - c-?mon
     - diamondine
     - ditzer
     - dubl.*duck
@@ -1035,6 +1046,7 @@ Other:
     - leger
     - leresche
     - maher.*grosh
+    - mclaughlin
     - otto.*busc?h
     - perfect temper
     - puma
@@ -1053,8 +1065,13 @@ Other:
     - wedge
     - wester.*brothers
     - wostenholm
+    - w.?\s?r.?\s?humphrey'?s
     - yankee.*cutlery
     - \bm\b.*karam
+    - \b5/8\b
+    - \b6/8\b
+    - \b7/8\b
+    - \b8/8\b
 PAA:
   Alpha Ecliptic:
     patterns:
@@ -1138,6 +1155,9 @@ Parker:
   87R:
     patterns:
     - 87R
+  89R:
+    patterns:
+    - 89R
   90R:
     patterns:
     - 90R
@@ -1712,7 +1732,7 @@ Yaqi:
 Yates:
   '''Merica':
     patterns:
-    - '\bmerica\b'
+    - '\bmerican?\b'
   '921':
     patterns:
     - '921-*\w'

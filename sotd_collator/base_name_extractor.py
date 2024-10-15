@@ -20,7 +20,7 @@ class BaseNameExtractor(ABC):
         for label in self.detect_labels():
             result.append(self.imgur_detector(label))
             result.append(self.tts_detector(label))
-            result.append(self.double_asterisk_detector(label))
+            result.append(self.asterisk_detector(label))
         return result
 
     @abstractmethod
@@ -53,7 +53,7 @@ class BaseNameExtractor(ABC):
             re.MULTILINE | re.IGNORECASE,
         )
 
-    def double_asterisk_detector(self, token):
+    def asterisk_detector(self, token):
         return re.compile(
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
