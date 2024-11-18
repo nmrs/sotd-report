@@ -6,11 +6,11 @@ Welcome to your SOTD Lather Log for October 2024
 
 * Unsurprisingly Halloween drove shavers' selections in October:
 
-  * House of Mammoth's newest scent rides the Halloween wave to debut at second on the Soap's chart.
+  * House of Mammoth's newest scent rides the Halloween wave to debut at second on the Soaps list.
 
   * Barrister and Mann lands two Halloween themed soaps in the top 10: their 2024 offering, Season of the Witch, debuts at 6th and Hallows lands in 9th.
-  
-  * Further down, Southern Witchcraft scores two Halloween soaps on the chart with Samhain ([my personal Halloween shave choice](https://www.reddit.com/r/Wetshaving/comments/1gg7t4c/comment/lupiwo7/)) at 20th and Boonana at 29th.
+
+  * Further down, Southern Witchcraft scores two Halloween soaps on the board with Samhain (my personal Halloween shave choice) at 20th and Boonana at 29th.
 
   * Chiseled Face rounds out the Halloween scent list with Ghost Town Barber in 53rd.
 
