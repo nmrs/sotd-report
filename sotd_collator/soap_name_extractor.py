@@ -35,7 +35,7 @@ class SoapNameExtractor(BaseNameExtractor):
 
     def detect_labels(self):
         return [
-            r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as))?(?! bowl)"
+            r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as|post))?(?! bowl)"
         ]
 
     @BaseNameExtractor.post_process_name

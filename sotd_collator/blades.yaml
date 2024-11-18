@@ -241,7 +241,9 @@ Gillette Minora:
   - minora.*plat
 Gillette Nacet:
   patterns:
-  - nan?(c|v)et
+  - nancet
+  - nacet
+  - nacrt
 Gillette Perma-Sharp:
   patterns:
   - 'perma\s*-*sharp'
@@ -564,6 +566,9 @@ Treet Silver:
 Trig Silver Edge Stainless:
   patterns:
   - \btrig\b
+V12 Super Platinum:
+  patterns:
+  - v12.*platinum
 Valet:
   format: Other
   patterns:
@@ -574,6 +579,9 @@ Van Der Hagen Stainless:
 Vikings Blade Mild:
   patterns:
   - viking.*mild
+Vikings Blade Cayenne Hot:
+  patterns:
+  - viking.*cayenne
 Viking's Sword Stainless:
   patterns:
   - vik.*swor.*sta

@@ -171,8 +171,8 @@ class DebugRunner(object):
         inf_engine = inflect.engine()
 
         modes = [
-            DebugRunnerMode.COMPARE_TO_ORGINAL,
-            # DebugRunnerMode.UNIQUE,
+            # DebugRunnerMode.COMPARE_TO_ORGINAL,
+            DebugRunnerMode.UNIQUE,
         ]
 
         for entity in process_entities:
@@ -362,8 +362,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 9, 1)
-    end_month = datetime.date(2024, 9, 1)
+    start_month = datetime.date(2024, 10, 1)
+    end_month = datetime.date(2024, 10, 1)
 
     comments_target = []
     thread_map = {}

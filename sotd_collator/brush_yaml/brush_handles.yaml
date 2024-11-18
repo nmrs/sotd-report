@@ -306,12 +306,16 @@ Perfecto:
 Plisson:
   patterns:
   - plisson
-Priusaurus' Shaving Brush Handle Company To Be Named Later:
-  patterns:
-  - priusaurus
+# Priusaurus' Shaving Brush Handle Company To Be Named Later:
+#   patterns:
+#   - priusaurus
 Prometheus Handcrafts:
   patterns:
   - prometheus.*(?:handcraft)?
+Rad Dinosaur Creations:
+  patterns:
+  - rad dinosaur
+  - priusaurus
 Razorock:
   patterns:
   - Razorr*ock

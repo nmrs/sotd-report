@@ -69,6 +69,7 @@ Atelier Durdan:
     format: AC
     patterns:
     - atelier.*durdan.*faulx
+    - la falux
   Le Maurice:
     patterns:
     - dur.*maurice
@@ -216,6 +217,7 @@ Carbon:
     - carbon.*316
     - carbon.*orig
     - carbon.*ti
+    - carbon \+\+
 Cartridge / Disposable:
   '':
     format: Cartridge
@@ -226,6 +228,7 @@ Cartridge / Disposable:
     - cartridge
     - disposable
     - fusion
+    - gillette blue
     - gil.*et.*labs
     - gil.*et.*guard
     - gil.*et.*proglide
@@ -746,6 +749,10 @@ J.A. Henckels:
     format: Straight
     patterns:
     - (?:henck)?.*friodur(\s+straight)*
+Jifuli:
+  GF-2179:
+    patterns:
+    - gf-2179
 Kai:
   Captain Folding:
     format: Shavette
@@ -876,6 +883,10 @@ Maggard:
     - Maggard.*M3
     - V3
     - 'MR\d{1,2}'
+Manscaped:
+  The Plow 2.0:
+    patterns:
+    - manscaped.*plow
 Maxwell:
   June:
     format: Half DE
@@ -1044,6 +1055,7 @@ Other:
     - 'joseph\s*(elliot|allen)'
     - kamisori
     - leger
+    - le thiernois
     - leresche
     - maher.*grosh
     - mclaughlin
@@ -1053,6 +1065,7 @@ Other:
     - red.*imp
     - robeson
     - shumate
+    - s.? ?k.? colling
     - solingen
     - straight
     - sxdgs
@@ -1260,6 +1273,9 @@ RazoRock:
     patterns:
     - ba*by.*smooth
     - razorock.*bbs
+  Cyber:
+    patterns:
+    - razorock.*cyber
   DE1:
     patterns:
     - razorock.*de1
@@ -1384,6 +1400,9 @@ Romer-7:
   CS11:
     patterns:
     - 'romer.*CS[\s-]*11'
+  El Travel:
+    patterns:
+    - romer.*travel
   Wazir:
     patterns:
     - wazir
@@ -1397,6 +1416,10 @@ Saiver:
   Profimed:
     patterns:
     - saiver
+Saponificio Varesino:
+  '':
+    patterns:
+    - saponificio varesino
 SCS:
   Model A:
     patterns:
