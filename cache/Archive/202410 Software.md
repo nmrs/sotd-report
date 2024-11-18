@@ -14,7 +14,7 @@ Welcome to your SOTD Lather Log for October 2024
 
   * Chiseled Face rounds out the Halloween scent list with Ghost Town Barber in 53rd.
 
-* Tabac is the #1 soap, outperforming it's nearest competition by over 300%, but the artisans still control the top of the maker's table with B&M, Mammoth, and Spearhead leading the pack.
+* Tabac is the #1 soap, outperforming it's nearest competition by over 300%, but the artisans still control the top of the maker's table with B&M, Stirling, Mammoth, and Spearhead leading the pack.
 
 * In the diversity contest it's again not a contest, with B&M and Stirling leveraging the depth of their relative catalogs to dominate the competition.
 
