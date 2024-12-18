@@ -599,8 +599,9 @@ if __name__ == "__main__":
     last_year_label = last_year.strftime("%b %Y")
 
     thread_map = pl.get_thread_map(target, target)
+    username = "u/Impressive_Donut114"
     dt = single_user_report(
-        "u/Impressive_Donut114",
+        username,
         comments_target,
         thread_map,
         StagedUserNameExtractor(),
@@ -608,7 +609,9 @@ if __name__ == "__main__":
         target,
     )
 
-    print(dt.to_markdown())
+    dt = dt.drop(["name", "original", "matched"], axis=1)
+    print(f"report for {username}")
+    print(dt.to_markdown(index=False))
 
     dt = dt.loc[dt["url"] != "", :]
 

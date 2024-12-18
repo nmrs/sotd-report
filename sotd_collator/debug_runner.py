@@ -42,6 +42,7 @@ from utils import (
 class DebugRunnerMode(Enum):
     COMPARE_TO_ORGINAL = 1
     UNIQUE = 2
+    VALUE_TO_URL = 3
 
 
 class DebugRunner(object):
@@ -171,8 +172,9 @@ class DebugRunner(object):
         inf_engine = inflect.engine()
 
         modes = [
-            # DebugRunnerMode.COMPARE_TO_ORGINAL,
-            DebugRunnerMode.UNIQUE,
+            DebugRunnerMode.COMPARE_TO_ORGINAL,
+            # DebugRunnerMode.UNIQUE,
+            # DebugRunnerMode.VALUE_TO_URL,
         ]
 
         for entity in process_entities:
@@ -217,9 +219,12 @@ class DebugRunner(object):
             df = self.compare_to_original(blp, df_raw)
         elif mode == DebugRunnerMode.UNIQUE:
             df = self.unique_names_only(blp, df_raw)
+        elif mode == DebugRunnerMode.VALUE_TO_URL:
+            df = self.value_to_url(blp, df_raw)
         else:
             raise ArgumentError(f"Unknown DebugRunnerMode: {mode}")
 
+        print(df.columns)
         print(df.to_markdown(index=False))
         print("\n")
 
@@ -286,6 +291,41 @@ class DebugRunner(object):
             # ascending=[True, False, False, True],
         )
         del df["name.lower"]
+        return df
+
+    def value_to_url(self, blp, df_raw):
+        # df_raw["original"] = df_raw["original"].apply(lambda x: x[:50])
+        # df_raw["original"] = df_raw["original"].apply(
+        #     lambda x: blp.remove_digits_in_parens(x)
+        # )
+        df = df_raw.drop("user_id", inplace=False, axis=1)
+        df = df.drop("date", inplace=False, axis=1)
+        # df = df.drop("url", inplace=False, axis=1)
+        df = df.drop("body", inplace=False, axis=1)
+        df = df.drop("original", inplace=False, axis=1)
+        # df = df.groupby(["name", "original"]).agg(count=("original", "count"))
+        # df = df.groupby(["name", "original"])[["original"]].agg("count")
+
+        # df = df.value_counts(["name"]).reset_index(name="a")
+
+        # df = df.value_counts(["name", "original", "matched"]).reset_index(name="b")
+        # df_unique = df.value_counts(["name", "original"]).reset_index(name="b")
+        # df = df.merge(df_counts, how="left")
+        # df["name"] = df["name"].str[:50]
+        # df = df.value_counts(["name"]).reset_index(name="c")
+        # sort by usage desc
+        # df = df.sort_values(
+        #     ["a", "matched", "name", "b"], ascending=[False, False, True, False]
+        # )
+        # sort by matched name
+        # df["name.lower"] = df["name"].str.lower()
+        df = df.sort_values(
+            ["matched", "name", "url"],
+            ascending=[False, True, True],
+            # ["matched", "name", "a", "b"],
+            # ascending=[True, False, False, True],
+        )
+        # del df["name.lower"]
         return df
 
     def process_user_shave_data(
@@ -362,8 +402,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 10, 1)
-    end_month = datetime.date(2024, 10, 1)
+    start_month = datetime.date(2024, 11, 1)
+    end_month = datetime.date(2024, 11, 1)
 
     comments_target = []
     thread_map = {}

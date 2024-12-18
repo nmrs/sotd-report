@@ -105,6 +105,10 @@ Catalin:
   default: Badger
   patterns:
   - catalin
+Captain's Choice:
+  default: Synthetic
+  patterns:
+  - captain.*choice
 Chisel & Hound:
   default: Badger
   knot size: 26mm
@@ -121,6 +125,11 @@ Commonwealth 'CW':
   patterns:
   - commonwealth
   - \bcw\b
+Cool Dog:
+  default: Badger
+  patterns:
+  - cool dog
+  - rasierpinselei
 Craving Shaving:
   default: Synthetic
   patterns:

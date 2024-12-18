@@ -375,7 +375,7 @@ Some Making Required:
   - some.*maki
 SmilezforMilez:
   patterns:
-  - smile\w*mile
+  - smilez?.*milez?
 Spiffo:
   patterns:
   - spiffo
@@ -388,6 +388,7 @@ Strike Gold Shave:
 Summer Break:
   patterns:
   - summer.*break
+  - sbs
 Surrey:
   patterns:
   - surrey

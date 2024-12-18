@@ -52,7 +52,6 @@ Alvarez Gomez:
     Barberia:
       patterns:
         - gomez.*barberia
-
 Apex Alchemy:
   patterns:
   - 'apex alchemy( shaving)?'
@@ -67,6 +66,9 @@ Ariana & Evans:
     Cannabliss Santal:
       patterns:
       - cannabliss santal
+    Cuban Highball:
+      patterns:
+      - cuban highball
     Kaizen:
       patterns:
       - '\bkaizen\b'
@@ -140,6 +142,9 @@ Barrister and Mann:
   - '\bb ?(and|&|\+|a)? ?m\b'
   - 'barrister (and|\+|&) mann'
   scents:
+    '42':
+      patterns:
+      - \b42\b
     Amazelnut:
       patterns:
       - amazelnut
@@ -197,9 +202,11 @@ Barrister and Mann:
       - 'foug.?re imperiale'
     Hallows:
       patterns:
-        - \bb ?(and|&|\+) ?m\b.*hallows
-        - barris.*hallows
-
+        - \bb ?(and|&|\+) ?m\b.*h|oallows
+        - barris.*ha|ollows
+    Lavanille:
+      patterns:
+      - lavani|elle
     Lavender:
       patterns:
       - '\bb ?(and|&|\+) ?m\b.*lavender'
@@ -285,6 +292,7 @@ Barrister and Mann:
     The Full Measure of Man:
       patterns:
       - full measure of man
+      - full measure of a man
     War:
       patterns:
       - '\bb ?(and|&|\+) ?m\b.*war'
@@ -322,6 +330,9 @@ Black Mountain Shaving:
 Black Ship Grooming:
   patterns:
   - 'black ship(?: grooming)?'
+Boellis:
+  patterns:
+  - boellis
 "Bo\u0308ker":
   patterns:
   - "b(o\u0308|o)ker"
@@ -344,7 +355,7 @@ CBL Soaps:
       - hombres.*western
 Captain Nemo's:
   patterns:
-  - 'captain nemo(?:''''s)?'
+  - 'captain nemo(?:''s)?'
   scents:
     Absolute Zero:
       patterns:
@@ -389,6 +400,10 @@ Catie's Bubbles:
     Blugere:
       patterns:
       - "blug(e|e\u0300)re"
+    Connecticut Shade:
+      patterns:
+      - connecticut shade
+      - ct shade
     DFTR:
       patterns:
       - catie.*bubbles.*dftr
@@ -471,6 +486,10 @@ Chiseled Face:
   - '\bcf\b'
   - milksteak
   scents:
+    Banana:
+      patterns:
+      - chisel.*banana
+      - \bcf\b.*banana 
     Cryogen:
       patterns:
       - cryogen
@@ -726,9 +745,6 @@ First Line Shave:
 Fresh Thyme Farmacy:
   patterns:
   - fresh thyme farmacy
-GZD:
-  patterns:
-  - '\bgzd\b'
 Gentleman's Nod:
   patterns:
   - gentlem.*nod
@@ -742,7 +758,7 @@ Gentleman's Nod:
 Geo. F. Trumper:
   default format: Cream
   patterns:
-  - geo.*trumper
+  - (geo.*)?\btrumper\b
   scents:
     Eucris:
       format: Cream
@@ -765,6 +781,9 @@ Gillete:
       format: Foam
       patterns:
       - gil+et+e
+Ginger's Garden:
+  patterns:
+  - ginger'?s garden
 Goodfellas Smile:
   patterns:
   - "(the )?goodfella''?s('|\u2019)? smile"
@@ -775,6 +794,16 @@ Goodfellas Smile:
     Orange Empire:
       patterns:
       - orange empire
+    Tallow N.1:
+      patterns:
+      - goodfella.*tallow
+GROOM:
+  patterns:
+  - les industries groom
+  scents:
+    Shaving Soap:
+      patterns:
+      - les industries groom
 Grooming Dept:
   patterns:
   - 'grooming dep\w*t'
@@ -785,6 +814,9 @@ Grooming Dept:
     Sandalwood Nobile:
       patterns:
       - sandal.*nobile
+GZD:
+  patterns:
+  - '\bgzd\b'
 HAGS:
   patterns:
   - hags
@@ -849,6 +881,8 @@ House of Mammoth:
   patterns:
   - hou.*mammoth
   - '\bhom\b'
+  - ^mammoth
+  - mammoth soaps
   scents:
     Avocado (Cream):
       format: Cream
@@ -871,7 +905,7 @@ House of Mammoth:
       - \bhom\b.*indigo
     Kryptonite:
       patterns:
-      - kr?yptonite
+      - kr?yp?tonite
     Rumble:
       patterns:
       - hous.*mammoth.*rumble
@@ -891,7 +925,7 @@ House of Mammoth:
       - '(hous.*mammoth|\bhom\b).*voices'
     You & I (Will Die):
       patterns:
-      - you.* i .*will die
+      - you (and|\&) i \(will
 Hub City:
   patterns:
   - hub city
@@ -916,7 +950,7 @@ KEPKINH:
   - kepkinh
 Klar Seifen:
   patterns:
-  - klar seifen
+  - 'klar(?: seifen)?'
 Kupa:
   patterns:
   - "(k\u0443\u043F\u0430|kupa)"
@@ -1077,6 +1111,7 @@ Mickey Lee Soapworks:
 Mike's Natural Soaps:
   patterns:
   - 'mike.*natural( soaps?)?'
+  - mike'?s
   scents:
     Barber Shop:
       patterns:
@@ -1233,6 +1268,9 @@ Palmolive:
       format: Cream
       patterns:
       - palmolive.*sensitive
+Pantarei:
+  patterns:
+  - pantarei
 Pereira:
   default format: Cream
   patterns:
@@ -1326,6 +1364,9 @@ SUPPLY:
 Saponificio Varesino:
   patterns:
   - sapon.*sino
+Schmiere:
+  patterns:
+  - schmiere
 Shannon's Soaps:
   patterns:
   - 'shannon.*soaps?'
@@ -1333,6 +1374,9 @@ Shannon's Soaps:
     Vetiver:
       patterns:
       - 'shannon.*soaps?.*vet\wver'
+    Woody's Victories:
+      patterns:
+      - 'shannon.*soaps?.*woody.*victories'
 Shave Dandy:
   patterns:
   - 'shave ?dandy'
@@ -1446,12 +1490,21 @@ Stirling Soap Co.:
   - 'st(i|e)rling( soap (co.?)?)?'
   - 'st(i|e)lring( soap (co.?)?)?'
   scents:
+    Autumn Glory:
+      patterns:
+      - stirling.*autumn glory
     Bash:
       patterns:
       - st(i|e)rling.*bash
+    Christmas Eve:
+      patterns:
+      - stirling.*christmas eve
     Electric Sheep:
       patterns:
       - '(?<!glacial\s)electric sheep'
+    Executive Man:
+      patterns:
+      - executive man
     Gin & Tonic on the Rocks:
       patterns:
       - st(i|e)rling.*gin.*tonic.*rocks
@@ -1467,6 +1520,9 @@ Stirling Soap Co.:
     Scots Pine Sheep:
       patterns:
       - scot.*pine.*sheep
+    Sharp Dressed Man:
+      patterns:
+      - sharp dressed man
     South Padre:
       patterns:
       - stirling.*south padre
@@ -1540,6 +1596,10 @@ Summer Break Soaps:
 Taconic:
   patterns:
   - taconic
+  scents:
+    Lime:
+      patterns:
+      - taconic.*lime
 Talbot Shaving:
   patterns:
   - 'talbot Shaving(.*maol grooming)?'
@@ -1617,6 +1677,9 @@ The Body Shop:
   default format: Cream
   patterns:
   - '^(the )?body shop'
+The Cajun Blade:
+  patterns:
+  - (?:the )?cajun blade
 The Club:
   patterns:
   - the club
@@ -1706,6 +1769,10 @@ Vicco:
   default format: Cream
   patterns:
   - vicco
+Vi-John:
+  default format: Foam
+  patterns:
+  - vi-?john
 Viking Revolution:
   patterns:
   - viking revolution
@@ -1807,9 +1874,15 @@ Williams:
 Xabons Xavieiro:
   patterns:
   - xabons xavieiro
+Yaqi:
+  patterns:
+  - yaqi
+Yardley:
+  patterns:
+  - (?:vintage )?yardley
 Zingari Man:
   patterns:
-  - 'zingari( man)?'
+  - zingari( man)?
   scents:
     Barrel Proof:
       patterns:

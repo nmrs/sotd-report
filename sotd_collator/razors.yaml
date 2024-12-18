@@ -137,7 +137,10 @@ Berkeley:
     patterns:
     - berkeley
 Bevel:
-  Razor:
+  Essential Disposable:
+    patterns:
+    - bevel disposable
+  Safety Razor:
     patterns:
     - bevel
 Blackland:
@@ -370,6 +373,7 @@ Edwin Jagger:
     - kelvin
     - edwi
     - '(?:de|ej)\s*8\d'
+    - ej lined chrome
 EldrormR Industries:
   MM24:
     format: GEM
@@ -521,6 +525,10 @@ Futur Clone:
     - futur.*clone
     - Ming.*Shi.*(2000|adj)
     - qs?have
+Gardette:
+  Safety Razor:
+    patterns:
+    - gardette
 GEM:
   '1912':
     format: GEM
@@ -702,6 +710,11 @@ Greencult:
     patterns:
     - GC.*2
     - green.*cult
+Gutche:
+  A77 Shavette:
+    format: Shavette (A77)
+    patterns:
+    - gutche
 Handlebar:
   Shaving Company Dali:
     patterns:
@@ -1211,6 +1224,9 @@ Parker:
     format: Half DE
     patterns:
     - parker.*solo
+  Stella:
+    patterns:
+    - parker.*stella
   Variant:
     patterns:
     - variant
@@ -1221,6 +1237,9 @@ Pearl:
   Flexi:
     patterns:
     - Pearl.*flex
+  Hammer:
+    patterns:
+    - pearl hammer
   L-55:
     patterns:
     - l-?55
@@ -1301,12 +1320,13 @@ RazoRock:
   Hawk v2:
     format: AC
     patterns:
-    - (razorock)?.*hawk
     - hawk.*2
   Hawk v3:
     format: AC
     patterns:
+    - (razorock)?.*hawk
     - (razorock)?.*hawk.*3a?
+    - razorock.*\ba plate\b
   Lupo:
     patterns:
     - 'lupp?o.*(\.?\d\d)?'
@@ -1403,6 +1423,9 @@ Romer-7:
   El Travel:
     patterns:
     - romer.*travel
+  Shivira:
+    patterns:
+    - romer.*shivira
   Wazir:
     patterns:
     - wazir
@@ -1473,6 +1496,11 @@ Smart-Helix:
   Apollo:
     patterns:
     - helix.*apol
+Spornette:
+  Hair Shaper:
+    format: Hair Shaper
+    patterns:
+    - spo|ernette
 Star:
   Cadet:
     format: GEM
@@ -1518,9 +1546,16 @@ Supply:
     - ^(?!.*sentry).*supply.*se
     - supply single edge
 TRC:
-  Razor:
+  Stainless Steel:
     patterns:
     - '\btrc\b'
+    - the razor co.*stainless
+  Titanium:
+    patterns:
+    - '\btrc\b.*titanium'
+  TTO:
+    patterns:
+    - '\btrc\b.*tto'
 Tatara:
   Masamune:
     patterns:
@@ -1581,6 +1616,9 @@ Viking:
   Revolution:
     patterns:
     - vik.*rev
+  Chieftain 5 BC:
+    patterns: 
+    - vik.*chief.*5 bc
   Chieftain JR:
     patterns: 
     - vik.*chief.*jr

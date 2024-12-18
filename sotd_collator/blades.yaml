@@ -28,6 +28,9 @@ Aeterna:
 Albatross:
   patterns:
   - albatross
+Annie Hair Shaper:
+  patterns:
+  - /bannie/b
 Asco Platium:
   patterns:
   - asco.*plat
@@ -69,7 +72,7 @@ Böker:
   - b(o|ö)ker
 Bolzano:
   patterns:
-  - b(o|a)lzano
+  - b(o|a)la?zano
 Bulimica:
   patterns:
   - bulimica
