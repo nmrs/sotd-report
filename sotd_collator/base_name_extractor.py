@@ -13,7 +13,12 @@ class BaseNameExtractor(ABC):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    __BASE_GARBAGE = ["^n/a$", "^unknown$", "^unknown unknown$" "^not sure$"]
+    __BASE_GARBAGE = [
+        "^n/a$",
+        "^unknown$",
+        "^unknown unknown$" "^not sure$",
+        "^nothing",
+    ]
 
     def __detect_regexps(self):
         result = []

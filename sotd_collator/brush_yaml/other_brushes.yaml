@@ -10,8 +10,9 @@ AMACK:
 AP Shave Co:
   default: Synthetic
   patterns:
-  - AP\s*shave\s*(co)?
+  - A ?P ?\s*shave\s*(co)?
   - \bap\b
+  - \bapsc\b
 Alpha:
   default: Synthetic
   patterns:
@@ -29,10 +30,10 @@ Artesania Romera:
   default: Badger
   patterns:
   - romera
-Aurora Grooming:
-  default: Synthetic
-  patterns:
-  - auror.*gr
+# Aurora Grooming:
+#   default: Synthetic
+#   patterns:
+#   - auror.*gr
 B&M:
   default: Synthetic
   patterns:
@@ -263,6 +264,7 @@ Leavitt & Pierce:
   default: Badger
   patterns:
   - leav.*pie
+  - leav.*pei
 Lentfer Custom Woodworks:
   default: Synthetic
   patterns:
@@ -358,6 +360,8 @@ Oumo:
   default: Badger
   patterns:
   - \bo(o|u)+mo\b
+  - rorschach
+  - st-2
 Oz Shaving:
   default: Synthetic
   patterns:
@@ -419,6 +423,10 @@ Rudy Vey:
   default: Badger
   patterns:
   - rudy.*vey
+Runeman Nordic Shave Design:
+  default: Badger
+  patterns:
+  - runeman
 SHAVEDANDY:
   default: Synthetic
   patterns:

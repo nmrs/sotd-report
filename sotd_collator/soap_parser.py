@@ -128,7 +128,7 @@ class SoapParser(BaseParser):
         input_string = input_string.replace("—", "-").replace("–", "-")
         parts = input_string.split(" - ")
         while "   " in input_string:
-            input_string.replace("   ", "  ")
+            input_string = input_string.replace("   ", "  ")
 
         if len(parts) < 2:
             parts = input_string.split("  ")

@@ -191,6 +191,9 @@ Heritage Collection:
   patterns:
   - heritage
   - heritage collection
+Highlander Brushes:
+  patterns:
+  - highlander brushes
 Holzleute:
   patterns:
   - holzleute
@@ -200,6 +203,9 @@ Imperial:
 Jayaruh:
   patterns:
   - jayaruh
+L&L Grooming:
+  patterns:
+  - l&l grooming
 L'Occitane en Provence:
   patterns:
   - oc*citane
@@ -314,7 +320,7 @@ Prometheus Handcrafts:
   - prometheus.*(?:handcraft)?
 Rad Dinosaur Creations:
   patterns:
-  - rad dinosaur
+  - rad dino(saur)?
   - priusaurus
 Razorock:
   patterns:
@@ -340,6 +346,9 @@ Rubberset:
 Rudy Vey:
   patterns:
   - rudy.*vey
+Runeman Nordic Shave Design:
+  patterns:
+  - runeman
 SHAVEDANDY:
   patterns:
   - shavedandy

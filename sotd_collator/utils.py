@@ -73,6 +73,7 @@ def get_raw_data_from_parser(
     for comment in comments:
         thread_id = extract_thread_id_from_comment_url(comment["url"])
         thread_date = extract_date_from_thread_title(thread_map[thread_id]["title"])
+        # print(thread_date)
         entity_name = name_extractor.get_name(comment)
         if entity_name is not None:
             principal_name = None

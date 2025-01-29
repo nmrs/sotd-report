@@ -10,7 +10,7 @@ class SoapNameExtractor(BaseNameExtractor):
 
     # patterns people use repeatedly to document the brush they used
     # but that we can't match to anything
-    GARBAGE = ["air bud ruler", "^face", "sample mashup"]
+    GARBAGE = ["air bud ruler", "^face", "sample mash-?up", "tester \d", "^yes$"]
 
     def _garbage(self):
         return self.GARBAGE
@@ -35,7 +35,7 @@ class SoapNameExtractor(BaseNameExtractor):
 
     def detect_labels(self):
         return [
-            r"(?:\blather\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as|post))?(?! bowl)"
+            r"(?:\blather(?! ?games)\b|\bsoap\b)(?:\s*(?:and|&|\\|\/)\s*(?:splash|as|post))?(?! bowl)"
         ]
 
     @BaseNameExtractor.post_process_name

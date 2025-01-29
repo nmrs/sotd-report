@@ -14,6 +14,7 @@ from brush_handle_parser import BrushHandleParser
 from brush_name_extractor import BrushNameExtractor
 from brush_parser import BrushParser
 import brush_parser
+from game_changer_plate_parser import GameChangerPlateParser
 from razor_format_extractor import RazorFormatExtractor
 from razor_name_extractor import RazorNameExtractor
 from razor_parser import RazorParser
@@ -124,6 +125,13 @@ class DebugRunner(object):
             #     "extractor": GameChangerPlateExtractor(),
             # },
             # {
+            #     "name": "Game Changer Plat",
+            #     "extractor": rne,
+            #     "parser": GameChangerPlateParser(rp),
+            #     "parser field": "name",
+            #     "fallback": False,
+            # },
+            # {
             #     "name": "Blackbird Plate",
             #     "extractor": rne,
             #     "parser": BlackbirdPlateParser(rp),
@@ -172,8 +180,8 @@ class DebugRunner(object):
         inf_engine = inflect.engine()
 
         modes = [
-            DebugRunnerMode.COMPARE_TO_ORGINAL,
-            # DebugRunnerMode.UNIQUE,
+            # DebugRunnerMode.COMPARE_TO_ORGINAL,
+            DebugRunnerMode.UNIQUE,
             # DebugRunnerMode.VALUE_TO_URL,
         ]
 
@@ -402,8 +410,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 11, 1)
-    end_month = datetime.date(2024, 11, 1)
+    start_month = datetime.date(2024, 1, 1)
+    end_month = datetime.date(2024, 12, 1)
 
     comments_target = []
     thread_map = {}

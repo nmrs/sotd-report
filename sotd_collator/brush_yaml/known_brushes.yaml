@@ -11,6 +11,10 @@ AP Shave Co:
     fiber: Synthetic
     patterns:
     - gelous
+  MiG:
+    fiber: Synthetic
+    patterns:
+    - \bmig\b
   Synbad:
     fiber: Synthetic
     patterns:
@@ -139,6 +143,12 @@ Omega:
     patterns:
     - omega.*evo.*e1860
     - e1860
+Parker:
+  Arctic Storm:
+    fiber: Synthetic
+    knot size: 26mm
+    patterns:
+    - arctic storm
 RazoRock:
   Big Bruce:
     fiber: Synthetic
@@ -340,7 +350,7 @@ Simpson:
     - simp.*tulip.*t3
 Stirling:
   2-Band Synthetic:
-    fiber: Synthetic
+    fibether: Synthetic
     knot size: 24mm
     patterns:
     - stirl.*(?:2|two)(?:-|\s)+band
@@ -403,6 +413,7 @@ Turn-N-Shave:
     patterns:
     - turn.{1,5}shave
     - tns
+    - \btip\b v[1-9]
   BoBa (50/50 Boar Badger):
     fiber: Mixed Badger/Boar
     patterns:

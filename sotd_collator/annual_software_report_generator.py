@@ -6,15 +6,19 @@ import praw
 from dateutil.relativedelta import relativedelta
 
 
+from soap_parser import SoapParser
+from soap_runner import SoapRunner
 from sotd_collator.runner import Runner
 from sotd_collator.sotd_post_locator import SotdPostLocator
 from sotd_collator.stage_builder import StageBuilder
 from sotd_collator.utils import extract_date_from_thread_title
+from staged_name_extractors import StagedSoapNameExtractor
 
 FORCE_REFRESH = False
 TIME_PERIOD = "year"
 
-runner = Runner()
+runner = SoapRunner()
+
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
@@ -25,9 +29,9 @@ delta_two = target - relativedelta(years=3)
 delta_three = target - relativedelta(years=5)
 
 sb = StageBuilder()
-sb.build_stage(delta_one, target.replace(month=12), FORCE_REFRESH)
-sb.build_stage(delta_two, delta_two.replace(month=12), FORCE_REFRESH)
-sb.build_stage(delta_three, delta_three.replace(month=12), FORCE_REFRESH)
+# sb.build_stage(delta_one, target.replace(month=12), FORCE_REFRESH)
+# sb.build_stage(delta_two, delta_two.replace(month=12), FORCE_REFRESH)
+# sb.build_stage(delta_three, delta_three.replace(month=12), FORCE_REFRESH)
 
 thread_map = pl.get_thread_map(delta_three, delta_three.replace(month=12))
 thread_map = thread_map | pl.get_thread_map(delta_two, delta_two.replace(month=12))
@@ -77,41 +81,63 @@ delta_two_label = delta_two.strftime("%Y")
 delta_three_label = delta_three.strftime("%Y")
 shave_reports = f"{len(comments_target):,}"
 
+sne = StagedSoapNameExtractor()
+snp = SoapParser()
+brand_usage = runner.usage_for_field(
+    thread_map,
+    comments_target,
+    comments_delta_one,
+    comments_delta_two,
+    comments_delta_three,
+    delta_one_label,
+    delta_two_label,
+    delta_three_label,
+    sne,
+    snp,
+    "brand",
+    False,
+)
+
+print(f"brand usage: {brand_usage}")
+
+scent_usage = runner.usage_for_field(
+    thread_map,
+    comments_target,
+    comments_delta_one,
+    comments_delta_two,
+    comments_delta_three,
+    delta_one_label,
+    delta_two_label,
+    delta_three_label,
+    sne,
+    snp,
+    "name",
+    False,
+)
+
+print(f"scent usage: {scent_usage}")
+
+
 shavers = {}
 for comment in comments_target:
     shavers[comment["author"]] = 0
 
 header = f"""
-Welcome to your SOTD Hardware Report for {target_label}
+Welcome to your SOTD Lather Log for {target_label}
 
-{shave_reports} shave reports from {len(shavers.keys())} distinct shavers during {target_label} were analyzed to produce this report.
+* {shave_reports} shave reports from {len(shavers.keys())} distinct shavers during {target_label} were analyzed to produce this report. Collectively, these shavers used {len(scent_usage.index)} distinct soaps from {len(brand_usage.index)} distinct brands.
 
 ## Observations
 
-* A fairly nondescript {TIME_PERIOD}
-
+* Somthing insightful
 
 ## Notes & Caveats
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
 
-* "Other" in the Blade Format table includes vintage reusable blades (including Rolls, Valet Auto Strop, and old-style lather catchers with wedge blades) as well as other antique proprietary blade formats (e.g. Enders Speed Blade)
+* The unique user column shows the number of different users who used a given brand/soap/etc in the {TIME_PERIOD}.
 
-* Blades recorded as just 'GEM' will be matched to 'Personna GEM PTFE' per guidance [here](https://www.reddit.com/r/Wetshaving/comments/19a43q7/comment/kil95r8/)
-
-* The Personna name is [going away](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.badgerandblade.com/forum/threads/what-do-you-know-about-this-personna-no-longer-exists.647703/&ved=2ahUKEwiyi4n7pPKFAxXeLtAFHfNVDz8QFnoECAQQAQ&usg=AOvVaw38QYgjzknuIIIV94b6VDP5) for blades manufactured in the USA, but the majority of entries are still coming in under Personna, so I am sticking to that for this report. Once more than 50% of the entries come in under the new names, I will reverse this and map any old Personna entries to the new name.
-
-    * Personna GEM PTFE is now Accutec Pro Premium (GEM)
-  
-    * Personna Lab Blue is now Accuforge Super Stainless MicroCoat
-  
-    * Personna Med Prep is now Accuthrive Super Med Prep
-
-    * The German-made Personna Platinums (aka "Personna Reds") will continue to use the Personna brand
-
-* In the case of most brush makers (eg Maggard) - knots are split into synthetic / badger / boar and attributed to the maker - eg 'Maggard Synthetic', though for particularly popular brush models (e.g. specific models from Semogue and Omega) or knots (e.g. DG, Chisel & Hound, or AP Shave Co.) they are reported on indvidually.
-
-* The unique user column shows the number of different users who used a given razor / brush etc in the month. We can combine this with the total number of shaves to get the average number of times a user used a razor / brush etc
+* The Brand Diversity table details the number of distinct soaps used during the {TIME_PERIOD} from that particular brand.
 
 * The change Δ vs columns show how an item has moved up or down the rankings since that {TIME_PERIOD}. = means no change in position, up or down arrows indicate how many positions up or down the rankings an item has moved compared to that {TIME_PERIOD}. n/a means the item was not present in that {TIME_PERIOD}.
 

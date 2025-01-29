@@ -14,10 +14,10 @@ class BaseBrushParsingStrategy(ABC):
     #     return {}
 
     _fibers = {
-        "Synthetic": r"(acrylic|timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?1|trafalgar|t[23]|kong|hi\s*brush|ak47|g5(a|b|c)|stf|quartermoon|fibre|\bmig\b)",
+        "Synthetic": r"(acrylic|timber|tux|mew|silk|synt|synbad|2bed|captain|cashmere|faux.*horse|black.*(magic|wolf)|g4|boss|st-?(1|2)|trafalgar|t[23]|kong|hi\s*brush|ak47|g5(a|b|c)|stf|quartermoon|fibre|\bmig\b)",
         "Mixed Badger/Boar": r"(mix|mixed|mi(s|x)tura?|badg.*boar|boar.*badg)",
-        "Boar": r"\b(boar|shoat)\b",
-        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|finest|best|ultralux)",
+        "Boar": r"(boar|shoat)",
+        "Badger": r"(hmw|high.*mo|(2|3|two|three)\s*band|shd|badger|silvertip|super|gelo|finest|best|ultralux|Fanchurian)",
         "Horse": r"\bhorse(hair)?\b",
     }
 

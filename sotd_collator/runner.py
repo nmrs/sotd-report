@@ -586,36 +586,50 @@ if __name__ == "__main__":
     pr = praw.Reddit("reddit")
     pl = SotdPostLocator(pr)
 
-    target = datetime.date.today().replace(day=1) - relativedelta(months=1)
-    last_month = target - relativedelta(months=1)
-    last_year = target - relativedelta(years=1)
+    start_month = datetime.date(2024, 6, 1)
+    end_month = datetime.date(2024, 6, 1)
+    # target = datetime.date.today().replace(day=1) - relativedelta(months=4)
+    # last_month = target - relativedelta(months=4)
+    # last_year = target - relativedelta(years=1)
 
-    comments_target = pl.get_comments_for_given_month_staged(target)
-    comments_last_month = pl.get_comments_for_given_month_staged(last_month)
-    comments_last_year = pl.get_comments_for_given_month_staged(last_year)
+    comments_target = []
+    curr = start_month
+    while curr <= end_month:
+        comments_target.extend(pl.get_comments_for_given_month_staged(curr))
+        curr = curr + relativedelta(months=1)
 
-    target_label = target.strftime("%B %Y")
-    last_month_label = last_month.strftime("%b %Y")
-    last_year_label = last_year.strftime("%b %Y")
+    # comments_target = pl.get_comments_for_given_month_staged(end_month)
+    # comments_last_month = pl.get_comments_for_given_month_staged(last_month)
+    # comments_last_year = pl.get_comments_for_given_month_staged(last_year)
 
-    thread_map = pl.get_thread_map(target, target)
-    username = "u/Impressive_Donut114"
-    dt = single_user_report(
+    # target_label = target.strftime("%B %Y")
+    # last_month_label = last_month.strftime("%b %Y")
+    # last_year_label = last_year.strftime("%b %Y")
+
+    thread_map = pl.get_thread_map(start_month, end_month)
+    username = "u/35048467"
+    df = single_user_report(
         username,
         comments_target,
         thread_map,
         StagedUserNameExtractor(),
-        target,
-        target,
+        start_month,
+        end_month,
     )
 
-    dt = dt.drop(["name", "original", "matched"], axis=1)
+    df = df.drop(["name", "original", "matched"], axis=1)
     print(f"report for {username}")
-    print(dt.to_markdown(index=False))
+    print(df.to_markdown(index=False))
 
-    dt = dt.loc[dt["url"] != "", :]
+    df2 = df.loc[df["url"] != "", :]
 
-    print(len(dt))
+    print(len(df2))
+
+    print()
+
+    df3 = df.loc[df["url"] == "", :]
+    print(df3.to_markdown(index=False))
+    print(len(df3))
 
     # usage = Runner().top_shavers(
     #     comments_target,

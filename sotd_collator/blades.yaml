@@ -416,8 +416,6 @@ Personna Med Prep:
 Personna Platinum:
   patterns:
   - ^person+a?\b.*plat
-Personna Red:
-  patterns:
   - personn*a.*red
   - personn*a.*stainless
   - personn*a.*super
@@ -462,12 +460,12 @@ Sapphoo Red (AC):
 Schick Injector:
   format: Injector
   patterns:
-  - s?chick
+  - s?c?hick
   - inject
 Schick Proline (AC):
   format: AC
   patterns:
-  - proline
+  - (schick.*)?proline
 Schick Stainless (DE):
   patterns:
   - schl?ick.*s(?:tainles)*s
@@ -492,6 +490,10 @@ Silver Star - Super Stainless:
 'Silvermax "Cryo" Sputtered Platinum':
   patterns:
   - 'silver\s*max'
+Snow Mountain Wolf (A77):
+  format: A77
+  patterns:
+  - snow mountain wolf
 Statum Platinum:
   patterns:
   - \bstatum\b
@@ -612,6 +614,9 @@ Wizamet:
 XR RhinoceRos:
   patterns:
   - rhinoceros
+Zomchí Superior Platinum:
+  patterns:
+  - zomch(í|i)
 Zorrik Super Platinum:
   patterns:
   - zorrik.*plat
