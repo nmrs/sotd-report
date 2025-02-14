@@ -322,6 +322,10 @@ Diane:
     patterns:
     - \bdiane\b
 DSCosmetic:
+  Mars SE:
+    format: Half DE
+    patterns:
+    - ds\s?cos.*mars
   S9:
     patterns:
     - dscosmetic.*\bs9\b
@@ -333,6 +337,15 @@ Daune:
     format: Shavette (DE)
     patterns:
     - daune
+DublDuck:
+  Hair Shaper:
+    format: Shavette (Hair Shaper)
+    patterns:
+    - dubl ?duck.*shaper
+  # Straight:
+  #   format: Straight
+  #   patterns:
+  #   - (?!.*shaper)dubl ?duck.*(\d{1,2}/(8|16))?
 Design94:
   Aviation94:
     patterns:
@@ -812,11 +825,16 @@ Kingever:
   Refillable Razor:
     patterns:
     - kingever
+Knockout:
+  Razor:
+    patterns:
+    - ^knockout
 Koraat:
   Straight:
     format: Straight
     patterns:
     - 'koraat(\s+straight)*'
+    - ^ko\b
 Krect:
   Spiral Slant:
     patterns:
@@ -983,6 +1001,9 @@ Mühle:
   Companion:
     patterns:
     - companion
+  Neo:
+    patterns:
+    - muhle neo
   R41:
     patterns:
     - R ?(41|103)
@@ -1017,7 +1038,7 @@ OneBlade:
   Core:
     format: FHS
     patterns:
-    - oneblade.*core
+    - one ?blade( core)?
   Dawn:
     format: FHS
     patterns:
@@ -1035,6 +1056,9 @@ OneBlade:
     patterns:
     - oneblade.*hybrid
 Other:
+  DE:
+    patterns:
+    - generic.*(safety|double)
   DE Clone:
     patterns:
     - ^(?!.*(futur|eagle)).*(knockoff|clone)
@@ -1057,7 +1081,6 @@ Other:
     - c-?mon
     - diamondine
     - ditzer
-    - dubl.*duck
     - dorko
     - engels
     - \bern\b
@@ -1177,7 +1200,7 @@ Parker:
     - 60R
   65R:
     patterns:
-    - 65R
+    - 65\s?R
   66R:
     patterns:
     - 66R
@@ -1504,7 +1527,7 @@ Smart-Helix:
     - helix.*apol
 Spornette:
   Hair Shaper:
-    format: Hair Shaper
+    format: Shavette (Hair Shaper)
     patterns:
     - spo|ernette
 Star:
@@ -1619,16 +1642,20 @@ Van Der Hagen:
     patterns:
     - Van Der Haa*gen
     - '\bvdh\b'
-Viking:
-  Revolution:
+Vikings Blade:
+  Chieftain:
     patterns:
-    - vik.*rev
+    - vik.*chief
   Chieftain 5 BC:
     patterns: 
     - vik.*chief.*5 bc
   Chieftain JR:
     patterns: 
     - vik.*chief.*jr
+Vikings Revolution:
+  Long Handle:
+    patterns:
+      - vik.*rev
 WCS:
   '77':
     patterns:
@@ -1788,6 +1815,9 @@ Yaqi:
   Slant:
     patterns:
     - yaqi.*slant
+  Slope:
+    patterns:
+    - yaqi slope
   Sputnik:
     patterns:
     - yaqi.*sput

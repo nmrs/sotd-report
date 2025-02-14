@@ -24,7 +24,9 @@ Aurora Grooming:
     fiber: Synthetic
     knot size: 24mm
     patterns:
-    - aurora.*lg24
+    - aurora.*lg ?(20)?24
+    - aurora.*lather.*24
+    - aurora.*24.*lg
 Badger & Blade:
   Essential:
     fiber: Boar
@@ -149,6 +151,12 @@ Parker:
     knot size: 26mm
     patterns:
     - arctic storm
+Pearl:
+  SBB-97:
+    fiber: Synthetic
+    knot size: 30mm
+    patterns:
+    - pearl.*sbb( |-)?97
 RazoRock:
   Big Bruce:
     fiber: Synthetic
@@ -176,11 +184,6 @@ Rich Man Shaving:
     knot size: 26mm
     patterns:
     - rich.*man.*ultraluxe*
-Rubab Men:
-  Bomber:
-    fiber: Synthetic
-    patterns:
-    - rubab.*bomber
 Semogue:
   '1250':
     fiber: Boar

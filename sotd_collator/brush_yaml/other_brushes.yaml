@@ -415,6 +415,10 @@ Rooney:
   default: Badger
   patterns:
   - rooney
+Rubab Men:
+  default: Synthetic
+  patterns:
+  - \brubab\b
 Rubberset:
   default: Badger
   patterns:
@@ -609,6 +613,10 @@ Wilkinson Sword:
   default: Synthetic
   patterns:
   - wilkinson
+Wiborg:
+  default: Badger
+  patterns:
+  - wiborg
 Wolf Whiskers:
   default: Badger
   patterns:

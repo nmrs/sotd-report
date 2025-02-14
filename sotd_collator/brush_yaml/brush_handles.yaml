@@ -237,6 +237,9 @@ Lutin Brushworks:
 MRed:
   patterns:
   - mred
+Made Rite:
+  patterns:
+  - made( |-)?rite
 Maggard:
   patterns:
   - magg

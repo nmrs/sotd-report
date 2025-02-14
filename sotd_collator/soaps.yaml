@@ -472,6 +472,9 @@ Brion:
   default format: Cream
   patterns:
   - brion
+Brutalt Bra:
+  patterns:
+  - 'brutalt bra'
 Bufflehead Soap Co.:
   patterns:
   - 'bufflehead( soap co.?)?'
@@ -492,7 +495,7 @@ CBL Soaps:
       - hombres.*western
 Captain Nemo's:
   patterns:
-  - 'captain nemo(?:''s)?'
+  - '(captain )?nemo(?:''s)?'
   scents:
     Absolute Zero:
       patterns:
@@ -604,6 +607,9 @@ Catie's Bubbles:
     Tonsorial Parlour:
       patterns:
       - 'tonsor.*parlou?r'
+    Tonsorium:
+      patterns:
+      - tonsorium
     Top of the World:
       patterns:
       - cat.*bub.*top.*world
@@ -929,6 +935,9 @@ DentonMajik:
 Derby:
   patterns:
   - derby
+Desmond's Barrow:
+  patterns:
+  - desmond.*barrow
 Dollar Shave Club:
   patterns:
   - Dollar Shave Club
@@ -943,7 +952,7 @@ Dollar Shave Club:
       - dollar.*club.*cream
 Dr. Jon's:
   patterns:
-  - 'dr.*jon''?s?'
+  - 'dr.*joh?n''?s?'
   scents:
     Black Label:
       patterns:
@@ -1146,6 +1155,9 @@ Ginger's Garden:
     Vizier:
       patterns:
       - ginger.*vizier
+Goli Soda:
+  patterns:
+  - 'goli soda'
 Green Mountain:
   patterns:
   - green mountain
@@ -1233,6 +1245,22 @@ Henri et Victoria:
     Lime:
       patterns:
       - henri.*victoria.*lime
+Henry Cavendish:
+  patterns:
+  - 'henry cavendish'
+  scents:
+    Eucalyptus:
+      patterns:
+      - cavendish.*eucalyptus
+    Himalaya:
+      patterns:
+      - cavendish.*himalaya
+    Lavender:
+      patterns:
+      - cavendish.*lavender
+    Sandalwood:
+      patterns:
+      - cavendish.*sandalwood
 Herc Soap Co:
   patterns:
   - 'herc( soap (co\.?)?)?'
@@ -1343,6 +1371,13 @@ House of Mammoth:
 Hub City:
   patterns:
   - hub city
+Hwayeon Soap Co.:
+  patterns:
+  - hwayeon( soap co.?)?
+  scents:
+    Shaving Soap:
+      patterns:
+      - hwayeon
 Itakha:
   patterns:
   - itakha
@@ -1818,7 +1853,7 @@ Old Spice:
   scents:
     Classic:
       patterns:
-      - old spice
+      - old spi?ce
 Omega:
   patterns:
   - '^\W*omega'
@@ -1869,7 +1904,7 @@ Palmolive:
       - palmolive.*sensitive
 PannaCrema:
   patterns:
-  - 'panna ?crema'
+  - 'panna ?crem+a'
   scents:
     Nuavia Nero:
       patterns:
@@ -1877,6 +1912,9 @@ PannaCrema:
 Pantarei:
   patterns:
   - pantarei
+Pear's:
+  patterns:
+  - ^pear''?s
 Pereira:
   default format: Cream
   patterns:
@@ -2381,6 +2419,9 @@ Summer Break Soaps:
     Mountain Laurel:
       patterns:
       - mountain laurel
+    Picture Day:
+      patterns:
+      - (summer|sbs).*picture day
     Prom King:
       patterns:
       - prom king
@@ -2422,7 +2463,7 @@ Talbot Shaving:
       - winter.*refraction
 Talent Soap Factory:
   patterns:
-  - talent soap factory
+  - talent soap( factory)?
   - '^\W*tsf\b'
   - '\bt\.?s\.?f\.?'
   scents:
@@ -2620,6 +2661,9 @@ The Razor Company:
   patterns:
   - the razor company
   - '^\W*trc\b'
+The Shave Mercantile:
+  patterns:
+  - '(the )?shave mercantile'
 Thiers-Issard:
   patterns:
   - 'thiers-?issard'
@@ -2672,6 +2716,10 @@ Vicco:
   default format: Cream
   patterns:
   - vicco
+  scents:
+    Turmeric Sandalwood:
+      patterns:
+      - vicco.*(turmeric|sandalwood)
 Viking Revolution:
   patterns:
   - viking revolution
@@ -2813,6 +2861,10 @@ Xabons Xavieiro:
 Yaqi:
   patterns:
   - yaqi
+  scents:
+    Velvet Rose:
+      patterns:
+      - yaqi.*velvet rose
 Yardley:
   patterns:
   - '(?:vintage )?yardley'

@@ -410,8 +410,8 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2024, 1, 1)
-    end_month = datetime.date(2024, 12, 1)
+    start_month = datetime.date(2025, 1, 1)
+    end_month = datetime.date(2025, 1, 1)
 
     comments_target = []
     thread_map = {}

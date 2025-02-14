@@ -476,7 +476,7 @@ class Runner(object):
 
         for row in all_rows:
             head += 1
-            if head >= 20 and row["shaves"] <= last:
+            if head > 20 and row["shaves"] <= last:
                 if len(all_rows) > head:
                     next_row = all_rows[head + 1]
                     if row["shaves"] > next_row["shaves"]:
@@ -586,8 +586,8 @@ if __name__ == "__main__":
     pr = praw.Reddit("reddit")
     pl = SotdPostLocator(pr)
 
-    start_month = datetime.date(2024, 6, 1)
-    end_month = datetime.date(2024, 6, 1)
+    start_month = datetime.date(2025, 1, 1)
+    end_month = datetime.date(2025, 1, 1)
     # target = datetime.date.today().replace(day=1) - relativedelta(months=4)
     # last_month = target - relativedelta(months=4)
     # last_year = target - relativedelta(years=1)
@@ -607,7 +607,7 @@ if __name__ == "__main__":
     # last_year_label = last_year.strftime("%b %Y")
 
     thread_map = pl.get_thread_map(start_month, end_month)
-    username = "u/35048467"
+    username = "u/jimm262"
     df = single_user_report(
         username,
         comments_target,

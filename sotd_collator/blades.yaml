@@ -13,12 +13,14 @@
   - clock.*black
   - gill.*black
   - 7OC.*pla
+  - \b7sp\b
 7 O'Clock - Super Stainless (Green):
   patterns:
   - clock.*sta
   - clock.*green
   - clock
   - gil.*et.*super.*stain
+  - gil.*et.*green
 ABEST Hi Platinum:
   patterns:
   - abest
@@ -53,7 +55,7 @@ Assured for Men:
   - assured.*men
 Baile Platinum:
   patterns:
-    - baili.*plat
+  - baili.*plat
 Bevel Double Edge:
   patterns:
   - bevel
@@ -72,7 +74,7 @@ Böker:
   - b(o|ö)ker
 Bolzano:
   patterns:
-  - b(o|a)la?zano
+  - b(o|a)la?z(o|a)n(o|a)
 Bulimica:
   patterns:
   - bulimica
@@ -146,13 +148,13 @@ Dorco ST-301:
 Dorco Titan:
   patterns:
   - dorco.*titan
-Dovo Super Platinum:
-  patterns:
-  - dovo.*plat
 Dovo Professional Shavette:
   format: Hair Shaper
   patterns:
   - dovo.*prof.*shavette
+Dovo Super Platinum:
+  patterns:
+  - dovo.*plat
 Durablade Sharp 7AM Super Platinum:
   patterns:
   - (?:durablade)?.*sharp.*7am.*plus
@@ -280,6 +282,15 @@ Gillette Winner:
   patterns:
   - gil.*winner(?:.*black)?
   - winner
+Glätz Super Platinum:
+  patterns:
+  - glatz
+  - glatz sp
+  - glatz plat
+Glätz Supreme Stainless:
+  patterns:
+  - glatz ss
+  - glatz.*stai
 Heljestrand (Wedge):
   format: Other
   patterns:
@@ -352,12 +363,22 @@ Lord Super Stainless:
 Lord Tajam:
   patterns:
   - tajam
+Manscaped The Plow 2.0:
+  patterns:
+  - manscaped
 Merkur Super Platinum:
   patterns:
   - merkur
+Mühle:
+  patterns:
+  - muhle
 My-Blades:
   patterns:
   - my.*blades
+Neva:
+  patterns:
+  - Нева
+  - neva
 PAA Platinum Strangelet Super Sharps:
   patterns:
   - \bpaa\b|strangelet
@@ -365,13 +386,6 @@ PAL Blue Blade:
   format: GEM
   patterns:
   - \bpal\b.*blue
-Mühle:
-  patterns:
-  - muhle
-Neva:
-  patterns:
-  - Нева
-  - neva
 Personna 74:
   patterns:
   - 'p(?:ersonn*a)?\s*74'
@@ -581,15 +595,16 @@ Valet:
 Van Der Hagen Stainless:
   patterns:
   - hagen
-Vikings Blade Mild:
-  patterns:
-  - viking.*mild
 Vikings Blade Cayenne Hot:
   patterns:
   - viking.*cayenne
+Vikings Blade Mild:
+  patterns:
+  - viking.*mild
 Viking's Sword Stainless:
   patterns:
   - vik.*swor.*sta
+  - viking
 Voskhod:
   patterns:
   - vokshod
@@ -617,6 +632,11 @@ XR RhinoceRos:
 Zomchí Superior Platinum:
   patterns:
   - zomch(í|i)
+Zorrik Super Stainless:
+  patterns:
+  - zorrik.*stain
+  - zorrik ss
 Zorrik Super Platinum:
   patterns:
   - zorrik.*plat
+  - zorrik sp
