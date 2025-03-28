@@ -81,6 +81,9 @@ Anbbas:
 Apex Alchemy:
   patterns:
   - 'apex alchemy( shaving)?'
+Acqua Di Parma:
+  patterns:
+  - 'acqua di parma'
 Areffa Soap:
   patterns:
   - 'areffa( soap)?'
@@ -208,6 +211,9 @@ Barrister and Mann:
     '42':
       patterns:
       - '\b42\b'
+    Adumbrare:
+      patterns:
+      - adumbrare
     Amazelnut:
       patterns:
       - amazelnut
@@ -261,6 +267,10 @@ Barrister and Mann:
     Figarose:
       patterns:
       - figarose
+    First Snow:
+      patterns:
+      - '\bb ?(and|&|\+) ?m\b.*first snow'
+      - barris.*first snow
     "Foug\xE8re Angelique":
       patterns:
       - 'f\w+g\w+re angelique'
@@ -427,6 +437,9 @@ Beak & Snout:
     Bard's Barbershop:
       patterns:
       - beak.*barber
+Bedlingtom Supplies:
+  patterns:
+  - 'bedlington( supplies)?'
 Bioderma:
   default format: Foam
   patterns:
@@ -462,6 +475,7 @@ Boellis:
 Bombay Shaving Company:
   patterns:
   - bombay shaving company
+  - \bbsc\b
 "Bo\u0308ker":
   patterns:
   - "b(o\u0308|o)ker"
@@ -1155,6 +1169,9 @@ Ginger's Garden:
     Vizier:
       patterns:
       - ginger.*vizier
+Glacier Smoothie:
+  patterns:
+  - glacier smoothie
 Goli Soda:
   patterns:
   - 'goli soda'
@@ -1504,6 +1521,9 @@ Lothur:
     Namkha:
       patterns:
       - namkha
+Lucky Tiger:
+  patterns:
+  - lucky tiger
 MER Shaving:
   patterns:
   - '\bmer ?shaving'
@@ -1689,7 +1709,7 @@ Mitchell's:
       - '^\W*mwf\b'
 Moon Soap:
   patterns:
-  - '^\W*moon( ?soaps?)?'
+  - '^\W*moon( ?soaps?( co.?)?)?'
   scents:
     Amaretto Speciale:
       patterns:
@@ -2110,6 +2130,9 @@ Signature Soaps:
 Siliski Soaps:
   patterns:
   - 'siliski(?:\ssoaps)?'
+Sir Hare:
+  patterns:
+  - 'sir hare'
 Sir Henry's:
   patterns:
   - 'sir henry(''?s)?'
@@ -2194,6 +2217,10 @@ Spearhead Shaving Co.:
       patterns:
       - spearhead.*heather
       - seaforth.*heather
+    Seaforth! Leather:
+      patterns:
+      - spearhead.*leather
+      - seaforth.*leather
     Seaforth! Roman Spice:
       patterns:
       - roman.*spice
@@ -2252,9 +2279,15 @@ Stirling Soap Co.:
     Autumn Glory:
       patterns:
       - stirling.*autumn glory
+    Baker Street:
+      patterns:
+      - stirling.*baker street
     Bash:
       patterns:
       - st(i|e)rling.*bash
+    British Leather:
+      patterns:
+      - stirling.*british leather
     Candy Cane:
       patterns:
       - stirling.*candy cane
@@ -2288,6 +2321,9 @@ Stirling Soap Co.:
     Haverford:
       patterns:
       - 'stirl.*have\wford'
+    Intrepid Man:
+      patterns:
+      - stirling.*intrepid
     Lavender:
       patterns:
       - stirling.*lavender
@@ -2788,6 +2824,10 @@ Wet the Face:
   patterns:
   - wet the face
   scents:
+    Athos:
+      patterns:
+      - wet.*face.*athos
+      - athos.*wet.*face
     The Perfect Cup:
       patterns:
       - wet.*face.*per?fect cup
@@ -2834,6 +2874,7 @@ Wholly Kaw:
     Yuzu/Rose/Patchouli:
       patterns:
       - '\bkaw\b.*yuzu.*rose.*patch'
+      - \bwk\b \byrp\b
 Wickham Soap Co.:
   patterns:
   - 'wickham soap co.?'
@@ -2841,6 +2882,9 @@ Wickham Soap Co.:
     Club Cola:
       patterns:
       - club cola
+Wild Stone:
+  patterns:
+  - wild stone
 Wilkinson Sword:
   patterns:
   - wilk.*sword
@@ -2897,6 +2941,9 @@ Zingari Man:
     The Brewer:
       patterns:
       - zing.*brewer
+    The Distiller:
+      patterns:
+      - zingari.*dist
     The Gatherer:
       patterns:
       - 'zina?gari.*gather'

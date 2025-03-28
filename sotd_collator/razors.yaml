@@ -322,6 +322,9 @@ Diane:
     patterns:
     - \bdiane\b
 DSCosmetic:
+  D8:
+    patterns:
+    - dscos.*d8
   Mars SE:
     format: Half DE
     patterns:
@@ -614,6 +617,10 @@ Gillette:
   Heritage:
     patterns:
     - Gil.*et.*heritage
+  King C. Gillette:
+    patterns:
+      - k*.*c.*gil.*et
+      - gil.*et.*king(.*c)?
   Knack:
     patterns:
     - Gil.*et.*knack
@@ -816,11 +823,6 @@ Karve:
   Overlander:
     patterns:
     - (over|out)lander
-King C Gillette:
-  ? ''
-  : patterns:
-    - k*.*c.*gil.*et
-    - gil.*et.*king.*c
 Kingever:
   Refillable Razor:
     patterns:
@@ -1083,6 +1085,7 @@ Other:
     - ditzer
     - dorko
     - engels
+    - efendi
     - \bern\b
     - frameback
     - fred.*Reynolds?
@@ -1144,6 +1147,7 @@ PAA:
     patterns:
     - '(phoenix|p\.?a\.?a\.?).*doc'
     - '(phoenix|p\.?a\.?a\.?).*double.*comb'
+    - paa.*comb
   La Criatura:
     patterns:
     - criatura
@@ -1740,9 +1744,13 @@ Weishi:
     patterns:
     - weishi.*adj.
 Wilkinson Sword:
+  Butterfly:
+    patterns:
+      - wilk.*sword
+      - wilk.*butter
   Classic:
     patterns:
-    - wilk.*sword
+    - wilk.*classic
 Wizamet:
   Junior P-1:
     patterns:

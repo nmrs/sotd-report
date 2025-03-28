@@ -10,7 +10,7 @@ AMACK:
 AP Shave Co:
   default: Synthetic
   patterns:
-  - A ?P ?\s*shave\s*(co)?
+  - A\.? ?P\.? ?\s*shave\s*(co)?
   - \bap\b
   - \bapsc\b
 Alpha:
@@ -20,7 +20,7 @@ Alpha:
 Anbbas:
   default: Synthetic
   patterns:
-  - anbbas
+  - an?bbas
 Art of Shaving:
   default: Badger
   patterns:
@@ -39,6 +39,10 @@ B&M:
   patterns:
   - b\s*(&|a)\s*m\b
   - barrister
+Badlands Shaving Co.:
+  default: Badger
+  patterns:
+  - badlands
 Balea Men:
   default: Synthetic
   patterns:
@@ -117,6 +121,8 @@ Chisel & Hound:
   - chis.*hou
   - chis.*fou
   - \bc(?:\&|and|\+)h\b
+  - broomstick
+  - season.*witch
 Col. Ichabod Conk:
   default: Badger
   patterns:
@@ -236,6 +242,13 @@ Grizzly Bay:
   default: Badger
   patterns:
   - griz.*bay
+Groomatorium:
+  default: Synthetic
+  knot size: 24mm
+  patterns:
+  - groomatorium
+  - chiseled face
+  - \bcf\b
 Haircut & Shave Co:
   default: Badger
   patterns:
@@ -252,6 +265,12 @@ Imperial:
   default: Synthetic
   patterns:
   - imperial
+Jequil & Corenveo:
+  default: Badger
+  knot size: 21mm
+  patterns:
+  - jequil
+  - corenveo
 L'Occitane en Provence:
   default: Synthetic
   patterns:
@@ -396,7 +415,13 @@ Prometheus Handcrafts:
   default: Synthetic
   patterns:
   - promethe
-Razorock:
+Rad Dinosaur Creations:
+  default: Synthetic
+  patterns:
+  - rad dino(saur)?
+  - priusaurus
+  - rdc
+RazoRock:
   default: Synthetic
   patterns:
   - Razorr*ock
@@ -465,6 +490,14 @@ Simpson:
   - simpson
   - duke
   - trafalgar
+Sir Hare:
+  default: Synthetic
+  patterns:
+  - sir.*hare
+  - sir hare
+  - sirhare
+  - sir\s*hare
+  - sirhare
 SmilezforMilez:
   default: Badger
   knot size: 26mm
@@ -599,6 +632,11 @@ Wald:
   patterns:
   - wald
   - west.*coast
+Wallygator Manufacturing Co.:
+  default: Synthetic
+  knot size: 26mm
+  patterns:
+  - wallygator
 Whipped Dog:
   default: Badger
   patterns:
@@ -617,6 +655,11 @@ Wiborg:
   default: Badger
   patterns:
   - wiborg
+WSP:
+  default: Badger
+  patterns:
+  - wsp
+  - wet.*shav.*prod
 Wolf Whiskers:
   default: Badger
   patterns:

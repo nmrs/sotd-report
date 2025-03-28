@@ -10,7 +10,11 @@ Alpha:
   - alpha
 Anbbas:
   patterns:
-  - anbbas
+  - an?bbas
+AP Shave Co:
+  patterns:
+  - ^A.? ?P.? ?\s*shave
+  - ^\bap\b
 Art of Shaving:
   patterns:
   - ^\s*aos
@@ -30,6 +34,9 @@ B&M:
   - \bbam\b
   - b & m
   - barrister
+Badlands Shaving Co.:
+  patterns:
+  - badlands
 Balea Men:
   patterns:
   - balea
@@ -95,6 +102,7 @@ Chisel & Hound:
   - chisel.*hound
   - chis.*fou
   - \bc(?:\&|and|\+)h\b
+  - broomstick
 Cool Dog:
   patterns:
   - cool dog
@@ -287,11 +295,17 @@ Noble Otter:
 Nom:
   patterns:
   - \bnom\b
+Old Spice:
+  patterns:
+  - old spice
 Omega:
   patterns:
   - omega
   - badger.*blade.*essential
   - proraso
+Oumo:
+  patterns:
+  - o[ou]mo
 Oz Shaving:
   patterns:
   - oz.*sha
@@ -325,6 +339,7 @@ Rad Dinosaur Creations:
   patterns:
   - rad dino(saur)?
   - priusaurus
+  - rdc
 Razorock:
   patterns:
   - Razorr*ock
@@ -401,6 +416,9 @@ Summer Break:
   patterns:
   - summer.*break
   - sbs
+Supply:
+  patterns:
+  - supply
 Surrey:
   patterns:
   - surrey
@@ -425,6 +443,7 @@ Teton Shaves:
 Timeless:
   patterns:
   - timeless
+  - \btrbr\b
 Truefitt & Hill:
   patterns:
   - truefitt.*hill
@@ -488,6 +507,9 @@ WCS:
 Wald:
   patterns:
   - wald
+Wallygator Manufacturing Co.:
+  patterns:
+  - wallygator
 Whipped Dog:
   patterns:
   - whipped.*dog
@@ -505,6 +527,10 @@ Wolf Whiskers:
 Wolfman:
   patterns:
   - wolfman.*(?:wrb\d)+
+WSP:
+  patterns:
+  - wsp
+  - wet.*shav.*prod
 Yaqi:
   patterns:
   - yaqu*i\b

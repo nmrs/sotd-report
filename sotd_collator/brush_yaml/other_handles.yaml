@@ -1,7 +1,7 @@
 AP Shave Co:
   patterns:
-  - AP\s*shave
-  - \bap\b
+  - ^A.? ?P.? ?\s*shave
+  - ^\bap\b
 Oumo:
   patterns:
   - o[ou]mo

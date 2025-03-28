@@ -39,7 +39,7 @@ class BaseNameExtractor(ABC):
         return re.compile(
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
             # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
-            rf"^[*\s\-+/\\]*{token}\s*[:*\-\\+ \t/]*(.*)$",
+            rf"^[*\s\-+/\\]*{token}\s*[:*\-\\+\t/]+(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )
 
@@ -49,14 +49,6 @@ class BaseNameExtractor(ABC):
             rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([^\[\n$]*)\[([^\]]*)\]\((?:[^\)]*)\)(.*)$",
             re.MULTILINE | re.IGNORECASE,
         )  # TTS style with link to eg imgur
-
-    def tts_detector(self, token):
-        return re.compile(
-            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*([{self.__name_chars}]+)(?:\+|,|\n|$)",
-            # rf"^[*\s\-+/]*{token}\s*[:*\-\\+\s/]+\s*(.+)$",
-            rf"^[*\s\-+/\\]*{token}\s*[:*\-\\+ \t/]*(.*)$",
-            re.MULTILINE | re.IGNORECASE,
-        )
 
     def asterisk_detector(self, token):
         return re.compile(

@@ -13,7 +13,7 @@
   - clock.*black
   - gill.*black
   - 7OC.*pla
-  - \b7sp\b
+  - \b7 ?sp\b
 7 O'Clock - Super Stainless (Green):
   patterns:
   - clock.*sta
@@ -101,9 +101,15 @@ Cloud A77:
   format: Antelope/A77
   patterns:
   - cloud.*a77
+Cloud Super Stainless:
+  patterns:
+  - cloud.*super
 Croma Diamant:
   patterns:
   - croma
+Crown Platinum:
+  patterns:
+  - crown.*plat
 Crown Super Stainless:
   patterns:
   - crown.*stainless
@@ -145,6 +151,10 @@ Dorco ST-300:
 Dorco ST-301:
   patterns:
   - dorco.*st.*301
+Dorco Prime:
+  patterns:
+  - dorco.*prime
+  - doric prime
 Dorco Titan:
   patterns:
   - dorco.*titan
@@ -217,6 +227,9 @@ Feather Soft Guard (AC):
   format: AC
   patterns:
   - feather.*soft
+Filoso:
+  patterns:
+  - filoso
 FlyDear Super Platinum:
   patterns:
   - flydear
@@ -379,6 +392,10 @@ Neva:
   patterns:
   - Нева
   - neva
+OneBlade HiCarbon SE:
+  format: FHS
+  patterns:
+  - oneblade.*hicarbon
 PAA Platinum Strangelet Super Sharps:
   patterns:
   - \bpaa\b|strangelet
@@ -511,6 +528,9 @@ Snow Mountain Wolf (A77):
 Statum Platinum:
   patterns:
   - \bstatum\b
+Sunny Supreme Stainless:
+  patterns:
+  - sunny.*stain
 Super-Max Blue Diamond:
   patterns:
   - super.*max.*(?:blu)*.*dia
@@ -572,7 +592,7 @@ Treet New:
   - treet.*new
 Treet New Edge:
   patterns:
-  - treet.*new.*edge
+  - tre(e|a)t.*new.*edge
 Treet New Steel:
   patterns:
   - treet.*new.*steel
