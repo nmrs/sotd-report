@@ -98,6 +98,8 @@ class BaseNameExtractor(ABC):
                 ("&amp;", "&"),
             ]
             if entity_name:
+                entity_name = entity_name.strip().lstrip(":").strip()
+
                 for replacement in replacements:
                     entity_name = entity_name.replace(*replacement)
 

@@ -181,6 +181,10 @@ Blutt Rasur:
   BR-1:
     patterns:
     - blutt?
+Bombay Shavimg Company:
+  DE:
+    patterns:
+    - bombay.*shaving.*company
 Böker:
   Straight:
     format: Straight
@@ -229,6 +233,7 @@ Cartridge / Disposable:
     - '\bbic\b'
     - \bcart\b
     - cartridge
+    - dorco.*pace 7
     - disposable
     - fusion
     - gillette blue
@@ -611,6 +616,7 @@ Gillette:
     - 'fat\s*boy'
     - 'gil.*et.*\b195\b'
     - gil.*et.*exec
+    - gillette.*\bfat\b
   Goodwill:
     patterns:
     - Gil.*et.*goodwill
@@ -648,7 +654,7 @@ Gillette:
     - new.*improved
   Old Type:
     patterns:
-    - 'gillette\s*old'
+    - 'gillette.*\bold\b'
     - oc.*ball
     - old.*type
     - pocket.*ed
@@ -661,6 +667,9 @@ Gillette:
   Senator:
     patterns:
     - senator
+  Service Razor:
+    patterns:
+    - gil.*service.*razor
   Sheraton:
     patterns:
     - sheraton
@@ -702,7 +711,7 @@ Gillette:
     - \btech\b
   Toggle:
     patterns:
-    - toggle
+    - (gil.*)?toggle
   Tuckaway:
     patterns:
     - gil.*tuckaway
@@ -751,6 +760,7 @@ Henson:
     - henson
     - (henson)?.*al13|lakdgjljagdlglklkaglkjgjkagkl
     - squatch
+    - \bal-?13
   Ti22:
     patterns:
     - henson.*ti
@@ -832,10 +842,17 @@ Knockout:
     patterns:
     - ^knockout
 Koraat:
+  Moarteen (r/Wetshaving exclusive):
+    format: Straight
+    grind: Full Hollow
+    patterns:
+    - koraat.*moarteen
+    point: Square
+    width: 15/16
   Straight:
     format: Straight
     patterns:
-    - 'koraat(\s+straight)*'
+    - 'koraat'
     - ^ko\b
 Krect:
   Spiral Slant:
@@ -896,6 +913,9 @@ Lord:
   L6:
     patterns:
     - lord.*l6
+  S 625:
+    patterns:
+    - lord.*s ?625
 Maggard:
   SS70:
     patterns:
@@ -1084,6 +1104,7 @@ Other:
     - diamondine
     - ditzer
     - dorko
+    - dubl ?duck
     - engels
     - efendi
     - \bern\b
@@ -1092,9 +1113,11 @@ Other:
     - french.*point
     - friedr.*herd
     - gold.*dollar
+    - goldedge
     - green.*lizard
     - hadoson
     - henkotsu
+    - hero.*germany
     - hollow
     - 'joseph\s*(elliot|allen)'
     - kamisori
@@ -1264,6 +1287,9 @@ Parker:
     patterns:
     - variant
 Pearl:
+  OC:
+    patterns:
+    - pearl.*oc
   Blaze:
     patterns:
     - Pearl.*blaz
@@ -1346,6 +1372,9 @@ RazoRock:
     - 'german.*\b37\b'
     - 'slant.*\b37\b'
     - '\b37\b.*slant'
+  GOAT:
+    patterns:
+      - razorock.*goat
   Hawk v1:
     format: AC
     patterns:
@@ -1456,9 +1485,15 @@ Romer-7:
   El Travel:
     patterns:
     - romer.*travel
+  Ricardo:
+    patterns:
+    - romer.*ricardo
+    - ricardo.*romer
+    - ricardo oc
   Shivira:
     patterns:
     - romer.*shivira
+    - shivira.*romer
   Wazir:
     patterns:
     - wazir
@@ -1525,15 +1560,30 @@ Shield:
   Predator:
     patterns:
     - shield.*pred
+Silver STAR:
+  Model 100:
+    patterns:
+    - silver star
 Smart-Helix:
   Apollo:
     patterns:
     - helix.*apol
+Soluna:
+  Razor:
+    patterns:
+    - soluna
 Spornette:
   Hair Shaper:
     format: Shavette (Hair Shaper)
     patterns:
     - spo|ernette
+Stando:
+  Leschy  :
+    patterns:
+    - leschy
+  Leszy:
+    patterns:
+    - leszy
 Star:
   Cadet:
     format: GEM
@@ -1543,14 +1593,6 @@ Star:
   Double Edge:
     patterns:
     - star.*de
-Silver STAR:
-  Model 100:
-    patterns:
-    - silver star
-Soluna:
-  Razor:
-    patterns:
-    - soluna
 Stirling:
   DE3P6S:
     patterns:
@@ -1578,6 +1620,8 @@ Supply:
     - sup.*ly.*2
     - ^(?!.*sentry).*supply.*se
     - supply single edge
+    - supply adjustable
+    - supply razor
     - ^supply$
 TRC:
   Stainless Steel:
@@ -1789,6 +1833,9 @@ Yaqi:
   Beast:
     patterns:
     - yaqi.*beast
+  Beast Hybrid:
+    patterns:
+    - yaqi.*hybrid
   Bohemia:
     patterns:
     - yaqi.*bohem

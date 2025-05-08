@@ -15,6 +15,9 @@ AP Shave Co:
   patterns:
   - ^A.? ?P.? ?\s*shave
   - ^\bap\b
+Arno:
+  patterns:
+  - arno\b
 Art of Shaving:
   patterns:
   - ^\s*aos
@@ -189,6 +192,9 @@ Fuller:
 Geo F. Trumper:
   patterns:
   - geo.*trumper
+Goodfellas Smile:
+  patterns:
+  - goodfellas'? smile
 Grizzly Bay:
   patterns:
   - grizzly.*bay
@@ -270,6 +276,9 @@ Morris & Forndran:
   patterns:
   - morris
   - m\s*&\s*f
+Mountain Hare Shaving:
+  patterns:
+  - mountain.*hare
 Mozingo:
   patterns:
   - mozingo
@@ -337,7 +346,7 @@ Prometheus Handcrafts:
   - prometheus.*(?:handcraft)?
 Rad Dinosaur Creations:
   patterns:
-  - rad dino(saur)?
+  - rad ?dino(saur)?
   - priusaurus
   - rdc
 Razorock:

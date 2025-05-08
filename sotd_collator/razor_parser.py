@@ -1084,6 +1084,16 @@ class RazorParser(BaseParser):
                     format = (
                         property_map["format"] if "format" in property_map else "DE"
                     )
+                    if format == "Straight":
+                        grind = (
+                            property_map["grind"] if "grind" in property_map else None
+                        )
+                        point = (
+                            property_map["point"] if "point" in property_map else None
+                        )
+                        width = (
+                            property_map["width"] if "width" in property_map else None
+                        )
 
                     output[pattern] = {
                         "brand": brand,
@@ -1091,6 +1101,14 @@ class RazorParser(BaseParser):
                         "name": f"{brand} {model}".strip(),
                         "format": format,
                     }
+                    if format == "Straight":
+                        if grind:
+                            output[pattern]["grind"] = grind
+                        if point:
+                            output[pattern]["point"] = point
+                        if width:
+                            output[pattern]["width"] = width
+
         return output
 
     @lru_cache(maxsize=None)

@@ -24,6 +24,9 @@ class StraightWidthParser(BaseParser):
         format = self.rp._get_value(input_string, "format")
         if format != "Straight":
             return None
+        width = self.rp._get_value(input_string, "width")
+        if width:
+            return width
 
         pattern = r"\d{1,2}/(8|16)"
         match = re.search(pattern, input_string, re.IGNORECASE)
@@ -59,6 +62,10 @@ class StraightPointParser(BaseParser):
         format = self.rp._get_value(input_string, "format")
         if format != "Straight":
             return None
+
+        point = self.rp._get_value(input_string, "point")
+        if point:
+            return point
 
         for name, patterns in self._patterns.items():
             for pattern in patterns:
@@ -99,6 +106,10 @@ class StraightGrindParser(BaseParser):
         format = self.rp._get_value(input_string, "format")
         if format != "Straight":
             return None
+
+        grind = self.rp._get_value(input_string, "grind")
+        if grind:
+            return grind
 
         for name, patterns in self._patterns.items():
             for pattern in patterns:

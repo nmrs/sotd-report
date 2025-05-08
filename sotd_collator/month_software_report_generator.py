@@ -20,7 +20,7 @@ runner = SoapRunner()
 pr = praw.Reddit("reddit")
 pl = SotdPostLocator(pr)
 
-target = datetime.date(2025, 2, 1)
+target = datetime.date(2025, 4, 1)
 # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
 delta_one = target - relativedelta(months=1)
 delta_two = target - relativedelta(years=1)

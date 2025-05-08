@@ -21,6 +21,12 @@ Anbbas:
   default: Synthetic
   patterns:
   - an?bbas
+Arno:
+  default: Badger
+  patterns:
+  - arno
+  - arno.*shav
+  - arno.*brush
 Art of Shaving:
   default: Badger
   patterns:
@@ -30,14 +36,14 @@ Artesania Romera:
   default: Badger
   patterns:
   - romera
-# Aurora Grooming:
-#   default: Synthetic
-#   patterns:
-#   - auror.*gr
+Aurora Grooming:
+  default: Synthetic
+  patterns:
+  - auror.*gr
 B&M:
   default: Synthetic
   patterns:
-  - b\s*(&|a)\s*m\b
+  - b\s*(&|a|\+)\s*m\b
   - barrister
 Badlands Shaving Co.:
   default: Badger
@@ -338,6 +344,10 @@ Morris & Forndran:
   patterns:
   - morris
   - m\s*&\s*f
+Mountain Hare Shaving:
+  default: Badger
+  patterns:
+  - mountain.*hare
 Mozingo:
   default: Badger
   patterns:
@@ -402,6 +412,10 @@ Parker:
   default: Badger
   patterns:
   - parker
+Pearl:
+  default: Synthetic
+  patterns:
+  - ^pearl\b
 Perfecto:
   default: Badger
   knot size: 20mm
@@ -432,6 +446,11 @@ Rick Montalvo:
   default: Synthetic
   patterns:
   - montalv
+Rocky Mountain Barber:
+  default: Badger
+  patterns:
+  - rocky.*mountain
+  - rockymountain
 Rockwell:
   default: Synthetic
   patterns:

@@ -14,6 +14,7 @@
   - gill.*black
   - 7OC.*pla
   - \b7 ?sp\b
+  - \b7'o.*black
 7 O'Clock - Super Stainless (Green):
   patterns:
   - clock.*sta
@@ -32,7 +33,9 @@ Albatross:
   - albatross
 Annie Hair Shaper:
   patterns:
-  - /bannie/b
+  - ^annie\b
+  - ^annir\b
+  - \bannie\b
 Asco Platium:
   patterns:
   - asco.*plat
@@ -103,7 +106,7 @@ Cloud A77:
   - cloud.*a77
 Cloud Super Stainless:
   patterns:
-  - cloud.*super
+  - cloud(.*super)?
 Croma Diamant:
   patterns:
   - croma
@@ -190,6 +193,9 @@ Enders Speed Blade:
 Euromax:
   patterns:
   - euromax
+Eversharp Blue Thin:
+  patterns:
+  - eversharp.*blue.*thin
 Fatip Stainless Steel:
   patterns:
   - fatip
@@ -429,6 +435,7 @@ Personna Hair Shaper:
   format: Hair Shaper
   patterns:
   - personn.*hair.*shap
+  - person.*specimen
 Personna Injector:
   format: Injector
   patterns:
@@ -444,6 +451,7 @@ Personna Med Prep:
   patterns:
   - person.*med
   - med.*prep
+  - accu-?thrive
 Personna Platinum:
   patterns:
   - ^person+a?\b.*plat
@@ -474,6 +482,9 @@ Rapira Super Stainless:
 Rapira Swedish:
   patterns:
   - rapira.*swe
+Rex Platinum:
+  patterns:
+  - \brex\b.*plat
 RK Stainless:
   patterns:
   - rk
@@ -530,7 +541,7 @@ Statum Platinum:
   - \bstatum\b
 Sunny Supreme Stainless:
   patterns:
-  - sunny.*stain
+  - sunny(.*stain)?
 Super-Max Blue Diamond:
   patterns:
   - super.*max.*(?:blu)*.*dia
@@ -541,6 +552,9 @@ Super-Max Platinum:
 Super-Max Super Stainless:
   patterns:
   - super.*max.*stai
+Super ShaveX Platinum:
+  patterns:
+  - shavex.*plat
 Supply Co. Black Label (Injector):
   patterns:
   - supply
@@ -615,6 +629,9 @@ Valet:
 Van Der Hagen Stainless:
   patterns:
   - hagen
+Vi-John Master Stroke:
+  patterns:
+  - vi.*john.*mas
 Vikings Blade Cayenne Hot:
   patterns:
   - viking.*cayenne
@@ -649,6 +666,9 @@ Wizamet:
 XR RhinoceRos:
   patterns:
   - rhinoceros
+Zircon Platinum:
+  patterns:
+  - zircon.*plat
 Zomchí Superior Platinum:
   patterns:
   - zomch(í|i)

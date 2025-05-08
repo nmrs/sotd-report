@@ -44,7 +44,7 @@ class BaseBrushParsingStrategy(ABC):
             for match in res:
                 # num_mm = int(re.search(r"\d+", match).group(0))
                 num_mm = int(match)
-                if num_mm < 18 or num_mm > 40:
+                if num_mm < 18 or num_mm > 50:
                     # probably a mistake, these are outside the usual brush sizes
                     continue
                 return f"{num_mm}mm"

@@ -586,8 +586,8 @@ if __name__ == "__main__":
     pr = praw.Reddit("reddit")
     pl = SotdPostLocator(pr)
 
-    start_month = datetime.date(2025, 1, 1)
-    end_month = datetime.date(2025, 1, 1)
+    start_month = datetime.date(2025, 4, 1)
+    end_month = datetime.date(2025, 4, 1)
     # target = datetime.date.today().replace(day=1) - relativedelta(months=4)
     # last_month = target - relativedelta(months=4)
     # last_year = target - relativedelta(years=1)
@@ -607,7 +607,7 @@ if __name__ == "__main__":
     # last_year_label = last_year.strftime("%b %Y")
 
     thread_map = pl.get_thread_map(start_month, end_month)
-    username = "u/jimm262"
+    username = "u/Impressive_Donut114"
     df = single_user_report(
         username,
         comments_target,
