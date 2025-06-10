@@ -97,6 +97,9 @@ Cartridge:
   - trac( |-)?(2|two|ii)
   - twin.*pivot
   - xtreme2
+Centwin Super Platinum:
+  patterns:
+  - centwin
 Clifton Classic:
   patterns:
   - clifton
@@ -310,6 +313,10 @@ Glätz Supreme Stainless:
   patterns:
   - glatz ss
   - glatz.*stai
+Gutche Hair Shaper:
+  format: Hair Shaper
+  patterns:
+  - gutche
 Heljestrand (Wedge):
   format: Other
   patterns:
@@ -495,6 +502,9 @@ Rolls Razor:
   format: Other
   patterns:
   - rolls
+Saimax Stainless:
+  patterns:
+  - sai ?max
 Sapphoo Red (AC):
   format: AC
   patterns:
@@ -535,7 +545,7 @@ Silver Star - Super Stainless:
 Snow Mountain Wolf (A77):
   format: A77
   patterns:
-  - snow mountain wolf
+  - snow moun?tain wolf
 Statum Platinum:
   patterns:
   - \bstatum\b
@@ -549,9 +559,14 @@ Super-Max Blue Diamond:
 Super-Max Platinum:
   patterns:
   - super.*max.*plat
-Super-Max Super Stainless:
+Super-Max Stainless (Red):
   patterns:
-  - super.*max.*stai
+  - super\s*max.*stain
+  - super\s*max red
+Super-Max Super Stainless (Green):
+  patterns:
+  - super\s*max.*super.*stain
+  - super\s*max green
 Super ShaveX Platinum:
   patterns:
   - shavex.*plat

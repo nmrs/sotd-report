@@ -40,13 +40,17 @@ Above the Tie:
     patterns:
     - '\b(?:att|tie)\b.*(?:windsor)*\b.*ssrh2'
 Alpha:
+  The Guido:
+    patterns:
+    - alpha.*guido
+    - the guido
+  Outlaw:
+    patterns:
+    - alpha.*outl
   Spirit:
     format: AC
     patterns:
     - alpha.*spirit
-  Outlaw:
-    patterns:
-    - alpha.*outl
 Alshabab:
   Razor:
     patterns:
@@ -155,6 +159,7 @@ Blackland:
     - Blclbird
     - Blackland\s*Tb?ird
     - blackland
+    - the bird
   Dart:
     patterns:
     - (?:blackland)?.*\bdart\b
@@ -225,6 +230,7 @@ Carbon:
     - carbon.*orig
     - carbon.*ti
     - carbon \+\+
+    - carbon razor
 Cartridge / Disposable:
   '':
     format: Cartridge
@@ -1222,6 +1228,9 @@ Parker:
   29L:
     patterns:
     - 29L
+  55SL-RG:
+    patterns:
+    - 55SL[-\s]?RG
   60R:
     patterns:
     - 60R
@@ -1280,6 +1289,7 @@ Parker:
     format: Half DE
     patterns:
     - parker.*solo
+    - soloedge
   Stella:
     patterns:
     - parker.*stella
@@ -1787,6 +1797,11 @@ Weishi:
   Adjustable:
     patterns:
     - weishi.*adj.
+Whityle:
+  20T Glide Pro 4D:
+    format: Dual Half DE
+    patterns:
+    - whityle.*20t
 Wilkinson Sword:
   Butterfly:
     patterns:

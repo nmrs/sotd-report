@@ -163,25 +163,25 @@ class DebugRunner(object):
             #     "parser field": "name",
             #     "fallback": False,
             # },
-            # {
-            #     "name": "Soap Brands",
-            #     "extractor": StagedSoapNameExtractor(),
-            #     "parser": SoapParser(),
-            #     "parser field": "brand",
-            # },
             {
-                "name": "Soap",
+                "name": "Soap Brand",
                 "extractor": StagedSoapNameExtractor(),
                 "parser": SoapParser(),
-                "parser field": "name",
+                "parser field": "brand",
             },
+            # {
+            #     "name": "Soap",
+            #     "extractor": StagedSoapNameExtractor(),
+            #     "parser": SoapParser(),
+            #     "parser field": "name",
+            # },
         ]
 
         inf_engine = inflect.engine()
 
         modes = [
-            DebugRunnerMode.COMPARE_TO_ORGINAL,
-            # DebugRunnerMode.UNIQUE,
+            # DebugRunnerMode.COMPARE_TO_ORGINAL,
+            DebugRunnerMode.UNIQUE,
             # DebugRunnerMode.VALUE_TO_URL,
         ]
 
@@ -410,8 +410,9 @@ if __name__ == "__main__":
     # target = datetime.date.today().replace(day=1) - relativedelta(months=1)
     # end_month = target
 
-    start_month = datetime.date(2025, 4, 1)
-    end_month = datetime.date(2025, 4, 1)
+    start_month = datetime.date(2025, 5, 1)
+
+    end_month = datetime.date(2025, 5, 1)
 
     comments_target = []
     thread_map = {}

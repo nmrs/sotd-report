@@ -535,6 +535,11 @@ Zenith:
     knot size: 26mm
     patterns:
     - b03-a26
+  B21:
+    fiber: Boar
+    knot size: 28mm
+    patterns:
+    - zen.*B21
   B26:
     fiber: Boar
     knot size: 27mm
@@ -572,6 +577,12 @@ Zenith:
     - zen.*B34
     - zen.*butter.*chub
     - zen.*chub.*butter
+  M27 (The Big One):
+    fiber: Badger
+    knot size: 31mm
+    patterns:
+    - zen.*M27
+    - zen.*big one
   # Unbleached Boar:
   #   fiber: Boar
   #   knot size: 27mm

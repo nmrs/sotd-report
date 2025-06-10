@@ -61,6 +61,9 @@ Aion Skincare:
   patterns:
   - 'aion(?:.*skincare)?'
   scents:
+    Fleur d'Iris:
+      patterns:
+      - aion.*fl[eu]+r.*iris
     Mallard Amore:
       patterns:
       - mallard amore
@@ -84,13 +87,16 @@ Apex Alchemy:
 Acqua Di Parma:
   patterns:
   - 'acqua di parma'
+Adopted Acres:
+  patterns:
+  - adopted acres
 Areffa Soap:
   patterns:
   - 'areffa( soap)?'
 Ariana & Evans:
   patterns:
   - '\ba ?(and|&|\+) ?e\b'
-  - 'arian+a?.*evans'
+  - 'ad?rian+a?.*evans'
   scents:
     60's Cologne:
       patterns:
@@ -113,6 +119,9 @@ Ariana & Evans:
     London Gin Club:
       patterns:
       - arian+a?.*london
+    Maullu:
+      patterns:
+      - \bmaullu\b
     Monte Carlo:
       patterns:
       - ariana.*monte carlo
@@ -122,6 +131,9 @@ Ariana & Evans:
     Pedro Fiasco Pomegranate & Wood:
       patterns:
       - pedro f(ia|ai)sco.*pomegranate
+    Spartacus:
+      patterns:
+      - arian+a?.*spartacus
     St. Barts:
       patterns:
       - ariana.*barts
@@ -157,7 +169,7 @@ Asylum Shave Works:
 Australian Private Reserve:
   patterns:
   - '\bapr\b'
-  - australian private reserve
+  - australian private reserve?
   scents:
     Coeur de Vert:
       patterns:
@@ -436,7 +448,7 @@ Bartigan & Stark:
   - bartigan (and|&) stark
 Baume.be:
   patterns:
-  - 'baume.?be'
+  - 'baume?.?be'
   scents:
     Shaving Cream:
       format: Cream
@@ -526,6 +538,9 @@ CBL Soaps:
     Inconceivable:
       patterns:
       - cbl.*inconceivable
+Campbell's:
+  patterns:
+  - campbell'?s
 Captain Nemo's:
   patterns:
   - '(captain )?nemo(?:''s)?'
@@ -619,6 +634,9 @@ Catie's Bubbles:
     Le Piment de la Vie:
       patterns:
       - 'p\w+ment.*vie'
+    Literal Lilac:
+      patterns:
+      - literal lilac
     Maggards MeetUp 2023:
       patterns:
       - cat.*bubb.*maggard
@@ -701,7 +719,7 @@ Chicago Grooming Co.:
       - "armon(i|i\u0301)a"
     Caoba:
       patterns:
-      - caoba
+      - ca[ob]{2}a
     Gold Coast:
       patterns:
       - 'gold c\w+st'
@@ -751,6 +769,9 @@ Chiseled Face:
     Midnight Stag:
       patterns:
       - midnight stag
+    Sherlock:
+      patterns:
+      - (?:chis.*face|cf).*sherlock
     Trade Winds:
       patterns:
       - chisel.*trade winds
@@ -999,6 +1020,9 @@ Dollar Shave Club:
       format: Cream
       patterns:
       - dollar.*club.*cream
+Dr. Bonner's:
+  patterns:
+  - dr\.? bonner'?s
 Dr. Jon's:
   patterns:
   - 'dr.*joh?n''?s?'
@@ -1366,6 +1390,16 @@ Hoffman's:
     Burn the Ships:
       patterns:
       - burn the ships
+Homemade:
+  patterns:
+  - ^homemade
+  scents:
+    Shea Butter:
+      patterns:
+      - homemade.*shea butter
+    Stearic Acid & Coconut Oil:
+      patterns:
+      - homemade.*stearic.*coconut
 House of Mammoth:
   patterns:
   - hou.*mammoth
@@ -1385,6 +1419,9 @@ House of Mammoth:
     Beloved:
       patterns:
       - (hom|mamm).*beloved
+    DinoS'mores:
+      patterns:
+      - dino ?s'?mores
     Embrace:
       patterns:
       - '(m\w+mmoth|\bhom\b).*embrace'
@@ -1468,6 +1505,9 @@ Jack Black:
   default format: Cream
   patterns:
   - jack black
+J.M. Fraser's:
+  patterns:
+  - j\.?m\.? fraser'?s?
 Jordan's:
   patterns:
   - 'jordan''''?s'
@@ -1554,6 +1594,9 @@ Laugar:
     Cologne Fougère:
       patterns:
       - le p.re lucien.*cologne foug\w*re
+    Lainess Elixir:
+      patterns:
+      - lainess,? elixir
 Lisa's Naturals:
   patterns:
   - 'lisa.*natural(.*herbal creations)?'
@@ -1677,7 +1720,7 @@ Martin de Candre:
   scents:
     Absinthe:
       patterns:
-      - martin.*absinthe
+      - martin.*absinthe?
     Agrumes:
       patterns:
       - agrumes
@@ -1756,6 +1799,9 @@ Mike's Natural Soaps:
     Barber Shop:
       patterns:
       - '^mike.*barber ?shop'
+    Honey and Grapefruit:
+      patterns:
+      - mike.*honey.*grapefruit
     Orange, Cedarwood, & Black Pepper:
       patterns:
       - 'mike.*orange.*pepper'
@@ -1840,6 +1886,9 @@ Mystic Water:
       patterns:
       - sea buckthorn
       - sanddorn
+Nawal's:
+  patterns:
+  - \bnawal'?s?\b
 Natural Suds & Body:
   patterns:
   - natural suds.*body
@@ -2246,6 +2295,9 @@ Southern Witchcrafts:
     Autumn Ash:
       patterns:
       - autumn ash
+    Druantia:
+      patterns:
+      - druantia
     "Fouge\u0300re Nemeta":
       patterns:
       - 'fo?ug.*nem(a|e)t+a'
@@ -2353,9 +2405,7 @@ St. James of London:
       - james.*mandarin.*patch
 Stirling Soap Co.:
   patterns:
-  - 'st(i|e)rling( soap (co.?(mpany)?)?)?'
-  - 'st(i|e)lring( soap (co.?)?)?'
-  - striling
+  - st[ier]{2}ling( soap (co.?(mpany)?)?)?
   scents:
     Alighieri:
       patterns:
@@ -2375,6 +2425,12 @@ Stirling Soap Co.:
     Bash:
       patterns:
       - st(i|e)rling.*bash
+    Bay Laurel:
+      patterns:
+      - st[ie]rling.*bay laurel
+    Boat Drinks:
+      patterns:
+      - boat drinks
     British Leather:
       patterns:
       - stirling.*british leather
@@ -2411,6 +2467,9 @@ Stirling Soap Co.:
     Haverford:
       patterns:
       - 'stirl.*have\wford'
+    I, Rich Moose:
+      patterns:
+      - (stirling.*)?rich moose
     Intrepid Man:
       patterns:
       - stirling.*intrepid
@@ -2438,9 +2497,15 @@ Stirling Soap Co.:
     Ramblin' Man:
       patterns:
       - ramblin.*man
+    Saguaro Blossom:
+      patterns:
+      - sag[ua]+ro blossom
     Sandpiper:
       patterns:
       - 'sand ?piper'
+    Scarn:
+      patterns:
+      - stirling.*scarn
     Scots Pine Sheep:
       patterns:
       - scot.*pine
@@ -2880,6 +2945,9 @@ Vicco:
 Viking Revolution:
   patterns:
   - viking revolution
+Viking:
+  patterns:
+  - viking( shaving (soap)?)?
 Vitos:
   patterns:
   - '^\W*vitos'
