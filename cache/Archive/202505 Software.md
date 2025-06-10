@@ -6,6 +6,12 @@ Welcome to your SOTD Lather Log for May 2025
 
 * The Soap Maker's podium looks similar to last month. Catie's Bubbles hangs on to the silver, while Stirling and B&M swap their gold and bronze spots.
 
+* MIke's Natural Soaps has a strong showing this month, breaking into the top 10 for the first time since I've been producing the Lather Log.
+
+* u/scribe__ single-handedly pushes Strike Gold Shave - Bee's Knees to the top of the Soaps table. Take notice any would-be champions of chaos, you too have the power to skew the results.
+
+* Hallows extends it's now four-month run as Barrister and Mann's most popular scent.
+
 ## Notes & Caveats
 
 * I only show the top n results per category to keep the tables readable and avoid max post length issues.
